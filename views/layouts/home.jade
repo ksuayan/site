@@ -1,0 +1,25 @@
+extends ../layout
+
+block append scripts
+    script(src="/js/external/raphael.min.js")
+    script(src="/js/external/moment.min.js")
+    script(src="/js/timeline.js")
+
+block content
+  div#timeline.hero-unit
+  div.row
+    div(class="span4", id="leftBox")
+      h2=content.leftHeader
+      p(id="leftBody")!=content.leftBody
+      p
+        a(class="btn",href="#") View details &raquo;
+    div(class="span4", id="centerBox")
+      h2=content.centerHeader
+      p(id="centerBody")!=content.centerBody
+      p
+        a(class="btn",href="#") View details &raquo;
+    div(class="span4", id="rightBox")
+      h2=content.rightHeader
+      p(id="rightBody")!=content.rightBody
+      p
+        a(class="btn",href="#") View details &raquo;

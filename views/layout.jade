@@ -1,0 +1,25 @@
+!!! 5
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport",content="width=device-width, initial-scale=1.0")
+    meta(name="description",content=config.description)
+    meta(name="keywords",content=config.keywords)
+    meta(name="author",content=config.author)
+    title= typeof(title) !== 'undefined' ? title : "site"
+    block css
+      link(rel="stylesheet",href="/css/external/bootstrap.min.css")
+      link(rel="stylesheet",href="/css/external/bootstrap-responsive.min.css")
+      link(rel="stylesheet",href="/fonts/open-sans/stylesheet.css")
+      link(rel="stylesheet",href="/fonts/museoslab-500/stylesheet.css")
+      link(rel="stylesheet",href="/css/main.css")
+    block scripts
+      script(src="/js/external/modernizr-2.6.1-respond-1.1.0.min.js")
+      script(src="/js/external/jquery-1.9.1.min.js")
+      script(src="/js/external/bootstrap.min.js")
+  body
+    include includes/header
+    div.container
+      block content
+    div.footer
+      block footer

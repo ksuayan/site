@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  - if (content && content.length)
+    br
+    table(class="table")
+      tr
+        th Name
+        th Value
+        th Date Created
+        th Action
+      - each textObj in content
+        tr
+          td
+            = textObj.name
+          td
+            = textObj.text
+          td
+            = fn.fromNow(textObj.dateCreated)
+          td
+            a(href='#',id="id-"+textObj._id,class="btn btn-mini delete")
+              i(class="icon-edit")
+              | &nbsp;edit
