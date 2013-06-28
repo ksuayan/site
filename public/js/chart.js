@@ -1,12 +1,10 @@
 var gb = {};
 gb.ui = {};
 
-gb.ui.Chart = function(x,y,width,height) {
-	this.x = x;
-	this.y = y;
+gb.ui.Chart = function(id, width, height) {
+
 	this.width = width;
 	this.height = height;
-
 	this.chartLeft = 60; // leftmost area of chart
 	this.chartTop = 60;
 	this.chartRight = this.width - 60;
@@ -16,7 +14,7 @@ gb.ui.Chart = function(x,y,width,height) {
 	this.barCeiling = this.chartHeight - 40; // space from tallest bar to top of chart
 	this.topInterval = 0;
 
-	this.chart = Raphael(this.x, this.y, this.width, this.height);
+	this.chart = Raphael(document.getElementById(id), this.width, this.height);
 	this.tickXPos = 30;
 	this.tickMarks = null;
 	this.textBox = this.chart.text(50,20, "").attr({"font":"14pt 'Arial'"});
@@ -137,8 +135,10 @@ gb.ui.Chart.prototype.animate = function(){
 			var newHeight = this.scaledValue(newData[i]);
 			var newYPos = this.chartBottom - newHeight;
 			var fillColor = this.colorCode(newData[i]);
-			var barAnimation = Raphael.animation({height: newHeight, y: newYPos, fill: fillColor, "stroke-width":0 }, 500, "easeInOut");
-			var textAnimation = Raphael.animation({height: newHeight, y: newYPos -10}, 500, "easeInOut");
+			var barAnimation = Raphael.animation(
+                {height: newHeight, y: newYPos, fill: fillColor, "stroke-width":0 }, 500, "easeInOut");
+			var textAnimation = Raphael.animation(
+                {height: newHeight, y: newYPos -10}, 500, "easeInOut");
 			var barObj = this.bars[i];
 			barObj[0].animate(barAnimation);
 			barObj[1].attr({text:newData[i]}).animate(textAnimation);
@@ -187,7 +187,10 @@ $(function(){
     var chart = null;
 
     function initPage() {
-        chart = new gb.ui.Chart(300,120,1002,802);
+        var id = "chart";
+        chart = new gb.ui.Chart(id,
+            $("#"+id).width(),
+            $("#"+id).height());
         chart.init();
         chart.grid(20,20);
         chart.draw();

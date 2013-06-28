@@ -23,10 +23,6 @@ th {
   background-color: #efefef;
 }
 
-.span4 {
-    background-color: #fff;
-}
-
 .hero-unit {
     padding: 0px;
     margin-top: 20px;
@@ -50,6 +46,11 @@ th {
     margin-top: 20px;
 }
 
+#chart {
+    margin: 40px auto 30px auto;
+    width: 1002px;
+    height: 802px;
+}
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
