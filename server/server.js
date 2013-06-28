@@ -7,7 +7,7 @@ api  = require('./api');
 
 console.log(conf);
 
-app.configure(function(){
+var init = function() {
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'jade');
     app.locals({config:conf.app});
@@ -20,7 +20,9 @@ app.configure(function(){
         dumpExceptions : false,
         showStack : false
     }));
-});
+}
+
+app.configure(init);
 
 app.all("/", function(req, res, next) {
     res.header('Access-Control-Allow-Origin', req.headers.origin || "*");
