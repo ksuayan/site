@@ -52,6 +52,11 @@ th {
     height: 802px;
 }
 
+#stage {
+    margin: 40px auto 30px auto;
+    background-color: #bd362f;
+}
+
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: absolute;
