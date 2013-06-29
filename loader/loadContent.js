@@ -1,6 +1,6 @@
 var data = require('./content.json');
 var content = require('../server/content-db');
-var conf = require('../server/conf');
+
 
 var ContentLoader = function(){
     console.log("Init ContentLoader.");

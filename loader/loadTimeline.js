@@ -1,6 +1,5 @@
 var data = require('./timeline.json');
 var timelineDB = require('../server/timeline-db');
-var conf = require('../server/conf');
 
 var TimelineLoader = function(){
     console.log("Timeline Loader.");
