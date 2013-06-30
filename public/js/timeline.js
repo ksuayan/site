@@ -25,6 +25,7 @@ $(function(){
         this.trackWidth = this.width - (this.margin * 2);
         // recompute on window resize ...
         if (this.paper) this.paper.clear();
+        $("#timeline").empty();
         this.paper = Raphael("timeline", this.width, this.height);
         this.ProcessData(this.timelineData);
         this.Draw();
@@ -213,7 +214,6 @@ $(function(){
 
         return this.selected.attr(strokeStyle);
     };
-
 
     var timeline = new Timeline();
 

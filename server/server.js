@@ -31,7 +31,7 @@ app.all("/", function(req, res, next) {
     next();
 });
 
-app.get('/', view.Home);
+app.get('/', view.FullScreen);
 app.get('/page/:page', view.PageView);
 
 // demos

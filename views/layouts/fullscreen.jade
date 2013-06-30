@@ -1,0 +1,48 @@
+!!! 5
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport",content="width=device-width, initial-scale=1.0")
+    meta(name="description",content=config.description)
+    meta(name="keywords",content=config.keywords)
+    meta(name="author",content=config.author)
+    title=typeof(title) !== 'undefined' ? title : "site"
+    block css
+      link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap.min.css")
+      link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap-responsive.min.css")
+      link(rel="stylesheet",href=config.mediaHost+"/fonts/open-sans/stylesheet.css")
+      link(rel="stylesheet",href=config.mediaHost+"/fonts/museoslab-500/stylesheet.css")
+      link(rel="stylesheet",href="/css/main.css")
+    block scripts
+      script(src=config.mediaHost+"/js/external/modernizr-2.6.1-respond-1.1.0.min.js")
+      script(src=config.mediaHost+"/js/external/jquery-1.9.1.min.js")
+      script(src=config.mediaHost+"/js/external/bootstrap.min.js")
+      script(src=config.mediaHost+"/js/external/raphael.min.js")
+      script(src=config.mediaHost+"/js/external/moment.min.js")
+      script(src="/js/util.js")
+      script(src="/js/timeline.js")
+      script(src="/js/fs.js")
+      script(src="/js/fs-demo.js")
+
+  body
+    include ../includes/header
+    div.container
+      include ../content/ksuayan
+      div.row
+          div(class="span4 trans", id="leftBox")
+              h2=content.leftHeader
+              p(id="leftBody")!=content.leftBody
+              p
+                  a(class="btn",href="#") View details &raquo;
+          div(class="span4 trans", id="centerBox")
+              h2=content.centerHeader
+              p(id="centerBody")!=content.centerBody
+              p
+                  a(class="btn",href="#") View details &raquo;
+          div(class="span4 trans", id="rightBox")
+              h2=content.rightHeader
+              p(id="rightBody")!=content.rightBody
+              p
+                  a(class="btn",href="#") View details &raquo;
+    div.footer
+      block footer
