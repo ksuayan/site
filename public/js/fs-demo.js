@@ -7,12 +7,11 @@ $(window).load(function () {
         images.push(mediaHost+"images/image-"+numStr+".jpg");
     }
 
-    /*
     $("body").fullscreen({
         refreshInterval: 15000,
         fadeOutTime: 1000,
         fadeInTime: 50,
         images: images
     });
-    */
+
 });
