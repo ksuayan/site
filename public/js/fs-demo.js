@@ -8,7 +8,7 @@ $(window).load(function () {
     }
 
     $("body").fullscreen({
-        refreshInterval: 15000,
+        refreshInterval: 30000,
         fadeOutTime: 1000,
         fadeInTime: 50,
         images: images
