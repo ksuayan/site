@@ -64,7 +64,6 @@ var TextListView = Backbone.View.extend({
     // tagName: 'form',
     // id: 'text-list-form',
     initialize: function() {
-        console.debug("Initialize TextListView");
         _.bindAll(this, 'render','renderTextRow','renderTemplate',
             'addText','editText','deleteText','saveText','cancelEditText');
         this.collection = new TextList();
@@ -156,13 +155,10 @@ var TextListView = Backbone.View.extend({
     deleteText: function(e) {
         e.preventDefault();
         var model = this.collection.get(e.target.value);
-        console.debug("delete model", model);
         model.destroy({
             success: function(model, response, options) {
-                console.debug("deleted", model);
             },
             error: function(model, xhr, options) {
-                console.debug("error deleting");
             }
         });
         return false;

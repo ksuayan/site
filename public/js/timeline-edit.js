@@ -33,7 +33,6 @@ var TimelineList = Backbone.Collection.extend({
         var self = this;
         this.fetch({
             success: function(collection, response, options) {
-                console.debug("response>>>",response)
                 self.reset();
                 self.add(response);
                 self.trigger("change");
@@ -68,7 +67,6 @@ var TimelineView = Backbone.View.extend({
 var TimelineListView = Backbone.View.extend({
     el: "#timeline-list-form",
     initialize: function() {
-        console.debug("Initialize TimelineListView");
         _.bindAll(this, 'render','renderTimelineRow','renderTemplate',
             'addTimeline','editTimeline','deleteTimeline',
             'saveTimeline','cancelEditTimeline');
@@ -105,9 +103,6 @@ var TimelineListView = Backbone.View.extend({
     },
 
     renderTimelineRow: function(item) {
-
-        console.debug(">>> item", item);
-
         var timelineItem = new TimelineView({model:item});
         $('#timeline-list-form').append(timelineItem.render().el);
         // this.$el.append(timelineItem.render().el);

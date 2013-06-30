@@ -105,7 +105,6 @@ gb.ui.Chart.prototype.drawTickMarks = function() {
 	for (var i=1; i <= this.tickCount; i++) {
 		var tickLabel  = tickIntervalValue * i;
 		var yPos = this.chartBottom - this.scaledValue(tickIntervalValue * i);
-		// console.debug("tickPositions: "+this.tickXPos+" "+yPos+" value: "+tickLabel)
 		tickSet.push(
 			this.chart.text(this.tickXPos, yPos, tickLabel ).attr({"font":"10pt 'Arial'"})
 		);

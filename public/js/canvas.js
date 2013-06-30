@@ -1,10 +1,7 @@
 $(function(){
-
     //Create a stage by getting a reference to the canvas
     var canvas = document.getElementById("stage");
     var stage = new createjs.Stage(canvas);
-
-    console.debug("stage", stage);
 
     //Create a Shape DisplayObject.
     var circle = new createjs.Shape();
