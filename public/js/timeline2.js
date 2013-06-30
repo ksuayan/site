@@ -13,7 +13,6 @@ $(function(){
         var that = this;
         $.getJSON('/api/timeline', function(data) {
             that.timelineData = data;
-            that.Resize();
         });
     };
 
@@ -129,15 +128,21 @@ $(function(){
             var dataPoint = this.data("dataPoint");
         };
 
+        var styles = {
+            hoverPoint: {"fill":"#00b", "stroke-width":"0", "opacity":0},
+            startPoint: {"opacity": 0, "cx":0, "fill":"#ccc", "stroke-width": "0"},
+            endPoint: {"fill":"#999", "stroke-width": "0"}
+        };
+
         for (var i= 0,n=this.dataPoints.length; i<n; i++) {
             var entry = this.dataPoints[i];
             var hoverPoint = this.paper.circle(entry.xStart, this.yTrack, 15);
-            hoverPoint.attr({"fill":"#00b", "stroke-width":"0", "opacity":0});
+            hoverPoint.attr(styles.hoverPoint);
             var startPoint = this.paper.circle(entry.xStart, this.yTrack, 10);
-            startPoint.attr({"opacity": 0, cx:0, "fill":"#ccc", "stroke-width": "0"});
+            startPoint.attr(styles.startPoint);
             startPoint.animate({"opacity": 1, "fill":"#333", cx: entry.xStart }, i * 100, "easeInOut");
             var endPoint = this.paper.circle(entry.xStart, this.yTrack, 5);
-            endPoint.attr({"fill":"#999", "stroke-width": "0"});
+            endPoint.attr(styles.endPoint);
             hoverPoint.toFront();
             hoverPoint.data("dataPoint", entry);
             hoverPoint.data("startPoint", startPoint);
@@ -170,7 +175,7 @@ $(function(){
 
 
     Timeline.prototype.DrawTicks = function() {
-        var dateStyle = { "fill":"#ccc","font-size":"10pt","font-family":"OpenSansLight"};
+        var dateStyle = { "fill":"#333","font-size":"10pt","font-family":"OpenSansLight"};
         var startDate = new Date(this.dataPoints[0].startDate);
         var startYear = startDate.getUTCFullYear();
         var endDate = new Date(this.dataPoints[this.dataPoints.length - 1].endDate);
