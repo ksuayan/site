@@ -1,5 +1,7 @@
 $(function(){
 
+    var month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
     var Timeline = function() {
         this.x = 0;
         this.y = 0;
@@ -10,24 +12,35 @@ $(function(){
         this.selected = null;
         this.startDateLabel = null;
         this.endDateLabel = null;
+        this.htmlContent = null;
+        this.id = "timeline";
+        this.jqContainer = $("#"+this.id);
+        this.ajaxURL = "/api/timeline";
+
         var that = this;
-        $.getJSON('/api/timeline', function(data) {
+        $.getJSON(this.ajaxURL, function(data) {
             that.timelineData = data;
         });
     };
 
-    var month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
     Timeline.prototype.Resize = function() {
-        this.width = $("#timeline").width();
-        this.height = $("#timeline").height();
+        if (!this.htmlContent)
+            this.htmlContent = this.jqContainer.html();
+        this.width = this.jqContainer.width();
+        this.height =this.jqContainer.height();
         this.trackWidth = this.width - (this.margin * 2);
         // recompute on window resize ...
-        if (this.paper) this.paper.clear();
-        $("#timeline").empty();
-        this.paper = Raphael("timeline", this.width, this.height);
-        this.ProcessData(this.timelineData);
-        this.Draw();
+        if (this.paper)
+            this.paper.clear();
+        if (this.width > 768) {
+            this.jqContainer.empty();
+            this.paper = Raphael(this.id, this.width, this.height);
+            this.ProcessData(this.timelineData);
+            this.Draw();
+        } else {
+            this.jqContainer.html(this.htmlContent);
+        }
+
     };
 
     Timeline.prototype.ProcessData = function(rawData) {
@@ -74,8 +87,6 @@ $(function(){
             "stroke-linecap": "round"
         };
         this.track.attr(strokeStyle);
-
-
 
         var onHover = function(e) {
             var sp = this.data("startPoint");
@@ -188,6 +199,7 @@ $(function(){
         }
     };
 
+
     Timeline.prototype.DrawDate = function(timestamp) {
         var monthStyle = { "opacity": 0, "fill" : "#333", "font-size": "16pt", "font-family" : "OpenSansLight" };
         var yearStyle = { "opacity": 0, "fill" : "#333", "font-size": "12pt", "font-family" : "OpenSansLight" };
@@ -222,16 +234,19 @@ $(function(){
 
     var timeline = new Timeline();
 
-    $(window).resize(function() {
-        if (timeline.paper) timeline.paper.clear();
-        if(this.resizeTO) clearTimeout(this.resizeTO);
-        this.resizeTO = setTimeout(function() {
-            $(this).trigger('resizeEnd');
-        }, 500);
-    });
+    var triggerResizeEnd = function() {
+        $(this).trigger('resizeEnd');
+    };
 
-    $(window).bind('resizeEnd', function() {
-        timeline.Resize();
-    });
+    var onResizeHandler = function() {
+        if (timeline.paper)
+            timeline.paper.clear();
+        if (this.resizeTO)
+            clearTimeout(this.resizeTO);
+        this.resizeTO = setTimeout(triggerResizeEnd, 500);
+    }
+
+    $(window).resize(onResizeHandler);
+    $(window).bind('resizeEnd', function(){timeline.Resize();});
 
 });

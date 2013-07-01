@@ -1,12 +1,11 @@
-html {
-    background-color: #fff;
-    background: url(../img/grid.gif) repeat;
-}
+html { background-color: #fff; }
 
 body {
     font-family: "OpenSansRegular", Helvetica, Arial, sans-serif;
     font-size: 12pt;
     background-color: transparent;
+    padding-top: 80px;
+    padding-bottom: 40px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -18,9 +17,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 160%;
 }
 
-th {
-  background-color: #efefef;
-}
+th { background-color: #efefef; }
+
+li { list-style-position: inside; }
 
 .hero-unit {
     padding: 0px;
@@ -28,16 +27,8 @@ th {
     min-height: 250px;
     background-color: rgba(255,255,255,0.75);
 }
-.hero-unit h1 {
-    margin: 15px 20px 15px 20px;
-    font-size: 18pt;
-    line-height: 120%;
-}
-.hero-unit p {
-    margin: 15px 20px 15px 20px;
-    font-size: 12pt;
-    line-height: 120%;
-}
+.hero-unit h1 { margin: 15px 20px 15px 20px; font-size: 18pt; line-height: 120%; }
+.hero-unit p { margin: 15px 20px 15px 20px; font-size: 12pt; line-height: 120%; }
 
 .trans {
     background-color: rgba(0,0,0,0.85);
@@ -50,9 +41,6 @@ th {
     margin: 15px;
 }
 
-li {
-    list-style-position: inside;
-}
 
 .content { margin-top: 20px; }
 
@@ -109,7 +97,6 @@ li {
 
 /* RESPONSIVE CSS
    -------------------------------------------------- */
-body { padding-top: 80px; padding-bottom: 40px; }
 
 @media (max-width: 979px) {
   .container.navbar-wrapper { margin-bottom: 0; width: auto; }
@@ -145,8 +132,15 @@ body { padding-top: 80px; padding-bottom: 40px; }
     background-color: #efefef;
 }
 
-/* ------------ */
+/* ---- */
+html#slideshow {
+    /*
+    background-image: url(../img/grid.gif);
+    background-repeat: repeat;
+    */
+    background-color: #000;
+}
 
-#bg-front, #bg-back { position: fixed; top: 0; left: 0; z-index: -1000; }
+#bg-front, #bg-back { position: fixed; top: 0; left: 0; z-index: -1;}
 .bgheight { height: 100%; width: auto; max-width: none; }
 .bgwidth { width: 100%; height: auto; max-height: none; }
