@@ -2,9 +2,9 @@
 (function() {
   var gb;
 
-  gb = {};
+  gb = gb || {};
 
-  gb.ui = {};
+  gb.ui = gb.ui || {};
 
   gb.ui.Chart = function(x, y, width, height) {
     this.x = x;

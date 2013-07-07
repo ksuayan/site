@@ -1,5 +1,7 @@
-var gb = {};
-gb.ui = {};
+'use strict';
+
+var gb = gb || {};
+gb.ui = gb.ui || {};
 
 gb.ui.Chart = function(id, width, height) {
 
@@ -41,7 +43,6 @@ gb.ui.Chart = function(id, width, height) {
 
 	// randomizer
 	this.generatorIndex = 1;
-
 };
 
 gb.ui.Chart.prototype.init = function() {

@@ -1,4 +1,23 @@
-var util = {};
+
+var extend = function ( ns, ns_string ) {
+    var parts = ns_string.split('.'),
+        parent = ns,
+        pl, i;
+    if (parts[0] == "gb") {
+        parts = parts.slice(1);
+    }
+    pl = parts.length;
+    for (i = 0; i < pl; i++) {
+        //create a property if it doesnt exist
+        if (typeof parent[parts[i]] == 'undefined') {
+            parent[parts[i]] = {};
+        }
+        parent = parent[parts[i]];
+    }
+    return parent;
+};
+
+var util = util || {};
 
 util.randomArray = function(size, scale) {
     var r = new Array(size);
@@ -23,6 +42,8 @@ util.zeroFill = function(number, width) {
     }
     return number + ""; // always return a string
 };
+
+
 
 // -- http://jsfiddle.net/amustill/Bh276/1/
 Raphael.el.hoverInBounds = function(inFunc, outFunc) {

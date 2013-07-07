@@ -3,6 +3,8 @@ extends ../layout
 block append scripts
     script(src=config.mediaHost+"/js/external/createjs.min.js")
     script(src="/js/canvas.js")
+    script(src="/js/timeoutCycle.js")
+    script(src="/js/canvasApp.js")
 
 block content
     canvas#stage(width="1000",height="300") &nbsp;

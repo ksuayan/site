@@ -1,5 +1,5 @@
-gb = {}
-gb.ui = {}
+gb = gb || {}
+gb.ui = gb.ui || {}
 gb.ui.Chart = (x, y, width, height) ->
   @x = x
   @y = y
