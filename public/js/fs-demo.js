@@ -5,12 +5,9 @@ $(window).load(function () {
     var backgrounds = [];
 
     var onSuccess = function() {
-        console.log("success", arguments, backgrounds);
     };
     var onError = function() {
-        console.log("error", arguments);
     };
-
 
     for (var i=1;i<=28;i++) {
         var numStr = util.zeroFill(i,3);
