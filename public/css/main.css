@@ -57,6 +57,26 @@ li { list-style-position: inside; }
     background-color: #bd362f;
 }
 
+#ui-toolbar {
+    position: fixed;
+    right: 30px;
+    bottom: 0px;
+    background-color: rgba(0,0,0,0.75);
+}
+
+#ui-toolbar a,
+#ui-toolbar a:visited {
+    font-family: "MuseoSlab500Regular", Helvetica, Arial, sans-serif;
+    font-size: 12pt;
+    display: block;
+    margin: 8px 15px 8px 15px;
+    text-decoration: none;
+    color: #999;
+}
+#ui-toolbar a:hover {
+    color: #fff;
+}
+
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: absolute;
@@ -133,14 +153,8 @@ li { list-style-position: inside; }
 }
 
 /* ---- */
-html#slideshow {
-    /*
-    background-image: url(../img/grid.gif);
-    background-repeat: repeat;
-    */
-    background-color: #000;
-}
-
-#bg-front, #bg-back { position: fixed; top: 0; left: 0; z-index: -1;}
+html#slideshow { background-color: #000; }
+#spinner { display:none; margin: 10px 0px 10px 0px; }
+#background { position: fixed; top: 0; left: 0; z-index: -1;}
 .bgheight { height: 100%; width: auto; max-width: none; }
 .bgwidth { width: 100%; height: auto; max-height: none; }

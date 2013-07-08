@@ -2,8 +2,7 @@
 
     $.fn.fullscreen = function(options) {
         var settings = $.extend({
-            front: "#bg-front",
-            back: "#bg-back",
+            front: "#background",
             bgHeightClass: 'bgheight',
             bgWidthClass: 'bgwidth',
             refreshInterval: 5000,

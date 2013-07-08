@@ -1,23 +1,46 @@
+'use strict';
+
 $(window).load(function () {
 
     var mediaHost = "//media.suayan.com/";
+    // var mediaHost = "//localhost/";
     var images = [];
     var backgrounds = [];
+    var totalBackgrounds = 28;
+    var countLoaded = 0;
 
+    var checkSpinner = function() {
+        countLoaded++;
+        if (countLoaded == totalBackgrounds) {
+            $("#spinner").hide();
+        }
+    };
     var onSuccess = function() {
+        checkSpinner();
     };
     var onError = function() {
+        checkSpinner();
     };
 
-    for (var i=1;i<=28;i++) {
-        var numStr = util.zeroFill(i,3);
-        images.push(mediaHost+"images/image-"+numStr+".jpg");
-    }
+    var preloadBackgrounds = function() {
+        for (var i=1;i<=totalBackgrounds;i++) {
+            var numStr = util.zeroFill(i,3);
+            images.push(mediaHost+"images/image-"+numStr+".jpg");
+        }
+        for (var i= 0,n=images.length;i<n;i++) {
+            var preloader = new gb.ui.PreloadableImage("img"+i, images[i], onSuccess, onError)
+            backgrounds.push(preloader);
+        }
+    };
 
-    for (var i= 0,n=images.length;i<n;i++) {
-        var preloader = new gb.ui.PreloadableImage("img"+i, images[i], onSuccess, onError)
-        backgrounds.push(preloader);
-    }
+    preloadBackgrounds();
+
+    var onResizeHandler = function(e){
+        console.log("resize",e);
+    };
+    $(window).resize(util.resizeThrottle(onResizeHandler, 500));
+
+    $("#spinner").show();
 
     $("body").fullscreen({
         refreshInterval: 30000,
@@ -25,5 +48,23 @@ $(window).load(function () {
         fadeInTime: 50,
         images: images
     });
+
+    var content = $("#content");
+    var visibleContent = true;
+    var toggleContent = function() {
+        visibleContent = (!visibleContent);
+        if (visibleContent) {
+            content.stop().animate({opacity:1},500,"swing",
+                function(){
+                    content.attr({"visibility":"visible", "display":"block"});
+                });
+        } else {
+            content.stop().animate({opacity:0},1000,"swing",
+                function(){
+                    content.attr({"visibility":"hidden", "display":"none"});
+                });
+        }
+    };
+    $("#ui-toolbar").click(toggleContent);
 
 });

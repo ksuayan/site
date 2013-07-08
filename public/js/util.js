@@ -43,6 +43,16 @@ util.zeroFill = function(number, width) {
     return number + ""; // always return a string
 };
 
+util.resizeThrottle = function(callback, timeout) {
+    var timeoutID , timeout = timeout || 200;
+    return function () {
+        var scope = this , args = arguments;
+        clearTimeout(timeoutID);
+        timeoutID = setTimeout(function(){
+            callback.apply( scope , Array.prototype.slice.call(args) );
+        } , timeout );
+    }
+}
 
 
 // -- http://jsfiddle.net/amustill/Bh276/1/
