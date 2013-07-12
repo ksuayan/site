@@ -37,7 +37,7 @@ app.get('/page/:page', view.PageView);
 // demos
 app.get('/live', view.Live); // Backbone Editor
 app.get('/graph', view.Graph); // Raphael Graph
-app.get('/canvas', view.Canvas); // Raphael Graph
+app.get('/canvas', view.Canvas); // Canvas Experiments
 
 // API
 app.get('/api/timeline', api.GetTimeline);
