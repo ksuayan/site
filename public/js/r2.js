@@ -50,7 +50,7 @@
   };
 
   gb.ui.Chart.prototype.init = function() {
-    return this.data = util.randomArray(this.numberOfBars, this.generatorIndex * 100);
+    return this.data = util.RandomArray(this.numberOfBars, this.generatorIndex * 100);
   };
 
   gb.ui.Chart.prototype.grid = function(horizontal, vertical) {
@@ -141,14 +141,14 @@
   gb.ui.Chart.prototype.animate = function() {
     var barAnimation, barObj, fillColor, i, max, min, newData, newHeight, newYPos, textAnimation;
 
-    newData = util.randomArray(this.numberOfBars, this.generatorIndex * this.roundUpTo);
+    newData = util.RandomArray(this.numberOfBars, this.generatorIndex * this.roundUpTo);
     if (this.generatorIndex > 12) {
       this.generatorIndex = 1;
     } else {
       this.generatorIndex++;
     }
-    min = util.arrayMin(newData);
-    max = util.arrayMax(newData);
+    min = util.ArrayMin(newData);
+    max = util.ArrayMax(newData);
     this.topInterval = this.calculateTopInterval(max, this.roundUpTo);
     this.minText.attr({
       text: "min: " + min

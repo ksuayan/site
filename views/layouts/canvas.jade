@@ -2,9 +2,9 @@ extends ../layout
 
 block append scripts
     script(src=config.mediaHost+"/js/external/createjs.min.js")
+    script(src="/js/util.js")
     script(src="/js/canvas.js")
-    script(src="/js/timeoutCycle.js")
-    script(src="/js/canvasApp.js")
+    script(src="/js/dispatcher.js")
 
 block content
     canvas#stage(width="1000",height="300") &nbsp;

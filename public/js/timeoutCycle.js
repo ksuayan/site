@@ -36,20 +36,22 @@ gb.util.TimeOutCycle.prototype.Start = function() {
 
 
 gb.util.TimeOutCycle.prototype.Stop = function() {
-    console.log("stopping...");
+    // console.log("stopping...");
     this.isRunning = false;
     if (this.timeoutHandle)
         clearTimeout(this.timeoutHandle)
 };
 
+
 gb.util.TimeOutCycle.prototype._tick = function() {
-    console.log("_tick", this);
+    // console.log("_tick", this);
     if (!this.isRunning) {
         return;
     }
     this.tickHandler();
     this._SetNext();
 };
+
 
 gb.util.TimeOutCycle.prototype._SetNext = function() {
     var that = this;

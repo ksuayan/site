@@ -46,7 +46,7 @@ gb.ui.Chart = function(id, width, height) {
 };
 
 gb.ui.Chart.prototype.init = function() {
-	this.data = util.randomArray(this.numberOfBars, this.generatorIndex * 100);
+	this.data = util.RandomArray(this.numberOfBars, this.generatorIndex * 100);
 };
 
 gb.ui.Chart.prototype.grid = function(horizontal,vertical) {
@@ -115,15 +115,15 @@ gb.ui.Chart.prototype.drawTickMarks = function() {
 
 gb.ui.Chart.prototype.animate = function(){
 
-	var newData = util.randomArray(this.numberOfBars, this.generatorIndex * this.roundUpTo);
+	var newData = util.RandomArray(this.numberOfBars, this.generatorIndex * this.roundUpTo);
 	if (this.generatorIndex>12) {
 		this.generatorIndex = 1;
 	} else {
 		this.generatorIndex++;
 	}
 
-	var min = util.arrayMin(newData);
-	var max = util.arrayMax(newData);
+	var min = util.ArrayMin(newData);
+	var max = util.ArrayMax(newData);
 	this.topInterval = this.calculateTopInterval(max,this.roundUpTo);
 	this.minText.attr({text: "min: " + min});
 	this.maxText.attr({text: "max: " + max});

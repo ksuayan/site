@@ -24,7 +24,7 @@ $(window).load(function () {
 
     var preloadBackgrounds = function() {
         for (var i=1;i<=totalBackgrounds;i++) {
-            var numStr = util.zeroFill(i,3);
+            var numStr = util.ZeroFill(i,3);
             images.push(mediaHost+"images/image-"+numStr+".jpg");
         }
         for (var i= 0,n=images.length;i<n;i++) {
@@ -38,7 +38,7 @@ $(window).load(function () {
     var onResizeHandler = function(e){
         // console.log("resize",e);
     };
-    $(window).resize(util.resizeThrottle(onResizeHandler, 500));
+    $(window).resize(util.ResizeThrottle(onResizeHandler, 500));
 
     $("#spinner").show();
 

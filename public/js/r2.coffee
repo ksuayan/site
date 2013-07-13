@@ -37,7 +37,7 @@ gb.ui.Chart = (x, y, width, height) ->
   @generatorIndex = 1
 
 gb.ui.Chart::init = ->
-  @data = util.randomArray(@numberOfBars, @generatorIndex * 100)
+  @data = util.RandomArray(@numberOfBars, @generatorIndex * 100)
 
 gb.ui.Chart::grid = (horizontal, vertical) ->
 
@@ -102,13 +102,13 @@ gb.ui.Chart::drawTickMarks = ->
   @tickMarks = tickSet
 
 gb.ui.Chart::animate = ->
-  newData = util.randomArray(@numberOfBars, @generatorIndex * @roundUpTo)
+  newData = util.RandomArray(@numberOfBars, @generatorIndex * @roundUpTo)
   if @generatorIndex > 12
     @generatorIndex = 1
   else
     @generatorIndex++
-  min = util.arrayMin(newData)
-  max = util.arrayMax(newData)
+  min = util.ArrayMin(newData)
+  max = util.ArrayMax(newData)
   @topInterval = @calculateTopInterval(max, @roundUpTo)
   @minText.attr text: "min: " + min
   @maxText.attr text: "max: " + max
