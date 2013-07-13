@@ -5,7 +5,7 @@
        "name": "leftHeader"
        },
        {
-       "text":"I started developing websites in 1995. I have since worked with various technology stacks like Perl-CGI, ColdFusion, PHP, Java/J2EE and recently NodeJS.",
+       "text":"I started developing websites in 1995. Since then I've worked with various technology stacks like Perl-CGI, ColdFusion, PHP, Java/J2EE and most recently with core Javascript and NodeJS.",
        "name": "leftBody"
        },
        {
@@ -13,7 +13,7 @@
        "name": "centerHeader"
        },
        {
-       "text":"My first job right out of college was doing graphic design work for print. I produced training and promotional materials and advertisements for a nationwide USAID project. Integration of technology and visual design is one of my main interests.",
+       "text":"After college, I worked as a graphic designer for a USAID project where I produced training and promotional materials for print. It was also there where I got to build my first company website on HTML 2.0. To this day, I still get excited when technology and visual communication come together to elicit positive user experiences and empower the user.",
        "name":"centerBody"
        },
        {
@@ -21,8 +21,9 @@
        "name":"rightHeader"
        },
        {
-       "text":"Photography, video and music production work.",
+       "text":"<ul><li>Photographic Work</li><li>Video Production</li><li>Audio Production</li></ul>",
        "name": "rightBody"
        }
     ]
 }
+

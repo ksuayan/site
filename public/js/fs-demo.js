@@ -36,7 +36,7 @@ $(window).load(function () {
     preloadBackgrounds();
 
     var onResizeHandler = function(e){
-        console.log("resize",e);
+        // console.log("resize",e);
     };
     $(window).resize(util.resizeThrottle(onResizeHandler, 500));
 
