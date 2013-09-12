@@ -3,6 +3,7 @@ app  = express(),
 path = require('path'),
 conf = require('./conf'),
 view = require('./view'),
+itunes = require('./itunes'),
 api  = require('./api');
 
 console.log(conf);
@@ -38,6 +39,12 @@ app.get('/page/:page', view.PageView);
 app.get('/live', view.Live); // Backbone Editor
 app.get('/graph', view.Graph); // Raphael Graph
 app.get('/canvas', view.Canvas); // Canvas Experiments
+app.get('/search', view.SearchDemo); // Canvas Experiments
+
+app.get('/search/:term', itunes.SearchTerm);
+app.get('/multi-search/:term', itunes.SearchMultiCriteria);
+app.get('/track', itunes.GetTrackList);
+app.get('/track/:id', itunes.GetTrack);
 
 // API
 app.get('/api/timeline', api.GetTimeline);

@@ -67,4 +67,7 @@ $(window).load(function () {
     };
     $("#ui-toolbar").click(toggleContent);
 
+    // Search Hookups.
+    $("#search-field").search();
+
 });

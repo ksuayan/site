@@ -23,6 +23,12 @@ ViewHandler.prototype.FullScreen = function(req, res) {
     });
 };
 
+ViewHandler.prototype.SearchDemo = function(req, res) {
+    content.GetPageText("home", function(content){
+        res.render('layouts/search', {content : content});
+    });
+};
+
 ViewHandler.prototype.PageEdit = function(req, res) {
     var locale = null;
     if (req.params.locale) locale = req.params.locale;
