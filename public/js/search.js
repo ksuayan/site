@@ -3,7 +3,6 @@
     $.fn.search = function(options) {
 
         var that = this;
-
         var intervalHandler = null;
         var previousTerm = null;
 
@@ -11,7 +10,7 @@
             input: "search-field",
             results: "search-results",
             minchars: 4,
-            requestInterval: 2000
+            requestInterval: 3000
         }, options);
 
         var showHeading = function(collectionName, count) {
@@ -109,25 +108,11 @@
             });
         };
 
-        /*
-        var handleKey = function(event) {
-            requestQuery();
-        };
-        */
-
-        var init = function() {
-            that.searchInput = $("#"+settings.input);
-
-            // that.searchInput.keydown(handleKey);
-
-            if (!intervalHandler) {
-                intervalHandler = setInterval(requestQuery, settings.requestInterval);
-            }
-            that.searchInput.after("<div id=\'"+settings.results+"\'></div>");
+        // call this when the window is resized
+        this.onResize = function() {
             var pos = that.searchInput.position();
             var width = that.searchInput.outerWidth(true);
             var height = that.searchInput.outerHeight(true);
-            that.resultsDiv = $("#"+settings.results);
             that.resultsDiv.css({
                 position: "absolute",
                 top: (pos.top+height+10)+"px",
@@ -135,11 +120,21 @@
                 width: width+"px",
                 height: "600px"
             });
+        };
+
+        var init = function() {
+            that.searchInput = $("#"+settings.input);
+            if (!intervalHandler) {
+                intervalHandler = setInterval(requestQuery, settings.requestInterval);
+            }
+            that.searchInput.after("<div id=\'"+settings.results+"\'></div>");
+            that.resultsDiv = $("#"+settings.results);
+            // reposition on window resize.
+            that.onResize();
             that.resultsDiv.hide();
         };
+
         init();
         return this;
     };
 }(jQuery));
-
-
