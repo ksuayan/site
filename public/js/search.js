@@ -85,17 +85,13 @@
         var requestQuery = function() {
             var term = that.searchInput.val().trim();
             if (term.length<settings.minchars) {
-                console.log("too short");
                 hideResults();
                 return;
             }
             if (term === previousTerm) {
-                console.log("unchanged:", term);
                 return;
             }
-            console.log("new query:", term);
             previousTerm = term;
-
             var url = "/multi-search/"+term;
             $.ajax({
                 url: url,
@@ -110,6 +106,8 @@
 
         // call this when the window is resized
         this.onResize = function() {
+            if (!that.searchInput) return;
+
             var pos = that.searchInput.position();
             var width = that.searchInput.outerWidth(true);
             var height = that.searchInput.outerHeight(true);
@@ -124,6 +122,9 @@
 
         var init = function() {
             that.searchInput = $("#"+settings.input);
+            if (typeof that.searchInput[0] == 'undefined') {
+                return null;
+            }
             if (!intervalHandler) {
                 intervalHandler = setInterval(requestQuery, settings.requestInterval);
             }
@@ -132,9 +133,18 @@
             // reposition on window resize.
             that.onResize();
             that.resultsDiv.hide();
-        };
 
-        init();
-        return this;
+            // initialized.. return self.
+            return that;
+        };
+        return init();
     };
 }(jQuery));
+
+$(function(){
+    // Search Hookups.
+    var $search = $("#search-field").search();
+    if ($search) {
+        $(window).resize(util.ResizeThrottle($search.onResize, 500));
+    }
+});
