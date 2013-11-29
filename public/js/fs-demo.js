@@ -6,7 +6,7 @@ $(window).load(function () {
     // var mediaHost = "//localhost/";
     var images = [];
     var backgrounds = [];
-    var totalBackgrounds = 28;
+    var totalBackgrounds = 5; // 28;
     var countLoaded = 0;
 
     var checkSpinner = function() {

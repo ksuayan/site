@@ -8,15 +8,15 @@ html(lang="en")
     meta(name="author",content=config.author)
     title=typeof(title) !== 'undefined' ? title : "site"
     block css
-      link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap.min.css")
-      link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap-responsive.min.css")
-      link(rel="stylesheet",href=config.mediaHost+"/fonts/open-sans/stylesheet.css")
-      link(rel="stylesheet",href=config.mediaHost+"/fonts/museoslab-500/stylesheet.css")
+      link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap.3.0.2/bootstrap.min.css")
+      link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap.3.0.2/bootstrap-theme.min.css")
       link(rel="stylesheet",href="/css/main.css")
     block scripts
       script(src=config.mediaHost+"/js/external/modernizr-2.6.1-respond-1.1.0.min.js")
       script(src=config.mediaHost+"/js/external/jquery-1.9.1.min.js")
-      script(src=config.mediaHost+"/js/external/bootstrap.min.js")
+      script(src=config.mediaHost+"/js/external/jquery.transit.min.js")
+      script(src=config.mediaHost+"/js/external/bootstrap.3.0.2/bootstrap.min.js")
+
   body
     include includes/header
     div.container

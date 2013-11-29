@@ -1,160 +1,177 @@
-html { background-color: #fff; }
-
-body {
-    font-family: "OpenSansRegular", Helvetica, Arial, sans-serif;
-    font-size: 12pt;
-    background-color: transparent;
-    padding-top: 80px;
-    padding-bottom: 40px;
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+html {
+  background-color: #fff;
 }
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: "OpenSansSemiBold", Helvetica, Arial, sans-serif;
-  font-size: 14pt;
+body {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 13pt;
+  font-weight: 300;
+  background-color: transparent;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18pt;
   color: #333;
   margin: 0px;
   padding: 0px;
   line-height: 160%;
 }
-
-th { background-color: #efefef; }
-
-li { list-style-position: inside; }
-
+th {
+  background-color: #efefef;
+}
+ul {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+ul li {
+  list-style-position: inside;
+}
 .hero-unit {
-    padding: 0px;
-    margin: 40px auto 20px auto;
-    min-height: 250px;
-    background-color: rgba(255,255,255,0.75);
+  padding: 0px;
+  margin: 0px auto;
+  min-height: 250px;
+  background-color: rgba(255, 255, 255, 0.75);
 }
-.hero-unit h1 { margin: 15px 20px 15px 20px; font-size: 18pt; line-height: 120%; }
-.hero-unit p { margin: 15px 20px 15px 20px; font-size: 12pt; line-height: 120%; }
-
-.trans {
-    background-color: rgba(0,0,0,0.85);
-    padding-bottom: 5px;
-    border-radius: 5px;
+.hero-unit h1,
+.hero-unit p {
+  margin: 15px;
+  line-height: 120%;
 }
-
-.trans h2, .trans p, .trans ul {
-    color: #fff;
-    margin: 15px;
+.hero-unit h1 {
+  font-size: 18pt;
 }
-
-
-.content { margin-top: 20px; }
-
-#svg-content { margin-top: 20px; }
-
-#chart {
-    margin: 40px auto 30px auto;
-    width: 1002px;
-    height: 802px;
+.hero-unit p {
+  font-size: 12pt;
 }
-
-#stage {
-    margin: 40px auto 30px auto;
-    background-color: #bd362f;
+.row.multicol {
+  margin-left: 0px;
+  margin-right: 0px;
 }
-
-#ui-toolbar {
-    position: fixed;
-    right: 30px;
-    bottom: 0px;
-    background-color: rgba(0,0,0,0.75);
+.row.multicol .mod:first-child {
+  margin: 2px 0px 0px 0px;
 }
-
-#ui-toolbar a,
-#ui-toolbar a:visited {
-    font-family: "MuseoSlab500Regular", Helvetica, Arial, sans-serif;
-    font-size: 12pt;
-    display: block;
-    margin: 8px 15px 8px 15px;
-    text-decoration: none;
-    color: #999;
+.row.multicol .mod {
+  padding: 5px 10px;
+  margin: 2px 0px 0px 2px;
 }
-#ui-toolbar a:hover {
-    color: #fff;
+.row.multicol .trans {
+  background-color: rgba(0, 0, 0, 0.85);
+  padding-bottom: 20px;
 }
-
-/* Special class on .container surrounding .navbar, used for positioning it into place. */
-.navbar-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  margin-top: 20px;
-  margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+.row.multicol .trans h2,
+.row.multicol .trans p,
+.row.multicol .trans ul {
+  margin: 5px;
+  color: #fff;
 }
-.navbar-wrapper .navbar { }
-
-/* Remove border and change up box shadow for more contrast */
-.navbar .navbar-inner {
-  border: 0;
-  -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-     -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-          box-shadow: 0 2px 10px rgba(0,0,0,.25);
+@media (min-width: 1201px) {
+  .row.multicol .mod,
+  .row.multicol .mod:first-child {
+    margin: 0px;
+    min-height: 320px;
+  }
+  .row.multicol .mod {
+    width: 33%;
+  }
+  .row.multicol .mod:first-child {
+    width: 34%;
+  }
 }
-
-/* Downsize the brand/project name a bit */
-.navbar .brand {
-  padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-  font-size: 16px;
-  font-weight: bold;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+@media (max-width: 1200px) {
+  .row.multicol .mod,
+  .row.multicol .mod:first-child {
+    margin: 2px 0px 0px 0px;
+  }
 }
-
-/* Navbar links: increase padding for taller navbar */
-.navbar .nav > li > a {
-  padding: 15px 20px;
-}
-
-/* Offset the responsive button for proper vertical alignment */
-.navbar .btn-navbar {
+.content {
   margin-top: 10px;
 }
-
-/* RESPONSIVE CSS
-   -------------------------------------------------- */
-
-@media (max-width: 979px) {
-  .container.navbar-wrapper { margin-bottom: 0; width: auto; }
-  .navbar-inner { border-radius: 0; margin: -20px 0; }
-  .carousel .item { height: 500px; }
-  .carousel img { width: auto; height: 500px; }
+#svg-content {
+  margin-top: 20px;
 }
-
-@media (max-width: 767px) {
-  body { padding-top: 60px; }
-  .navbar-inner { margin: -20px; }
-  .carousel { margin-left: -20px; margin-right: -20px; }
-  .carousel .container {}
-  .carousel .item {height: 300px;}
-  .carousel img {height: 300px;}
-  .carousel-caption {width: 65%; padding: 0 70px; margin-top: 100px;}
-  .carousel-caption h1 { font-size: 30px; }
-  .carousel-caption .lead,
-  .carousel-caption .btn { font-size: 18px; }
+#chart {
+  margin: 40px auto 30px auto;
+  width: 1002px;
+  height: 802px;
 }
-
-.sidebar-nav { padding: 9px 0; }
-.clear { clear:both; margin: 15px 0px 0px 15px; }
-
+#stage {
+  margin: 40px auto 30px auto;
+  background-color: #bd362f;
+}
+#ui-toolbar {
+  position: fixed;
+  right: 30px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+#ui-toolbar a,
+#ui-toolbar a:visited {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 12pt;
+  display: block;
+  margin: 8px 15px 8px 15px;
+  text-decoration: none;
+  color: #999;
+}
+#ui-toolbar a:hover {
+  color: #fff;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+.clear {
+  clear: both;
+  margin: 15px 0px 0px 15px;
+}
 .textListWindow {
-    margin-top: 20px;
-    overflow: auto;
-    height: 300px;
+  margin-top: 20px;
+  overflow: auto;
+  height: 300px;
 }
-
 .edit-background {
-    padding: 15px;
-    background-color: #efefef;
+  padding: 15px;
+  background-color: #efefef;
 }
-
-/* ---- */
-html#slideshow { background-color: #000; }
-#spinner { display:none; margin: 10px 0px 10px 0px; }
-#background { position: fixed; top: 0; left: 0; z-index: -1;}
-.bgheight { height: 100%; width: auto; max-width: none; }
-.bgwidth { width: 100%; height: auto; max-height: none; }
+html#slideshow {
+  background-color: #000;
+}
+#spinner {
+  display: none;
+  margin: 10px 0px 10px 0px;
+}
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.bgheight {
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+.bgwidth {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+@media (max-width: 767px) {
+  width: 1;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  width: 2;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  width: 3;
+}
+@media (min-width: 1200px) {
+  width: 4;
+}

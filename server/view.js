@@ -1,74 +1,78 @@
 var content = require('./content-db');
 var moment = require('moment');
 
-var ViewHandler = function() {
+var ViewHandler = function () {
     console.log("Initialized WebView handler");
 };
 
 ViewHandler.fn = {
-    fromNow: function(value){
+    fromNow: function (value) {
         return moment(value).fromNow();
     }
 };
 
-ViewHandler.prototype.Home = function(req, res) {
-    content.GetPageText("home", function(content){
-        res.render('layouts/home', {content : content});
+ViewHandler.prototype.Home = function (req, res) {
+    content.GetPageText("home", function (content) {
+        res.render('layouts/home', {content: content});
     });
 };
 
-ViewHandler.prototype.FullScreen = function(req, res) {
-    content.GetPageText("home", function(content){
-        res.render('layouts/fullscreen', {content : content});
+ViewHandler.prototype.FullScreen = function (req, res) {
+    content.GetPageText("home", function (content) {
+        res.render('layouts/fullscreen', {content: content});
     });
 };
 
-ViewHandler.prototype.SearchDemo = function(req, res) {
-    content.GetPageText("home", function(content){
-        res.render('layouts/search', {content : content});
+ViewHandler.prototype.SearchDemo = function (req, res) {
+    content.GetPageText("home", function (content) {
+        res.render('layouts/search', {content: content});
     });
 };
 
-ViewHandler.prototype.PageEdit = function(req, res) {
+ViewHandler.prototype.PageEdit = function (req, res) {
     var locale = null;
     if (req.params.locale) locale = req.params.locale;
-    content.GetTextList(locale, function(content){
-        res.render('pageEdit', {content : content, fn : ViewHandler.fn });
+    content.GetTextList(locale, function (content) {
+        res.render('pageEdit', {content: content, fn: ViewHandler.fn });
     });
 };
 
-ViewHandler.prototype.Live = function(req, res) {
+ViewHandler.prototype.Live = function (req, res) {
     res.render('layouts/live');
 };
 
-ViewHandler.prototype.Graph = function(req, res) {
+ViewHandler.prototype.Graph = function (req, res) {
     res.render('layouts/graph');
 };
 
-ViewHandler.prototype.Canvas = function(req, res) {
+ViewHandler.prototype.Canvas = function (req, res) {
     res.render('layouts/canvas');
 };
 
-ViewHandler.prototype.PageView = function(req, res) {
-   var page = req.params.page;
-
-   var onError = function() {
-       res.render('notfound');
-   };
-
-   var onSuccess = function(content){
-     if (content[page]) {
-       res.render('layouts/pageView', {content : content[page]});
-     } else {
-       onError();
-     }
-
-   };
-
-   content.GetPageText(page, onSuccess, onError);
+ViewHandler.prototype.Transit = function (req, res) {
+    res.render('layouts/transit');
 };
 
-ViewHandler.prototype.CreatePage = function(req, res) {
+ViewHandler.prototype.PageView = function (req, res) {
+    var page = req.params.page;
+
+    var onError = function () {
+        res.render('notfound');
+    };
+
+    var onSuccess = function (content) {
+        if (content[page]) {
+            res.render('layouts/pageView', {content: content[page]});
+        } else {
+            onError();
+        }
+
+    };
+
+    content.GetPageText(page, onSuccess, onError);
+};
+
+ViewHandler.prototype.CreatePage = function (req, res) {
     var pageObj = {
         name: req.body.name,
         title: req.body.title,
@@ -76,36 +80,36 @@ ViewHandler.prototype.CreatePage = function(req, res) {
         keywords: req.body.keywords,
         content: req.body.textId
     };
-    var onSuccess = function(content) {
-        return res.render("pageEdit", {content : content, fn : ViewHandler.fn });
+    var onSuccess = function (content) {
+        return res.render("pageEdit", {content: content, fn: ViewHandler.fn });
     };
-    var onError = function(err) {
+    var onError = function (err) {
         return res.render("test", err);
     };
     content.CreatePage(pageObj, onSuccess, onError);
 };
 
 
-ViewHandler.prototype.TextList = function(req, res) {
+ViewHandler.prototype.TextList = function (req, res) {
     var locale = null;
     if (req.params.locale) locale = req.params.locale;
-    content.GetTextList(locale, function(content){
-        res.render('textList', {content : content, fn : ViewHandler.fn });
+    content.GetTextList(locale, function (content) {
+        res.render('textList', {content: content, fn: ViewHandler.fn });
     });
 };
 
-ViewHandler.prototype.ListDocuments = function(req, res) {
-    content.GetDocuments(req.params.id, function(result) {
-        res.render('listDocuments', {jsondb : result });
+ViewHandler.prototype.ListDocuments = function (req, res) {
+    content.GetDocuments(req.params.id, function (result) {
+        res.render('listDocuments', {jsondb: result });
     });
 };
 
-ViewHandler.prototype.ViewDocument = function(req, res) {
+ViewHandler.prototype.ViewDocument = function (req, res) {
     if (!req.params.id) {
-       res.render('viewVector');
+        res.render('viewVector');
     } else {
-        content.GetDocuments(req.params.id, function(result) {
-            res.render('viewVector', {doc : result[0] });
+        content.GetDocuments(req.params.id, function (result) {
+            res.render('viewVector', {doc: result[0] });
         });
     }
 };

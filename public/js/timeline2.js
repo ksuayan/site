@@ -168,9 +168,9 @@ $(function(){
     };
 
     Timeline.prototype.DrawHeader = function(dataPoint) {
-        var headerStyle = {"font-size":"32pt","text-anchor":"start","font-family":"OpenSansRegular"};
-        var subheadStyle = {"font-size":"16pt","text-anchor":"start","font-family":"OpenSansRegular"};
-        var subhead2Style = {"font-size":"16pt","text-anchor":"start","font-family":"OpenSansLight"};
+        var headerStyle = {"font-size":"32pt","text-anchor":"start","font-family":"Source Sans Pro"};
+        var subheadStyle = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
+        var subhead2Style = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
         if (this.title) this.title.remove();
         this.title = this.paper.text(this.margin, 40, dataPoint.title);
         this.title.attr(headerStyle);
@@ -186,7 +186,7 @@ $(function(){
 
 
     Timeline.prototype.DrawTicks = function() {
-        var dateStyle = { "fill":"#333","font-size":"10pt","font-family":"OpenSansLight"};
+        var dateStyle = { "fill":"#333","font-size":"10pt","font-family":"Source Sans Pro"};
         var startDate = new Date(this.dataPoints[0].startDate);
         var startYear = startDate.getUTCFullYear();
         var endDate = new Date(this.dataPoints[this.dataPoints.length - 1].endDate);
@@ -201,8 +201,8 @@ $(function(){
 
 
     Timeline.prototype.DrawDate = function(timestamp) {
-        var monthStyle = { "opacity": 0, "fill" : "#333", "font-size": "16pt", "font-family" : "OpenSansLight" };
-        var yearStyle = { "opacity": 0, "fill" : "#333", "font-size": "12pt", "font-family" : "OpenSansLight" };
+        var monthStyle = { "opacity": 0, "fill" : "#333", "font-size": "16pt", "font-family" : "Source Sans Pro" };
+        var yearStyle = { "opacity": 0, "fill" : "#333", "font-size": "12pt", "font-family" : "Source Sans Pro" };
         var dateXPos = Math.floor(this.margin + ((timestamp - this.xMin) * this.xScale));
         var date = new Date(timestamp);
         var monthStr = month[date.getUTCMonth()];

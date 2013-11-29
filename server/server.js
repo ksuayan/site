@@ -1,31 +1,31 @@
 var express = require('express'),
-app  = express(),
-path = require('path'),
-conf = require('./conf'),
-view = require('./view'),
-itunes = require('./itunes'),
-api  = require('./api');
+    app = express(),
+    path = require('path'),
+    conf = require('./conf'),
+    view = require('./view'),
+    itunes = require('./itunes'),
+    api = require('./api');
 
 console.log(conf);
 
-var init = function() {
+var init = function () {
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'jade');
-    app.locals({config:conf.app});
+    app.locals({config: conf.app});
     app.use(express.bodyParser({uploadDir: '/tmp/test'}));
-    app.use(express.static(path.join(__dirname,"../public")));
+    app.use(express.static(path.join(__dirname, "../public")));
     app.use(express.favicon());
     app.use(express.cookieParser());
-    app.use(express.session({secret : 'booyakasha'}));
+    app.use(express.session({secret: 'booyakasha'}));
     app.use(express.errorHandler({
-        dumpExceptions : false,
-        showStack : false
+        dumpExceptions: false,
+        showStack: false
     }));
 }
 
 app.configure(init);
 
-app.all("*", function(req, res, next) {
+app.all("*", function (req, res, next) {
     res.header('Access-Control-Allow-Origin', req.headers.origin || "*");
     res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,HEAD,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
@@ -39,6 +39,7 @@ app.get('/page/:page', view.PageView);
 app.get('/live', view.Live); // Backbone Editor
 app.get('/graph', view.Graph); // Raphael Graph
 app.get('/canvas', view.Canvas); // Canvas Experiments
+app.get('/transit', view.Transit); // Canvas Experiments
 app.get('/search', view.SearchDemo); // Canvas Experiments
 
 app.get('/search/:term', itunes.SearchTerm);

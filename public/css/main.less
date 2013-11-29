@@ -1,0 +1,222 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+
+@basefont: "Source Sans Pro", Helvetica, Arial, sans-serif;
+
+@screen-xs-min: 480px;
+@screen-sm-min: 768px;
+@screen-md-min: 992px;
+@screen-lg-min: 1200px;
+@screen-xs-max: (@screen-sm-min - 1);
+@screen-sm-max: (@screen-md-min - 1);
+@screen-md-max: (@screen-lg-min - 1);
+
+
+html {
+    background-color: #fff;
+}
+
+body {
+    font-family: @basefont;
+    font-size: 13pt;
+    font-weight: 300;
+    background-color: transparent;
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: @basefont;
+    font-weight: 400;
+    font-size: 18pt;
+    color: #333;
+    margin: 0px;
+    padding: 0px;
+    line-height: 160%;
+}
+
+th {
+    background-color: #efefef;
+}
+
+ul {
+    margin-left: 0px;
+    padding-left: 0px;
+    li {
+        list-style-position: inside;
+    }
+}
+
+
+
+.hero-unit {
+    padding: 0px;
+    margin: 0px auto;
+    min-height: 250px;
+    background-color: rgba(255, 255, 255, 0.75);
+
+    h1, p {
+        margin: 15px;
+        line-height: 120%;
+    }
+    h1 {
+        font-size: 18pt;
+    }
+    p {
+        font-size: 12pt;
+    }
+}
+
+
+.row.multicol {
+    margin-left: 0px;
+    margin-right: 0px;
+    .mod:first-child {
+        margin: 2px 0px 0px 0px;
+    }
+    .mod {
+        padding: 5px 10px;
+        margin: 2px 0px 0px 2px;
+    }
+    .trans {
+        background-color: rgba(0,0,0,0.85);
+        padding-bottom: 20px;
+        h2, p, ul {
+            margin: 5px;
+            color: #fff;
+        }
+    }
+}
+
+@media (min-width: (@screen-lg-min+1)) {
+    .row.multicol {
+        .mod,.mod:first-child {
+            margin: 0px;
+            min-height: 320px;
+        }
+        .mod {
+            width: 33%;
+        }
+        .mod:first-child {
+            width:34%;
+        }
+    }
+}
+
+@media (max-width: (@screen-lg-min)) {
+    .row.multicol {
+        .mod, .mod:first-child {
+            margin: 2px 0px 0px 0px;
+        }
+    }
+}
+
+.content {
+    margin-top: 10px;
+}
+
+#svg-content {
+    margin-top: 20px;
+}
+
+#chart {
+    margin: 40px auto 30px auto;
+    width: 1002px;
+    height: 802px;
+}
+
+#stage {
+    margin: 40px auto 30px auto;
+    background-color: #bd362f;
+}
+
+#ui-toolbar {
+    position: fixed;
+    right: 30px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.75);
+    a, a:visited {
+        font-family: @basefont;
+        font-size: 12pt;
+        display: block;
+        margin: 8px 15px 8px 15px;
+        text-decoration: none;
+        color: #999;
+    }
+    a:hover {
+        color: #fff;
+    }
+}
+
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+.clear {
+    clear: both;
+    margin: 15px 0px 0px 15px;
+}
+
+.textListWindow {
+    margin-top: 20px;
+    overflow: auto;
+    height: 300px;
+}
+
+.edit-background {
+    padding: 15px;
+    background-color: #efefef;
+}
+
+html#slideshow {
+    background-color: #000;
+}
+
+#spinner {
+    display: none;
+    margin: 10px 0px 10px 0px;
+}
+
+// Background Image
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.bgheight {
+    height: 100%;
+    width: auto;
+    max-width: none;
+}
+
+.bgwidth {
+    width: 100%;
+    height: auto;
+    max-height: none;
+}
+
+
+
+
+// xs: extra-small
+@media (max-width: @screen-xs-max) {
+    width: 1;
+}
+
+// sm: small
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    width: 2;
+}
+
+// md: medium
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    width: 3;
+}
+
+// lg: large
+@media (min-width: @screen-lg-min) {
+    width: 4;
+}
+
+// xl: extra-large (default rules)
