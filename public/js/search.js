@@ -145,6 +145,6 @@ $(function(){
     // Search Hookups.
     var $search = $("#search-field").search();
     if ($search) {
-        $(window).resize(util.ResizeThrottle($search.onResize, 500));
+        $(window).resize(gb.util.ResizeThrottle($search.onResize, 500));
     }
 });

@@ -1,5 +1,5 @@
-gb = gb || {}
-gb.ui = gb.ui || {}
+"use strict";
+
 gb.ui.Chart = (x, y, width, height) ->
   @x = x
   @y = y
@@ -37,7 +37,7 @@ gb.ui.Chart = (x, y, width, height) ->
   @generatorIndex = 1
 
 gb.ui.Chart::init = ->
-  @data = util.RandomArray(@numberOfBars, @generatorIndex * 100)
+  @data = gb.util.RandomArray(@numberOfBars, @generatorIndex * 100)
 
 gb.ui.Chart::grid = (horizontal, vertical) ->
 
@@ -102,13 +102,13 @@ gb.ui.Chart::drawTickMarks = ->
   @tickMarks = tickSet
 
 gb.ui.Chart::animate = ->
-  newData = util.RandomArray(@numberOfBars, @generatorIndex * @roundUpTo)
+  newData = gb.util.RandomArray(@numberOfBars, @generatorIndex * @roundUpTo)
   if @generatorIndex > 12
     @generatorIndex = 1
   else
     @generatorIndex++
-  min = util.ArrayMin(newData)
-  max = util.ArrayMax(newData)
+  min = gb.util.ArrayMin(newData)
+  max = gb.util.ArrayMax(newData)
   @topInterval = @calculateTopInterval(max, @roundUpTo)
   @minText.attr text: "min: " + min
   @maxText.attr text: "max: " + max

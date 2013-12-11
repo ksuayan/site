@@ -1,7 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
 
 @basefont: "Source Sans Pro", Helvetica, Arial, sans-serif;
-
 @screen-xs-min: 480px;
 @screen-sm-min: 768px;
 @screen-md-min: 992px;
@@ -9,7 +8,6 @@
 @screen-xs-max: (@screen-sm-min - 1);
 @screen-sm-max: (@screen-md-min - 1);
 @screen-md-max: (@screen-lg-min - 1);
-
 
 html {
     background-color: #fff;
@@ -46,14 +44,11 @@ ul {
     }
 }
 
-
-
 .hero-unit {
     padding: 0px;
     margin: 0px auto;
     min-height: 250px;
     background-color: rgba(255, 255, 255, 0.75);
-
     h1, p {
         margin: 15px;
         line-height: 120%;
@@ -66,6 +61,14 @@ ul {
     }
 }
 
+// Small and Below
+@media (max-width: (@screen-sm-max)) {
+    .hero-unit {
+        min-height: inherit;
+        height: auto;
+        padding-bottom: 10px;
+    }
+}
 
 .row.multicol {
     margin-left: 0px;
@@ -87,22 +90,8 @@ ul {
     }
 }
 
-@media (min-width: (@screen-lg-min+1)) {
-    .row.multicol {
-        .mod,.mod:first-child {
-            margin: 0px;
-            min-height: 320px;
-        }
-        .mod {
-            width: 33%;
-        }
-        .mod:first-child {
-            width:34%;
-        }
-    }
-}
-
-@media (max-width: (@screen-lg-min)) {
+// Large and Below
+@media (max-width: (@screen-md-min)) {
     .row.multicol {
         .mod, .mod:first-child {
             margin: 2px 0px 0px 0px;
@@ -110,6 +99,26 @@ ul {
     }
 }
 
+// Medium Layouts and up.
+@media (min-width: (@screen-md-min+1)) {
+    .row.multicol {
+        .mod,.mod:first-child {
+            margin: 0px;
+            min-height: 360px;
+            float: left;
+        }
+        .mod { width: 33%; }
+        .mod:first-child { width:34%; }
+    }
+}
+
+@media (min-width: (@screen-lg-min+1)) {
+    .row.multicol {
+        .mod,.mod:first-child {
+            min-height: 320px;
+        }
+    }
+}
 .content {
     margin-top: 10px;
 }
@@ -197,26 +206,26 @@ html#slideshow {
 }
 
 
-
-
 // xs: extra-small
 @media (max-width: @screen-xs-max) {
+    /* XS: Extra Small */
     width: 1;
 }
 
 // sm: small
 @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    /* SM: Small */
     width: 2;
 }
 
 // md: medium
 @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    /* MD: Medium */
     width: 3;
 }
 
 // lg: large
 @media (min-width: @screen-lg-min) {
+    /* LG: Large */
     width: 4;
 }
-
-// xl: extra-large (default rules)

@@ -1,10 +1,8 @@
 'use strict';
 
-var gb = gb || {};
-gb.ui = gb.ui || {};
+gb.Namespace(gb,"gb.ui.Chart");
 
 gb.ui.Chart = function(id, width, height) {
-
 	this.width = width;
 	this.height = height;
 	this.chartLeft = 60; // leftmost area of chart
@@ -46,7 +44,7 @@ gb.ui.Chart = function(id, width, height) {
 };
 
 gb.ui.Chart.prototype.init = function() {
-	this.data = util.RandomArray(this.numberOfBars, this.generatorIndex * 100);
+	this.data = gb.util.RandomArray(this.numberOfBars, this.generatorIndex * 100);
 };
 
 gb.ui.Chart.prototype.grid = function(horizontal,vertical) {
@@ -115,15 +113,15 @@ gb.ui.Chart.prototype.drawTickMarks = function() {
 
 gb.ui.Chart.prototype.animate = function(){
 
-	var newData = util.RandomArray(this.numberOfBars, this.generatorIndex * this.roundUpTo);
+	var newData = gb.util.RandomArray(this.numberOfBars, this.generatorIndex * this.roundUpTo);
 	if (this.generatorIndex>12) {
 		this.generatorIndex = 1;
 	} else {
 		this.generatorIndex++;
 	}
 
-	var min = util.ArrayMin(newData);
-	var max = util.ArrayMax(newData);
+	var min = gb.util.ArrayMin(newData);
+	var max = gb.util.ArrayMax(newData);
 	this.topInterval = this.calculateTopInterval(max,this.roundUpTo);
 	this.minText.attr({text: "min: " + min});
 	this.maxText.attr({text: "max: " + max});

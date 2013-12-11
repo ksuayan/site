@@ -1,8 +1,8 @@
 $(function(){
   $(".banner").transit({
     opacity: 1,
-    y: 60,
-    duration: 150,
+    height: 250,
+    duration: 500,
     easing: 'in',
     complete: function() {
       console.log("done..");

@@ -1,5 +1,6 @@
-var gb = gb || {};
-gb.ui = gb.ui || {};
+"use strict";
+
+gb.Namespace(gb, "gb.ui.PreloadableImage");
 
 gb.ui.PreloadableImage = function(id, source, onSuccess, onError) {
     this.id = id;

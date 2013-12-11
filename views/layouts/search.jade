@@ -4,11 +4,17 @@ block append css
   link(rel="stylesheet",href="/css/search.css")
 
 block append scripts
-  script(src="/js/image.js")
+
+
+  script(src="/js/gb.js")
   script(src="/js/util.js")
+  script(src="/js/preloadable-image.js")
   script(src="/js/search.js")
-  script(src="/js/fs.js")
-  script(src="/js/fs-demo.js")
+  script(src="/js/fullscreen.js")
+
+  script(src="/js/tile.js")
+  script(src="/js/content-manager.js")
+  script(src="/js/main.js")
 
 block content
   div(class="trans")
@@ -17,5 +23,5 @@ block content
     br
     form
       input(type="text",size="30",id="search-field")
-
+  div#canvas
   img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")

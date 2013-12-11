@@ -27,7 +27,7 @@ $(function(){
         if (!this.htmlContent)
             this.htmlContent = this.jqContainer.html();
         this.width = this.jqContainer.width();
-        this.height =this.jqContainer.height();
+        this.height = this.jqContainer.height();
         this.trackWidth = this.width - (this.margin * 2);
         // recompute on window resize ...
         if (this.paper)
@@ -40,7 +40,6 @@ $(function(){
         } else {
             this.jqContainer.html(this.htmlContent);
         }
-
     };
 
     Timeline.prototype.ProcessData = function(rawData) {
@@ -55,13 +54,11 @@ $(function(){
                 min = (min) ? Math.min(entry.startDate, min) : entry.startDate;
                 max = (max) ? Math.max(entry.startDate, max) : entry.startDate;
             }
-
             if (!entry.endDate) {
                 entry.endDate = new Date().valueOf();
             }
             min = (min) ? Math.min(entry.endDate, min) : entry.endDate;
             max = (max) ? Math.max(entry.endDate, max) : entry.endDate;
-
         };
         var xRange = max - min;
         this.xMin = min;
@@ -207,7 +204,6 @@ $(function(){
         var date = new Date(timestamp);
         var monthStr = month[date.getUTCMonth()];
         var year = date.getUTCFullYear();
-
         var marker = this.paper.set();
         marker.push(
             this.paper.text(dateXPos, this.yTrack - 40, monthStr).attr(monthStyle),
@@ -232,12 +228,13 @@ $(function(){
         return line.attr(strokeStyle);
     };
 
+    // Instantiate.
+
     var timeline = new Timeline();
 
     var triggerResizeEnd = function() {
         $(this).trigger('resizeEnd');
     };
-
     var onResizeHandler = function() {
         if (timeline.paper)
             timeline.paper.clear();
@@ -245,7 +242,6 @@ $(function(){
             clearTimeout(this.resizeTO);
         this.resizeTO = setTimeout(triggerResizeEnd, 500);
     }
-
     $(window).resize(onResizeHandler);
     $(window).bind('resizeEnd', function(){timeline.Resize();});
 

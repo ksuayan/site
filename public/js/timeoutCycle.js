@@ -14,13 +14,11 @@ gb.util.TimeOutCycle = function(timeoutMS, callback) {
     this.SetTickHandler(callback);
 };
 
-
 gb.util.TimeOutCycle.prototype.SetTickHandler = function(callback) {
     if (callback && typeof callback == 'function') {
         this.tickHandler = callback;
     }
 };
-
 
 gb.util.TimeOutCycle.prototype.SetTimeoutMS = function(timeoutMS) {
     if (timeoutMS) {
@@ -28,19 +26,16 @@ gb.util.TimeOutCycle.prototype.SetTimeoutMS = function(timeoutMS) {
     }
 };
 
-
 gb.util.TimeOutCycle.prototype.Start = function() {
     this.isRunning = true;
     this._tick();
 };
-
 
 gb.util.TimeOutCycle.prototype.Stop = function() {
     this.isRunning = false;
     if (this.timeoutHandle)
         clearTimeout(this.timeoutHandle)
 };
-
 
 gb.util.TimeOutCycle.prototype._tick = function() {
     if (!this.isRunning) {
@@ -49,7 +44,6 @@ gb.util.TimeOutCycle.prototype._tick = function() {
     this.tickHandler();
     this._SetNext();
 };
-
 
 gb.util.TimeOutCycle.prototype._SetNext = function() {
     var that = this;

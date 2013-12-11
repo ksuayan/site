@@ -1,6 +1,16 @@
+//
+// $.fn.fullscreen()
+// Rotating fullscreen background images.
+//
+// Dependencies:
+// preloadable-image.js: gb.ui.PreloadableImage
+
+
+
 (function ($) {
 
     $.fn.fullscreen = function(options) {
+
         var settings = $.extend({
             front: "#background",
             bgHeightClass: 'bgheight',
@@ -8,6 +18,8 @@
             refreshInterval: 5000,
             fadeOutTime: 500,
             fadeInTime: 700,
+            successCallback: function(){},
+            errorCallback: function(){},
             images: ["images/image-001.png","images/image-002.png","images/image-003.png"]
         }, options);
 
@@ -16,6 +28,7 @@
             windowAspect = theWindow.width()/theWindow.height(),
             imageAspect = $bg.width() / $bg.height(),
             intervalHandler = null,
+            backgrounds = [],// array of gb.ui.PreloadableImage();
             index = 0;
 
         var refreshImage = function() {
@@ -41,7 +54,16 @@
             }
             imageAspect = $bg.width() / $bg.height();
             windowAspect = theWindow.width()/theWindow.height();
-        }
+        };
+
+        var preloadBackgrounds = function() {
+            for (var i= 0, n=settings.images.length;i<n;i++) {
+                var id = "img"+i;
+                var source = settings.images[i];
+                var pre = new gb.ui.PreloadableImage(id, source, settings.successCallback, settings.errorCallback);
+                backgrounds.push(pre);
+            }
+        };
 
         var setRefreshInterval = function() {
             theWindow.resize(resizeBackgound).trigger("resize");
@@ -51,6 +73,7 @@
         };
 
         setRefreshInterval();
+        preloadBackgrounds();
         return this;
     };
 }(jQuery));

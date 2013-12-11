@@ -1,7 +1,6 @@
-'use strict';
+"use strict";
 
-var gb = gb || {};
-gb.data = gb.data || {};
+gb.Namespace(gb, "gb.data.Generator");
 
 gb.data.Generator = function(size, scale) {
     this.size = size;
@@ -9,5 +8,5 @@ gb.data.Generator = function(size, scale) {
 };
 
 gb.data.Generator.prototype.GetData = function() {
-    return util.RandomArray(this.size, this.scale);
+    return gb.util.RandomArray(this.size, this.scale);
 };

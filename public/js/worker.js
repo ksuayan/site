@@ -1,9 +1,8 @@
 'use strict';
 
-importScripts("util.js","generator.js","timeoutCycle.js");
+importScripts("gb.js", "util.js","generator.js","timeoutCycle.js");
 
-var gb = gb || {};
-gb.system = gb.system || {};
+gb.Namespace(gb, "gb.system.WorkerTask");
 
 gb.system.WorkerTask = function(jsPath) {
     var INTERVAL = 5000;
