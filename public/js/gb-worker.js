@@ -1,6 +1,6 @@
 'use strict';
 
-importScripts("gb.js", "util.js","generator.js","timeoutCycle.js");
+importScripts("gb.js","gb-util.js","gb-generator.js","gb-timeout-cycle.js");
 
 gb.Namespace(gb, "gb.system.WorkerTask");
 

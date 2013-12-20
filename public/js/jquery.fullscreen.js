@@ -3,7 +3,7 @@
 // Rotating fullscreen background images.
 //
 // Dependencies:
-// preloadable-image.js: gb.ui.PreloadableImage
+// gb-preloadable-image.js: gb.ui.PreloadableImage
 
 
 

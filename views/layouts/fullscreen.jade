@@ -17,7 +17,6 @@ html(lang="en",id="slideshow")
       include ../includes/header
       div.container
         include ../content/ksuayan
-        div(id="canvas")
         div(class="row multicol")
           div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
             h2=content.leftHeader
@@ -34,6 +33,7 @@ html(lang="en",id="slideshow")
             p(id="rightBody")!=content.rightBody
             p
               a(class="btn btn-default",href="#") View details &raquo;
+        div#tiles.row
       div.footer
         block footer
 
@@ -51,11 +51,12 @@ html(lang="en",id="slideshow")
       script(src=config.mediaHost+"/js/external/moment.min.js")
       script(src="/js/raphael-extensions.js")
       script(src="/js/gb.js")
-      script(src="/js/util.js")
-      script(src="/js/search.js")
+      script(src="/js/gb-util.js")
+      script(src="/js/jquery.search.js")
       script(src="/js/preloadable-image.js")
-      script(src="/js/timeline2.js")
-      script(src="/js/fullscreen.js")
-      script(src="/js/tile.js")
-      script(src="/js/content-manager.js")
+      script(src="/js/timeline.js")
+      script(src="/js/jquery.fullscreen.js")
+      script(src="/js/gb-tile.js")
+      script(src="/js/gb-fullscreen.js")
+      script(src="/js/gb-content-manager.js")
       script(src="/js/main.js")

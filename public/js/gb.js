@@ -48,6 +48,6 @@ gb.Class = function(parent){
             klass.fn[i] = obj[i];
         }
         if (included) included(klass)
-    }
+    };
     return klass;
 };

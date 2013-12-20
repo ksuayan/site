@@ -1,0 +1,535 @@
+{"page": [
+    {
+        "meta": [
+            {
+                "title": [
+                    {
+                        "text": "Kyo Suayan | Design + Development"
+                    }
+                ],
+                "description": [
+                    {
+                        "text": "Kyo Suayan's personal site"
+                    }
+                ],
+                "keywords": [
+                    {
+                        "text": "kyo,suayan,design,development,web developer,san francisco,bay area"
+                    }
+                ]
+            }
+        ],
+        "body": [
+            {
+                "para": ["Eleven years ofexperience\n\twith various programming languages and OS platforms. Strongsense complimented by good understanding of accessibility, usability and branding issues \n\tin a high traffic website.", {
+                    "text": "Motivated by technical challenges and enjoys contributing in a team environment."
+                }, "Technical Resume: \n\t\t[]\n\t\t[]\n\t\t[]", "Artist's CV: \n\t\t[]", "Elsewhere:"]
+            }
+        ],
+        "id": "home"
+    },
+    {
+        "meta": [
+            {
+                "title": [
+                    {
+                        "text": "Kyo Suayan | About Me"
+                    }
+                ],
+                "description": [
+                    {
+                        "text": "About Kyo Suayan"
+                    }
+                ],
+                "keywords": [
+                    {
+                        "text": "kyo,suayan,resume,pdf,msword,txt"
+                    }
+                ]
+            }
+        ],
+        "body": [
+            {
+                "section": [
+                    {
+                        "list2": [
+                            {
+                                "listitem2": ["my resume in", "my"]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Photography"
+                            }
+                        ],
+                        "subtext": [""],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "anchor": ["500px"]
+                                    },
+                                    {
+                                        "anchor": ["Google+"]
+                                    },
+                                    {
+                                        "anchor": ["flickr"]
+                                    },
+                                    {
+                                        "anchor": ["photo.net"]
+                                    },
+                                    {
+                                        "anchor": ["35mm slides"]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Video and Audio Production"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "anchor": ["SoundCloud"]
+                                    },
+                                    {
+                                        "anchor": ["Vimeo"]
+                                    },
+                                    {
+                                        "anchor": ["Youtube"]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Software Development"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "anchor": ["Github"]
+                                    },
+                                    {
+                                        "anchor": ["J2EE"]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Other Interests"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "data visualization"
+                                    },
+                                    {
+                                        "text": "Hi-Fi audio"
+                                    },
+                                    {
+                                        "text": "music production with Ableton Live and Propellerhead Reason"
+                                    },
+                                    {
+                                        "text": "acrylic and watercolor"
+                                    },
+                                    {
+                                        "text": "flash and actionscript development"
+                                    },
+                                    {
+                                        "text": "video production, color grading  and motion graphics"
+                                    },
+                                    {
+                                        "text": "UX design"
+                                    },
+                                    {
+                                        "text": "humor"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "id": "about"
+    },
+    {
+        "meta": [
+            {
+                "title": [
+                    {
+                        "text": "Kyo Suayan | Archive"
+                    }
+                ],
+                "description": [
+                    {
+                        "text": "Miscellaneous files"
+                    }
+                ],
+                "keywords": [
+                    {
+                        "text": "audio, videos, photos, pdfs"
+                    }
+                ]
+            }
+        ],
+        "body": [
+            {
+                "subtext": [
+                    {
+                        "text": "This section is a work in progress."
+                    }
+                ],
+                "section": [
+                    {
+                        "head": [
+                            {
+                                "text": "Original Music"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": ["mp3:", "mp3:", "mp3:", "mp3:", "mp3:", "mp3:", "mp3:", "mp3:", "m4a:"]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Remixes"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": ["mp3:- [remix]", "mp3:- [Batang Kalye Mix]", "mp3:- [remix]", "mp3:- [remix]", "mp3:- [remix]", "mp3:- [Coup D'etat Mix]"]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "PDFs"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": ["pdf:- A Group Show [flyer]", "pdf:- (1.5mb) a series of night photographs in gelatin silver print.", "pdf:- [10mb] print resolution version", "pdf:- 2005 [1.5mb]", "pdf:- 2005 [15mb] print resolution version"]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Website Archive"
+                            }
+                        ],
+                        "subtext": ["These are archived versions of sites I've worked on in the past. \n\t\t\tThe markup on these pages are likely to be very old (some even targetted HTML 2.0 or 3.x DTDs). \n\t\t\tFor my more recent work, please go to theandsections."],
+                        "break": [""],
+                        "list2": [
+                            {
+                                "listitem2": ["2005:- theme design.", "2005:", "2001:", "2000:- (concept)", "1999:- (archived)", "1998:", "1997:", "1997:- (archived)", "1997:- (archived)", "1997:- (archived)", "1997:- (archived)", "1996:- (archived)", "1996:- (archived)", "1995:- (archived)", "1995:"]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Personal Site Archive"
+                            }
+                        ],
+                        "subtext": [
+                            {
+                                "text": "Various looks of my site through the years:"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": ["2000:", "1999:", "1999:", "1998:", "1996:", "1995:", "1995:"]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Photography"
+                            }
+                        ],
+                        "subtext": [
+                            {
+                                "text": "The joy of image making..."
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "anchor": ["@flickr.com"]
+                                    },
+                                    {
+                                        "anchor": ["@pbase.com"]
+                                    },
+                                    {
+                                        "anchor": ["@filphoto.com"]
+                                    },
+                                    {
+                                        "anchor": ["@photo.net"]
+                                    },
+                                    {
+                                        "anchor": ["old photoblog"]
+                                    },
+                                    {
+                                        "anchor": ["35mm"]
+                                    },
+                                    "[1999]",
+                                    "[1999]",
+                                    "[jan-feb 2005]",
+                                    "[nov 2003]"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "id": "archive"
+    },
+    {
+        "meta": [
+            {
+                "title": [
+                    {
+                        "text": "Kyo Suayan | Artist's CV"
+                    }
+                ],
+                "description": [
+                    {
+                        "text": "Kyo Suayan's Artist's Curriculum Vitae"
+                    }
+                ],
+                "keywords": [
+                    {
+                        "text": "photography,film,exhibits,group shows"
+                    }
+                ]
+            }
+        ],
+        "body": [
+            {
+                "section": [
+                    {
+                        "head": [
+                            {
+                                "text": "Education"
+                            },
+                            {
+                                "text": "UC Berkeley Extension Courses"
+                            }
+                        ],
+                        "subtext": [
+                            {
+                                "text": "BS Computer Science, University of the Philippines, 1994"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "Building Your Portfolio, Fall 2003, Barbara Thompson"
+                                    },
+                                    {
+                                        "text": "Night Photography, Spring 2003, Tim Baskerville"
+                                    },
+                                    {
+                                        "text": "Intermediate Photography, Winter 2002, Amie Potsic"
+                                    },
+                                    {
+                                        "text": "Beginning Photography, Summer 2002, Barbara Thompson"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Workshops"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "Chuck Gardner's Photography Class, Kodak Philippines/Center for Creative Computing, 2001"
+                                    },
+                                    {
+                                        "text": "Epson Print Academy with Vincent Versace, Burlingame, CA, March 2003"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Solo Exhibitions"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "\"On Paper\", works on ink, mixed media and watercolor, Philippine Science High School, 1989"
+                                    },
+                                    {
+                                        "text": "\"Colorstorm\" , first one man show, works on watercolor and pastel, PSHS, 1988"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Group Exhibitions"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "\"Bank Show 2008\", Dec 2008, Mina Dresden Gallery, San Francisco, CA"
+                                    },
+                                    {
+                                        "text": "\"Embarcadero Nocturne\", Jan-Feb 2005, San Francisco, CA"
+                                    },
+                                    {
+                                        "text": "\"Surrealistic Nocturne\", Nov 2003, Online Group Exhibit"
+                                    },
+                                    {
+                                        "text": "Ten Photographers\", Jan 2003, Sausalito, CA"
+                                    },
+                                    {
+                                        "text": "\"First Group Exhibit\", The UPLB Painters Club, 1994"
+                                    },
+                                    {
+                                        "text": "\"Recent Works\" with R. Navarro and D. Ravelas, UPLB Sining Makiling Gallery, September 1994"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Published Work"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "\"Chroma\", Self-published selection of 44 photographs, lulu.com/ksuayan, 2006"
+                                    },
+                                    {
+                                        "text": "\"California 24/7\", DK Publishing, 2004"
+                                    },
+                                    {
+                                        "text": "Mabuhay Magazine, \"Black and Wide\" by Walter C. Villa, October 2002, pp. 48-51"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Awards & Honors"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "America 24/7’s Top 100 Student Photographers, 2004"
+                                    },
+                                    {
+                                        "text": "Best in Art, 1990, PSHS"
+                                    },
+                                    {
+                                        "text": "Jose Joya Award for the Arts, 1990, PSHS"
+                                    },
+                                    {
+                                        "text": "Most Outstanding in Art, 1986, Assumption Convent, Iloilo"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Contests"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "First Place, On the Spot Painting Competition, UPLB Alumni Association Loyalty Day, October 1992"
+                                    },
+                                    {
+                                        "text": "Winner, Logo Design Contest, UPLB Committee on Culture and the Arts"
+                                    },
+                                    {
+                                        "text": "First Place, Logo Design Contest, PSHS 25th Anniversary, 1990"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "head": [
+                            {
+                                "text": "Affiliations"
+                            }
+                        ],
+                        "list2": [
+                            {
+                                "listitem2": [
+                                    {
+                                        "text": "PhilWeavers Network, Founding Member"
+                                    },
+                                    {
+                                        "text": "PhilDV, the Philippine Digital Video mailinglist, List Moderator"
+                                    },
+                                    {
+                                        "text": "UPLB Painters Club, Charter Member and Vice President, 1992"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "para": ["References available upon."]
+            }
+        ],
+        "id": "artist_cv"
+    }
+]}

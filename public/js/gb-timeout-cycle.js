@@ -1,7 +1,6 @@
 'use strict';
 
-var gb = gb||{};
-gb.util = gb.util||{};
+gb.Namespace(gb,"gb.util.TimeOutCycle");
 
 gb.util.TimeOutCycle = function(timeoutMS, callback) {
     this.timeoutMS = 5000;
