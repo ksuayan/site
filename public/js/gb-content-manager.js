@@ -8,10 +8,14 @@ gb.ui.ContentManager.include({
     init: function(selector) {
         this.content = $(selector);
         this.visible = true;
+
         this.fullscreen = new gb.ui.FullScreen();
+        this.tileToy = new gb.ui.TileToy(selector);
 
         var that = this;
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
+        $("#play-button").click(function(){that.tileToy.stripView();});
+
         console.log("init: ContentManager");
     },
 

@@ -1,13 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
-
-@basefont: "Source Sans Pro", Helvetica, Arial, sans-serif;
-@screen-xs-min: 480px;
-@screen-sm-min: 768px;
-@screen-md-min: 992px;
-@screen-lg-min: 1200px;
-@screen-xs-max: (@screen-sm-min - 1);
-@screen-sm-max: (@screen-md-min - 1);
-@screen-md-max: (@screen-lg-min - 1);
+@import 'global.less';
 
 html {
     background-color: #fff;
@@ -16,15 +7,15 @@ html {
 body {
     font-family: @basefont;
     font-size: 13pt;
-    font-weight: 300;
+    font-weight: 400;
     background-color: transparent;
-    padding-top: 80px;
-    padding-bottom: 40px;
+    padding-top: 60px;
+    padding-bottom: 100px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: @basefont;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 18pt;
     color: #333;
     margin: 0px;
@@ -70,6 +61,10 @@ ul {
     }
 }
 
+.container { padding: 0px; }
+
+.row { margin: 0px; }
+
 .row.multicol {
     margin-left: 0px;
     margin-right: 0px;
@@ -86,6 +81,12 @@ ul {
         h2, p, ul {
             margin: 5px;
             color: #fff;
+        }
+
+        p, ul {
+            font-weight: 300;
+            font-size: 12pt;
+            padding-bottom: 10px;
         }
     }
 }
@@ -124,19 +125,12 @@ ul {
     margin-top: 10px;
 }
 
-#svg-content {
-    margin-top: 20px;
-}
+
 
 #chart {
     margin: 40px auto 30px auto;
     width: 1002px;
     height: 802px;
-}
-
-#stage {
-    margin: 40px auto 30px auto;
-    background-color: #bd362f;
 }
 
 #ui-toolbar {

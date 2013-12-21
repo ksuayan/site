@@ -2,13 +2,33 @@
 
 gb.Namespace(gb,"gb.ui.Tile");
 
-gb.ui.Tile = function(parent, id, cssAttributes) {
-    this.jq = $("<div/>", {"id": id})
-    .css(cssAttributes)
-    .appendTo(parent);
-};
+gb.ui.Tile = new gb.Class();
 
-gb.ui.Tile.prototype.transition = function(attr) {
-    this.jq.transition(attr);
-};
+gb.ui.Tile.include({
+    init: function(parent, elementAttributes, cssAttributes) {
+        this.jq = $("<div/>", elementAttributes)
+            .css(cssAttributes)
+            .appendTo(parent);
+    },
 
+    transition: function(attr) {
+        this.jq.transition(attr);
+    },
+
+    show: function() {
+        this.jq.show();
+
+    },
+
+    hide: function() {
+        this.jq.hide();
+    },
+
+    activate: function() {
+
+    },
+
+    deactivate: function() {
+
+    }
+});

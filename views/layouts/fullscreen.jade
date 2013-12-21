@@ -15,28 +15,10 @@ html(lang="en",id="slideshow")
   body
     div#content
       include ../includes/header
-      div.container
+      div#stage.container
         include ../content/ksuayan
-        div(class="row multicol")
-          div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
-            h2=content.leftHeader
-            p(id="leftBody")!=content.leftBody
-            p
-              a(class="btn btn-default",href="#") View details &raquo;
-          div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
-            h2=content.centerHeader
-            p(id="centerBody")!=content.centerBody
-            p
-              a(class="btn btn-default",href="#") View details &raquo;
-          div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
-            h2=content.rightHeader
-            p(id="rightBody")!=content.rightBody
-            p
-              a(class="btn btn-default",href="#") View details &raquo;
-        div#tiles.row
-      div.footer
-        block footer
-
+    div.footer
+      block footer
     img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")
     div#ui-toolbar
       a(href="#", id="slideshow-button") slideshow
@@ -51,12 +33,14 @@ html(lang="en",id="slideshow")
       script(src=config.mediaHost+"/js/external/moment.min.js")
       script(src="/js/raphael-extensions.js")
       script(src="/js/gb.js")
+      script(src="/js/gb-ui.js")
       script(src="/js/gb-util.js")
       script(src="/js/jquery.search.js")
-      script(src="/js/preloadable-image.js")
-      script(src="/js/timeline.js")
       script(src="/js/jquery.fullscreen.js")
+      script(src="/js/gb-preloadable-image.js")
+      script(src="/js/timeline.js")
       script(src="/js/gb-tile.js")
       script(src="/js/gb-fullscreen.js")
+      script(src="/js/gb-tile-toy.js")
       script(src="/js/gb-content-manager.js")
       script(src="/js/main.js")

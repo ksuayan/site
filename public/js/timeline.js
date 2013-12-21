@@ -2,7 +2,7 @@ $(function(){
 
     var month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-    var Timeline = function() {
+    var Timeline = function(onDataHandler) {
         this.x = 0;
         this.y = 0;
         this.margin = 40;
@@ -16,10 +16,16 @@ $(function(){
         this.id = "timeline";
         this.jqContainer = $("#"+this.id);
         this.ajaxURL = "/api/timeline";
+        this.timelineData = null;
+        if (onDataHandler && typeof onDataHandler === 'function') {
+            this.onDataHandler = onDataHandler;
+        }
 
         var that = this;
+
         $.getJSON(this.ajaxURL, function(data) {
             that.timelineData = data;
+            onDataHandler();
         });
     };
 
@@ -228,21 +234,19 @@ $(function(){
         return line.attr(strokeStyle);
     };
 
-    // Instantiate.
 
-    var timeline = new Timeline();
-
-    var triggerResizeEnd = function() {
-        $(this).trigger('resizeEnd');
-    };
     var onResizeHandler = function() {
         if (timeline.paper)
             timeline.paper.clear();
-        if (this.resizeTO)
-            clearTimeout(this.resizeTO);
-        this.resizeTO = setTimeout(triggerResizeEnd, 500);
-    }
-    $(window).resize(onResizeHandler);
-    $(window).bind('resizeEnd', function(){timeline.Resize();});
+        timeline.Resize();
+    };
 
+    var onData = function() {
+        $(window).on("resizeEnd", onResizeHandler);
+        $(window).on("resize", function(){timeline.paper.clear()});
+        onResizeHandler();
+    };
+
+    // Instantiate.
+    var timeline = new Timeline(onData);
 });

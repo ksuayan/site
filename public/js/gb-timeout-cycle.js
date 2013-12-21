@@ -3,7 +3,7 @@
 gb.Namespace(gb,"gb.util.TimeOutCycle");
 
 gb.util.TimeOutCycle = function(timeoutMS, callback) {
-    this.timeoutMS = 5000;
+    this.timeoutMS = timeoutMS || 5000;
     this.isRunning = false;
     this.timeoutHandle = null;
     this.tickHandler = function(){

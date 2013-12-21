@@ -11,7 +11,7 @@ $(function(){
     //Add Shape instance to stage display list.
     stage.addChild(circle);
 
-    var myText = new createjs.Text('kyo suayan', 'Bold 36pt OpenSansRegular', '#FFF');
+    var myText = new createjs.Text('kyo suayan', '300 36pt Source Sans Pro', '#FFF');
     myText.x = myText.y = 25;
     stage.addChild(myText);
 
@@ -43,6 +43,6 @@ $(function(){
     createjs.Ticker.setFPS(24);
     createjs.Ticker.addEventListener("tick", handleTick);
 
-    $(window).resize(util.ResizeThrottle(onResizeHandler, 500));
+    $(window).resize(gb.util.throttle(onResizeHandler, 500));
 
 });

@@ -11,12 +11,6 @@ ViewHandler.fn = {
     }
 };
 
-ViewHandler.prototype.Home = function (req, res) {
-    content.GetPageText("home", function (content) {
-        res.render('layouts/home', {content: content});
-    });
-};
-
 ViewHandler.prototype.FullScreen = function (req, res) {
     content.GetPageText("home", function (content) {
         res.render('layouts/fullscreen', {content: content});

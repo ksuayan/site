@@ -22,9 +22,9 @@ gb.ui.FullScreen.include({
     initBackground: function() {
         var that = this;
         $("body").fullscreen({
-            "refreshInterval": 30000,
-            "fadeOutTime": 1000,
-            "fadeInTime": 50,
+            "refreshInterval": 10000,
+            "fadeOutTime": 500,
+            "fadeInTime": 2000,
             "successCallback": function(){ that.checkSpinner(); },
             "errorCallback": function(){ that.checkSpinner(); },
             "images": this.images

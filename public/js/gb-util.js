@@ -26,7 +26,7 @@ gb.util.ZeroFill = function(number, width) {
     return number + ""; // always return a string
 };
 
-gb.util.ResizeThrottle = function(callback, timeout) {
+gb.util.throttle = function(callback, timeout) {
     var timeoutID , timeout = timeout || 200;
     return function () {
         var scope = this , args = arguments;

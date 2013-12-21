@@ -23,37 +23,40 @@
             images: ["images/image-001.png","images/image-002.png","images/image-003.png"]
         }, options);
 
+
         var theWindow = $(window),
-            $bg = $(settings.front),
+            bkgImage = $(settings.front),
             windowAspect = theWindow.width()/theWindow.height(),
-            imageAspect = $bg.width() / $bg.height(),
+            imageAspect = bkgImage.width() / bkgImage.height(),
             intervalHandler = null,
             backgrounds = [],// array of gb.ui.PreloadableImage();
             index = 0;
 
         var refreshImage = function() {
-            imageAspect = $bg.width() / $bg.height();
-            windowAspect = theWindow.width()/theWindow.height();
             if (index < settings.images.length - 1) {
                 index++;
             } else {
                 index = 0;
             }
             var onComplete = function() {
-                $bg.attr("src", settings.images[index]);
-                $bg.fadeIn(settings.fadeInTime);
+                bkgImage.attr("src", settings.images[index]);
+                bkgImage.transition({opacity:1},settings.fadeInTime,"snap");
             };
-            $bg.fadeOut(settings.fadeOutTime, onComplete);
+
+            resizeBackgound();
+            bkgImage.transition({opacity:0},settings.fadeOutTime,"snap", onComplete);
         };
 
         var resizeBackgound = function() {
-            if (windowAspect < imageAspect) {
-                $bg.removeClass().addClass(settings.bgHeightClass);
-            } else {
-                $bg.removeClass().addClass(settings.bgWidthClass);
-            }
-            imageAspect = $bg.width() / $bg.height();
+            var width = backgrounds[index].image.width;
+            var height = backgrounds[index].image.height;
+            imageAspect = width/height;
             windowAspect = theWindow.width()/theWindow.height();
+            if (windowAspect > imageAspect) {
+                bkgImage.removeClass().addClass(settings.bgWidthClass);
+            } else {
+                bkgImage.removeClass().addClass(settings.bgHeightClass);
+            }
         };
 
         var preloadBackgrounds = function() {
@@ -66,14 +69,14 @@
         };
 
         var setRefreshInterval = function() {
-            theWindow.resize(resizeBackgound).trigger("resize");
+            theWindow.on("resizeEnd", resizeBackgound);
             if (!intervalHandler) {
                 intervalHandler = setInterval(refreshImage, settings.refreshInterval);
             }
         };
 
-        setRefreshInterval();
         preloadBackgrounds();
+        setRefreshInterval();
         return this;
     };
 }(jQuery));
