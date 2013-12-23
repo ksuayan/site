@@ -15,8 +15,14 @@ html(lang="en",id="slideshow")
   body
     div#content
       include ../includes/header
-      div#stage.container
-        include ../content/ksuayan
+      div#stage
+      div#stage-nav
+        div.btn-group
+          button#stage-prev.btn(type="button") Previous
+          button#stage-next.btn(type="button") Next
+
+      include ../content/ksuayan
+
     div.footer
       block footer
     img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")
@@ -41,6 +47,6 @@ html(lang="en",id="slideshow")
       script(src="/js/timeline.js")
       script(src="/js/gb-tile.js")
       script(src="/js/gb-fullscreen.js")
-      script(src="/js/gb-tile-toy.js")
+      script(src="/js/gb-stage.js")
       script(src="/js/gb-content-manager.js")
       script(src="/js/main.js")

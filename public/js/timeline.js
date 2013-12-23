@@ -243,7 +243,7 @@ $(function(){
 
     var onData = function() {
         $(window).on("resizeEnd", onResizeHandler);
-        $(window).on("resize", function(){timeline.paper.clear()});
+        $(window).on("resize", function(){if (timeline.paper) timeline.paper.clear()});
         onResizeHandler();
     };
 

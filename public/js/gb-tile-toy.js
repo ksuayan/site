@@ -1,6 +1,4 @@
-"use strict";
-
-gb.Namespace(gb,"gb.ui.Tile");
+gb.Namespace(gb,"gb.ui.TileToy");
 gb.ui.TileToy = gb.Class(gb.ui.Tile);
 
 gb.ui.TileToy.include({
@@ -12,20 +10,31 @@ gb.ui.TileToy.include({
         "#00CBD4", "#D4FFEF", "#5A9097", "#17494F", "#0B2124"],
 
     init: function(selector) {
+        "use strict";
         this.tiles = [];
         // parent Div
         this.selector = selector;
         this.parentDiv = $(selector);
+        this.saveHtml = this.parentDiv.html();
         this.tileHeight = this.parentDiv.width() / 10;
         this.tileWidth = this.tileHeight;
-        this.show();
         console.log("init: TileToy.");
     },
 
     show: function() {
+
+        var that = this;
+
+        this.parentDiv.empty();
+
         var index = 0;
         for (var j=0; j<4; j++) {
             for (var i=0; i<5;i++) {
+
+                var colorIndex = index;
+                if (index>this.colors.length) {
+                    colorIndex = 0;
+                }
 
                 var tile = new gb.ui.Tile(this.selector,
                     {
@@ -34,7 +43,7 @@ gb.ui.TileToy.include({
                     {
                         "width": this.tileWidth,
                         "height": this.tileHeight,
-                        "background-color": this.colors[index],
+                        "background-color": this.colors[colorIndex],
                         "opacity": 1,
                         "z-index": 0,
                         "float": "left",
@@ -45,19 +54,16 @@ gb.ui.TileToy.include({
                     $(e.target).transition({opacity:.9, height: 150, duration: 500});
                 });
                 tile.jq.on("mouseout", function(e){
-                    $(e.target).transition({opacity:.9, height: 10, duration: 2000});
+                    $(e.target).transition({opacity:.9, height: 10, duration: 500});
                 });
                 tile.jq.on("click", function(e){
                     $(e.target).transition({opacity: 1, duration: 50});
+                    that.stripView();
                 });
 
                 this.tiles.push(tile);
+                index++;
 
-                if (index>15) {
-                    index=0;
-                } else {
-                    index++;
-                }
             }
         }
     },

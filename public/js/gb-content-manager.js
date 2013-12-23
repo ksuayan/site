@@ -1,22 +1,26 @@
 "use strict";
 
 gb.Namespace(gb,"gb.ui.ContentManager");
-
 gb.ui.ContentManager = new gb.Class();
 
 gb.ui.ContentManager.include({
+
     init: function(selector) {
         this.content = $(selector);
         this.visible = true;
-
         this.fullscreen = new gb.ui.FullScreen();
-        this.tileToy = new gb.ui.TileToy(selector);
+
+        this.stage = new gb.ui.Stage("stage");
 
         var that = this;
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
-        $("#play-button").click(function(){that.tileToy.stripView();});
+        $(window).on("resizeEnd", function(){that.onResizeEndHandler()});
 
         console.log("init: ContentManager");
+    },
+
+    onResizeEndHandler: function() {
+        this.stage.onResizeEndHandler();
     },
 
     toggleSlideShow: function() {

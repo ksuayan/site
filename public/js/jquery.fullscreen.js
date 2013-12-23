@@ -41,9 +41,9 @@
             var onComplete = function() {
                 bkgImage.attr("src", settings.images[index]);
                 bkgImage.transition({opacity:1},settings.fadeInTime,"snap");
+                resizeBackgound();
             };
 
-            resizeBackgound();
             bkgImage.transition({opacity:0},settings.fadeOutTime,"snap", onComplete);
         };
 

@@ -5,9 +5,8 @@ gb.Namespace(gb,"gb.ui.Tile");
 gb.ui.Tile = new gb.Class();
 
 gb.ui.Tile.include({
-    init: function(parent, elementAttributes, cssAttributes) {
+    init: function(parent, elementAttributes) {
         this.jq = $("<div/>", elementAttributes)
-            .css(cssAttributes)
             .appendTo(parent);
     },
 
@@ -22,6 +21,10 @@ gb.ui.Tile.include({
 
     hide: function() {
         this.jq.hide();
+    },
+
+    onResizeEndHandler: function() {
+        console.log("Tile.onResizeEndHandler");
     },
 
     activate: function() {

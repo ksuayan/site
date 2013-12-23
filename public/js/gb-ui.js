@@ -15,6 +15,8 @@ gb.ui.screenMode = "lg";
 gb.ui.onResizeHandler = function(){
     var breaks = gb.ui.ScreenSizes;
     var width = $(window).width();
+    gb.ui.screenWidth = $(window).width();
+    gb.ui.screenHeight = $(window).height();
     if (width < breaks.sm) {
         gb.ui.screenMode = "xs";
     } else if (width >= breaks.sm && width < breaks.md) {
@@ -28,8 +30,3 @@ gb.ui.onResizeHandler = function(){
     }
     $(this).trigger('resizeEnd');
 };
-
-// Setup a throttled event handler for onresize event.
-$(function(){
-    $(window).resize(gb.util.throttle(gb.ui.onResizeHandler, 1000));
-});
