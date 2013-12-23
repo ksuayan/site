@@ -3,7 +3,7 @@ gb.ui.Stage = gb.Class(gb.ui.Tile);
 
 gb.ui.Stage.include({
 
-    colors: ["#5C4B51", "#8CBEB2", "#F2EBBF", "#F3B562", "#F06060"],
+    colors: ["#00CBD4", "#D4FFEF", "#5A9097", "#17494F", "#0B2124"],
 
     init: function(selector) {
         "use strict";
