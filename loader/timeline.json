@@ -65,10 +65,17 @@
         },
         {
             "startDate": 1301641200000,
-            "endDate": null,
+            "endDate": 1375426800000,
             "title": "Software Engineer II",
             "employer": "Maxis/Electronic Arts",
             "location": "Redwood Shores, California"
+        },
+        {
+            "startDate": 1375686000000,
+            "endDate": null,
+            "title": "Senior Software Engineer, Front End",
+            "employer": "Stanford Hospital and Clinics",
+            "location": "Palo Alto, California"
         }
     ]
 }
