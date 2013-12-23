@@ -3,26 +3,30 @@ gb.ui.Stage = gb.Class(gb.ui.Tile);
 
 gb.ui.Stage.include({
 
-    colors: ["#00CBD4", "#D4FFEF", "#5A9097", "#17494F", "#0B2124"],
+    colors: ["#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
+             "#002A4A", "#17607D", "#FFF1CE", "#FF9311", "#E33200",
+             "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
 
     init: function(selector) {
         "use strict";
 
         var that = this;
-
         this.tiles = [];
         this.tileOffsets = [];
         this.howMany = 15;
-
+        this.intervalMS = 8000;
         this.currentIndex = 0;
         this.selector = selector;
         this.jq = $("#"+selector);
         this.contentSelector = "#"+selector+"-content";
         this.content = $("<div id='"+selector+"-content'></div>");
         this.jq.append(this.content);
-
         this.initTiles();
         this.show();
+
+        this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
+            function(){that.rotate()});
+        this.timeoutCycle.start();
 
         $(window).resize(function(){that.hide()});
         $("#stage-next").on("click", function(){that.goToNext()});
@@ -32,9 +36,9 @@ gb.ui.Stage.include({
     },
 
     initTiles: function() {
+
         this.tiles = [];
         this.tileOffsets = [];
-
         var colorIndex = 0;
         var xPos = 0;
 
@@ -54,7 +58,6 @@ gb.ui.Stage.include({
                 colorIndex++;
             }
         }
-
         this.resizeTiles();
     },
 
@@ -72,6 +75,14 @@ gb.ui.Stage.include({
             el.style.left = xPos + "px";
             this.tileOffsets[i] = xPos;
             xPos += stageWidth;
+        }
+    },
+
+    rotate: function() {
+        if (this.currentIndex<this.tiles.length-1) {
+            this.goToNext();
+        } else {
+            this.goTo(0);
         }
     },
 
@@ -110,6 +121,5 @@ gb.ui.Stage.include({
         this.resizeTiles();
         this.show();
     }
-
 
 });

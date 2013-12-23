@@ -9,7 +9,6 @@ gb.ui.ContentManager.include({
         this.content = $(selector);
         this.visible = true;
         this.fullscreen = new gb.ui.FullScreen();
-
         this.stage = new gb.ui.Stage("stage");
 
         var that = this;

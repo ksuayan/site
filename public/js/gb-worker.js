@@ -9,7 +9,7 @@ gb.system.WorkerTask = function(jsPath) {
     var that = this;
     this.generator = new gb.data.Generator(50,1000);
     this.cycle = new gb.util.TimeOutCycle(INTERVAL, function(){that.Ping();} );
-    this.cycle.Start();
+    this.cycle.start();
 };
 
 gb.system.WorkerTask.prototype.ReceiveMessage = function(e) {
