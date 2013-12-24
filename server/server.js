@@ -33,9 +33,9 @@ app.all("*", function (req, res, next) {
     if (caching) {
         var expire = 60 * 60 * 24 * 4; // 5 days
 
-        if (req.url.indexOf("/js/") === 0)||
+        if ((req.url.indexOf("/js/") === 0)||
            (req.url.indexOf("/css/") === 0)||
-           (req.url.indexOf("/img/") === 0) {
+           (req.url.indexOf("/img/") === 0)) {
             res.setHeader("Cache-Control", "public, max-age="+expire);
             res.setHeader("Expires", new Date(Date.now() + expire * 1000).toUTCString());
         }
