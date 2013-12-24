@@ -1,8 +1,25 @@
 gb.Namespace(gb,"gb.ui.ContentManager");
 gb.ui.ContentManager = new gb.Class();
 
+/**
+ * @fileOverview gb.ui.ContentManager is the main page controller
+ * responsible for instantiating other gb.ui objects on the page.
+ * @author Kyo Suayan
+ * @module gb.ui.ContentManager
+ * @requires gb.ui.FullScreen
+ * @requires gb.ui.Stage
+ *
+ * @example
+ * var contentManager = new gb.ui.ContentManger("#parent");
+ *
+ */
+
 gb.ui.ContentManager.include({
 
+    /**
+     * @param selector
+     * @instance
+     */
     init: function(selector) {
         "use strict";
 
@@ -17,10 +34,16 @@ gb.ui.ContentManager.include({
         console.log("init: ContentManager");
     },
 
+    /**
+     * @instance
+     */
     onResizeEndHandler: function() {
         this.stage.onResizeEndHandler();
     },
 
+    /**
+     * @instance
+     */
     toggleSlideShow: function() {
         this.visible = (!this.visible);
         if (this.visible) {
@@ -30,6 +53,9 @@ gb.ui.ContentManager.include({
         }
     },
 
+    /**
+     * @instance
+     */
     show: function() {
         var that = this;
         this.content.transition({opacity:1},
@@ -39,6 +65,9 @@ gb.ui.ContentManager.include({
             });
     },
 
+    /**
+     * @instance
+     */
     hide: function() {
         var that = this;
         this.content.transition({opacity:0},

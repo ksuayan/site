@@ -1,12 +1,32 @@
 gb.Namespace(gb,"gb.ui.Stage");
 gb.ui.Stage = gb.Class(gb.ui.Tile);
 
+/**
+ * @fileOverview A simple carousel using gb.ui.Tiles.
+ * @author Kyo Suayan
+ * @module gb.ui.Stage
+ * @requires gb.ui.Tile
+ * @requires gb.util.TimeOutCycle
+ *
+ * @example
+ * var stage = new gb.ui.Stage("#parent");
+ * stage.show();
+ *
+ */
 gb.ui.Stage.include({
 
+    /**
+     * @memberOf gb.ui.Stage
+     * @static
+     */
     colors: ["#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
              "#002A4A", "#17607D", "#FFF1CE", "#FF9311", "#E33200",
              "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
 
+    /**
+     * @param selector
+     * @instance
+     */
     init: function(selector) {
         "use strict";
 
@@ -35,6 +55,9 @@ gb.ui.Stage.include({
         console.log("init: Stage.");
     },
 
+    /**
+     * @inner
+     */
     initTiles: function() {
 
         this.tiles = [];
@@ -61,6 +84,11 @@ gb.ui.Stage.include({
         this.resizeTiles();
     },
 
+    /**
+     * Recalculate dimensions of every tile under
+     * this.tiles[].
+     * @inner
+     */
     resizeTiles: function() {
         var xPos = 0;
         var stageWidth = this.jq.width();
@@ -78,6 +106,9 @@ gb.ui.Stage.include({
         }
     },
 
+    /**
+     * @instance
+     */
     rotate: function() {
         if (this.currentIndex<this.tiles.length-1) {
             this.goToNext();
@@ -86,6 +117,9 @@ gb.ui.Stage.include({
         }
     },
 
+    /**
+     * @instance
+     */
     goToPrevious: function() {
         if (this.currentIndex>0) {
             this.currentIndex--;
@@ -95,6 +129,9 @@ gb.ui.Stage.include({
         this.goTo(this.currentIndex);
     },
 
+    /**
+     * @instance
+     */
     goToNext: function() {
         if (this.currentIndex < this.tiles.length - 2) {
             this.currentIndex++;
@@ -104,12 +141,22 @@ gb.ui.Stage.include({
         this.goTo(this.currentIndex);
     },
 
+
+    /**
+     * Go to 'index'.
+     * @instance
+     * @param index {number} the index to go to
+     */
     goTo: function(index) {
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
         this.content.transition({x:xOffset}, 2000, "snap");
     },
 
+    /**
+     * Display the stage.
+     * @instance
+     */
     show: function() {
         var that = this;
         this.jq.hide();
@@ -117,6 +164,10 @@ gb.ui.Stage.include({
         this.jq.show();
     },
 
+    /**
+     * Event handler for "resizeEnd".
+     * @instance
+     */
     onResizeEndHandler: function() {
         this.resizeTiles();
         this.show();

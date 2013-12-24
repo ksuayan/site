@@ -1,53 +1,102 @@
 gb.Namespace(gb,"gb.util.TimeOutCycle");
 gb.util.TimeOutCycle = new gb.Class();
 
-gb.util.TimeOutCycle = function(timeoutMS, callback) {
-    "use strict";
-    this.timeoutMS = timeoutMS;
-    this.isRunning = false;
-    this.timeoutHandle = null;
-    this.tickHandler = function(){
-        console.log("default tickHandler");
-    };
-    this.setTimeoutMS(timeoutMS);
-    this.setTickHandler(callback);
-};
+/**
+ * @fileOverview A TimeOutCycle object invokes
+ * a callback every timeoutMS milliseconds.
+ * @author Kyo Suayan
+ * @module gb.ui.TimeOutCycle
+ *
+ * @example
+ * var timeout = new gb.ui.TimeOutCycle(1000, someFunction);
+ * timeout.setTickHandler(function(){console.log("Hello");});
+ * timeout.setTimeoutMS(5000);
+ * timeout.start();
+ * timeout.stop();
+ */
 
-gb.util.TimeOutCycle.prototype.setTickHandler = function(callback) {
-    if (callback && typeof callback == 'function') {
-        this.tickHandler = callback;
-    }
-};
+gb.util.TimeOutCycle.include({
 
-gb.util.TimeOutCycle.prototype.setTimeoutMS = function(timeoutMS) {
-    if (timeoutMS) {
+    /**
+     * constructor
+     * @param timeoutMS
+     * @param callback
+     * @instance
+     */
+    init: function(timeoutMS, callback) {
+        "use strict";
         this.timeoutMS = timeoutMS;
+        this.isRunning = false;
+        this.timeoutHandle = null;
+        this.tickHandler = function(){
+            console.log("default tickHandler");
+        };
+        this.setTimeoutMS(timeoutMS);
+        this.setTickHandler(callback);
+    },
+
+    /**
+     * Set the function to call.
+     * @param callback
+     * @instance
+     */
+    setTickHandler: function(callback) {
+        if (callback && typeof callback == 'function') {
+            this.tickHandler = callback;
+        }
+    },
+
+    /**
+     * set the interval between calls.
+     * @param timeoutMS
+     * @instance
+     */
+    setTimeoutMS: function(timeoutMS) {
+        if (timeoutMS) {
+            this.timeoutMS = timeoutMS;
+        }
+    },
+
+    /**
+     * start the loop.
+     * @instance
+     */
+    start: function() {
+        this.isRunning = true;
+        this._tick();
+    },
+
+    /**
+     * end the loop.
+     * @instance
+     */
+    stop: function() {
+        this.isRunning = false;
+        if (this.timeoutHandle)
+            clearTimeout(this.timeoutHandle);
+    },
+
+    /**
+     * invoke tickHandler and setup next invocation.
+     * @private
+     */
+    _tick: function() {
+        if (!this.isRunning) {
+            return;
+        }
+        this.tickHandler();
+        this._setNext();
+    },
+
+    /**
+     * setup a timer for next call.
+     * @private
+     */
+    _setNext: function() {
+        var that = this;
+        if (this.isRunning) {
+            this.timeoutHandle = setTimeout(function(){that._tick();}, this.timeoutMS);
+        }
     }
-};
-
-gb.util.TimeOutCycle.prototype.start = function() {
-    this.isRunning = true;
-    this._tick();
-};
-
-gb.util.TimeOutCycle.prototype.stop = function() {
-    this.isRunning = false;
-    if (this.timeoutHandle)
-        clearTimeout(this.timeoutHandle);
-};
-
-gb.util.TimeOutCycle.prototype._tick = function() {
-    if (!this.isRunning) {
-        return;
-    }
-    this.tickHandler();
-    this._setNext();
-};
-
-gb.util.TimeOutCycle.prototype._setNext = function() {
-    var that = this;
-    if (this.isRunning) {
-        this.timeoutHandle = setTimeout(function(){that._tick();}, this.timeoutMS);
-    }
-};
+});
 

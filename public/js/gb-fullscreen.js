@@ -1,8 +1,22 @@
 gb.Namespace(gb,"gb.ui.FullScreen");
 gb.ui.FullScreen = new gb.Class();
 
-
+/**
+ * @fileOverview A rotating slideshow running on a page's background.
+ * Requires jquery.fullscreen.js
+ *
+ * @author Kyo Suayan
+ * @module gb.ui.FullScreen
+ * @requires gb.util
+ *
+ * @example
+ * var fs = new gb.ui.Fullscreen();
+ */
 gb.ui.FullScreen.include({
+
+    /**
+     * @instance
+     */
     init: function() {
         "use strict";
         this.spinner = $("#spinner");
@@ -18,6 +32,9 @@ gb.ui.FullScreen.include({
         console.log("init: FullScreen.");
     },
 
+    /**
+     * @instance
+     */
     initBackground: function() {
         var that = this;
         $("body").fullscreen({
@@ -30,7 +47,11 @@ gb.ui.FullScreen.include({
         });
     },
 
-    // Setup Spinner
+    /**
+     * Event handler to trigger every time an image
+     * is loaded or has failed loading.
+     * @inner
+     */
     checkSpinner: function() {
         this.countLoaded++;
         if (this.countLoaded == this.howMany) {
@@ -38,11 +59,14 @@ gb.ui.FullScreen.include({
         }
     },
 
-    // Initialize rotating background images[]
+    /**
+     * Prepopulate images[] array.
+     * @inner
+     */
     initImageList: function() {
         this.images = [];
         for (var i=1;i<=this.howMany;i++) {
-            var numStr = gb.util.ZeroFill(i,3);
+            var numStr = gb.util.zeroFill(i,3);
             this.images.push(this.mediaHost+"images/image-"+numStr+".jpg");
         }
     }

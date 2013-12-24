@@ -1,5 +1,13 @@
+/** @namespace */
 var gb = gb || {};
 
+/**
+ * Initialize namespace for a given path using ns
+ * object as the parent.
+ * @param ns {Object}
+ * @param ns_string {string}
+ * @returns {*}
+ */
 gb.Namespace = function (ns, ns_string) {
     var parts = ns_string.split('.'),
         parent = ns,
@@ -18,6 +26,11 @@ gb.Namespace = function (ns, ns_string) {
     return parent;
 };
 
+/**
+ * Class factory.
+ * @param parent {Object}
+ * @returns {Function}
+ */
 gb.Class = function(parent){
     var klass = function() {
         this.init.apply(this,arguments);
@@ -55,209 +68,397 @@ gb.Class = function(parent){
 ;
 gb.Namespace(gb, "gb.util");
 
-gb.util.RandomArray = function(size, scale) {
-    var r = new Array(size);
-    for (var i = 0; i < size; i++) {
-        r[i] = Math.floor(Math.random() * (scale+1));
+/**
+ * @fileOverview A collection of static JavaScript utilities.
+ *
+ * @author Kyo Suayan
+ * @namespace gb.util
+ */
+gb.util = {
+    /**
+     * Generate a random array of numbers.
+     * @param size {number} number of elements
+     * @param scale {number} upper limit value
+     * @returns {Array}
+     */
+     randomArray: function(size, scale) {
+        var r = new Array(size);
+        for (var i = 0; i < size; i++) {
+            r[i] = Math.floor(Math.random() * (scale+1));
+        }
+        return r;
+    },
+
+    /**
+     * Find the maximum value in the array.
+     * @param array
+     * @returns {number}
+     */
+    arrayMax: function(array){
+        return Math.max.apply(Math, array);
+    },
+
+    /**
+     * Find the minimum value in the array.
+     * @param array
+     * @returns {number}
+     */
+    arrayMin: function(array){
+        return Math.min.apply(Math, array);
+    },
+
+    /**
+     * Zero pad a number.
+     * @param number {number} the number to pad
+     * @param width {number} required length
+     * @returns {string}
+     */
+    zeroFill: function(number, width) {
+        width -= number.toString().length;
+        if ( width > 0 ) {
+            return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
+        }
+        return number + ""; // always return a string
+    },
+
+    /**
+     * Throttle a function invocation.
+     * @param callback {Function} the function to call.
+     * @param timeoutMS {number} the number of ms to set as cap between calls.
+     * @returns {Function}
+     */
+    throttle: function(callback, timeoutMS) {
+        var timeoutID , timeout = timeoutMS || 500;
+        return function () {
+            var scope = this , args = arguments;
+            clearTimeout(timeoutID);
+            timeoutID = setTimeout(function(){
+                callback.apply( scope , Array.prototype.slice.call(args) );
+            } , timeout );
+        };
     }
-    return r;
 };
 
-gb.util.ArrayMax = function(array){
-    return Math.max.apply(Math, array);
-};
+;gb.Namespace(gb, "gb.ui");
 
-gb.util.ArrayMin = function(array){
-    return Math.min.apply(Math, array);
-};
+/**
+ * @fileOverview Application wide settings for UI environment.
+ * @author Kyo Suayan
+ * @namespace gb.ui
+ */
+gb.ui = {
+    /**
+     * Breakpoints matched to global.less
+     * @memberOf gb.ui
+     * @type {{sm: number, md: number, lg: number, xl: number}}
+     */
+    ScreenSizes : {
+        "sm": 480,
+        "md": 768,
+        "lg": 992,
+        "xl": 1200
+    },
 
-gb.util.ZeroFill = function(number, width) {
-    width -= number.toString().length;
-    if ( width > 0 ) {
-        return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
+    /** @type {string} */
+    screenMode: "lg",
+
+    /**
+     * Sitewide window resize event handler. This would usually be throttled
+     * via gb.util.throttle.
+     * @memberOf gb.ui
+     * @static
+     */
+    onResizeHandler: function(){
+        var breaks = gb.ui.ScreenSizes;
+        var width = $(window).width();
+        gb.ui.screenWidth = $(window).width();
+        gb.ui.screenHeight = $(window).height();
+        if (width < breaks.sm) {
+            gb.ui.screenMode = "xs";
+        } else if (width >= breaks.sm && width < breaks.md) {
+            gb.ui.screenMode = "sm";
+        } else if (width >= breaks.md && width < breaks.lg) {
+            gb.ui.screenMode = "md";
+        } else if (width >= breaks.lg && width < breaks.xl) {
+            gb.ui.screenMode = "lg";
+        } else if (width >= breaks.xl) {
+            gb.ui.screenMode = "xl";
+        }
+        $(this).trigger('resizeEnd');
     }
-    return number + ""; // always return a string
 };
-
-gb.util.throttle = function(callback, timeoutMS) {
-    var timeoutID , timeout = timeoutMS || 500;
-    return function () {
-        var scope = this , args = arguments;
-        clearTimeout(timeoutID);
-        timeoutID = setTimeout(function(){
-            callback.apply( scope , Array.prototype.slice.call(args) );
-        } , timeout );
-    };
-};;// Shared UI objects.
-
-gb.Namespace(gb, "gb.ui");
-
-// breakpoints matched to global.less
-gb.ui.ScreenSizes = {
-    "sm": 480,
-    "md": 768,
-    "lg": 992,
-    "xl": 1200
-};
-
-gb.ui.screenMode = "lg";
-
-gb.ui.onResizeHandler = function(){
-    var breaks = gb.ui.ScreenSizes;
-    var width = $(window).width();
-    gb.ui.screenWidth = $(window).width();
-    gb.ui.screenHeight = $(window).height();
-    if (width < breaks.sm) {
-        gb.ui.screenMode = "xs";
-    } else if (width >= breaks.sm && width < breaks.md) {
-        gb.ui.screenMode = "sm";
-    } else if (width >= breaks.md && width < breaks.lg) {
-        gb.ui.screenMode = "md";
-    } else if (width >= breaks.lg && width < breaks.xl) {
-        gb.ui.screenMode = "lg";
-    } else if (width >= breaks.xl) {
-        gb.ui.screenMode = "xl";
-    }
-    $(this).trigger('resizeEnd');
-};;gb.Namespace(gb, "gb.ui.PreloadableImage");
+;gb.Namespace(gb, "gb.ui.PreloadableImage");
 gb.ui.PreloadableImage = new gb.Class();
 
-gb.ui.PreloadableImage = function(id, source, onSuccess, onError) {
-    "use strict";
-    this.id = id;
-    this.startTime = new Date().valueOf();
-    this.endTime = this.startTime;
-    this.image = new Image();
-    this.SetSource(source);
-    this.SetOnLoad(onSuccess);
-    this.SetOnError(onError);
-};
 
-gb.ui.PreloadableImage.prototype.SetSource = function(source) {
-    if (!source) {
-        this.image.src = "";
-        return;
-    }
-    this.image.src = source;
-};
+/**
+ * @fileOverview A TimeOutCycle object invokes
+ * a callback every timeoutMS milliseconds.
+ * @author Kyo Suayan
+ * @module gb.ui.PreloadableImage
+ *
+ * @example
+ * var pImage = new gb.ui.PreloadableIage("#id", "image.jpg", onSuccess, onError);
+ *
+ */
+gb.ui.PreloadableImage.include({
 
-gb.ui.PreloadableImage.prototype.SetOnLoad = function(onSuccess) {
-    var that = this;
-    if (!onSuccess || typeof onSuccess != 'function') {
-        // default onload handler ..
-        this.image.onload = function(){
+    /**
+     * @param id {string} selector
+     * @param source {string} image source
+     * @param onSuccess {Function} callback
+     * @param onError {Function} callback
+     * @instance
+     */
+    init: function(id, source, onSuccess, onError) {
+        "use strict";
+        this.id = id;
+        this.startTime = new Date().valueOf();
+        this.endTime = this.startTime;
+        this.image = new Image();
+        this.setSource(source);
+        this.setOnLoad(onSuccess);
+        this.setOnError(onError);
+    },
+
+    /**
+     * Set the image src attribute.
+     * @param source {string}
+     * @instance
+     */
+    setSource: function(source) {
+        if (!source) {
+            this.image.src = "";
+            return;
+        }
+        this.image.src = source;
+    },
+
+    /**
+     * Set the onSuccess callback.
+     * @param onSuccess {Function}
+     * @instance
+     */
+    setOnLoad: function(onSuccess) {
+        var that = this;
+        if (!onSuccess || typeof onSuccess != 'function') {
+            // default onload handler ..
+            this.image.onload = function(){
+                that.endTime = new Date().valueOf();
+            };
+            return;
+        }
+        var onSuccessWrapper = function(e) {
             that.endTime = new Date().valueOf();
+            onSuccess(e);
         };
-        return;
+        this.image.onload = onSuccessWrapper;
+    },
+
+    /**
+     * Set the onError callback.
+     * @param onError {Function}
+     * @instance
+     */
+    setOnError: function(onError) {
+        var that = this;
+        if (!onError || typeof onError != 'function') {
+            this.image.onerror = function(){
+                that.endTime = new Date().valueOf();
+            };
+            return;
+        }
+        this.endTime = new Date().valueOf();
+        this.image.onerror = onError;
+
+    },
+
+    /**
+     * Return elapse time from request to completion.
+     * @returns {number}
+     * @instance
+     */
+    getTotalTimeMS: function() {
+        return (this.endTime - this.startTime);
     }
-    var onSuccessWrapper = function(e) {
-        that.endTime = new Date().valueOf();
-        onSuccess(e);
-    };
-    this.image.onload = onSuccessWrapper;
-};
 
-gb.ui.PreloadableImage.prototype.SetOnError = function(onError) {
-    var that = this;
-    if (!onError || typeof onError != 'function') {
-        this.image.onerror = function(){
-            that.endTime = new Date().valueOf();
-        };
-        return;
-    }
-    this.endTime = new Date().valueOf();
-    this.image.onerror = onError;
+});
 
-};
-
-gb.ui.PreloadableImage.prototype.GetTotalTimeMS = function() {
-    return (this.endTime - this.startTime);
-};;gb.Namespace(gb,"gb.ui.Tile");
+;
+gb.Namespace(gb,"gb.ui.Tile");
 gb.ui.Tile = new gb.Class();
 
+/**
+ * @fileOverview Represents a visual Tile object.
+ * @author Kyo Suayan
+ * @module gb.ui.Tile
+ *
+ * @example
+ * var tile = new gb.ui.Tile("#parent", {id:"myId"});
+ * tile.show();
+ *
+ */
 gb.ui.Tile.include({
+    /**
+     * @param parent {string} jquery selector to append to.
+     * @param elementAttributes {Object} map of html element attributes.
+     * @instance
+     */
     init: function(parent, elementAttributes) {
         "use strict";
         this.jq = $("<div/>", elementAttributes)
             .appendTo(parent);
     },
 
+    /**
+     * wrapper for jquery.transition.
+     * @param attr
+     * @instance
+     */
     transition: function(attr) {
         this.jq.transition(attr);
     },
 
+    /**
+     * Display the object.
+     * @instance
+     */
     show: function() {
         this.jq.show();
 
     },
 
+    /**
+     * Hide the object.
+     * @instance
+     */
     hide: function() {
         this.jq.hide();
     },
 
+    /**
+     * Default resizeEnd event handler.
+     * @instance
+     */
     onResizeEndHandler: function() {
         console.log("Tile.onResizeEndHandler");
     },
 
+    /**
+     * Enable interaction with the object.
+     * @instance
+     */
     activate: function() {
 
     },
 
+    /**
+     * Disable interaction with the object.
+     * @instance
+     */
     deactivate: function() {
-
     }
 });;gb.Namespace(gb,"gb.util.TimeOutCycle");
 gb.util.TimeOutCycle = new gb.Class();
 
-gb.util.TimeOutCycle = function(timeoutMS, callback) {
-    "use strict";
-    this.timeoutMS = timeoutMS;
-    this.isRunning = false;
-    this.timeoutHandle = null;
-    this.tickHandler = function(){
-        console.log("default tickHandler");
-    };
-    this.setTimeoutMS(timeoutMS);
-    this.setTickHandler(callback);
-};
+/**
+ * @fileOverview A TimeOutCycle object invokes
+ * a callback every timeoutMS milliseconds.
+ * @author Kyo Suayan
+ * @module gb.ui.TimeOutCycle
+ *
+ * @example
+ * var timeout = new gb.ui.TimeOutCycle(1000, someFunction);
+ * timeout.setTickHandler(function(){console.log("Hello");});
+ * timeout.setTimeoutMS(5000);
+ * timeout.start();
+ * timeout.stop();
+ */
 
-gb.util.TimeOutCycle.prototype.setTickHandler = function(callback) {
-    if (callback && typeof callback == 'function') {
-        this.tickHandler = callback;
-    }
-};
+gb.util.TimeOutCycle.include({
 
-gb.util.TimeOutCycle.prototype.setTimeoutMS = function(timeoutMS) {
-    if (timeoutMS) {
+    /**
+     * constructor
+     * @param timeoutMS
+     * @param callback
+     * @instance
+     */
+    init: function(timeoutMS, callback) {
+        "use strict";
         this.timeoutMS = timeoutMS;
+        this.isRunning = false;
+        this.timeoutHandle = null;
+        this.tickHandler = function(){
+            console.log("default tickHandler");
+        };
+        this.setTimeoutMS(timeoutMS);
+        this.setTickHandler(callback);
+    },
+
+    /**
+     * Set the function to call.
+     * @param callback
+     * @instance
+     */
+    setTickHandler: function(callback) {
+        if (callback && typeof callback == 'function') {
+            this.tickHandler = callback;
+        }
+    },
+
+    /**
+     * set the interval between calls.
+     * @param timeoutMS
+     * @instance
+     */
+    setTimeoutMS: function(timeoutMS) {
+        if (timeoutMS) {
+            this.timeoutMS = timeoutMS;
+        }
+    },
+
+    /**
+     * start the loop.
+     * @instance
+     */
+    start: function() {
+        this.isRunning = true;
+        this._tick();
+    },
+
+    /**
+     * end the loop.
+     * @instance
+     */
+    stop: function() {
+        this.isRunning = false;
+        if (this.timeoutHandle)
+            clearTimeout(this.timeoutHandle);
+    },
+
+    /**
+     * invoke tickHandler and setup next invocation.
+     * @private
+     */
+    _tick: function() {
+        if (!this.isRunning) {
+            return;
+        }
+        this.tickHandler();
+        this._setNext();
+    },
+
+    /**
+     * setup a timer for next call.
+     * @private
+     */
+    _setNext: function() {
+        var that = this;
+        if (this.isRunning) {
+            this.timeoutHandle = setTimeout(function(){that._tick();}, this.timeoutMS);
+        }
     }
-};
-
-gb.util.TimeOutCycle.prototype.start = function() {
-    this.isRunning = true;
-    this._tick();
-};
-
-gb.util.TimeOutCycle.prototype.stop = function() {
-    this.isRunning = false;
-    if (this.timeoutHandle)
-        clearTimeout(this.timeoutHandle);
-};
-
-gb.util.TimeOutCycle.prototype._tick = function() {
-    if (!this.isRunning) {
-        return;
-    }
-    this.tickHandler();
-    this._setNext();
-};
-
-gb.util.TimeOutCycle.prototype._setNext = function() {
-    var that = this;
-    if (this.isRunning) {
-        this.timeoutHandle = setTimeout(function(){that._tick();}, this.timeoutMS);
-    }
-};
+});
 
 ;//
 // $.fn.fullscreen()
@@ -748,8 +949,22 @@ $(function(){
 ;gb.Namespace(gb,"gb.ui.FullScreen");
 gb.ui.FullScreen = new gb.Class();
 
-
+/**
+ * @fileOverview A rotating slideshow running on a page's background.
+ * Requires jquery.fullscreen.js
+ *
+ * @author Kyo Suayan
+ * @module gb.ui.FullScreen
+ * @requires gb.util
+ *
+ * @example
+ * var fs = new gb.ui.Fullscreen();
+ */
 gb.ui.FullScreen.include({
+
+    /**
+     * @instance
+     */
     init: function() {
         "use strict";
         this.spinner = $("#spinner");
@@ -765,6 +980,9 @@ gb.ui.FullScreen.include({
         console.log("init: FullScreen.");
     },
 
+    /**
+     * @instance
+     */
     initBackground: function() {
         var that = this;
         $("body").fullscreen({
@@ -777,7 +995,11 @@ gb.ui.FullScreen.include({
         });
     },
 
-    // Setup Spinner
+    /**
+     * Event handler to trigger every time an image
+     * is loaded or has failed loading.
+     * @inner
+     */
     checkSpinner: function() {
         this.countLoaded++;
         if (this.countLoaded == this.howMany) {
@@ -785,23 +1007,46 @@ gb.ui.FullScreen.include({
         }
     },
 
-    // Initialize rotating background images[]
+    /**
+     * Prepopulate images[] array.
+     * @inner
+     */
     initImageList: function() {
         this.images = [];
         for (var i=1;i<=this.howMany;i++) {
-            var numStr = gb.util.ZeroFill(i,3);
+            var numStr = gb.util.zeroFill(i,3);
             this.images.push(this.mediaHost+"images/image-"+numStr+".jpg");
         }
     }
 });;gb.Namespace(gb,"gb.ui.Stage");
 gb.ui.Stage = gb.Class(gb.ui.Tile);
 
+/**
+ * @fileOverview A simple carousel using gb.ui.Tiles.
+ * @author Kyo Suayan
+ * @module gb.ui.Stage
+ * @requires gb.ui.Tile
+ * @requires gb.util.TimeOutCycle
+ *
+ * @example
+ * var stage = new gb.ui.Stage("#parent");
+ * stage.show();
+ *
+ */
 gb.ui.Stage.include({
 
+    /**
+     * @memberOf gb.ui.Stage
+     * @static
+     */
     colors: ["#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
              "#002A4A", "#17607D", "#FFF1CE", "#FF9311", "#E33200",
              "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
 
+    /**
+     * @param selector
+     * @instance
+     */
     init: function(selector) {
         "use strict";
 
@@ -830,6 +1075,9 @@ gb.ui.Stage.include({
         console.log("init: Stage.");
     },
 
+    /**
+     * @inner
+     */
     initTiles: function() {
 
         this.tiles = [];
@@ -856,6 +1104,11 @@ gb.ui.Stage.include({
         this.resizeTiles();
     },
 
+    /**
+     * Recalculate dimensions of every tile under
+     * this.tiles[].
+     * @inner
+     */
     resizeTiles: function() {
         var xPos = 0;
         var stageWidth = this.jq.width();
@@ -873,6 +1126,9 @@ gb.ui.Stage.include({
         }
     },
 
+    /**
+     * @instance
+     */
     rotate: function() {
         if (this.currentIndex<this.tiles.length-1) {
             this.goToNext();
@@ -881,6 +1137,9 @@ gb.ui.Stage.include({
         }
     },
 
+    /**
+     * @instance
+     */
     goToPrevious: function() {
         if (this.currentIndex>0) {
             this.currentIndex--;
@@ -890,6 +1149,9 @@ gb.ui.Stage.include({
         this.goTo(this.currentIndex);
     },
 
+    /**
+     * @instance
+     */
     goToNext: function() {
         if (this.currentIndex < this.tiles.length - 2) {
             this.currentIndex++;
@@ -899,12 +1161,22 @@ gb.ui.Stage.include({
         this.goTo(this.currentIndex);
     },
 
+
+    /**
+     * Go to 'index'.
+     * @instance
+     * @param index {number} the index to go to
+     */
     goTo: function(index) {
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
         this.content.transition({x:xOffset}, 2000, "snap");
     },
 
+    /**
+     * Display the stage.
+     * @instance
+     */
     show: function() {
         var that = this;
         this.jq.hide();
@@ -912,6 +1184,10 @@ gb.ui.Stage.include({
         this.jq.show();
     },
 
+    /**
+     * Event handler for "resizeEnd".
+     * @instance
+     */
     onResizeEndHandler: function() {
         this.resizeTiles();
         this.show();
@@ -920,8 +1196,25 @@ gb.ui.Stage.include({
 });;gb.Namespace(gb,"gb.ui.ContentManager");
 gb.ui.ContentManager = new gb.Class();
 
+/**
+ * @fileOverview gb.ui.ContentManager is the main page controller
+ * responsible for instantiating other gb.ui objects on the page.
+ * @author Kyo Suayan
+ * @module gb.ui.ContentManager
+ * @requires gb.ui.FullScreen
+ * @requires gb.ui.Stage
+ *
+ * @example
+ * var contentManager = new gb.ui.ContentManger("#parent");
+ *
+ */
+
 gb.ui.ContentManager.include({
 
+    /**
+     * @param selector
+     * @instance
+     */
     init: function(selector) {
         "use strict";
 
@@ -936,10 +1229,16 @@ gb.ui.ContentManager.include({
         console.log("init: ContentManager");
     },
 
+    /**
+     * @instance
+     */
     onResizeEndHandler: function() {
         this.stage.onResizeEndHandler();
     },
 
+    /**
+     * @instance
+     */
     toggleSlideShow: function() {
         this.visible = (!this.visible);
         if (this.visible) {
@@ -949,6 +1248,9 @@ gb.ui.ContentManager.include({
         }
     },
 
+    /**
+     * @instance
+     */
     show: function() {
         var that = this;
         this.content.transition({opacity:1},
@@ -958,6 +1260,9 @@ gb.ui.ContentManager.include({
             });
     },
 
+    /**
+     * @instance
+     */
     hide: function() {
         var that = this;
         this.content.transition({opacity:0},

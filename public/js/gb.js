@@ -1,5 +1,13 @@
+/** @namespace */
 var gb = gb || {};
 
+/**
+ * Initialize namespace for a given path using ns
+ * object as the parent.
+ * @param ns {Object}
+ * @param ns_string {string}
+ * @returns {*}
+ */
 gb.Namespace = function (ns, ns_string) {
     var parts = ns_string.split('.'),
         parent = ns,
@@ -18,6 +26,11 @@ gb.Namespace = function (ns, ns_string) {
     return parent;
 };
 
+/**
+ * Class factory.
+ * @param parent {Object}
+ * @returns {Function}
+ */
 gb.Class = function(parent){
     var klass = function() {
         this.init.apply(this,arguments);
