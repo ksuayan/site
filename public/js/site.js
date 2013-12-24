@@ -192,13 +192,12 @@ gb.ui.PreloadableImage = new gb.Class();
 
 
 /**
- * @fileOverview A TimeOutCycle object invokes
- * a callback every timeoutMS milliseconds.
+ * @fileOverview A preloadable image.
  * @author Kyo Suayan
  * @module gb.ui.PreloadableImage
  *
  * @example
- * var pImage = new gb.ui.PreloadableIage("#id", "image.jpg", onSuccess, onError);
+ * var pImage = new gb.ui.PreloadableImage("#id", "image.jpg", onSuccess, onError);
  *
  */
 gb.ui.PreloadableImage.include({
@@ -386,7 +385,7 @@ gb.util.TimeOutCycle.include({
     init: function(timeoutMS, callback) {
         "use strict";
         this.timeoutMS = timeoutMS;
-        this.isRunning = false;
+        this.running = false;
         this.timeoutHandle = null;
         this.tickHandler = function(){
             console.log("default tickHandler");
@@ -422,7 +421,7 @@ gb.util.TimeOutCycle.include({
      * @instance
      */
     start: function() {
-        this.isRunning = true;
+        this.running = true;
         this._tick();
     },
 
@@ -431,9 +430,17 @@ gb.util.TimeOutCycle.include({
      * @instance
      */
     stop: function() {
-        this.isRunning = false;
+        this.running = false;
         if (this.timeoutHandle)
             clearTimeout(this.timeoutHandle);
+    },
+
+    /**
+     * is this object running?
+     * @instance
+     */
+    isRunning: function() {
+        return (this.running === true);
     },
 
     /**
@@ -441,7 +448,7 @@ gb.util.TimeOutCycle.include({
      * @private
      */
     _tick: function() {
-        if (!this.isRunning) {
+        if (!this.running) {
             return;
         }
         this.tickHandler();
@@ -454,7 +461,7 @@ gb.util.TimeOutCycle.include({
      */
     _setNext: function() {
         var that = this;
-        if (this.isRunning) {
+        if (this.running) {
             this.timeoutHandle = setTimeout(function(){that._tick();}, this.timeoutMS);
         }
     }
@@ -693,11 +700,30 @@ $(function(){
     if ($search) {
         $(window).resize(gb.util.throttle($search.onResize, 500));
     }
-});;$(function(){
+});;gb.Namespace(gb,"gb.ui.Timeline");
+gb.ui.Timeline = new gb.Class();
 
-    var month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+/**
+ * @fileOverview Render an SVG Timeline
+ * @author Kyo Suayan
+ * @module gb.ui.Timeline
+ * @requires Raphael
+ *
+ * @example
+ * var timeline = new gb.ui.TimeLine();
+ *
+ */
 
-    var Timeline = function(onDataHandler) {
+gb.ui.Timeline.include({
+
+    MONTHS: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+
+    /**
+     *
+     * @param selector the parentSelector
+     * @instance
+     */
+    init: function(selector) {
         this.x = 0;
         this.y = 0;
         this.margin = 40;
@@ -708,23 +734,19 @@ $(function(){
         this.startDateLabel = null;
         this.endDateLabel = null;
         this.htmlContent = null;
-        this.id = "timeline";
+        this.id = selector;
         this.jqContainer = $("#"+this.id);
         this.ajaxURL = "/api/timeline";
         this.timelineData = null;
-        if (onDataHandler && typeof onDataHandler === 'function') {
-            this.onDataHandler = onDataHandler;
-        }
 
         var that = this;
-
         $.getJSON(this.ajaxURL, function(data) {
             that.timelineData = data;
-            onDataHandler();
+            that.onDataHandler();
         });
-    };
+    },
 
-    Timeline.prototype.Resize = function() {
+    resize: function() {
         if (!this.htmlContent)
             this.htmlContent = this.jqContainer.html();
         this.width = this.jqContainer.width();
@@ -736,14 +758,14 @@ $(function(){
         if (this.width > 768) {
             this.jqContainer.empty();
             this.paper = Raphael(this.id, this.width, this.height);
-            this.ProcessData(this.timelineData);
-            this.Draw();
+            this.processData(this.timelineData);
+            this.draw();
         } else {
             this.jqContainer.html(this.htmlContent);
         }
-    };
+    },
 
-    Timeline.prototype.ProcessData = function(rawData) {
+    processData: function(rawData) {
         this.dataPoints = [];
         var min = null;
         var max = null;
@@ -773,12 +795,12 @@ $(function(){
             entry.xEnd = Math.floor(this.margin + this.xScale * (entry.endDate-min));
             this.dataPoints.push(entry);
         }
-    };
+    },
 
-    Timeline.prototype.Draw = function() {
+    draw: function() {
         var that = this;
         var line = "M" + (this.x + this.margin) + " " + this.yTrack +
-                   "L" + (this.width - this.margin) + " " + this.yTrack;
+            "L" + (this.width - this.margin) + " " + this.yTrack;
         this.track = this.paper.path(line);
         var strokeStyle = {
             "stroke":"#ccc",
@@ -792,7 +814,7 @@ $(function(){
             var ep = this.data("endPoint");
             var dataPoint = this.data("dataPoint");
 
-            that.selected = that.DrawSegment(dataPoint.startDate, dataPoint.endDate);
+            that.selected = that.drawSegment(dataPoint.startDate, dataPoint.endDate);
             that.selected.animate({"opacity":1}, 500, "easeInOut");
             sp.stop();
             sp.toFront();
@@ -800,12 +822,12 @@ $(function(){
             ep.toFront();
             sp.animate({fill: "#DE001E"}, 50, "linear");
             ep.animate({cx: dataPoint.xEnd, fill: "#FF8400"}, 300, "easeInOut");
-            that.DrawHeader(dataPoint);
+            that.drawHeader(dataPoint);
             if (that.startDateLabel) that.startDateLabel.remove();
             if (that.endDateLabel) that.endDateLabel.remove();
             this.toFront();
-            that.startDateLabel = that.DrawDate(dataPoint.startDate);
-            that.endDateLabel = that.DrawDate(dataPoint.endDate);
+            that.startDateLabel = that.drawDate(dataPoint.startDate);
+            that.endDateLabel = that.drawDate(dataPoint.endDate);
             that.startDateLabel.animate({opacity:1}, 300, "easeInOut");
 
             if (dataPoint.startDate != dataPoint.endDate){
@@ -862,11 +884,11 @@ $(function(){
         }
 
         var last = this.dataPoints.length - 1;
-        this.DrawHeader(this.dataPoints[last]);
-        this.DrawTicks();
-    };
+        this.drawHeader(this.dataPoints[last]);
+        this.drawTicks();
+    },
 
-    Timeline.prototype.DrawHeader = function(dataPoint) {
+    drawHeader: function(dataPoint) {
         var headerStyle = {"font-size":"32pt","text-anchor":"start","font-family":"Source Sans Pro"};
         var subheadStyle = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
         var subhead2Style = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
@@ -881,10 +903,10 @@ $(function(){
         if (this.location) this.location.remove();
         this.location = this.paper.text(this.margin, 94, dataPoint.location);
         this.location.attr(subhead2Style);
-    };
+    },
 
 
-    Timeline.prototype.DrawTicks = function() {
+    drawTicks: function() {
         var dateStyle = { "fill":"#333","font-size":"10pt","font-family":"Source Sans Pro"};
         var startDate = new Date(this.dataPoints[0].startDate);
         var startYear = startDate.getUTCFullYear();
@@ -896,15 +918,15 @@ $(function(){
             var dateXPos = Math.floor(this.margin + ((xPos - this.xMin) * this.xScale));
             this.paper.text(dateXPos, this.yTrack + 30, i).attr(dateStyle);
         }
-    };
+    },
 
 
-    Timeline.prototype.DrawDate = function(timestamp) {
+    drawDate: function(timestamp) {
         var monthStyle = { "opacity": 0, "fill" : "#333", "font-size": "16pt", "font-family" : "Source Sans Pro" };
         var yearStyle = { "opacity": 0, "fill" : "#333", "font-size": "12pt", "font-family" : "Source Sans Pro" };
         var dateXPos = Math.floor(this.margin + ((timestamp - this.xMin) * this.xScale));
         var date = new Date(timestamp);
-        var monthStr = month[date.getUTCMonth()];
+        var monthStr = this.MONTHS[date.getUTCMonth()];
         var year = date.getUTCFullYear();
         var marker = this.paper.set();
         marker.push(
@@ -912,9 +934,9 @@ $(function(){
             this.paper.text(dateXPos, this.yTrack - 20, year).attr(yearStyle)
         );
         return marker;
-    };
+    },
 
-    Timeline.prototype.DrawSegment = function(start, end) {
+    drawSegment: function(start, end) {
         var startX = Math.floor(this.margin + ((start - this.xMin) * this.xScale));
         var endX = Math.floor(this.margin + ((end - this.xMin) * this.xScale));
         var line = "M" + startX + " " + this.yTrack + "L" + endX + " " + this.yTrack;
@@ -928,24 +950,25 @@ $(function(){
             "stroke-linecap": "round"
         };
         return line.attr(strokeStyle);
-    };
+    },
+
+    onResizeEndHandler: function() {
+        if (this.paper)
+            this.paper.clear();
+
+        this.resize();
+    },
+
+    onDataHandler: function() {
+        var that = this;
+        $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
+        $(window).on("resize", function(){if (that.paper) that.paper.clear();});
+        this.onResizeEndHandler();
+    }
 
 
-    var onResizeHandler = function() {
-        if (timeline.paper)
-            timeline.paper.clear();
-        timeline.Resize();
-    };
-
-    var onData = function() {
-        $(window).on("resizeEnd", onResizeHandler);
-        $(window).on("resize", function(){if (timeline.paper) timeline.paper.clear();});
-        onResizeHandler();
-    };
-
-    // Instantiate.
-    var timeline = new Timeline(onData);
 });
+
 ;gb.Namespace(gb,"gb.ui.FullScreen");
 gb.ui.FullScreen = new gb.Class();
 
@@ -1039,7 +1062,7 @@ gb.ui.Stage.include({
      * @memberOf gb.ui.Stage
      * @static
      */
-    colors: ["#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
+    COLORS: ["#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
              "#002A4A", "#17607D", "#FFF1CE", "#FF9311", "#E33200",
              "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
 
@@ -1063,10 +1086,8 @@ gb.ui.Stage.include({
         this.jq.append(this.content);
         this.initTiles();
         this.show();
-
         this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
             function(){that.rotate();});
-        this.timeoutCycle.start();
 
         $(window).resize(function(){that.hide();});
         $("#stage-next").on("click", function(){that.goToNext();});
@@ -1093,9 +1114,9 @@ gb.ui.Stage.include({
             });
             tile.jq.html("<p>Tile: "+i+"</p>");
             var el = tile.jq.get(0);
-            el.style.backgroundColor = this.colors[colorIndex];
+            el.style.backgroundColor = this.COLORS[colorIndex];
             this.tiles.push(tile);
-            if (colorIndex > this.colors.length - 2) {
+            if (colorIndex > this.COLORS.length - 2) {
                 colorIndex = 0;
             } else {
                 colorIndex++;
@@ -1124,6 +1145,28 @@ gb.ui.Stage.include({
             this.tileOffsets[i] = xPos;
             xPos += stageWidth;
         }
+    },
+
+    /**
+     * @instance
+     * @returns {boolean}
+     */
+    isRunning: function() {
+        return (this.timeoutCycle.isRunning()===true);
+    },
+
+    /**
+     * @instance
+     */
+    start: function() {
+        this.timeoutCycle.start();
+    },
+
+    /**
+     * @instance
+     */
+    stop: function() {
+        this.timeoutCycle.stop();
     },
 
     /**
@@ -1203,7 +1246,7 @@ gb.ui.ContentManager = new gb.Class();
  * @module gb.ui.ContentManager
  * @requires gb.ui.FullScreen
  * @requires gb.ui.Stage
- *
+ * @requires gb.ui.Timeline
  * @example
  * var contentManager = new gb.ui.ContentManger("#parent");
  *
@@ -1222,9 +1265,11 @@ gb.ui.ContentManager.include({
         this.visible = true;
         this.fullscreen = new gb.ui.FullScreen();
         this.stage = new gb.ui.Stage("stage");
+        this.timeline = new gb.ui.Timeline("tile-1");
 
         var that = this;
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
+        $("#play-button").click(function(){that.toggleStage();});
         $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
         console.log("init: ContentManager");
     },
@@ -1234,6 +1279,7 @@ gb.ui.ContentManager.include({
      */
     onResizeEndHandler: function() {
         this.stage.onResizeEndHandler();
+        this.timeline.onResizeEndHandler();
     },
 
     /**
@@ -1245,6 +1291,17 @@ gb.ui.ContentManager.include({
             this.show();
         } else {
             this.hide();
+        }
+    },
+
+    /**
+     * @instance
+     */
+    toggleStage: function() {
+        if (this.stage.isRunning()) {
+            this.stage.stop();
+        } else {
+            this.stage.start();
         }
     },
 

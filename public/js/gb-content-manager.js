@@ -8,7 +8,7 @@ gb.ui.ContentManager = new gb.Class();
  * @module gb.ui.ContentManager
  * @requires gb.ui.FullScreen
  * @requires gb.ui.Stage
- *
+ * @requires gb.ui.Timeline
  * @example
  * var contentManager = new gb.ui.ContentManger("#parent");
  *
@@ -27,9 +27,11 @@ gb.ui.ContentManager.include({
         this.visible = true;
         this.fullscreen = new gb.ui.FullScreen();
         this.stage = new gb.ui.Stage("stage");
+        this.timeline = new gb.ui.Timeline("tile-1");
 
         var that = this;
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
+        $("#play-button").click(function(){that.toggleStage();});
         $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
         console.log("init: ContentManager");
     },
@@ -39,6 +41,7 @@ gb.ui.ContentManager.include({
      */
     onResizeEndHandler: function() {
         this.stage.onResizeEndHandler();
+        this.timeline.onResizeEndHandler();
     },
 
     /**
@@ -50,6 +53,17 @@ gb.ui.ContentManager.include({
             this.show();
         } else {
             this.hide();
+        }
+    },
+
+    /**
+     * @instance
+     */
+    toggleStage: function() {
+        if (this.stage.isRunning()) {
+            this.stage.stop();
+        } else {
+            this.stage.start();
         }
     },
 

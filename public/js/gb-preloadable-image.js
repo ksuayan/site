@@ -3,13 +3,12 @@ gb.ui.PreloadableImage = new gb.Class();
 
 
 /**
- * @fileOverview A TimeOutCycle object invokes
- * a callback every timeoutMS milliseconds.
+ * @fileOverview A preloadable image.
  * @author Kyo Suayan
  * @module gb.ui.PreloadableImage
  *
  * @example
- * var pImage = new gb.ui.PreloadableIage("#id", "image.jpg", onSuccess, onError);
+ * var pImage = new gb.ui.PreloadableImage("#id", "image.jpg", onSuccess, onError);
  *
  */
 gb.ui.PreloadableImage.include({

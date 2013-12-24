@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                       'public/js/gb-timeout-cycle.js',
                       'public/js/jquery.fullscreen.js',
                       'public/js/jquery.search.js',
-                      'public/js/timeline.js',
+                      'public/js/gb-timeline.js',
                       'public/js/gb-fullscreen.js',
                       'public/js/gb-stage.js',
                       'public/js/gb-content-manager.js',

@@ -37,7 +37,6 @@ ul li {
 .hero-unit {
   padding: 0px;
   margin: 0px auto;
-  min-height: 250px;
   background-color: rgba(255, 255, 255, 0.75);
 }
 .hero-unit h1,
@@ -53,7 +52,6 @@ ul li {
 }
 @media (max-width: 991px) {
   .hero-unit {
-    min-height: inherit;
     height: auto;
     padding-bottom: 10px;
   }

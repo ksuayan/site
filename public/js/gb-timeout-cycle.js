@@ -26,7 +26,7 @@ gb.util.TimeOutCycle.include({
     init: function(timeoutMS, callback) {
         "use strict";
         this.timeoutMS = timeoutMS;
-        this.isRunning = false;
+        this.running = false;
         this.timeoutHandle = null;
         this.tickHandler = function(){
             console.log("default tickHandler");
@@ -62,7 +62,7 @@ gb.util.TimeOutCycle.include({
      * @instance
      */
     start: function() {
-        this.isRunning = true;
+        this.running = true;
         this._tick();
     },
 
@@ -71,9 +71,17 @@ gb.util.TimeOutCycle.include({
      * @instance
      */
     stop: function() {
-        this.isRunning = false;
+        this.running = false;
         if (this.timeoutHandle)
             clearTimeout(this.timeoutHandle);
+    },
+
+    /**
+     * is this object running?
+     * @instance
+     */
+    isRunning: function() {
+        return (this.running === true);
     },
 
     /**
@@ -81,7 +89,7 @@ gb.util.TimeOutCycle.include({
      * @private
      */
     _tick: function() {
-        if (!this.isRunning) {
+        if (!this.running) {
             return;
         }
         this.tickHandler();
@@ -94,7 +102,7 @@ gb.util.TimeOutCycle.include({
      */
     _setNext: function() {
         var that = this;
-        if (this.isRunning) {
+        if (this.running) {
             this.timeoutHandle = setTimeout(function(){that._tick();}, this.timeoutMS);
         }
     }
