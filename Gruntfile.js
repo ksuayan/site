@@ -58,6 +58,14 @@ module.exports = function(grunt) {
         watch: {
             files: ['<%= jshint.files %>'],
             tasks: ['jshint', 'qunit']
+        },
+        jsdoc: {
+            dist : {
+                src: ['<%= concat.dist.src %>', 'src/*.js', 'test/*.js'],
+                options: {
+                    destination: 'doc'
+                }
+            }
         }
     });
 
@@ -66,8 +74,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.registerTask('test', ['jshint', 'qunit']);
-    grunt.registerTask('default', ['jshint','concat','uglify']);
+    grunt.registerTask('default', ['jsdoc','jshint','concat','uglify']);
 
 };

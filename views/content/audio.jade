@@ -1,4 +1,7 @@
 div.container
+  audio(loop="loop",id="audio-player")
+    source(src=config.mediaHost+"/audio/20090530-Birds-Curry-Village.mp3",type="audio/mpeg")
+    source(src=config.mediaHost+"/audio/20090530-Birds-Curry-Village.ogg",type="audio/ogg")
   div.row#timeline.hero-unit
     h1 Kyo Suayan: Design + Development
     p
@@ -23,7 +26,6 @@ div.container
       p(id="rightBody")!=content.rightBody
       p
         a(class="btn btn-default",href="#") More &raquo;
-
 block footer
   div.container
     p Kyo Suayan &copy; 2014
