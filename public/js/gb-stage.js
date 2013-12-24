@@ -14,7 +14,7 @@ gb.ui.Stage.include({
         this.tiles = [];
         this.tileOffsets = [];
         this.howMany = 15;
-        this.intervalMS = 8000;
+        this.intervalMS = 15000;
         this.currentIndex = 0;
         this.selector = selector;
         this.jq = $("#"+selector);
@@ -107,7 +107,7 @@ gb.ui.Stage.include({
     goTo: function(index) {
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset}, 500, "snap");
+        this.content.transition({x:xOffset}, 2000, "snap");
     },
 
     show: function() {

@@ -1,8 +1,8 @@
 gb.Namespace(gb,"gb.ui.FullScreen");
 gb.ui.FullScreen = new gb.Class();
 
-gb.ui.FullScreen.include({
 
+gb.ui.FullScreen.include({
     init: function() {
         "use strict";
         this.spinner = $("#spinner");
@@ -21,7 +21,7 @@ gb.ui.FullScreen.include({
     initBackground: function() {
         var that = this;
         $("body").fullscreen({
-            "refreshInterval": 10000,
+            "refreshInterval": 30000,
             "fadeOutTime": 5000,
             "fadeInTime": 3000,
             "successCallback": function(){ that.checkSpinner(); },

@@ -748,8 +748,8 @@ $(function(){
 ;gb.Namespace(gb,"gb.ui.FullScreen");
 gb.ui.FullScreen = new gb.Class();
 
-gb.ui.FullScreen.include({
 
+gb.ui.FullScreen.include({
     init: function() {
         "use strict";
         this.spinner = $("#spinner");
@@ -768,7 +768,7 @@ gb.ui.FullScreen.include({
     initBackground: function() {
         var that = this;
         $("body").fullscreen({
-            "refreshInterval": 10000,
+            "refreshInterval": 30000,
             "fadeOutTime": 5000,
             "fadeInTime": 3000,
             "successCallback": function(){ that.checkSpinner(); },
@@ -809,7 +809,7 @@ gb.ui.Stage.include({
         this.tiles = [];
         this.tileOffsets = [];
         this.howMany = 15;
-        this.intervalMS = 8000;
+        this.intervalMS = 15000;
         this.currentIndex = 0;
         this.selector = selector;
         this.jq = $("#"+selector);
@@ -902,7 +902,7 @@ gb.ui.Stage.include({
     goTo: function(index) {
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset}, 500, "snap");
+        this.content.transition({x:xOffset}, 2000, "snap");
     },
 
     show: function() {
@@ -933,7 +933,6 @@ gb.ui.ContentManager.include({
         var that = this;
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
         $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-
         console.log("init: ContentManager");
     },
 
@@ -952,7 +951,8 @@ gb.ui.ContentManager.include({
 
     show: function() {
         var that = this;
-        this.content.stop().transition({opacity:1, duration: 50},
+        this.content.transition({opacity:1},
+            2000,
             function(){
                 that.content.attr({"visibility":"visible", "display":"block"});
             });
@@ -960,13 +960,13 @@ gb.ui.ContentManager.include({
 
     hide: function() {
         var that = this;
-        this.content.stop().transition({opacity:0,duration:1000},
+        this.content.transition({opacity:0},
+            2000,
             function(){
                 that.content.attr({"visibility":"hidden", "display":"none"});
             });
     }
 });
-
 ;$(function(){
     "use strict";
     var contentManager = new gb.ui.ContentManager("#content");

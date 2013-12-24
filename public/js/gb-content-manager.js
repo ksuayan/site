@@ -14,7 +14,6 @@ gb.ui.ContentManager.include({
         var that = this;
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
         $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-
         console.log("init: ContentManager");
     },
 
@@ -33,7 +32,8 @@ gb.ui.ContentManager.include({
 
     show: function() {
         var that = this;
-        this.content.stop().transition({opacity:1, duration: 50},
+        this.content.transition({opacity:1},
+            2000,
             function(){
                 that.content.attr({"visibility":"visible", "display":"block"});
             });
@@ -41,10 +41,10 @@ gb.ui.ContentManager.include({
 
     hide: function() {
         var that = this;
-        this.content.stop().transition({opacity:0,duration:1000},
+        this.content.transition({opacity:0},
+            2000,
             function(){
                 that.content.attr({"visibility":"hidden", "display":"none"});
             });
     }
 });
-
