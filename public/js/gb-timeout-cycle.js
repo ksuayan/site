@@ -1,9 +1,9 @@
-'use strict';
-
 gb.Namespace(gb,"gb.util.TimeOutCycle");
+gb.util.TimeOutCycle = new gb.Class();
 
 gb.util.TimeOutCycle = function(timeoutMS, callback) {
-    this.timeoutMS = timeoutMS || 5000;
+    "use strict";
+    this.timeoutMS = timeoutMS;
     this.isRunning = false;
     this.timeoutHandle = null;
     this.tickHandler = function(){
@@ -33,7 +33,7 @@ gb.util.TimeOutCycle.prototype.start = function() {
 gb.util.TimeOutCycle.prototype.stop = function() {
     this.isRunning = false;
     if (this.timeoutHandle)
-        clearTimeout(this.timeoutHandle)
+        clearTimeout(this.timeoutHandle);
 };
 
 gb.util.TimeOutCycle.prototype._tick = function() {

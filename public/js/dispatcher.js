@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var worker = new Worker("js/gb-worker.js");
 

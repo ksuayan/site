@@ -1,11 +1,10 @@
-"use strict";
-
 gb.Namespace(gb,"gb.ui.FullScreen");
 gb.ui.FullScreen = new gb.Class();
 
 gb.ui.FullScreen.include({
 
     init: function() {
+        "use strict";
         this.spinner = $("#spinner");
         this.spinner.show();
 

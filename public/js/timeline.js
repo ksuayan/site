@@ -53,9 +53,10 @@ $(function(){
         var min = null;
         var max = null;
         var len = rawData.length;
+        var entry = null;
         // first pass
         for (var i = 0, n=len; i<n; i++){
-            var entry = rawData[i];
+            entry = rawData[i];
             if (entry.startDate) {
                 min = (min) ? Math.min(entry.startDate, min) : entry.startDate;
                 max = (max) ? Math.max(entry.startDate, max) : entry.startDate;
@@ -65,14 +66,14 @@ $(function(){
             }
             min = (min) ? Math.min(entry.endDate, min) : entry.endDate;
             max = (max) ? Math.max(entry.endDate, max) : entry.endDate;
-        };
+        }
         var xRange = max - min;
         this.xMin = min;
         this.xMax = max;
         this.xScale = this.trackWidth/xRange; // px/MS
         // second pass: transform to screen position
-        for (var i = 0, n=len; i<n; i++){
-            var entry = rawData[i];
+        for (i = 0, n=len; i<n; i++){
+            entry = rawData[i];
             entry.xStart = Math.floor(this.margin + this.xScale * (entry.startDate-min));
             entry.xEnd = Math.floor(this.margin + this.xScale * (entry.endDate-min));
             this.dataPoints.push(entry);
@@ -81,8 +82,8 @@ $(function(){
 
     Timeline.prototype.Draw = function() {
         var that = this;
-        var line = "M" + (this.x + this.margin) + " " + this.yTrack
-                 + "L" + (this.width - this.margin) + " " + this.yTrack;
+        var line = "M" + (this.x + this.margin) + " " + this.yTrack +
+                   "L" + (this.width - this.margin) + " " + this.yTrack;
         this.track = this.paper.path(line);
         var strokeStyle = {
             "stroke":"#ccc",
@@ -224,7 +225,7 @@ $(function(){
         var line = "M" + startX + " " + this.yTrack + "L" + endX + " " + this.yTrack;
 
         if (this.selected) this.selected.remove();
-        var line = this.paper.path(line);
+        line = this.paper.path(line);
         var strokeStyle = {
             "opacity":0.7,
             "stroke":"#FAD905",
@@ -243,7 +244,7 @@ $(function(){
 
     var onData = function() {
         $(window).on("resizeEnd", onResizeHandler);
-        $(window).on("resize", function(){if (timeline.paper) timeline.paper.clear()});
+        $(window).on("resize", function(){if (timeline.paper) timeline.paper.clear();});
         onResizeHandler();
     };
 

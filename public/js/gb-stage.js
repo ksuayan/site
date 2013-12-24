@@ -25,12 +25,12 @@ gb.ui.Stage.include({
         this.show();
 
         this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
-            function(){that.rotate()});
+            function(){that.rotate();});
         this.timeoutCycle.start();
 
-        $(window).resize(function(){that.hide()});
-        $("#stage-next").on("click", function(){that.goToNext()});
-        $("#stage-prev").on("click", function(){that.goToPrevious()});
+        $(window).resize(function(){that.hide();});
+        $("#stage-next").on("click", function(){that.goToNext();});
+        $("#stage-prev").on("click", function(){that.goToPrevious();});
 
         console.log("init: Stage.");
     },

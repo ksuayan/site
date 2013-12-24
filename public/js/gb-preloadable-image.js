@@ -1,8 +1,8 @@
-"use strict";
-
 gb.Namespace(gb, "gb.ui.PreloadableImage");
+gb.ui.PreloadableImage = new gb.Class();
 
 gb.ui.PreloadableImage = function(id, source, onSuccess, onError) {
+    "use strict";
     this.id = id;
     this.startTime = new Date().valueOf();
     this.endTime = this.startTime;
@@ -32,7 +32,7 @@ gb.ui.PreloadableImage.prototype.SetOnLoad = function(onSuccess) {
     var onSuccessWrapper = function(e) {
         that.endTime = new Date().valueOf();
         onSuccess(e);
-    }
+    };
     this.image.onload = onSuccessWrapper;
 };
 

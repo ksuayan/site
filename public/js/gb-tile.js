@@ -1,11 +1,9 @@
-"use strict";
-
 gb.Namespace(gb,"gb.ui.Tile");
-
 gb.ui.Tile = new gb.Class();
 
 gb.ui.Tile.include({
     init: function(parent, elementAttributes) {
+        "use strict";
         this.jq = $("<div/>", elementAttributes)
             .appendTo(parent);
     },

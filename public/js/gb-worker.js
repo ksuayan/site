@@ -1,10 +1,11 @@
-'use strict';
+
 
 importScripts("gb.js","gb-util.js","gb-generator.js","gb-timeout-cycle.js");
 
 gb.Namespace(gb, "gb.system.WorkerTask");
 
 gb.system.WorkerTask = function(jsPath) {
+    "use strict";
     var INTERVAL = 5000;
     var that = this;
     this.generator = new gb.data.Generator(50,1000);

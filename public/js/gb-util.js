@@ -1,4 +1,3 @@
-"use strict";
 
 gb.Namespace(gb, "gb.util");
 
@@ -26,13 +25,13 @@ gb.util.ZeroFill = function(number, width) {
     return number + ""; // always return a string
 };
 
-gb.util.throttle = function(callback, timeout) {
-    var timeoutID , timeout = timeout || 200;
+gb.util.throttle = function(callback, timeoutMS) {
+    var timeoutID , timeout = timeoutMS || 500;
     return function () {
         var scope = this , args = arguments;
         clearTimeout(timeoutID);
         timeoutID = setTimeout(function(){
             callback.apply( scope , Array.prototype.slice.call(args) );
         } , timeout );
-    }
+    };
 };

@@ -3,5 +3,6 @@ node_modules
 public/fonts
 public/css/external
 public/js/external
+.DS_Store
 
 *.psd

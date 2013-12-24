@@ -1,8 +1,9 @@
-'use strict';
-
 gb.Namespace(gb,"gb.ui.Chart");
+gb.ui.Chart = new gb.Class();
 
 gb.ui.Chart = function(id, width, height) {
+    "use strict";
+
 	this.width = width;
 	this.height = height;
 	this.chartLeft = 60; // leftmost area of chart
@@ -14,7 +15,7 @@ gb.ui.Chart = function(id, width, height) {
 	this.barCeiling = this.chartHeight - 40; // space from tallest bar to top of chart
 	this.topInterval = 0;
 
-	this.chart = Raphael(document.getElementById(id), this.width, this.height);
+	this.chart = new Raphael(document.getElementById(id), this.width, this.height);
 	this.tickXPos = 30;
 	this.tickMarks = null;
 	this.textBox = this.chart.text(50,20, "").attr({"font":"14pt 'Arial'"});
@@ -49,13 +50,14 @@ gb.ui.Chart.prototype.init = function() {
 
 gb.ui.Chart.prototype.grid = function(horizontal,vertical) {
 	// draw horizontal rules
+    var path = null;
 	for (var i=1; i < this.height; i+=vertical) {
-		var path = "M0 "+i+ " H"+this.width;
+		path = "M0 "+i+ " H"+this.width;
 		this.chart.path(path).attr({"stroke-width": 0.1});
 	}
 	// draw vertical rules
-	for (var i=1; i < this.width; i+=horizontal) {
-		var path = "M"+i+ " 0 V"+this.height;
+	for (i=1; i < this.width; i+=horizontal) {
+		path = "M"+i+ " 0 V"+this.height;
 		this.chart.path(path).attr({"stroke-width": 0.1});
 	}
 };
@@ -89,8 +91,7 @@ gb.ui.Chart.prototype.drawBar = function(i, value){
 	objSet.push(
 		this.chart.text(xPosText, yPosText, value).attr({"font":"10pt 'Arial'",fill:"#666"})
 	);
-
-	return 	objSet;
+    return objSet;
 };
 
 
@@ -109,7 +110,7 @@ gb.ui.Chart.prototype.drawTickMarks = function() {
 		);
 	}
 	this.tickMarks = tickSet;
-}
+};
 
 gb.ui.Chart.prototype.animate = function(){
 
@@ -152,7 +153,7 @@ gb.ui.Chart.prototype.animate = function(){
  *
  */
 gb.ui.Chart.prototype.scaledValue = function(value) {
-	return ((this.topInterval!=0) ?
+	return ((this.topInterval!==0) ?
 		(value * this.barCeiling)/this.topInterval : 0);
 };
 
@@ -163,7 +164,7 @@ gb.ui.Chart.prototype.scaledValue = function(value) {
  */
 gb.ui.Chart.prototype.calculateTopInterval = function(value, interval){
 	return ((value%interval) > 0)?value-(value%interval) + interval:value;
-}
+};
 
 gb.ui.Chart.prototype.colorCode = function(value) {
 	var colorMap = {

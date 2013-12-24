@@ -26,13 +26,13 @@ gb.Class = function(parent){
     if (parent) {
         var subclass = function(){};
         subclass.prototype = parent.prototype;
-        klass.prototype =  new subclass;
+        klass.prototype =  new subclass();
     }
 
     klass.prototype.init = function(){};
     klass.fn = klass.prototype;
     klass.fn.parent =  klass;
-    klass._super = klass.__proto__;
+    // klass._super = klass.__proto__;
 
     klass.extend = function(obj){
         var extended =obj.extended;
@@ -47,7 +47,8 @@ gb.Class = function(parent){
         for (var i in obj) {
             klass.fn[i] = obj[i];
         }
-        if (included) included(klass)
+        if (included) included(klass);
     };
     return klass;
 };
+

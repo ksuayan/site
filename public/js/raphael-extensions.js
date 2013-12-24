@@ -20,3 +20,4 @@ Raphael.el.hoverInBounds = function(inFunc, outFunc) {
     });
     return this;
 };
+

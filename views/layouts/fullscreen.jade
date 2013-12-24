@@ -11,14 +11,11 @@ html(lang="en",id="slideshow")
       link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap.3.0.2/bootstrap.min.css")
       link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap.3.0.2/bootstrap-theme.min.css")
       link(rel="stylesheet",href="/css/main.css")
-
   body
     div#content
       include ../includes/header
       div#stage
-
       include ../content/ksuayan
-
     div.footer
       block footer
     img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")
@@ -27,25 +24,11 @@ html(lang="en",id="slideshow")
       a(href="#", id="play-button") play
       a(href="#", id="stage-prev") prev
       a(href="#", id="stage-next") next
-
     block scripts
-      script(src=config.mediaHost+"/js/external/modernizr-2.6.1-respond-1.1.0.min.js")
       script(src=config.mediaHost+"/js/external/jquery-1.9.1.min.js")
       script(src=config.mediaHost+"/js/external/jquery.transit.min.js")
       script(src=config.mediaHost+"/js/external/bootstrap.3.0.2/bootstrap.min.js")
       script(src=config.mediaHost+"/js/external/raphael.min.js")
       script(src=config.mediaHost+"/js/external/moment.min.js")
       script(src="/js/raphael-extensions.js")
-      script(src="/js/gb.js")
-      script(src="/js/gb-ui.js")
-      script(src="/js/gb-util.js")
-      script(src="/js/gb-timeout-cycle.js")
-      script(src="/js/jquery.search.js")
-      script(src="/js/jquery.fullscreen.js")
-      script(src="/js/gb-preloadable-image.js")
-      script(src="/js/timeline.js")
-      script(src="/js/gb-tile.js")
-      script(src="/js/gb-fullscreen.js")
-      script(src="/js/gb-stage.js")
-      script(src="/js/gb-content-manager.js")
-      script(src="/js/main.js")
+      script(src="/js/site.min.js")

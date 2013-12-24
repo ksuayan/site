@@ -1,11 +1,11 @@
-"use strict";
-
 gb.Namespace(gb,"gb.ui.ContentManager");
 gb.ui.ContentManager = new gb.Class();
 
 gb.ui.ContentManager.include({
 
     init: function(selector) {
+        "use strict";
+
         this.content = $(selector);
         this.visible = true;
         this.fullscreen = new gb.ui.FullScreen();
@@ -13,7 +13,7 @@ gb.ui.ContentManager.include({
 
         var that = this;
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
-        $(window).on("resizeEnd", function(){that.onResizeEndHandler()});
+        $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
 
         console.log("init: ContentManager");
     },
