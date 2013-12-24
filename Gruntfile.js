@@ -27,8 +27,7 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                mangle: false,
-                // { except:['Raphael'] },
+                mangle: true,
                 sourceMap: '<%= pkg.name %>.map.js',
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
