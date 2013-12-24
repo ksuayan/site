@@ -28,16 +28,12 @@ var init = function () {
 app.configure(init);
 
 app.all("*", function (req, res, next) {
-    var caching = true;
-
-    if (caching) {
-        var expire = 60 * 60 * 24 * 4; // 5 days
-
+    if (conf.caching) {
         if ((req.url.indexOf("/js/") === 0)||
            (req.url.indexOf("/css/") === 0)||
            (req.url.indexOf("/img/") === 0)) {
-            res.setHeader("Cache-Control", "public, max-age="+expire);
-            res.setHeader("Expires", new Date(Date.now() + expire * 1000).toUTCString());
+            res.setHeader("Cache-Control", "public, max-age="+conf.expires);
+            res.setHeader("Expires", new Date(Date.now() + conf.expires * 1000).toUTCString());
         }
     }
     res.header('Access-Control-Allow-Origin', req.headers.origin || "*");
