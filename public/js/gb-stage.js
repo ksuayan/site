@@ -46,7 +46,7 @@ gb.ui.Stage.include({
         this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
             function(){that.rotate();});
 
-        $(window).resize(function(){that.hide();});
+        $(window).resize(function(){that.fadeOut();});
         $("#stage-next").on("click", function(){that.goToNext();});
         $("#stage-prev").on("click", function(){that.goToPrevious();});
 
@@ -170,7 +170,7 @@ gb.ui.Stage.include({
     goTo: function(index) {
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset}, 2000, "snap");
+        this.content.transition({x:xOffset}, 500, "snap");
     },
 
     /**
@@ -178,10 +178,16 @@ gb.ui.Stage.include({
      * @instance
      */
     show: function() {
-        var that = this;
-        this.jq.hide();
+        this.jq.css({"opacity":1});
         this.goTo(this.currentIndex);
-        this.jq.show();
+    },
+
+    hide: function() {
+        this.jq.hide();
+    },
+
+    fadeOut: function() {
+        this.jq.css({"opacity":0.3});
     },
 
     /**
@@ -189,6 +195,8 @@ gb.ui.Stage.include({
      * @instance
      */
     onResizeEndHandler: function() {
+        console.log("stage.onResizeEndHandler");
+        this.fadeOut();
         this.resizeTiles();
         this.show();
     }

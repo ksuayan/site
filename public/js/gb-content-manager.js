@@ -40,8 +40,8 @@ gb.ui.ContentManager.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        this.stage.onResizeEndHandler();
         this.timeline.onResizeEndHandler();
+        this.stage.onResizeEndHandler();
     },
 
     /**
@@ -50,8 +50,14 @@ gb.ui.ContentManager.include({
     toggleSlideShow: function() {
         this.visible = (!this.visible);
         if (this.visible) {
+            $("#ui-toolbar .glyphicon-home")
+                .removeClass("glyphicon-home")
+                .addClass("glyphicon-picture");
             this.show();
         } else {
+            $("#ui-toolbar .glyphicon-picture")
+                .removeClass("glyphicon-picture")
+                .addClass("glyphicon-home");
             this.hide();
         }
     },
@@ -61,8 +67,14 @@ gb.ui.ContentManager.include({
      */
     toggleStage: function() {
         if (this.stage.isRunning()) {
+            $("#ui-toolbar .glyphicon-pause")
+                .removeClass("glyphicon-pause")
+                .addClass("glyphicon-play");
             this.stage.stop();
         } else {
+            $("#ui-toolbar .glyphicon-play")
+                .removeClass("glyphicon-play")
+                .addClass("glyphicon-pause");
             this.stage.start();
         }
     },

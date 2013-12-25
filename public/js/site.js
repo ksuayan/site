@@ -1089,7 +1089,7 @@ gb.ui.Stage.include({
         this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
             function(){that.rotate();});
 
-        $(window).resize(function(){that.hide();});
+        $(window).resize(function(){that.fadeOut();});
         $("#stage-next").on("click", function(){that.goToNext();});
         $("#stage-prev").on("click", function(){that.goToPrevious();});
 
@@ -1213,7 +1213,7 @@ gb.ui.Stage.include({
     goTo: function(index) {
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset}, 2000, "snap");
+        this.content.transition({x:xOffset}, 500, "snap");
     },
 
     /**
@@ -1221,10 +1221,16 @@ gb.ui.Stage.include({
      * @instance
      */
     show: function() {
-        var that = this;
-        this.jq.hide();
+        this.jq.css({"opacity":1});
         this.goTo(this.currentIndex);
-        this.jq.show();
+    },
+
+    hide: function() {
+        this.jq.hide();
+    },
+
+    fadeOut: function() {
+        this.jq.css({"opacity":0.3});
     },
 
     /**
@@ -1232,6 +1238,8 @@ gb.ui.Stage.include({
      * @instance
      */
     onResizeEndHandler: function() {
+        console.log("stage.onResizeEndHandler");
+        this.fadeOut();
         this.resizeTiles();
         this.show();
     }
@@ -1278,8 +1286,8 @@ gb.ui.ContentManager.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        this.stage.onResizeEndHandler();
         this.timeline.onResizeEndHandler();
+        this.stage.onResizeEndHandler();
     },
 
     /**
@@ -1288,8 +1296,14 @@ gb.ui.ContentManager.include({
     toggleSlideShow: function() {
         this.visible = (!this.visible);
         if (this.visible) {
+            $("#ui-toolbar .glyphicon-home")
+                .removeClass("glyphicon-home")
+                .addClass("glyphicon-picture");
             this.show();
         } else {
+            $("#ui-toolbar .glyphicon-picture")
+                .removeClass("glyphicon-picture")
+                .addClass("glyphicon-home");
             this.hide();
         }
     },
@@ -1299,8 +1313,14 @@ gb.ui.ContentManager.include({
      */
     toggleStage: function() {
         if (this.stage.isRunning()) {
+            $("#ui-toolbar .glyphicon-pause")
+                .removeClass("glyphicon-pause")
+                .addClass("glyphicon-play");
             this.stage.stop();
         } else {
+            $("#ui-toolbar .glyphicon-play")
+                .removeClass("glyphicon-play")
+                .addClass("glyphicon-pause");
             this.stage.start();
         }
     },

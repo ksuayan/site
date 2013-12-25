@@ -20,10 +20,14 @@ html(lang="en",id="slideshow")
       block footer
     img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")
     div#ui-toolbar
-      a(href="#", id="slideshow-button") slideshow
-      a(href="#", id="play-button") play
-      a(href="#", id="stage-prev") prev
-      a(href="#", id="stage-next") next
+      a(href="#", id="slideshow-button")
+        span.glyphicon.glyphicon-picture
+      a(href="#", id="stage-prev")
+        span.glyphicon.glyphicon-chevron-left
+      a(href="#", id="play-button")
+        span.glyphicon.glyphicon-play
+      a(href="#", id="stage-next")
+        span.glyphicon.glyphicon-chevron-right
     block scripts
       script(src=config.mediaHost+"/js/external/jquery-1.9.1.min.js")
       script(src=config.mediaHost+"/js/external/jquery.transit.min.js")
