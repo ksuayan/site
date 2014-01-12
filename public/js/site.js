@@ -1062,8 +1062,8 @@ gb.ui.Stage.include({
      * @memberOf gb.ui.Stage
      * @static
      */
-    COLORS: ["#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
-             "#002A4A", "#17607D", "#FFF1CE", "#FF9311", "#E33200",
+    COLORS: ["#002A4A", "#17607D", "#FFF1CE", "#FF9311", "#E33200",
+             "#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
              "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
 
     /**

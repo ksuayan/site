@@ -7,37 +7,48 @@ var ApiHandler = function() {
     console.log("Initialized API handler");
 };
 
-ApiHandler.prototype.GetTimeline = function(req, res) {
+
+ApiHandler.prototype.getTileList = function(req, res) {
+    var onSuccess = function(tiles) {
+        return res.send(tiles);
+    };
+    var onError = function(err) {
+        return res.send(util.defaultError);
+    };
+    content.getTileList(onSuccess, onError);
+};
+
+ApiHandler.prototype.getTimeline = function(req, res) {
     var onSuccess = function(timeline) {
         return res.send(timeline);
     };
     var onError = function(err) {
         return res.send(util.defaultError);
     };
-    timeline.GetJobs(onSuccess, onError);
+    timeline.getJobs(onSuccess, onError);
 };
 
-ApiHandler.prototype.GetTextList = function(req, res) {
+ApiHandler.prototype.getTextList = function(req, res) {
     var onSuccess = function(contentMap) {
         return res.send(contentMap);
     };
     var onError = function(err) {
         return res.send(util.defaultError);
     };
-    content.GetTextList(null, onSuccess, onError);
+    content.getTextList(null, onSuccess, onError);
 };
 
-ApiHandler.prototype.GetText = function(req, res) {
+ApiHandler.prototype.getText = function(req, res) {
     var onSuccess = function(textObj) {
         return res.send(textObj);
     };
     var onError = function(err) {
         return res.send(util.defaultError);
     };
-    content.GetTextById(req.params.id, onSuccess, onError);
+    content.getTextById(req.params.id, onSuccess, onError);
 };
 
-ApiHandler.prototype.UpdateText = function(req, res) {
+ApiHandler.prototype.updateText = function(req, res) {
     var onSuccess = function(textObj) {
         return res.send(textObj)
     };
@@ -50,10 +61,10 @@ ApiHandler.prototype.UpdateText = function(req, res) {
         text: req.body.text,
         locale: req.body.locale
     };
-    content.UpdateText(textObj, onSuccess, onError);
+    content.updateText(textObj, onSuccess, onError);
 };
 
-ApiHandler.prototype.CreateText = function(req, res) {
+ApiHandler.prototype.createText = function(req, res) {
     var onSuccess = function(textObj) {
         return res.send(textObj);
     };
@@ -65,50 +76,46 @@ ApiHandler.prototype.CreateText = function(req, res) {
         text: req.body.text,
         locale: req.body.locale || conf.app.defaultLocale
     };
-    content.CreateText(textObj, onSuccess, onError)
+    content.createText(textObj, onSuccess, onError)
 };
 
-ApiHandler.prototype.DeleteText = function(req, res) {
+ApiHandler.prototype.deleteText = function(req, res) {
     var onSuccess = function(textObj) {
         return res.send(textObj);
     };
     var onError = function(err) {
         return res.send(err);
     };
-    content.DeleteText(req.params.id, onSuccess, onError)
+    content.deleteText(req.params.id, onSuccess, onError)
 };
 
 
-//
-//
-//
-
-ApiHandler.prototype.GetPageList = function(req, res) {
+ApiHandler.prototype.getPageList = function(req, res) {
     var onSuccess = function(pages) {
         return res.send(pages);
     };
     var onError = function(err) {
         return res.send(util.defaultError);
     };
-    content.GetPageList(onSuccess, onError);
+    content.getPageList(onSuccess, onError);
 };
 
 
-ApiHandler.prototype.GetPage = function(req, res) {
+ApiHandler.prototype.getPage = function(req, res) {
     var onSuccess = function(contentMap) {
         res.send(contentMap);
     };
-    content.GetPageText(req.params.id, onSuccess);
+    content.getPageText(req.params.id, onSuccess);
 };
 
-ApiHandler.prototype.GetPageById = function(req, res) {
+ApiHandler.prototype.getPageById = function(req, res) {
     var onSuccess = function(pageObj) {
         res.send(pageObj);
     };
-    content.GetPageById(req.params.id, onSuccess);
+    content.getPageById(req.params.id, onSuccess);
 };
 
-ApiHandler.prototype.CreatePage = function(req, res) {
+ApiHandler.prototype.createPage = function(req, res) {
     var onSuccess = function(textObj) {
         return res.send(textObj);
     };
@@ -122,10 +129,10 @@ ApiHandler.prototype.CreatePage = function(req, res) {
         keywords: req.body.keywords,
         content: req.body.content
     };
-    content.CreatePage(pageObj, onSuccess, onError)
+    content.createPage(pageObj, onSuccess, onError)
 };
 
-ApiHandler.prototype.UpdatePage = function(req, res) {
+ApiHandler.prototype.updatePage = function(req, res) {
     var onSuccess = function(pageObj) {
         return res.send(pageObj)
     };
@@ -142,24 +149,24 @@ ApiHandler.prototype.UpdatePage = function(req, res) {
         content: req.body.content
     };
 
-    content.UpdatePage(pageObj, onSuccess, onError);
+    content.updatePage(pageObj, onSuccess, onError);
 };
 
-ApiHandler.prototype.DeletePage = function(req, res) {
+ApiHandler.prototype.deletePage = function(req, res) {
     var onSuccess = function(textObj) {
         return res.send(textObj);
     };
     var onError = function(err) {
         return res.send(err);
     };
-    content.DeletePage(req.params.id, onSuccess, onError)
+    content.deletePage(req.params.id, onSuccess, onError)
 };
 
 //
 //
 //
 
-ApiHandler.prototype.GetDocument = function(request, response) {
+ApiHandler.prototype.getDocument = function(request, response) {
     var result = {status:"error"};
     var query = {};
     if (typeof request.params.id != 'undefined') {
@@ -176,7 +183,7 @@ ApiHandler.prototype.GetDocument = function(request, response) {
 };
 
 
-ApiHandler.prototype.SaveDocument = function(request, response) {
+ApiHandler.prototype.saveDocument = function(request, response) {
     var doc = {
         title : request.body.title,
         body : request.body.body

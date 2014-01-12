@@ -57,7 +57,7 @@ var iTunesDB = function(){
     });
 };
 
-iTunesDB.prototype.GetTrack = function(request, response) {
+iTunesDB.prototype.getTrack = function(request, response) {
     var result = {status:"error"};
     if (typeof request.params.id != 'undefined') {
         var query = { _id: request.params.id };
@@ -72,7 +72,7 @@ iTunesDB.prototype.GetTrack = function(request, response) {
     }
 };
 
-iTunesDB.prototype.GetTrackList = function(request, response) {
+iTunesDB.prototype.getTrackList = function(request, response) {
     var result = {status:"error"};
     var query = { "Genre": "Alternative/Punk" };
     var fields = {"Name":1,"Artist":1,"Genre":1};
@@ -89,7 +89,7 @@ iTunesDB.prototype.GetTrackList = function(request, response) {
         });
 };
 
-iTunesDB.prototype.SearchTerm = function(request, response) {
+iTunesDB.prototype.searchTerm = function(request, response) {
     var result = {status:"error"};
     var term = request.params.term;
     if (term && typeof term !== 'undefined') {
@@ -116,7 +116,7 @@ iTunesDB.prototype.SearchTerm = function(request, response) {
     }
 };
 
-iTunesDB.prototype.QueryByAttribute = function(term, queryProfile, onDataSuccess, onError) {
+iTunesDB.prototype.queryByAttribute = function(term, queryProfile, onDataSuccess, onError) {
     if (term && queryProfile.attribute) {
         var docs = [];
         var query = {};
@@ -143,7 +143,7 @@ iTunesDB.prototype.QueryByAttribute = function(term, queryProfile, onDataSuccess
 };
 
 
-iTunesDB.prototype.QueryCollectionById = function(term, queryProfile, onDataSuccess, onError) {
+iTunesDB.prototype.queryCollectionById = function(term, queryProfile, onDataSuccess, onError) {
     if (term) {
         var docs = [];
         var query = {};
@@ -169,7 +169,7 @@ iTunesDB.prototype.QueryCollectionById = function(term, queryProfile, onDataSucc
     }
 };
 
-iTunesDB.prototype.SearchMultiCriteria = function(request, response) {
+iTunesDB.prototype.searchMultiCriteria = function(request, response) {
     var result = {status:"error"};
     var term = request.params.term;
     var sortOrder = {'Artist':1, 'Album':1};
@@ -237,10 +237,10 @@ iTunesDB.prototype.SearchMultiCriteria = function(request, response) {
 
                 switch(queryProfiles[i]["type"]) {
                     case "find":
-                        itunesDB.QueryByAttribute(term, queryProfiles[i], onDataSuccess, onError);
+                        itunesDB.queryByAttribute(term, queryProfiles[i], onDataSuccess, onError);
                         break;
                     case "collectionById":
-                        itunesDB.QueryCollectionById(term, queryProfiles[i], onDataSuccess, onError);
+                        itunesDB.queryCollectionById(term, queryProfiles[i], onDataSuccess, onError);
                         break;
                     default:
                         console.log("unknown query type:", queryProfiles[i]["type"]);

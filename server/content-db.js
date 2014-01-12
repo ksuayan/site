@@ -11,7 +11,7 @@ var Document = new Schema({
     status      : {type: String, default: "new"},
     locale      : {type: String, default: "en_US"},
     contentType : {type: String, default: "text/html"},
-    date        : {type: Date, default: Date.now}
+    date        : {type: Date,   default: Date.now}
 });
 
 var TextContent = new Schema({
@@ -19,7 +19,7 @@ var TextContent = new Schema({
     name        : {type: String, default: ""},
     locale      : {type: String, default: "en_US"},
     contentType : {type: String, default: "text/html"},
-    dateCreated : {type: Date, default: Date.now}
+    dateCreated : {type: Date,   default: Date.now}
 });
 
 var Page = new Schema({
@@ -30,15 +30,36 @@ var Page = new Schema({
     content     : [{ type: Schema.Types.ObjectId, ref: 'text' }]
 });
 
+var Image = new Schema({
+    width : {type: Number,  default: ""},
+    height : {type: Number, default: ""},
+    path : {type: String,   default: ""}
+});
+
+var TileContent = new Schema({
+    name:        {type: String, default: ""},
+    title:       {type: String, default: ""},
+    description: {type: String, default: ""},
+    keywords :   {type: String, default: ""},
+    pageTitle:   {type: String, default: ""},
+    subhead :    {type: String, default: ""},
+    body :       [String],
+    image :      [Image],
+    tech :       [String]
+});
+
+
+
 var DocumentDB = function(){
     console.log("Initialized DocumentDB.");
     this.locale = conf.app.defaultLocale;
     this.db = mongoose.createConnection(conf.app.mongoURL);
     this.TextModel = this.db.model('text', TextContent);
     this.PageModel = this.db.model('page', Page);
+    this.TileModel = this.db.model('tile', TileContent);
 };
 
-DocumentDB.prototype.GetTextList = function(locale, onSuccess, onError) {
+DocumentDB.prototype.getTextList = function(locale, onSuccess, onError) {
     var query = {};
     if (!locale) { query.locale = this.locale;}
     var that = this;
@@ -53,7 +74,7 @@ DocumentDB.prototype.GetTextList = function(locale, onSuccess, onError) {
     });
 };
 
-DocumentDB.prototype.GetTextById = function(id, onSuccess, onError) {
+DocumentDB.prototype.getTextById = function(id, onSuccess, onError) {
     var query = {_id: id};
     this.TextModel
     .findOne(query)
@@ -65,7 +86,7 @@ DocumentDB.prototype.GetTextById = function(id, onSuccess, onError) {
     });
 };
 
-DocumentDB.prototype.UpdateText = function(textObj, onSuccess, onError) {
+DocumentDB.prototype.updateText = function(textObj, onSuccess, onError) {
     this.TextModel
     .findById(textObj._id)
     .exec(function(err, found){
@@ -86,7 +107,7 @@ DocumentDB.prototype.UpdateText = function(textObj, onSuccess, onError) {
     });
 };
 
-DocumentDB.prototype.CreateText = function(textObj, onSuccess, onError) {
+DocumentDB.prototype.createText = function(textObj, onSuccess, onError) {
     var that = this;
     this.TextModel
     .findOne({name: textObj.name})
@@ -106,7 +127,7 @@ DocumentDB.prototype.CreateText = function(textObj, onSuccess, onError) {
     });
 };
 
-DocumentDB.prototype.DeleteText = function(id, onSuccess, onError) {
+DocumentDB.prototype.deleteText = function(id, onSuccess, onError) {
     this.TextModel
     .findById(id)
     .exec(function(err, textObj){
@@ -125,7 +146,7 @@ DocumentDB.prototype.DeleteText = function(id, onSuccess, onError) {
 
 
 
-DocumentDB.prototype.GetPageById = function(id, onSuccess, onError) {
+DocumentDB.prototype.getPageById = function(id, onSuccess, onError) {
     var query = {_id: id};
     this.PageModel
         .findOne(query)
@@ -137,7 +158,7 @@ DocumentDB.prototype.GetPageById = function(id, onSuccess, onError) {
         });
 };
 
-DocumentDB.prototype.GetPageText = function(page, onSuccess, onError) {
+DocumentDB.prototype.getPageText = function(page, onSuccess, onError) {
     var result = {status:"error"};
     var query = {name: page};
     var that = this;
@@ -146,7 +167,7 @@ DocumentDB.prototype.GetPageText = function(page, onSuccess, onError) {
     .populate("content")
     .exec(function (err, page) {
         if (err) return util.HandleError(err);
-        var contentMap = that.GetPageContentMap(page);
+        var contentMap = that.getPageContentMap(page);
         if (!contentMap && typeof onError ==='function') {
             onError(err);
             return;
@@ -158,7 +179,7 @@ DocumentDB.prototype.GetPageText = function(page, onSuccess, onError) {
 };
 
 
-DocumentDB.prototype.GetPageContentMap = function(page) {
+DocumentDB.prototype.getPageContentMap = function(page) {
     if (!page || !page.content || !page.content.length) return null;
     var contentMap = {};
     var contentArray = page.content;
@@ -172,7 +193,7 @@ DocumentDB.prototype.GetPageContentMap = function(page) {
 };
 
 
-DocumentDB.prototype.CreatePage = function(pageObj, onSuccess, onError) {
+DocumentDB.prototype.createPage = function(pageObj, onSuccess, onError) {
     var that = this;
     this.PageModel
     .findOne({name: pageObj.name})
@@ -192,7 +213,7 @@ DocumentDB.prototype.CreatePage = function(pageObj, onSuccess, onError) {
     });
 };
 
-DocumentDB.prototype.UpdatePage = function(pageObj, onSuccess, onError) {
+DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
     this.PageModel
         .findById(pageObj._id)
         .exec(function(err, found){
@@ -218,7 +239,7 @@ DocumentDB.prototype.UpdatePage = function(pageObj, onSuccess, onError) {
         });
 };
 
-DocumentDB.prototype.DeletePage = function(id, onSuccess, onError) {
+DocumentDB.prototype.deletePage = function(id, onSuccess, onError) {
     this.PageModel
         .findById(id)
         .exec(function(err, pageObj){
@@ -234,7 +255,7 @@ DocumentDB.prototype.DeletePage = function(id, onSuccess, onError) {
         });
 };
 
-DocumentDB.prototype.GetPageList = function(onSuccess, onError) {
+DocumentDB.prototype.getPageList = function(onSuccess, onError) {
     var query = {};
     var that = this;
     this.PageModel
@@ -249,7 +270,7 @@ DocumentDB.prototype.GetPageList = function(onSuccess, onError) {
     });
 };
 
-DocumentDB.prototype.GetDocuments = function(id, callback) {
+DocumentDB.prototype.getDocuments = function(id, callback) {
     var result = null;
     var query = {};
     if (id) query._id = id;
@@ -261,9 +282,43 @@ DocumentDB.prototype.GetDocuments = function(id, callback) {
     });
 };
 
-DocumentDB.prototype.SaveDocument = function(doc) {
+DocumentDB.prototype.saveDocument = function(doc) {
     var instance = new this.model(doc);
     instance.save();
+};
+
+DocumentDB.prototype.createTile = function(tileObj, onSuccess, onError) {
+    var that = this;
+    this.PageModel
+        .findOne({name: tileObj.name})
+        .exec(function(err, found){
+            if (!err && found) {
+                onError({status:"error", reason:"tile.name exists: "+tileObj.name});
+                return;
+            } else {
+                var page = new that.TileModel(tileObj);
+                page.save(function(err){
+                    if (err) return util.HandleError(err, onError);
+                    if (typeof onSuccess ==='function') {
+                        onSuccess(page);
+                    }
+                });
+            }
+        });
+};
+
+DocumentDB.prototype.getTileList = function(onSuccess, onError) {
+    var query = {};
+    var that = this;
+    this.TileModel
+        .find(query)
+        .sort("_id")
+        .exec(function (err, pages) {
+            if (err) return util.HandleError(err, onError);
+            if (typeof onSuccess ==='function') {
+                onSuccess(pages);
+            }
+        });
 };
 
 module.exports = new DocumentDB();

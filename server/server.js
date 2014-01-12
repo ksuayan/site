@@ -29,9 +29,9 @@ app.configure(init);
 
 app.all("*", function (req, res, next) {
     if (conf.caching) {
-        if ((req.url.indexOf("/js/") === 0)||
-           (req.url.indexOf("/css/") === 0)||
-           (req.url.indexOf("/img/") === 0)) {
+        if ((req.url.indexOf("/js/")  === 0)||
+            (req.url.indexOf("/css/") === 0)||
+            (req.url.indexOf("/img/") === 0)) {
             res.setHeader("Cache-Control", "public, max-age="+conf.expires);
             res.setHeader("Expires", new Date(Date.now() + conf.expires * 1000).toUTCString());
         }
@@ -42,43 +42,42 @@ app.all("*", function (req, res, next) {
     next();
 });
 
-app.get('/', view.FullScreen);
-app.get('/page/:page', view.PageView);
+app.get('/', view.fullScreen);
+app.get('/page/:page', view.pageView);
 
 // demos
-app.get('/live', view.Live); // Backbone Editor
-app.get('/graph', view.Graph); // Raphael Graph
-app.get('/canvas', view.Canvas); // Canvas Experiments
-app.get('/transit', view.Transit); // Canvas Experiments
-app.get('/search', view.SearchDemo); // Canvas Experiments
+app.get('/live',    view.live); // Backbone Editor
+app.get('/graph',   view.graph); // Raphael Graph
+app.get('/canvas',  view.canvas); // Canvas Experiments
+app.get('/transit', view.transit);
+app.get('/search',  view.searchDemo);
+app.get('/text',    view.textList);
+app.get('/edit',    view.pageEdit);
 
-app.get('/search/:term', itunes.SearchTerm);
-app.get('/multi-search/:term', itunes.SearchMultiCriteria);
-app.get('/track', itunes.GetTrackList);
-app.get('/track/:id', itunes.GetTrack);
+app.get('/search/:term',       itunes.searchTerm);
+app.get('/multi-search/:term', itunes.searchMultiCriteria);
+app.get('/track',              itunes.getTrackList);
+app.get('/track/:id',          itunes.getTrack);
 
 // API
-app.get('/api/timeline', api.GetTimeline);
+app.get('/api/timeline',    api.getTimeline);
+app.get('/api/tiles',       api.getTileList);
 
-app.get('/api/page', api.GetPageList);
-app.post('/api/page', api.CreatePage);
-app.get('/api/page/:id', api.GetPageById);
-app.put('/api/page/:id', api.UpdatePage);
-app.delete('/api/page/:id', api.DeletePage);
+app.get('/api/page',        api.getPageList);
+app.post('/api/page',       api.createPage);
+app.get('/api/page/:id',    api.getPageById);
+app.put('/api/page/:id',    api.updatePage);
+app.delete('/api/page/:id', api.deletePage);
 
-app.get('/api/text', api.GetTextList);
-app.post('/api/text', api.CreateText);
-app.get('/api/text/:id', api.GetText);
-app.put('/api/text/:id', api.UpdateText);
-app.delete('/api/text/:id', api.DeleteText);
+app.get('/api/text',        api.getTextList);
+app.post('/api/text',       api.createText);
+app.get('/api/text/:id',    api.getText);
+app.put('/api/text/:id',    api.updateText);
+app.delete('/api/text/:id', api.deleteText);
 
-// misc
-app.get('/text', view.TextList);
-app.get('/edit', view.PageEdit);
-
-app.get('/api/doc', api.GetDocument);
-app.get('/api/doc/:id', api.GetDocument);
-app.post('/api/doc/:id', api.SaveDocument);
+app.get('/api/doc',         api.getDocument);
+app.get('/api/doc/:id',     api.getDocument);
+app.post('/api/doc/:id',    api.saveDocument);
 
 app.listen(conf.app.port);
 console.log('Go to http://localhost:' + conf.app.port);

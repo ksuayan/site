@@ -1,0 +1,207 @@
+[
+    {
+        "name" : "bofa_hs",
+        "title": "Kyo Suayan | Development Work | Higher Standards Brand Rollout, Bank of America",
+        "description": "Development work for Higher Standards Brand Rollout.",
+        "keywords": "CSS, Javascript, BankofAmerica.com",
+        "pageTitle": "BankofAmerica.com",
+        "subhead": "Higher Standards Brand Rollout",
+        "body" : ["At Bank of America's Globals and Home Page Team we launched the Higher Standards brand for which we won the Webby Award in the Banking & Bill Pay category in 2006. The site's user base has grown 10 times in the past 5 years.",
+            "I was involved in the implementation of visual design specifcations by our User Centered Design and Research Group into sitewide assets such as CSS stylesheets, XSL templates, rich media content and ColdFusion Custom Tags in the current look and feel. These shared assets are used by the product content and application pages for consistency, reusability, and ease of maintenance."],
+        "image" : [{
+            "width": 640,
+            "height": 244,
+            "path":"/images/development/splash_bofa_hs.jpg"
+        }],
+        "tech" : ["ColdFusion","CSS","JavaScript","Flash","XML","XSL","Accessibility"]
+    },
+    {
+        "name" : "bofa_redesign",
+        "title": "Kyo Suayan | Development Work | Hub Pages Site Redesign, Bank of America",
+        "description": "Hub Pages Site Redesign",
+        "keywords": "project, management, css, xml",
+        "pageTitle": "BankofAmerica.com",
+        "subhead": "Hub Pages Site Redesign",
+        "body": ["High traffic sections of the site were updated to reflect consistency with the new visual design standard.",
+                "As Technical Delivery Manager, this multi-phase project was delivered on time and well within our target budget. I also provided technical support to our development team to ensure our Web Accessibility requirements are met."],
+        "image": [{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_bofa_redesign.jpg"
+        }],
+        "tech" : ["ColdFusion","CSS","JavaScript","XML","XSL","Accessibility"]
+    },
+    {
+        "name": "bofa_associate_banking",
+        "title": "Kyo Suayan | Development Work | Associate Banking, Bank of America",
+        "description": "Development work for Associate Banking.",
+        "keywords": "Coldfusion, XML, XSLT, CSS, Javascript",
+        "pageTitle": "Associate Banking",
+        "subhead": "Bank of America",
+        "body": ["In my role as Technical Delivery Lead, I managed a small team of developers to rollout a new look and feel for the Associate Banking website designed by an external vendor.",
+            "I designed the core application framework that generated HTML markup dynamically. Presentation and content were seperated using XSL, XML and CSS. Web Accessibility has always been a key requirement in all of our projects and I had to make sure that any JavaScript dependent features we implemented complied to our standard."],
+        "image": [{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_bofa_ab_02.jpg"
+        }],
+        "tech" : ["ColdFusion","Application Framework","XML","XSL","CSS","HTML","JavaScript","Accessibility"]
+    },
+    {
+        "name" : "sgi",
+        "title": "Kyo Suayan | Development Work | SGI Supportfolio",
+        "description": "Development work for SGI Supportfolio",
+        "keywords": "Perl, CSS, Javascript",
+        "pageTitle": "SGI Supportfolio",
+        "subhead": "Sitewide Navigation for Supportfolio Website",
+        "body": ["Supportfolio Online allows SGI customers to quickly and easily solve their SGI support issues online, 24 hours a day. The easy-to-use Supportfolio Online interface saves time by providing access to online case reporting and management, latest software updates and patches, with full-featured search and information retrieval, and personalized e-mail notification.",
+            "I worked fulltime on Supportfolio and was responsible for designing a consistent navigation system which enabled us to rebrand a collection of some 80,000+ documents using command line utilities that I developed.",
+            "Since parts of the site are CGI applications, I also wrote a Perl API that developers used to incorporate the navigation in their applications. Our team was responsible for the look'n'feel of the IRIX, Linux and Windows NT support home pages."],
+        "image": [{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_sgi_support.jpg"
+        }],
+        "tech" : ["Perl","PHP","Netscape Enterprise Servers","SGI IRIX"]
+    },
+    {
+        "name" : "sgi_esp",
+        "title": "Kyo Suayan | Development Work | SGI Embedded Support Partner",
+        "description": "Development work for SGI Supportfolio",
+        "keywords": "Perl, CSS, Javascript",
+        "pageTitle": "SGI Embedded Support Partner",
+        "subhead": "Development Work for ESP",
+        "body": ["Embedded Support Partner (ESP) is a web based application bundled with the IRIX Operating System. It helps administrators to monitor and generate reports on system events.",
+            "The System Support Tools team explained the challenges with their previous version of their flagship product and I was given the freedom to revamp the navigational structure to reveal and simplify access to its 30 main functionalities.",
+            "I had the chance to work on DSP, a proprietary dynamic server scripting language that was embedded within the application webserver itself. The redesign resulted in improved usability, navigation and visual appeal."],
+        "image": [{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_sgi_esp_01.jpg"
+        }],
+        "tech" : ["Photoshop","DSP","JavaScript"]
+    },
+    {
+        "name" : "bofa_coremetrics",
+        "title": "Kyo Suayan | Development Work | Coremetrics Pilot Project, Bank of America",
+        "description": "Coremetrics Tagging of BankofAmerica.com",
+        "keywords": "ColdFusion, Javascript",
+        "pageTitle": "Coremetrics Tagging of BankofAmerica.com",
+        "subhead": "Pilot Project",
+        "body": ["As Technical Delivery Lead, I designed the strategy and implemented the code that enabled us to deploy this third party tagging and tracking functionality within the select high revenue sections of bankofamerica.com.",
+            "I worked closely with our vendor contacts in resolving technical issues and our business partners to meet their dynamic reporting requirements. The project met and surpassed our original business requirements that it is now a key tool in our day to day operations. It has since been deployed across the thousands of pages across bankofamerica.com monitoring traffic patterns for at least 90% of the site."],
+        "image": [{
+            "width": 0,
+            "height": 0,
+            "path": ""
+        }],
+        "tech" : ["ColdFusion","JavaScript"]
+    },
+    {
+        "name" : "core",
+        "title": "Kyo Suayan | Development Work | GlobalBin Core",
+        "description": "Application Testbed",
+        "keywords": "Spring Framework, Hibernate, Acegi Security, Struts",
+        "pageTitle": "GlobalBin Core",
+        "subhead": "Application Testbed",
+        "body": ["With so many new technologies constantly emerging in the Java world, it is quite a challenge to stay on top of recent developments. The main purpose of this app is to provide a sandbox enviroment for my personal learning, prototype ideas, and gather J2EE best practices in a reusable module."],
+        "image": [{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_globalbin.jpg"
+        }],
+        "tech" : ["Spring Framework","Hibernate", "Acegi Security", "Struts", "JSP2.0","MySQL"]
+    },
+    {
+        "name": "barangayamerika",
+        "title": "Kyo Suayan | Development Work | BarangayAmerica.com",
+        "description": "Online Community based on Drupal 4.x",
+        "keywords": "Drupal, PHP",
+        "pageTitle": "BarangayAmerika.com",
+        "subhead": "Online Community based on Drupal 4.x",
+        "body": ["BarangayAmerika is a small Filipino Community site powered by Drupal, a popular PHP-based Content Management System. I've created a couple of custom themes for this site and will likely upgrade it to version 5.0 when released."],
+        "image": [{
+            "width": 640,
+            "height": 240,
+            "path": "/images/development/splash_barangayamerika.jpg"
+        }],
+        "tech" : ["PHP","Drupal","CSS","CMS","Administration"]
+    },
+    {
+        "name": "pwm",
+        "title": "Kyo Suayan | Development Work | PWM",
+        "description": "PHP based site management tool",
+        "keywords": "PHP, CSS, GD Library",
+        "pageTitle": "PWM",
+        "subhead": "Site Manager Tool",
+        "body": ["PWM stands for PHP Web Modules. It's a collection of PHP 4 objects that I wrote for maintaining: <ul><li>a blog</li><li>a hiearchical link directory</li><li>a hierarchical online gallery</li><li>comments</li></ul>"],
+        "image": [{
+            "width": 0,
+            "height": 0,
+            "path": ""
+        }],
+        "tech" : ["PHP","GD Library", "MySQL"]
+    },
+    {
+        "name": "dsi",
+        "title": "Kyo Suayan | Development Work | DSI System",
+        "description": "Corporate Website for San Mateo based IT Consulting company.",
+        "keywords": "HTML, Flash, San Mateo, Consulting",
+        "pageTitle": "DSI System",
+        "subhead": "Corporate Website",
+        "body": ["DSI System is a San Mateo based IT consulting firm providing staffing services. I also designed the identity system for this company along with some print collaterals."],
+        "image": [{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_dsi.jpg"
+        }],
+        "tech" : ["HTML","Flash"]
+    },
+    {
+        "name": "imagineus",
+        "title": "Kyo Suayan | Development Work | ImagineUS!",
+        "description": "Corporate Website for ImagineUs! LLC.",
+        "keywords": "PHP, Perl-CGI, CSS, HTML, Photoshop",
+        "pageTitle": "ImagineUs!",
+        "subhead": "Corporate Website",
+        "body": ["Kit Payne and Caroline K. Huo, two women entrepreneurs started <b>ImagineUs!</b> LLC in 1999 to create products that parents can depend on to make parenting easier. Among their products was the widely acclaimed Doctor Straw, Pack 'n' Go Go, and Baby's First Toothbrush."],
+        "image": [{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_imagineus.jpg"
+        }],
+        "tech" : ["PHP","Perl-CGI","CSS","HTML","Photoshop"]
+    },
+    {
+        "name": "icrg",
+        "title": "Kyo Suayan | Development Work | International Consulting Resources Group",
+        "description": "Corporate Website for International Consulting Resources Group.",
+        "keywords": "ColdFusion, ASP, HTML, Perl",
+        "pageTitle": "International Consulting Resources Group",
+        "subhead": "I.T. Consulting",
+        "body": ["ICRG is an international recruiting service based in San Mateo, California. They have been providing staffing in the Information Technology industry for companies in the San Francisco Bay Area since 1990.",
+            "This site featured a ColdFusion consultant database which was later ported to ASP. Original branding by another graphic designer was carried over to the site."],
+        "image":[{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_icrg.jpg"
+        }],
+        "tech" : ["ColdFusion","ASP","HTML","Perl (build scripts)"]
+    },
+    {
+        "name": "apec",
+        "title": "Kyo Suayan | Development Work | APEC Summit Labor Market Information Database",
+        "description": "Web application development for APEC Summit Labor Market Information Database.",
+        "keywords": "Perl, CGI, Apache HTTPd, Java Applets",
+        "pageTitle": "APEC Summit Labor Market Information Database",
+        "subhead": "1996 Leaders Summit",
+        "body": ["In 1996, world leaders gathered in Manila and Subic Bay for the APEC Summit.",
+            "This application demonstrated a web-based application running on Perl-CGI. Clicking on a country on the world map allows the user to drill down to the country level and view tabular and graphical data retrieved from the backend. Charts were rendered on the fly using Java applets on the browser side."],
+        "image": [{
+            "width": 640,
+            "height": 244,
+            "path": "/images/development/splash_apec_lmi.jpg"
+        }],
+        "tech" : ["Perl/CGI","Apache HTTPd","HTML","Java Applets"]
+    }
+]

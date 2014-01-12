@@ -20,7 +20,7 @@ var TimelineDB = function(){
     this.JobModel = this.db.model('job', JobModel);
 };
 
-TimelineDB.prototype.GetJobs = function(onSuccess, onError) {
+TimelineDB.prototype.getJobs = function(onSuccess, onError) {
     var query = {};
     var that = this;
     this.JobModel
@@ -35,7 +35,7 @@ TimelineDB.prototype.GetJobs = function(onSuccess, onError) {
     });
 };
 
-TimelineDB.prototype.CreateJob = function(jobObj, onSuccess, onError) {
+TimelineDB.prototype.createJob = function(jobObj, onSuccess, onError) {
     var text = new this.JobModel(jobObj);
     text.save(function(err){
         if (err)
@@ -46,7 +46,7 @@ TimelineDB.prototype.CreateJob = function(jobObj, onSuccess, onError) {
     });
 };
 
-TimelineDB.prototype.GetJobById = function(id, onSuccess, onError) {
+TimelineDB.prototype.getJobById = function(id, onSuccess, onError) {
     var query = {_id: id};
     this.JobModel
         .findOne(query)
@@ -59,7 +59,7 @@ TimelineDB.prototype.GetJobById = function(id, onSuccess, onError) {
         });
 };
 
-TimelineDB.prototype.UpdateJob = function(jobObj, onSuccess, onError) {
+TimelineDB.prototype.updateJob = function(jobObj, onSuccess, onError) {
     this.JobModel
     .findById(jobObj._id)
     .exec(function(err, found){
@@ -85,7 +85,7 @@ TimelineDB.prototype.UpdateJob = function(jobObj, onSuccess, onError) {
     });
 };
 
-TimelineDB.prototype.DeleteJob = function(id, onSuccess, onError) {
+TimelineDB.prototype.deleteJob = function(id, onSuccess, onError) {
     this.JobModel
     .findById(id)
     .exec(function(err, jobObj){
