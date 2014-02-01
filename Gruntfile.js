@@ -12,6 +12,7 @@ module.exports = function(grunt) {
                       'public/js/gb.js',
                       'public/js/gb-util.js',
                       'public/js/gb-ui.js',
+                      'public/js/gb-touch-surface.js',
                       'public/js/gb-preloadable-image.js',
                       'public/js/gb-tile.js',
                       'public/js/gb-timeout-cycle.js',
@@ -28,7 +29,7 @@ module.exports = function(grunt) {
         uglify: {
             options: {
                 mangle: true,
-                sourceMap: '<%= pkg.name %>.map.js',
+                sourceMap: true,
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             dist: {

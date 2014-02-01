@@ -45,7 +45,9 @@ gb.ui.Stage.include({
         this.show();
         this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
             function(){that.rotate();});
-
+        this.touchSurface = new gb.ui.TouchSurface( this.content[0],
+            function(evt, dir, phase, swipetype, distance){
+                that.onTouchEvent(evt, dir, phase, swipetype, distance);});
         $(window).resize(function(){that.fadeOut();});
         $("#stage-next").on("click", function(){that.goToNext();});
         $("#stage-prev").on("click", function(){that.goToPrevious();});
@@ -81,6 +83,27 @@ gb.ui.Stage.include({
         }
         this.resizeTiles();
     },
+
+    /**
+     * onTouchEvent handler
+     * @param evt event object
+     * @param dir direction
+     * @param phase start,move,end
+     * @param swipetype
+     * @param distance
+     */
+    onTouchEvent: function(evt, dir, phase, swipetype, distance) {
+        if (phase !== "end")
+            return;
+        switch (dir) {
+            case "left": this.goToNext();
+                break;
+            case "right": this.goToPrevious();
+                break;
+            default: break;
+        }
+    },
+
 
     /**
      * Recalculate dimensions of every tile under

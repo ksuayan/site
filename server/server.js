@@ -6,8 +6,6 @@ var express = require('express'),
     itunes = require('./itunes'),
     api = require('./api');
 
-console.log(conf);
-
 var init = function () {
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'jade');
