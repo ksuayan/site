@@ -1290,7 +1290,7 @@ gb.ui.Stage.include({
             var offset = (-1 * this.tileOffsets[this.currentIndex]) + (distance * scale);
             var maxOffset = -1 * (this.tileOffsets[1] * (this.tileOffsets.length-1));
             if (offset < 0 && offset > maxOffset) {
-                this.content.transition({x: offset, queue:false}, 50, "ease");
+                this.content.css({x: offset});
             } else {
                 return;
             }
