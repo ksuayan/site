@@ -93,8 +93,21 @@ gb.ui.Stage.include({
      * @param distance
      */
     onTouchEvent: function(evt, dir, phase, swipetype, distance) {
+        // dragging
+        if (phase === "move" && this.tileOffsets) {
+            var scale = 3;
+            var offset = (-1 * this.tileOffsets[this.currentIndex]) + (distance * scale);
+            var maxOffset = -1 * (this.tileOffsets[1] * (this.tileOffsets.length-1));
+            if (offset < 0 && offset > maxOffset) {
+                this.content.transition({x: offset, queue:false}, 50, "ease");
+            } else {
+                return;
+            }
+        }
+        // end of swipe
         if (phase !== "end")
             return;
+        
         switch (dir) {
             case "left": this.goToNext();
                 break;
@@ -193,7 +206,7 @@ gb.ui.Stage.include({
     goTo: function(index) {
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset}, 500, "snap");
+        this.content.transition({x:xOffset, queue:false}, 1000, "ease");
     },
 
     /**
