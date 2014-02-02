@@ -1,6 +1,7 @@
 (function ($) {
 
     $.fn.search = function(options) {
+        "use strict";
 
         var that = this;
         var intervalHandler = null;
@@ -106,7 +107,9 @@
 
         // call this when the window is resized
         this.onResize = function() {
-            if (!that.searchInput) return;
+            if (!that.searchInput) {
+                return;
+            }
 
             var pos = that.searchInput.position();
             var width = that.searchInput.outerWidth(true);
@@ -122,7 +125,7 @@
 
         var init = function() {
             that.searchInput = $("#"+settings.input);
-            if (typeof that.searchInput[0] == 'undefined') {
+            if (typeof that.searchInput[0] === 'undefined') {
                 return null;
             }
             if (!intervalHandler) {

@@ -12,13 +12,13 @@ gb.Namespace = function (ns, ns_string) {
     var parts = ns_string.split('.'),
         parent = ns,
         pl, i;
-    if (parts[0] == "gb") {
+    if (parts[0] === "gb") {
         parts = parts.slice(1);
     }
     pl = parts.length;
     for (i = 0; i < pl; i++) {
-        //create a property if it doesnt exist
-        if (typeof parent[parts[i]] == 'undefined') {
+        //create a property if it doesn't exist
+        if (typeof parent[parts[i]] === 'undefined') {
             parent[parts[i]] = {};
         }
         parent = parent[parts[i]];
@@ -32,14 +32,16 @@ gb.Namespace = function (ns, ns_string) {
  * @returns {Function}
  */
 gb.Class = function(parent){
+    "use strict";
+
     var klass = function() {
         this.init.apply(this,arguments);
     };
 
     if (parent) {
-        var subclass = function(){};
-        subclass.prototype = parent.prototype;
-        klass.prototype =  new subclass();
+        var Subclass = function(){};
+        Subclass.prototype = parent.prototype;
+        klass.prototype =  new Subclass();
     }
 
     klass.prototype.init = function(){};
@@ -52,7 +54,9 @@ gb.Class = function(parent){
         for (var i in obj) {
             klass[i] = obj[i];
         }
-        if (extended) extended(klass);
+        if (extended) {
+            extended(klass);
+        }
     };
 
     klass.include = function(obj) {
@@ -60,12 +64,16 @@ gb.Class = function(parent){
         for (var i in obj) {
             klass.fn[i] = obj[i];
         }
-        if (included) included(klass);
+        if (included) {
+            included(klass);
+        }
     };
     return klass;
 };
 
-;
+
+
+
 gb.Namespace(gb, "gb.util");
 
 /**
@@ -139,7 +147,9 @@ gb.util = {
     }
 };
 
-;gb.Namespace(gb, "gb.ui");
+
+
+gb.Namespace(gb, "gb.ui");
 
 /**
  * @fileOverview Application wide settings for UI environment.
@@ -187,7 +197,9 @@ gb.ui = {
         $(this).trigger('resizeEnd');
     }
 };
-;gb.Namespace(gb, "gb.ui.TouchSurface");
+
+
+gb.Namespace(gb, "gb.ui.TouchSurface");
 gb.ui.TouchSurface = new gb.Class();
 
 /**
@@ -289,7 +301,9 @@ gb.ui.TouchSurface.include({
         e.preventDefault();
     }
 });
-;gb.Namespace(gb, "gb.ui.PreloadableImage");
+
+
+gb.Namespace(gb, "gb.ui.PreloadableImage");
 gb.ui.PreloadableImage = new gb.Class();
 
 
@@ -342,7 +356,7 @@ gb.ui.PreloadableImage.include({
      */
     setOnLoad: function(onSuccess) {
         var that = this;
-        if (!onSuccess || typeof onSuccess != 'function') {
+        if (!onSuccess || typeof onSuccess !== 'function') {
             // default onload handler ..
             this.image.onload = function(){
                 that.endTime = new Date().valueOf();
@@ -363,7 +377,7 @@ gb.ui.PreloadableImage.include({
      */
     setOnError: function(onError) {
         var that = this;
-        if (!onError || typeof onError != 'function') {
+        if (!onError || typeof onError !== 'function') {
             this.image.onerror = function(){
                 that.endTime = new Date().valueOf();
             };
@@ -385,7 +399,9 @@ gb.ui.PreloadableImage.include({
 
 });
 
-;
+
+
+
 gb.Namespace(gb,"gb.ui.Tile");
 gb.ui.Tile = new gb.Class();
 
@@ -459,7 +475,9 @@ gb.ui.Tile.include({
      */
     deactivate: function() {
     }
-});;gb.Namespace(gb,"gb.util.TimeOutCycle");
+});
+
+gb.Namespace(gb,"gb.util.TimeOutCycle");
 gb.util.TimeOutCycle = new gb.Class();
 
 /**
@@ -502,7 +520,7 @@ gb.util.TimeOutCycle.include({
      * @instance
      */
     setTickHandler: function(callback) {
-        if (callback && typeof callback == 'function') {
+        if (callback && typeof callback === 'function') {
             this.tickHandler = callback;
         }
     },
@@ -533,8 +551,9 @@ gb.util.TimeOutCycle.include({
      */
     stop: function() {
         this.running = false;
-        if (this.timeoutHandle)
+        if (this.timeoutHandle) {
             clearTimeout(this.timeoutHandle);
+        }
     },
 
     /**
@@ -569,7 +588,9 @@ gb.util.TimeOutCycle.include({
     }
 });
 
-;//
+
+
+//
 // $.fn.fullscreen()
 // Rotating fullscreen background images.
 //
@@ -581,6 +602,7 @@ gb.util.TimeOutCycle.include({
 (function ($) {
 
     $.fn.fullscreen = function(options) {
+        "use strict";
 
         var settings = $.extend({
             front: "#background",
@@ -653,9 +675,12 @@ gb.util.TimeOutCycle.include({
 }(jQuery));
 
 
-;(function ($) {
+
+
+(function ($) {
 
     $.fn.search = function(options) {
+        "use strict";
 
         var that = this;
         var intervalHandler = null;
@@ -761,7 +786,9 @@ gb.util.TimeOutCycle.include({
 
         // call this when the window is resized
         this.onResize = function() {
-            if (!that.searchInput) return;
+            if (!that.searchInput) {
+                return;
+            }
 
             var pos = that.searchInput.position();
             var width = that.searchInput.outerWidth(true);
@@ -777,7 +804,7 @@ gb.util.TimeOutCycle.include({
 
         var init = function() {
             that.searchInput = $("#"+settings.input);
-            if (typeof that.searchInput[0] == 'undefined') {
+            if (typeof that.searchInput[0] === 'undefined') {
                 return null;
             }
             if (!intervalHandler) {
@@ -802,7 +829,9 @@ $(function(){
     if ($search) {
         $(window).resize(gb.util.throttle($search.onResize, 500));
     }
-});;gb.Namespace(gb,"gb.ui.Timeline");
+});
+
+gb.Namespace(gb,"gb.ui.Timeline");
 gb.ui.Timeline = new gb.Class();
 
 /**
@@ -826,6 +855,7 @@ gb.ui.Timeline.include({
      * @instance
      */
     init: function(selector) {
+        "use strict";
         this.x = 0;
         this.y = 0;
         this.margin = 40;
@@ -849,14 +879,16 @@ gb.ui.Timeline.include({
     },
 
     resize: function() {
-        if (!this.htmlContent)
+        if (!this.htmlContent) {
             this.htmlContent = this.jqContainer.html();
+        }
         this.width = this.jqContainer.width();
         this.height = this.jqContainer.height();
         this.trackWidth = this.width - (this.margin * 2);
         // recompute on window resize ...
-        if (this.paper)
+        if (this.paper) {
             this.paper.clear();
+        }
         if (this.width > 768) {
             this.jqContainer.empty();
             this.paper = Raphael(this.id, this.width, this.height);
@@ -925,14 +957,18 @@ gb.ui.Timeline.include({
             sp.animate({fill: "#DE001E"}, 50, "linear");
             ep.animate({cx: dataPoint.xEnd, fill: "#FF8400"}, 300, "easeInOut");
             that.drawHeader(dataPoint);
-            if (that.startDateLabel) that.startDateLabel.remove();
-            if (that.endDateLabel) that.endDateLabel.remove();
+            if (that.startDateLabel) {
+                that.startDateLabel.remove();
+            }
+            if (that.endDateLabel) {
+                that.endDateLabel.remove();
+            }
             this.toFront();
             that.startDateLabel = that.drawDate(dataPoint.startDate);
             that.endDateLabel = that.drawDate(dataPoint.endDate);
             that.startDateLabel.animate({opacity:1}, 300, "easeInOut");
 
-            if (dataPoint.startDate != dataPoint.endDate){
+            if (dataPoint.startDate !== dataPoint.endDate){
                 var x1 = that.startDateLabel.getBBox().x2;
                 var x2 = that.endDateLabel.getBBox().x;
                 if (x1>x2) {
@@ -946,7 +982,9 @@ gb.ui.Timeline.include({
             var sp = this.data("startPoint");
             var ep = this.data("endPoint");
             var dataPoint = this.data("dataPoint");
-            if (that.selected) that.selected.remove();
+            if (that.selected) {
+                that.selected.remove();
+            }
             if (that.startDateLabel) {
                 that.startDateLabel.remove();
             }
@@ -994,15 +1032,21 @@ gb.ui.Timeline.include({
         var headerStyle = {"font-size":"32pt","text-anchor":"start","font-family":"Source Sans Pro"};
         var subheadStyle = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
         var subhead2Style = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
-        if (this.title) this.title.remove();
+        if (this.title) {
+            this.title.remove();
+        }
         this.title = this.paper.text(this.margin, 40, dataPoint.title);
         this.title.attr(headerStyle);
 
-        if (this.subhead) this.subhead.remove();
+        if (this.subhead) {
+            this.subhead.remove();
+        }
         this.subhead = this.paper.text(this.margin, 70, dataPoint.employer);
         this.subhead.attr(subheadStyle);
 
-        if (this.location) this.location.remove();
+        if (this.location) {
+            this.location.remove();
+        }
         this.location = this.paper.text(this.margin, 94, dataPoint.location);
         this.location.attr(subhead2Style);
     },
@@ -1043,7 +1087,9 @@ gb.ui.Timeline.include({
         var endX = Math.floor(this.margin + ((end - this.xMin) * this.xScale));
         var line = "M" + startX + " " + this.yTrack + "L" + endX + " " + this.yTrack;
 
-        if (this.selected) this.selected.remove();
+        if (this.selected) {
+            this.selected.remove();
+        }
         line = this.paper.path(line);
         var strokeStyle = {
             "opacity":0.7,
@@ -1055,23 +1101,23 @@ gb.ui.Timeline.include({
     },
 
     onResizeEndHandler: function() {
-        if (this.paper)
+        if (this.paper) {
             this.paper.clear();
-
+        }
         this.resize();
     },
 
     onDataHandler: function() {
         var that = this;
         $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-        $(window).on("resize", function(){if (that.paper) that.paper.clear();});
+        $(window).on("resize", function(){if (that.paper) {that.paper.clear();}});
         this.onResizeEndHandler();
     }
-
-
 });
 
-;gb.Namespace(gb,"gb.ui.FullScreen");
+
+
+gb.Namespace(gb,"gb.ui.FullScreen");
 gb.ui.FullScreen = new gb.Class();
 
 /**
@@ -1094,12 +1140,10 @@ gb.ui.FullScreen.include({
         "use strict";
         this.spinner = $("#spinner");
         this.spinner.show();
-
         this.mediaHost = "//media.suayan.com/";
         this.images = [];
         this.howMany = 3;
         this.countLoaded = 0;
-
         this.initImageList();
         this.initBackground();
         console.log("init: FullScreen.");
@@ -1127,7 +1171,7 @@ gb.ui.FullScreen.include({
      */
     checkSpinner: function() {
         this.countLoaded++;
-        if (this.countLoaded == this.howMany) {
+        if (this.countLoaded === this.howMany) {
             this.spinner.hide();
         }
     },
@@ -1138,12 +1182,14 @@ gb.ui.FullScreen.include({
      */
     initImageList: function() {
         this.images = [];
-        for (var i=1;i<=this.howMany;i++) {
+        for (var i=1; i<=this.howMany; i++) {
             var numStr = gb.util.zeroFill(i,3);
             this.images.push(this.mediaHost+"images/image-"+numStr+".jpg");
         }
     }
-});;gb.Namespace(gb,"gb.ui.Stage");
+});
+
+gb.Namespace(gb,"gb.ui.Stage");
 gb.ui.Stage = gb.Class(gb.ui.Tile);
 
 /**
@@ -1238,7 +1284,6 @@ gb.ui.Stage.include({
      * @param distance
      */
     onTouchEvent: function(evt, dir, phase, swipetype, distance) {
-
         // dragging
         if (phase === "move" && this.tileOffsets) {
             var scale = 3;
@@ -1250,10 +1295,10 @@ gb.ui.Stage.include({
                 return;
             }
         }
-
         // end of swipe
-        if (phase !== "end")
+        if (phase !== "end") {
             return;
+        }
 
         switch (dir) {
             case "left": this.goToNext();
@@ -1271,10 +1316,10 @@ gb.ui.Stage.include({
      * @inner
      */
     resizeTiles: function() {
-        var xPos = 0;
-        var stageWidth = this.jq.width();
-        var stageHeight = this.jq.height();
-        var t = this.tiles;
+        var xPos = 0,
+        stageWidth = this.jq.width(),
+        stageHeight = this.jq.height(),
+        t = this.tiles;
 
         for (var i= 0,n=t.length; i<n; i++) {
             t[i].jq.width(stageWidth);
@@ -1383,8 +1428,9 @@ gb.ui.Stage.include({
         this.resizeTiles();
         this.show();
     }
+});
 
-});;gb.Namespace(gb,"gb.ui.ContentManager");
+gb.Namespace(gb,"gb.ui.ContentManager");
 gb.ui.ContentManager = new gb.Class();
 
 /**
@@ -1488,7 +1534,9 @@ gb.ui.ContentManager.include({
             });
     }
 });
-;$(function(){
+
+
+$(function(){
     "use strict";
     var contentManager = new gb.ui.ContentManager("#content");
     $(window).resize(gb.util.throttle(gb.ui.onResizeHandler, 500));

@@ -105,9 +105,10 @@ gb.ui.Stage.include({
             }
         }
         // end of swipe
-        if (phase !== "end")
+        if (phase !== "end") {
             return;
-        
+        }
+
         switch (dir) {
             case "left": this.goToNext();
                 break;
@@ -124,10 +125,10 @@ gb.ui.Stage.include({
      * @inner
      */
     resizeTiles: function() {
-        var xPos = 0;
-        var stageWidth = this.jq.width();
-        var stageHeight = this.jq.height();
-        var t = this.tiles;
+        var xPos = 0,
+        stageWidth = this.jq.width(),
+        stageHeight = this.jq.height(),
+        t = this.tiles;
 
         for (var i= 0,n=t.length; i<n; i++) {
             t[i].jq.width(stageWidth);
@@ -236,5 +237,4 @@ gb.ui.Stage.include({
         this.resizeTiles();
         this.show();
     }
-
 });

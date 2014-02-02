@@ -41,7 +41,7 @@ gb.util.TimeOutCycle.include({
      * @instance
      */
     setTickHandler: function(callback) {
-        if (callback && typeof callback == 'function') {
+        if (callback && typeof callback === 'function') {
             this.tickHandler = callback;
         }
     },
@@ -72,8 +72,9 @@ gb.util.TimeOutCycle.include({
      */
     stop: function() {
         this.running = false;
-        if (this.timeoutHandle)
+        if (this.timeoutHandle) {
             clearTimeout(this.timeoutHandle);
+        }
     },
 
     /**

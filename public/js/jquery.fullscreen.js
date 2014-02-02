@@ -10,6 +10,7 @@
 (function ($) {
 
     $.fn.fullscreen = function(options) {
+        "use strict";
 
         var settings = $.extend({
             front: "#background",

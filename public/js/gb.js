@@ -12,13 +12,13 @@ gb.Namespace = function (ns, ns_string) {
     var parts = ns_string.split('.'),
         parent = ns,
         pl, i;
-    if (parts[0] == "gb") {
+    if (parts[0] === "gb") {
         parts = parts.slice(1);
     }
     pl = parts.length;
     for (i = 0; i < pl; i++) {
-        //create a property if it doesnt exist
-        if (typeof parent[parts[i]] == 'undefined') {
+        //create a property if it doesn't exist
+        if (typeof parent[parts[i]] === 'undefined') {
             parent[parts[i]] = {};
         }
         parent = parent[parts[i]];
@@ -32,14 +32,16 @@ gb.Namespace = function (ns, ns_string) {
  * @returns {Function}
  */
 gb.Class = function(parent){
+    "use strict";
+
     var klass = function() {
         this.init.apply(this,arguments);
     };
 
     if (parent) {
-        var subclass = function(){};
-        subclass.prototype = parent.prototype;
-        klass.prototype =  new subclass();
+        var Subclass = function(){};
+        Subclass.prototype = parent.prototype;
+        klass.prototype =  new Subclass();
     }
 
     klass.prototype.init = function(){};
@@ -52,7 +54,9 @@ gb.Class = function(parent){
         for (var i in obj) {
             klass[i] = obj[i];
         }
-        if (extended) extended(klass);
+        if (extended) {
+            extended(klass);
+        }
     };
 
     klass.include = function(obj) {
@@ -60,7 +64,9 @@ gb.Class = function(parent){
         for (var i in obj) {
             klass.fn[i] = obj[i];
         }
-        if (included) included(klass);
+        if (included) {
+            included(klass);
+        }
     };
     return klass;
 };

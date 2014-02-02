@@ -51,7 +51,7 @@ gb.ui.PreloadableImage.include({
      */
     setOnLoad: function(onSuccess) {
         var that = this;
-        if (!onSuccess || typeof onSuccess != 'function') {
+        if (!onSuccess || typeof onSuccess !== 'function') {
             // default onload handler ..
             this.image.onload = function(){
                 that.endTime = new Date().valueOf();
@@ -72,7 +72,7 @@ gb.ui.PreloadableImage.include({
      */
     setOnError: function(onError) {
         var that = this;
-        if (!onError || typeof onError != 'function') {
+        if (!onError || typeof onError !== 'function') {
             this.image.onerror = function(){
                 that.endTime = new Date().valueOf();
             };

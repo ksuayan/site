@@ -22,6 +22,7 @@ gb.ui.Timeline.include({
      * @instance
      */
     init: function(selector) {
+        "use strict";
         this.x = 0;
         this.y = 0;
         this.margin = 40;
@@ -45,14 +46,16 @@ gb.ui.Timeline.include({
     },
 
     resize: function() {
-        if (!this.htmlContent)
+        if (!this.htmlContent) {
             this.htmlContent = this.jqContainer.html();
+        }
         this.width = this.jqContainer.width();
         this.height = this.jqContainer.height();
         this.trackWidth = this.width - (this.margin * 2);
         // recompute on window resize ...
-        if (this.paper)
+        if (this.paper) {
             this.paper.clear();
+        }
         if (this.width > 768) {
             this.jqContainer.empty();
             this.paper = Raphael(this.id, this.width, this.height);
@@ -121,14 +124,18 @@ gb.ui.Timeline.include({
             sp.animate({fill: "#DE001E"}, 50, "linear");
             ep.animate({cx: dataPoint.xEnd, fill: "#FF8400"}, 300, "easeInOut");
             that.drawHeader(dataPoint);
-            if (that.startDateLabel) that.startDateLabel.remove();
-            if (that.endDateLabel) that.endDateLabel.remove();
+            if (that.startDateLabel) {
+                that.startDateLabel.remove();
+            }
+            if (that.endDateLabel) {
+                that.endDateLabel.remove();
+            }
             this.toFront();
             that.startDateLabel = that.drawDate(dataPoint.startDate);
             that.endDateLabel = that.drawDate(dataPoint.endDate);
             that.startDateLabel.animate({opacity:1}, 300, "easeInOut");
 
-            if (dataPoint.startDate != dataPoint.endDate){
+            if (dataPoint.startDate !== dataPoint.endDate){
                 var x1 = that.startDateLabel.getBBox().x2;
                 var x2 = that.endDateLabel.getBBox().x;
                 if (x1>x2) {
@@ -142,7 +149,9 @@ gb.ui.Timeline.include({
             var sp = this.data("startPoint");
             var ep = this.data("endPoint");
             var dataPoint = this.data("dataPoint");
-            if (that.selected) that.selected.remove();
+            if (that.selected) {
+                that.selected.remove();
+            }
             if (that.startDateLabel) {
                 that.startDateLabel.remove();
             }
@@ -190,15 +199,21 @@ gb.ui.Timeline.include({
         var headerStyle = {"font-size":"32pt","text-anchor":"start","font-family":"Source Sans Pro"};
         var subheadStyle = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
         var subhead2Style = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
-        if (this.title) this.title.remove();
+        if (this.title) {
+            this.title.remove();
+        }
         this.title = this.paper.text(this.margin, 40, dataPoint.title);
         this.title.attr(headerStyle);
 
-        if (this.subhead) this.subhead.remove();
+        if (this.subhead) {
+            this.subhead.remove();
+        }
         this.subhead = this.paper.text(this.margin, 70, dataPoint.employer);
         this.subhead.attr(subheadStyle);
 
-        if (this.location) this.location.remove();
+        if (this.location) {
+            this.location.remove();
+        }
         this.location = this.paper.text(this.margin, 94, dataPoint.location);
         this.location.attr(subhead2Style);
     },
@@ -239,7 +254,9 @@ gb.ui.Timeline.include({
         var endX = Math.floor(this.margin + ((end - this.xMin) * this.xScale));
         var line = "M" + startX + " " + this.yTrack + "L" + endX + " " + this.yTrack;
 
-        if (this.selected) this.selected.remove();
+        if (this.selected) {
+            this.selected.remove();
+        }
         line = this.paper.path(line);
         var strokeStyle = {
             "opacity":0.7,
@@ -251,19 +268,17 @@ gb.ui.Timeline.include({
     },
 
     onResizeEndHandler: function() {
-        if (this.paper)
+        if (this.paper) {
             this.paper.clear();
-
+        }
         this.resize();
     },
 
     onDataHandler: function() {
         var that = this;
         $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-        $(window).on("resize", function(){if (that.paper) that.paper.clear();});
+        $(window).on("resize", function(){if (that.paper) {that.paper.clear();}});
         this.onResizeEndHandler();
     }
-
-
 });
 

@@ -21,12 +21,10 @@ gb.ui.FullScreen.include({
         "use strict";
         this.spinner = $("#spinner");
         this.spinner.show();
-
         this.mediaHost = "//media.suayan.com/";
         this.images = [];
         this.howMany = 3;
         this.countLoaded = 0;
-
         this.initImageList();
         this.initBackground();
         console.log("init: FullScreen.");
@@ -54,7 +52,7 @@ gb.ui.FullScreen.include({
      */
     checkSpinner: function() {
         this.countLoaded++;
-        if (this.countLoaded == this.howMany) {
+        if (this.countLoaded === this.howMany) {
             this.spinner.hide();
         }
     },
@@ -65,7 +63,7 @@ gb.ui.FullScreen.include({
      */
     initImageList: function() {
         this.images = [];
-        for (var i=1;i<=this.howMany;i++) {
+        for (var i=1; i<=this.howMany; i++) {
             var numStr = gb.util.zeroFill(i,3);
             this.images.push(this.mediaHost+"images/image-"+numStr+".jpg");
         }

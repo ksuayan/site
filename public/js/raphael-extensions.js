@@ -14,7 +14,9 @@ Raphael.el.hoverInBounds = function(inFunc, outFunc) {
             y = e.offsetY || e.clientY;
 
         // Return `false` if we're still inside the element's bounds
-        if (this.isPointInside(x, y)) return false;
+        if (this.isPointInside(x, y)) {
+            return false;
+        }
         inBounds = false;
         outFunc.call(this);
     });
