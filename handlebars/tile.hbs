@@ -1,0 +1,12 @@
+<h2>{{pageTitle}}</h2>
+<h3>{{subhead}}</h3>
+<p class="description">{{description}}</p>
+{{#each body}}
+<p>{{{this}}}</p>
+{{/each}}
+
+<div class="indent">
+{{#each tech}}
+  <span class="label label-primary">{{this}}</span>
+{{/each}}
+</div>

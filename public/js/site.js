@@ -73,6 +73,54 @@ gb.Class = function(parent){
 
 
 
+this["JST"] = this["JST"] || {};
+
+this["JST"]["handlebars/tile.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n<p>";
+  stack1 = (typeof depth0 === functionType ? depth0.apply(depth0) : depth0);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</p>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "";
+  buffer += "\n  <span class=\"label label-primary\">"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "</span>\n";
+  return buffer;
+  }
+
+  buffer += "<h2>";
+  if (stack1 = helpers.pageTitle) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.pageTitle); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</h2>\n<h3>";
+  if (stack1 = helpers.subhead) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.subhead); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</h3>\n<p class=\"description\">";
+  if (stack1 = helpers.description) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.description); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.body), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n<div class=\"indent\">\n";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.tech), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>\n";
+  return buffer;
+  });
+
 
 gb.Namespace(gb, "gb.util");
 
@@ -858,9 +906,9 @@ gb.ui.Timeline.include({
         "use strict";
         this.x = 0;
         this.y = 0;
-        this.margin = 40;
+        this.margin = 70;
         this.trackHeight = 24;
-        this.yTrack = 160;
+        this.yTrack = 200;
         this.paper = null;
         this.selected = null;
         this.startDateLabel = null;
@@ -1210,8 +1258,8 @@ gb.ui.Stage.include({
      * @memberOf gb.ui.Stage
      * @static
      */
-    COLORS: ["#002A4A", "#17607D", "#FFF1CE", "#FF9311", "#E33200",
-             "#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
+    COLORS: ["#FFF1CE", "#17607D", "#002A4A", "#FF9311", "#E33200",
+             "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
              "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
 
     /**
@@ -1232,13 +1280,18 @@ gb.ui.Stage.include({
         this.contentSelector = "#"+selector+"-content";
         this.content = $("<div id='"+selector+"-content'></div>");
         this.jq.append(this.content);
+
         this.initTiles();
+        this.loadTileData();
         this.show();
+
         this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
             function(){that.rotate();});
         this.touchSurface = new gb.ui.TouchSurface( this.content[0],
             function(evt, dir, phase, swipetype, distance){
                 that.onTouchEvent(evt, dir, phase, swipetype, distance);});
+
+
         $(window).resize(function(){that.fadeOut();});
         $("#stage-next").on("click", function(){that.goToNext();});
         $("#stage-prev").on("click", function(){that.goToPrevious();});
@@ -1275,6 +1328,18 @@ gb.ui.Stage.include({
         this.resizeTiles();
     },
 
+    loadTileData: function() {
+        var that = this;
+
+        $.get( "/api/tiles", function( data ) {
+            var current = 1;
+            var template = JST["handlebars/tile.hbs"];
+            for(var i= 0, n=data.length; i<n; i++) {
+                that.tiles[current].jq.html(template(data[i]));
+                current++;
+            }
+        });
+    },
     /**
      * onTouchEvent handler
      * @param evt event object
@@ -1423,7 +1488,6 @@ gb.ui.Stage.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        console.log("stage.onResizeEndHandler");
         this.fadeOut();
         this.resizeTiles();
         this.show();
@@ -1460,7 +1524,7 @@ gb.ui.ContentManager.include({
         this.visible = true;
         this.fullscreen = new gb.ui.FullScreen();
         this.stage = new gb.ui.Stage("stage");
-        this.timeline = new gb.ui.Timeline("tile-1");
+        this.timeline = new gb.ui.Timeline("tile-0");
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
         $("#play-button").click(function(){that.toggleStage();});
         $(window).on("resizeEnd", function(){that.onResizeEndHandler();});

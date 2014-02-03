@@ -28,7 +28,7 @@ gb.ui.ContentManager.include({
         this.visible = true;
         this.fullscreen = new gb.ui.FullScreen();
         this.stage = new gb.ui.Stage("stage");
-        this.timeline = new gb.ui.Timeline("tile-1");
+        this.timeline = new gb.ui.Timeline("tile-0");
         $("#slideshow-button").click(function(){that.toggleSlideShow();});
         $("#play-button").click(function(){that.toggleStage();});
         $(window).on("resizeEnd", function(){that.onResizeEndHandler();});

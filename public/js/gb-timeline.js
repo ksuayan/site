@@ -25,9 +25,9 @@ gb.ui.Timeline.include({
         "use strict";
         this.x = 0;
         this.y = 0;
-        this.margin = 40;
+        this.margin = 70;
         this.trackHeight = 24;
-        this.yTrack = 160;
+        this.yTrack = 200;
         this.paper = null;
         this.selected = null;
         this.startDateLabel = null;

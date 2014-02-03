@@ -19,8 +19,8 @@ gb.ui.Stage.include({
      * @memberOf gb.ui.Stage
      * @static
      */
-    COLORS: ["#002A4A", "#17607D", "#FFF1CE", "#FF9311", "#E33200",
-             "#FFFFFF", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
+    COLORS: ["#FFF1CE", "#17607D", "#002A4A", "#FF9311", "#E33200",
+             "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
              "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
 
     /**
@@ -41,13 +41,18 @@ gb.ui.Stage.include({
         this.contentSelector = "#"+selector+"-content";
         this.content = $("<div id='"+selector+"-content'></div>");
         this.jq.append(this.content);
+
         this.initTiles();
+        this.loadTileData();
         this.show();
+
         this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
             function(){that.rotate();});
         this.touchSurface = new gb.ui.TouchSurface( this.content[0],
             function(evt, dir, phase, swipetype, distance){
                 that.onTouchEvent(evt, dir, phase, swipetype, distance);});
+
+
         $(window).resize(function(){that.fadeOut();});
         $("#stage-next").on("click", function(){that.goToNext();});
         $("#stage-prev").on("click", function(){that.goToPrevious();});
@@ -84,6 +89,18 @@ gb.ui.Stage.include({
         this.resizeTiles();
     },
 
+    loadTileData: function() {
+        var that = this;
+
+        $.get( "/api/tiles", function( data ) {
+            var current = 1;
+            var template = JST["handlebars/tile.hbs"];
+            for(var i= 0, n=data.length; i<n; i++) {
+                that.tiles[current].jq.html(template(data[i]));
+                current++;
+            }
+        });
+    },
     /**
      * onTouchEvent handler
      * @param evt event object
@@ -232,7 +249,6 @@ gb.ui.Stage.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        console.log("stage.onResizeEndHandler");
         this.fadeOut();
         this.resizeTiles();
         this.show();

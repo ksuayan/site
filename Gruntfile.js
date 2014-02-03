@@ -3,6 +3,19 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
+        handlebars: {
+            compile: {
+                options: {
+                    // namespace: "gb.templates",
+                    wrapped: true
+                },
+                files: {
+                    "public/js/gb-templates.js": [
+                        "handlebars/*.hbs"
+                    ]
+                }
+            }
+        },
         concat: {
             options: {
                 separator: '\n\n'
@@ -10,6 +23,7 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                       'public/js/gb.js',
+                      'public/js/gb-templates.js',
                       'public/js/gb-util.js',
                       'public/js/gb-ui.js',
                       'public/js/gb-touch-surface.js',
@@ -53,7 +67,18 @@ module.exports = function(grunt) {
                     console: true,
                     module: true,
                     document: true
-                }
+                },
+                curly: true,
+                eqeqeq: true,
+                immed: true,
+                latedef: true,
+                noarg: true,
+                sub: true,
+                boss: true,
+                eqnull: true,
+                browser: true,
+                scripturl: true,
+                laxbreak: true
             }
         },
         watch: {
@@ -75,9 +100,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.registerTask('test', ['jshint', 'qunit']);
-    grunt.registerTask('default', ['jsdoc','jshint','concat','uglify']);
+    grunt.registerTask('hb', ['handlebars']);
+    grunt.registerTask('default', ['handlebars','jsdoc','jshint','concat','uglify']);
 
 };
