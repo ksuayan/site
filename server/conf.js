@@ -3,6 +3,7 @@ var config = {
     port : 8000,
     mediaHost : "http://media.suayan.com",
     mongoURL : "mongodb://localhost/site",
+    // mongoURL : "mongodb://loader:p3kp3k!!@dharma.mongohq.com:10012/app16612948",
     defaultLocale : "en_US",
     name : 'kyo suayan',
     author : 'Kyo Suayan',

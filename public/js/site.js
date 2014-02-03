@@ -114,7 +114,7 @@ function program3(depth0,data) {
     + "</p>\n";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.body), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n<div class=\"indent\">\n";
+  buffer += "\n\n<div class=\"indent\">\n  <span class=\"label\">Tech:</span>\n";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.tech), {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</div>\n";
