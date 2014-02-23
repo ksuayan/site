@@ -21,7 +21,7 @@ var init = function () {
         dumpExceptions: false,
         showStack: false
     }));
-}
+};
 
 app.configure(init);
 

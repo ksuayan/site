@@ -13,12 +13,12 @@ var config = {
     expires: 0
 };
 
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV === "production") {
     config.port = process.env.PORT;
     config.mongoURL = process.env.MONGOHQ_URL;
     config.caching = true;
-    config.expires = 60 * 60 * 24 * 4 // 4 days
-};
+    config.expires = 60 * 60 * 24 * 4; // 4 days
+}
 
 console.log("NODE_ENV:", process.env.NODE_ENV);
 console.log("config:", config);

@@ -25,7 +25,9 @@ ViewHandler.prototype.searchDemo = function (req, res) {
 
 ViewHandler.prototype.pageEdit = function (req, res) {
     var locale = null;
-    if (req.params.locale) locale = req.params.locale;
+    if (req.params.locale) {
+        locale = req.params.locale;
+    }
     content.getTextList(locale, function (content) {
         res.render('pageEdit', {content: content, fn: ViewHandler.fn });
     });
@@ -82,7 +84,9 @@ ViewHandler.prototype.createPage = function (req, res) {
 
 ViewHandler.prototype.textList = function (req, res) {
     var locale = null;
-    if (req.params.locale) locale = req.params.locale;
+    if (req.params.locale) {
+        locale = req.params.locale;
+    }
     content.getTextList(locale, function (content) {
         res.render('textList', {content: content, fn: ViewHandler.fn });
     });

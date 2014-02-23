@@ -27,8 +27,9 @@ TimelineDB.prototype.getJobs = function(onSuccess, onError) {
     .find(query)
     .sort("-dateCreated")
     .exec(function (err, texts) {
-        if (err)
+        if (err) {
             return util.HandleError(err, onError);
+        }
         if (typeof onSuccess ==='function') {
             onSuccess(texts);
         }
@@ -38,8 +39,9 @@ TimelineDB.prototype.getJobs = function(onSuccess, onError) {
 TimelineDB.prototype.createJob = function(jobObj, onSuccess, onError) {
     var text = new this.JobModel(jobObj);
     text.save(function(err){
-        if (err)
+        if (err) {
             return util.HandleError(err, onError);
+        }
         if (typeof onSuccess ==='function') {
             onSuccess(text);
         }
@@ -51,8 +53,9 @@ TimelineDB.prototype.getJobById = function(id, onSuccess, onError) {
     this.JobModel
         .findOne(query)
         .exec(function (err, textObj) {
-            if (err)
+            if (err) {
                 return util.HandleError(err, onError);
+            }
             if (typeof onSuccess ==='function') {
                 onSuccess(textObj);
             }
@@ -63,8 +66,9 @@ TimelineDB.prototype.updateJob = function(jobObj, onSuccess, onError) {
     this.JobModel
     .findById(jobObj._id)
     .exec(function(err, found){
-        if (err)
+        if (err) {
             return util.HandleError(err, onError);
+        }
         if (found) {
             found.startDate = jobObj.startDate;
             found.endDate = jobObj.endDate;
@@ -73,8 +77,9 @@ TimelineDB.prototype.updateJob = function(jobObj, onSuccess, onError) {
             found.location = jobObj.location;
             found.body = jobObj.body;
             found.save(function(err){
-                if (err)
+                if (err) {
                     return util.HandleError(err, onError);
+                }
                 if (typeof onSuccess ==='function') {
                     onSuccess(jobObj);
                 }
@@ -89,17 +94,19 @@ TimelineDB.prototype.deleteJob = function(id, onSuccess, onError) {
     this.JobModel
     .findById(id)
     .exec(function(err, jobObj){
-        if (err)
+        if (err) {
             return util.HandleError(err, onError);
+        }
         if (jobObj){
             jobObj.remove(function(deleteError){
-                if (deleteError)
+                if (deleteError) {
                     return util.HandleError(deleteError, onError);
+                }
                 onSuccess(jobObj);
             });
         } else {
             onError({status:"error", reason: "id not found: " + id});
-        };
+        }
     });
 };
 

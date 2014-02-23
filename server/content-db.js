@@ -30,7 +30,7 @@ var Page = new Schema({
     content     : [{ type: Schema.Types.ObjectId, ref: 'text' }]
 });
 
-var Image = new Schema({
+var Pic = new Schema({
     width : {type: Number,  default: ""},
     height : {type: Number, default: ""},
     path : {type: String,   default: ""}
@@ -44,7 +44,7 @@ var TileContent = new Schema({
     pageTitle:   {type: String, default: ""},
     subhead :    {type: String, default: ""},
     body :       [String],
-    image :      [Image],
+    image :      [Pic],
     tech :       [String]
 });
 
@@ -67,7 +67,9 @@ DocumentDB.prototype.getTextList = function(locale, onSuccess, onError) {
     .find(query)
     .sort("-dateCreated")
     .exec(function (err, texts) {
-        if (err) return util.HandleError(err, onError);
+        if (err) {
+            return util.HandleError(err, onError);
+        }
         if (typeof onSuccess ==='function') {
             onSuccess(texts);
         }
@@ -79,7 +81,9 @@ DocumentDB.prototype.getTextById = function(id, onSuccess, onError) {
     this.TextModel
     .findOne(query)
     .exec(function (err, textObj) {
-        if (err) return util.HandleError(err, onError);
+        if (err) {
+            return util.HandleError(err, onError);
+        }
         if (typeof onSuccess ==='function') {
             onSuccess(textObj);
         }
@@ -90,13 +94,17 @@ DocumentDB.prototype.updateText = function(textObj, onSuccess, onError) {
     this.TextModel
     .findById(textObj._id)
     .exec(function(err, found){
-        if (err) return util.HandleError(err, onError);
+        if (err) {
+            return util.HandleError(err, onError);
+        }
         if (found) {
             found.name = textObj.name;
             found.text = textObj.text;
             found.locale = textObj.locale;
             found.save(function(err){
-                if (err) return util.HandleError(err, onError);
+                if (err) {
+                    return util.HandleError(err, onError);
+                }
                 if (typeof onSuccess ==='function') {
                     onSuccess(textObj);
                 }
@@ -118,7 +126,9 @@ DocumentDB.prototype.createText = function(textObj, onSuccess, onError) {
         } else {
             var text = new that.TextModel(textObj);
             text.save(function(err){
-                if (err) return util.HandleError(err, onError);
+                if (err) {
+                    return util.HandleError(err, onError);
+                }
                 if (typeof onSuccess ==='function') {
                    onSuccess(text);
                 }
@@ -131,15 +141,19 @@ DocumentDB.prototype.deleteText = function(id, onSuccess, onError) {
     this.TextModel
     .findById(id)
     .exec(function(err, textObj){
-        if (err) return util.HandleError(err, onError);
+        if (err) {
+            return util.HandleError(err, onError);
+        }
         if (textObj){
             textObj.remove(function(deleteError){
-                if (deleteError) return util.HandleError(deleteError, onError);
+                if (deleteError) {
+                    return util.HandleError(deleteError, onError);
+                }
                 onSuccess(textObj);
             });
         } else {
             onError({status:"error",reason: "id not found: " + id});
-        };
+        }
     });
 };
 
@@ -151,7 +165,9 @@ DocumentDB.prototype.getPageById = function(id, onSuccess, onError) {
     this.PageModel
         .findOne(query)
         .exec(function (err, pageObj) {
-            if (err) return util.HandleError(err, onError);
+            if (err) {
+                return util.HandleError(err, onError);
+            }
             if (typeof onSuccess ==='function') {
                 onSuccess(pageObj);
             }
@@ -166,7 +182,9 @@ DocumentDB.prototype.getPageText = function(page, onSuccess, onError) {
     .findOne(query)
     .populate("content")
     .exec(function (err, page) {
-        if (err) return util.HandleError(err);
+        if (err) {
+            return util.HandleError(err);
+        }
         var contentMap = that.getPageContentMap(page);
         if (!contentMap && typeof onError ==='function') {
             onError(err);
@@ -180,7 +198,9 @@ DocumentDB.prototype.getPageText = function(page, onSuccess, onError) {
 
 
 DocumentDB.prototype.getPageContentMap = function(page) {
-    if (!page || !page.content || !page.content.length) return null;
+    if (!page || !page.content || !page.content.length) {
+        return null;
+    }
     var contentMap = {};
     var contentArray = page.content;
     for (var i=0,n=contentArray.length;i<n;i++){
@@ -204,7 +224,9 @@ DocumentDB.prototype.createPage = function(pageObj, onSuccess, onError) {
         } else {
             var page = new that.PageModel(pageObj);
             page.save(function(err){
-                if (err) return util.HandleError(err, onError);
+                if (err) {
+                    return util.HandleError(err, onError);
+                }
                 if (typeof onSuccess ==='function') {
                    onSuccess(page);
                 }
@@ -217,18 +239,23 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
     this.PageModel
         .findById(pageObj._id)
         .exec(function(err, found){
-            if (err) return util.HandleError(err, onError);
+            if (err) {
+                return util.HandleError(err, onError);
+            }
             if (found) {
                 found.name = pageObj.name;
                 found.title = pageObj.title;
                 found.description = pageObj.description;
                 found.keywords = pageObj.keywords;
-                if (pageObj.content && pageObj.content.length)
+                if (pageObj.content && pageObj.content.length) {
                     found.content = pageObj.content.split("|");
-                else
+                } else {
                     found.constent = null;
+                }
                 found.save(function(err){
-                    if (err) return util.HandleError(err);
+                    if (err) {
+                        return util.HandleError(err);
+                    }
                     if (typeof onSuccess ==='function') {
                         onSuccess(pageObj);
                     }
@@ -243,15 +270,19 @@ DocumentDB.prototype.deletePage = function(id, onSuccess, onError) {
     this.PageModel
         .findById(id)
         .exec(function(err, pageObj){
-            if (err) return util.HandleError(err, onError);
+            if (err) {
+                return util.HandleError(err, onError);
+            }
             if (pageObj){
                 pageObj.remove(function(deleteError){
-                    if (deleteError) return util.HandleError(deleteError, onError);
+                    if (deleteError) {
+                        return util.HandleError(deleteError, onError);
+                    }
                     onSuccess(pageObj);
                 });
             } else {
                 onError({status:"error",reason: "id not found: " + id});
-            };
+            }
         });
 };
 
@@ -263,7 +294,9 @@ DocumentDB.prototype.getPageList = function(onSuccess, onError) {
     .sort("name")
     .populate("content")
     .exec(function (err, pages) {
-        if (err) return util.HandleError(err, onError);
+        if (err) {
+            return util.HandleError(err, onError);
+        }
         if (typeof onSuccess ==='function') {
             onSuccess(pages);
         }
@@ -273,9 +306,13 @@ DocumentDB.prototype.getPageList = function(onSuccess, onError) {
 DocumentDB.prototype.getDocuments = function(id, callback) {
     var result = null;
     var query = {};
-    if (id) query._id = id;
+    if (id) {
+        query._id = id;
+    }
     this.model.find(query, function(err,docs){
-        if (err) return util.HandleError(err);
+        if (err) {
+            return util.HandleError(err);
+        }
         if (callback && typeof callback ==='function') {
             callback(docs);
         }
@@ -298,7 +335,9 @@ DocumentDB.prototype.createTile = function(tileObj, onSuccess, onError) {
             } else {
                 var page = new that.TileModel(tileObj);
                 page.save(function(err){
-                    if (err) return util.HandleError(err, onError);
+                    if (err) {
+                        return util.HandleError(err, onError);
+                    }
                     if (typeof onSuccess ==='function') {
                         onSuccess(page);
                     }
@@ -314,7 +353,9 @@ DocumentDB.prototype.getTileList = function(onSuccess, onError) {
         .find(query)
         .sort("_id")
         .exec(function (err, pages) {
-            if (err) return util.HandleError(err, onError);
+            if (err) {
+                return util.HandleError(err, onError);
+            }
             if (typeof onSuccess ==='function') {
                 onSuccess(pages);
             }

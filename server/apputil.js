@@ -7,8 +7,9 @@ var Util = function() {
 
 Util.HandleError = function(err, onError){
     console.log(">> Error", err);
-    if (typeof onError === 'function')
+    if (typeof onError === 'function') {
         onError(err);
+    }
 };
 
 

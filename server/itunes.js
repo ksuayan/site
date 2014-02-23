@@ -52,14 +52,17 @@ var iTunesDB = function(){
     this.TrackDbModel = this.db.model('trackdbs', TrackItem);
 
     MongoClient.connect(conf.app.mongoURL, {}, function(err, db){
-        console.log("MongoDB Connected.", err);
+        if (err) {
+            console.log("MongoDB error", err);
+        }
+        console.log("MongoDB Connected.");
         that.mongodb = db;
     });
 };
 
 iTunesDB.prototype.getTrack = function(request, response) {
     var result = {status:"error"};
-    if (typeof request.params.id != 'undefined') {
+    if (typeof request.params.id !== 'undefined') {
         var query = { _id: request.params.id };
         itunesDB.TrackDbModel.find(query, {}, itunesDB.pagination, function(err, docs) {
             if (err) {
@@ -98,7 +101,7 @@ iTunesDB.prototype.searchTerm = function(request, response) {
             itunesDB.fields,
             itunesDB.pagination)
             .or([
-			    {'Name': {$regex:re}},
+                {'Name': {$regex:re}},
                 {'Artist': {$regex:re}},
                 {'Album': {$regex:re}}
             ])
