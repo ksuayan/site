@@ -194,6 +194,9 @@ $(function(){
         var startDate = new Date(this.dataPoints[0].startDate);
         var startYear = startDate.getUTCFullYear();
         var endDate = new Date(this.dataPoints[this.dataPoints.length - 1].endDate);
+        if (!endDate){
+          endDate = new Date();
+        }
         var endYear = endDate.getUTCFullYear();
 
         for (var i = startYear+1; i <= endYear; i++) {
