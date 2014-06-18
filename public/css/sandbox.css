@@ -1,0 +1,29 @@
+html {
+  background-color: #fff5bc;
+  background: url(../img/grid.gif) repeat;
+}
+body {
+  background: none;
+}
+.bg1,
+.bg2,
+.bg3 {
+  margin: 50px;
+  border: 1px solid #6393ba;
+  padding: 15px;
+}
+.bg1 {
+  background-color: #ffe670;
+  width: 600px;
+  height: 300px;
+}
+.bg2 {
+  background-color: #cfff72;
+  width: 500px;
+  height: 200px;
+}
+.bg3 {
+  background-color: #7dc9ff;
+  width: 400px;
+  height: 100px;
+}
