@@ -1,5 +1,6 @@
 .idea
 node_modules
+downloads
 doc
 public/fonts
 public/css/external
