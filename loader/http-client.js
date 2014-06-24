@@ -186,10 +186,10 @@ var run = function() {
 };
 
 /**
- * Generate a list of items to process.
+ * Loop through paths, then by hosts.
  * @returns {Array}
  */
-var generateQueue = function() {
+var generateQueueByPaths = function() {
     var queue = [];
     var hostKeys = keys(hosts),
         pathKeys = keys(paths);
@@ -203,6 +203,26 @@ var generateQueue = function() {
     }
     return queue;
 };
+
+/**
+ * Loop through hosts, then by path.
+ * @returns {Array}
+ */
+var generateQueueByHosts = function() {
+    var queue = [];
+    var hostKeys = keys(hosts),
+        pathKeys = keys(paths);
+    for (var i=0, n=hostKeys.length; i<n; i++) {
+        for(var k=0, m=pathKeys.length; k<m; k++ ) {
+            queue.push({
+                host: hostKeys[i],
+                path: pathKeys[k]
+            });
+        }
+    }
+    return queue;
+};
+
 
 /**
  * Process the current item,
@@ -228,15 +248,13 @@ var doNext = function() {
 
 
 var current = 0;
-var queue = generateQueue();
+var queue = generateQueueByHosts();
+
+console.log("--------- queue -------------");
 console.log(queue);
+console.log("-----------------------------");
 
 // run all at once:
 // run();
 
 doNext();
-
-
-
-
-
