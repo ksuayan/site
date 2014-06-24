@@ -20,7 +20,7 @@ var http = require('http'),
 var config = {
     saveEnabled: true, // enable saving to downloadDir
     queueEnabled: true, // queue generated requests
-    authEnabled: false, // global Basic auth
+    authEnabled: true, // global Basic auth
     queueInterval: 2000, // time in MS between requests
     logfile: "progress.log",
     downloadDir: './downloads/'
@@ -165,8 +165,13 @@ var process = function(item) {
         "path": groups[item.group].paths[item.path]
     };
     if (config.authEnabled) {
+
+        console.log("auth",
+            groups[item.group].hosts[item.host].username,
+            groups[item.group].hosts[item.host].password);
+
         options.authorization =
-            encodeAuth(groups[item.group].hosts[item.group].username,
+            encodeAuth(groups[item.group].hosts[item.host].username,
                 groups[item.group].hosts[item.host].password);
     }
     if (config.saveEnabled) {
