@@ -1,17 +1,29 @@
 'use strict';
 
+/**
+ * A quick and dirty NodeJS HTTP client
+ * with some basic authentication
+ * and queue processing.
+ *
+ * Loop through a list of hosts and paths
+ * then save local copies in downloads directory.
+ *
+ * @author: ksuayan@gmail.com
+ * @type {exports}
+ */
+
 var http = require('http'),
     fs = require('fs'),
     url = require('url'),
     exec = require('child_process').exec;
 
 var config = {
-    saveEnabled: false,
-    queueEnabled: true,
-    queueInterval: 2000,
+    saveEnabled: true, // enable saving to downloadDir
+    queueEnabled: true, // queue generated requests
+    authEnabled: false, // global Basic auth
+    queueInterval: 2000, // time in MS between requests
     logfile: "progress.log",
-    downloadDir: './downloads/',
-    doAuthorization: false
+    downloadDir: './downloads/'
 };
 
 var commands = {
@@ -57,6 +69,7 @@ var keys = function(o){
     return ret;
 };
 
+
 /**
  * Create download directory.
  * @type {*}
@@ -77,13 +90,21 @@ var encodeAuth = function(username, password) {
     return 'Basic ' + new Buffer(username + ':' + password).toString('base64');
 };
 
+/**
+ * Utility logger.
+ * @param statusCode
+ * @param hostKey
+ * @param pathKey
+ * @param timeMS
+ * @param message
+ */
 var logStatus = function(statusCode,hostKey,pathKey,timeMS,message) {
     console.log(hostKey+"-"+pathKey+": ["+statusCode+"] " +
         timeMS+"ms >>> "+message);
 };
 
 /**
- * process and save to downloadDir.
+ * process and save response to downloadDir.
  * @param hostKey
  * @param pathKey
  * @param options
@@ -131,13 +152,20 @@ var processWithTimingOnly = function(hostKey,pathKey,options) {
     });
 };
 
+/**
+ * Main processing call.
+ * Branch to variants.
+ *
+ * @param hostKey
+ * @param pathKey
+ */
 var process = function(hostKey,pathKey) {
     var options = {
         "host": hosts[hostKey].host,
         "port": hosts[hostKey].port,
         "path": paths[pathKey]
     };
-    if (config.doAuthorization) {
+    if (config.authEnabled) {
         options.authorization =
             encodeAuth(hosts[hostKey].username, hosts[hostKey].password);
     }
@@ -176,15 +204,22 @@ var generateQueue = function() {
     return queue;
 };
 
+/**
+ * Process the current item,
+ * increment the pointer.
+ *
+ */
 var processInterval = function() {
     if (queue[current]) {
         var item = queue[current];
         process(item.host, item.path);
         current++;
     }
-
 };
 
+/**
+ * Setup the next item in the queue.
+ */
 var doNext = function() {
     if (config.queueEnabled && current < queue.length) {
         setTimeout(processInterval, config.queueInterval);
