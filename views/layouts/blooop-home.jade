@@ -1,0 +1,13 @@
+extends ../layout
+block append css
+  link(rel="stylesheet",href="/css/chat.css")
+
+block append scripts
+  script.
+    var socketHost = "#{server}";
+  script(type="text/javascript", src=config.mediaHost+"/js/external/moment.min.js")
+  script(type="text/javascript", src=config.mediaHost+"/js/external/handlebars-v1.3.0.js")
+  script(type="text/javascript", src="/socket.io/socket.io.js")
+  script(type="text/javascript", src="/js/site.min.js")
+
+block content

@@ -30,46 +30,45 @@ gb.ui.Stage.include({
     init: function(selector) {
         "use strict";
 
-        var that = this;
         this.tiles = [];
         this.tileOffsets = [];
         this.howMany = 15;
         this.intervalMS = 15000;
         this.currentIndex = 0;
-        this.selector = selector;
-        this.jq = $("#"+selector);
-        this.contentSelector = "#"+selector+"-content";
-        this.content = $("<div id='"+selector+"-content'></div>");
-        this.jq.append(this.content);
 
-        this.initTiles();
-        this.loadTileData();
-        this.show();
+        if (selector) {
+            var that = this;
+            this.selector = selector;
+            this.jq = $("#"+selector);
+            this.contentSelector = "#"+selector+"-content";
+            this.content = $("<div id='"+selector+"-content'></div>");
+            this.jq.append(this.content);
 
-        this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
-            function(){that.rotate();});
-        this.touchSurface = new gb.ui.TouchSurface( this.content[0],
-            function(evt, dir, phase, swipetype, distance){
-                that.onTouchEvent(evt, dir, phase, swipetype, distance);});
+            this.initTiles();
+            this.loadTileData();
+            this.show();
 
+            this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
+                function(){that.rotate();});
+            this.touchSurface = new gb.ui.TouchSurface( this.content[0],
+                function(evt, dir, phase, swipetype, distance){
+                    that.onTouchEvent(evt, dir, phase, swipetype, distance);});
 
-        $(window).resize(function(){that.fadeOut();});
-        $("#stage-next").on("click", function(){that.goToNext();});
-        $("#stage-prev").on("click", function(){that.goToPrevious();});
+            $(window).resize(function(){that.fadeOut();});
+            $("#stage-next").on("click", function(){that.goToNext();});
+            $("#stage-prev").on("click", function(){that.goToPrevious();});
 
-        console.log("init: Stage.");
+            console.log("init: Stage.");
+        }
     },
 
     /**
      * @inner
      */
     initTiles: function() {
-
         this.tiles = [];
         this.tileOffsets = [];
         var colorIndex = 0;
-        var xPos = 0;
-
         for (var i=0; i<this.howMany; i++) {
             var tile = new gb.ui.Tile(this.contentSelector,
             {
@@ -78,7 +77,9 @@ gb.ui.Stage.include({
             });
             tile.jq.html("<p>Tile: "+i+"</p>");
             var el = tile.jq.get(0);
-            el.style.backgroundColor = this.COLORS[colorIndex];
+            if (el) {
+                el.style.backgroundColor = this.COLORS[colorIndex];
+            }
             this.tiles.push(tile);
             if (colorIndex > this.COLORS.length - 2) {
                 colorIndex = 0;
@@ -146,13 +147,14 @@ gb.ui.Stage.include({
         stageWidth = this.jq.width(),
         stageHeight = this.jq.height(),
         t = this.tiles;
-
         for (var i= 0,n=t.length; i<n; i++) {
             t[i].jq.width(stageWidth);
             t[i].jq.height(stageHeight);
             var el = t[i].jq.get(0);
-            el.style.top = "0px";
-            el.style.left = xPos + "px";
+            if (el) {
+                el.style.top = "0px";
+                el.style.left = xPos + "px";
+            }
             this.tileOffsets[i] = xPos;
             xPos += stageWidth;
         }

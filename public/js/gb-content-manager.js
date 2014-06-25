@@ -25,14 +25,16 @@ gb.ui.ContentManager.include({
 
         var that = this;
         this.content = $(selector);
-        this.visible = true;
-        this.fullscreen = new gb.ui.FullScreen();
-        this.stage = new gb.ui.Stage("stage");
-        this.timeline = new gb.ui.Timeline("tile-0");
-        $("#slideshow-button").click(function(){that.toggleSlideShow();});
-        $("#play-button").click(function(){that.toggleStage();});
-        $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-        console.log("init: ContentManager");
+        if (this.content.html()) {
+            this.visible = true;
+            this.fullscreen = new gb.ui.FullScreen();
+            this.stage = new gb.ui.Stage("stage");
+            this.timeline = new gb.ui.Timeline("tile-0");
+            $("#slideshow-button").click(function(){that.toggleSlideShow();});
+            $("#play-button").click(function(){that.toggleStage();});
+            $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
+            console.log("init: ContentManager");
+        }
     },
 
     /**

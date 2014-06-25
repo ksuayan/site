@@ -259,9 +259,7 @@ gb.ui.TouchSurface = new gb.Class();
  * var touchSurface = new gb.ui.TouchSurface(el, yourFunction);
  *
  */
-
 gb.ui.TouchSurface.include({
-
     /**
      * @instance
      * @param el
@@ -269,25 +267,43 @@ gb.ui.TouchSurface.include({
      */
     init: function(el, callback) {
         "use strict";
+        try {
+            var that = this;
+            this.touchSurface = el;
+            this.direction = 'none';
+            this.swipeType = 'none';
+            this.startX = null;
+            this.startY = null;
+            this.distX = null;
+            this.distY = null;
+            this.threshold = 50; //required min distance traveled to be considered swipe
+            this.restraint = 50; // maximum distance allowed at the same time in perpendicular direction
+            this.allowedTime = 500; // maximum time allowed to travel that distance
+            this.elapsedTime = null;
+            this.startTime = null;
+            this.touchHandler = callback || function(evt, dir, phase, swipetype, distance){};
 
-        var that = this;
-        this.touchSurface = el;
-        this.dir = "unknown";
-        this.swipeType = "unknown";
-        this.startX = null;
-        this.startY = null;
-        this.distX = null;
-        this.distY = null;
-        this.threshold = 150; //required min distance traveled to be considered swipe
-        this.restraint = 100; // maximum distance allowed at the same time in perpendicular direction
-        this.allowedTime = 500; // maximum time allowed to travel that distance
-        this.elapsedTime = null;
-        this.startTime = null;
-        this.touchHandler = callback || function(evt, dir, phase, swipetype, distance){};
+            this.touchSurface.addEventListener('touchstart', function(e){ that.onTouchStart(e); }, false);
+            this.touchSurface.addEventListener('touchmove', function(e){ that.onTouchMove(e); }, false);
+            this.touchSurface.addEventListener('touchend', function(e){ that.onTouchEnd(e); }, false);
+        } catch(err) {}
+    },
 
-        this.touchSurface.addEventListener('touchstart', function(e){ that.onTouchStart(e); }, false);
-        this.touchSurface.addEventListener('touchmove', function(e){ that.onTouchMove(e); }, false);
-        this.touchSurface.addEventListener('touchend', function(e){ that.onTouchEnd(e); }, false);
+    /**
+     * Unbind event listeners.
+     */
+    removeEventListeners: function() {
+        try {
+            this.touchSurface.removeEventListener('touchstart');
+            this.touchSurface.removeEventListener('touchmove');
+            this.touchSurface.removeEventListener('touchend');
+        } catch(err) {}
+    },
+
+    debug: function() {
+        console.log("----------------");
+        console.log("startX", this.startX, "startY", this.startY);
+        console.log("x", this.distX, "y", this.distY, this.axis, this.direction);
     },
 
     /**
@@ -296,14 +312,16 @@ gb.ui.TouchSurface.include({
      */
     onTouchStart: function(e) {
         var touchObj = e.changedTouches[0];
-
-        this.dir = 'none';
+        e.preventDefault();
+        this.axis = null;
+        this.direction = 'none';
         this.swipeType = 'none';
         this.startX = touchObj.pageX;
         this.startY = touchObj.pageY;
-        this.startTime = new Date().getTime(); // record time when finger first makes contact with surface
-        this.touchHandler(e, 'none', 'start', this.swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
-        e.preventDefault();
+        // record time when finger first makes contact with surface
+        this.startTime = new Date().getTime();
+        // fire callback function with params direction="none", phase="start", swipetype="none" etc
+        this.touchHandler(e, 'none', 'start', this.swipeType, 0);
     },
 
     /**
@@ -312,19 +330,29 @@ gb.ui.TouchSurface.include({
      */
     onTouchMove: function(e) {
         var touchObj = e.changedTouches[0];
-        this.distX = touchObj.pageX - this.startX; // get horizontal dist traveled by finger while in contact with surface
-        this.distY = touchObj.pageY - this.startY; // get vertical dist traveled by finger while in contact with surface
+        e.preventDefault();
 
-        if (Math.abs(this.distX) > Math.abs(this.distY)){ // if distance traveled horizontally is greater than vertically, consider this a horizontal movement
-            this.dir = (this.distX < 0)? 'left' : 'right';
-            this.touchHandler(e, this.dir, 'move', this.swipeType, this.distX); // fire callback function with params dir="left|right", phase="move", swipetype="none" etc
-        } else { // else consider this a vertical movement
-            this.dir = (this.distY < 0)? 'up' : 'down';
-            this.touchHandler(e, this.dir, 'move', this.swipeType, this.distY); // fire callback function with params dir="up|down", phase="move", swipetype="none" etc
+        // get horizontal dist traveled by finger while in contact with surface
+        this.distX = touchObj.pageX - this.startX;
+        // get vertical dist traveled by finger while in contact with surface
+        this.distY = touchObj.pageY - this.startY;
+
+        // if distance traveled horizontally is greater than vertically, consider this a horizontal movement
+        if (!this.axis) {
+            this.axis =  (Math.abs(this.distX) > Math.abs(this.distY)) ? "horizontal" : "vertical";
         }
 
-        e.preventDefault(); // prevent scrolling when inside DIV
-
+        if (this.axis === 'horizontal') {
+            this.direction = (this.distX < 0) ? 'left' : 'right';
+            // fire callback function with params direction="left|right", phase="move", swipetype="none" etc
+            this.touchHandler(e, this.direction, 'move', this.swipeType, this.distX);
+            // else consider this a vertical movement
+        } else {
+            this.direction = (this.distY < 0) ? 'up' : 'down';
+            // fire callback function with params direction="up|down", phase="move", swipetype="none" etc
+            this.touchHandler(e, this.direction, 'move', this.swipeType, this.distY);
+        }
+        // this.debug();
     },
 
     /**
@@ -332,21 +360,27 @@ gb.ui.TouchSurface.include({
      * @param e
      */
     onTouchEnd: function(e) {
-        var touchObj = e.changedTouches[0];
-        this.elapsedTime = new Date().getTime() - this.startTime; // get time elapsed
-        if (this.elapsedTime <= this.allowedTime) { // first condition for swipe met
+        e.preventDefault();
+        // get time elapsed
+
+        this.elapsedTime = new Date().getTime() - this.startTime;
+        // first condition for swipe met
+        if (this.elapsedTime <= this.allowedTime) {
+            // 2nd condition for horizontal swipe met
             if (Math.abs(this.distX) >= this.threshold &&
-                Math.abs(this.distY) <= this.restraint){ // 2nd condition for horizontal swipe met
-                this.swipeType = this.dir; // set swipeType to either "left" or "right"
+                Math.abs(this.distY) <= this.restraint){
+                // set swipeType to either "left" or "right"
+                this.swipeType = this.direction;
+                // 2nd condition for vertical swipe met
             } else if (Math.abs(this.distY) >= this.threshold &&
-                Math.abs(this.distX) <= this.restraint){ // 2nd condition for vertical swipe met
-                this.swipeType = this.dir; // set swipeType to either "top" or "down"
+                Math.abs(this.distX) <= this.restraint){
+                // set swipeType to either "top" or "down"
+                this.swipeType = this.direction;
             }
         }
-        // Fire callback function with params dir="left|right|up|down", phase="end", swipetype=dir etc:
-        var distance = (this.dir === 'left' || this.dir === 'right') ? this.distX : this.distY;
-        this.touchHandler(e, this.dir, 'end', this.swipeType, distance);
-        e.preventDefault();
+        // Fire callback function with params direction="left|right|up|down", phase="end", swipetype=direction
+        var distance = (this.direction === 'left' || this.direction === 'right') ? this.distX : this.distY;
+        this.touchHandler(e, this.direction, 'end', this.swipeType, distance);
     }
 });
 
@@ -1269,46 +1303,45 @@ gb.ui.Stage.include({
     init: function(selector) {
         "use strict";
 
-        var that = this;
         this.tiles = [];
         this.tileOffsets = [];
         this.howMany = 15;
         this.intervalMS = 15000;
         this.currentIndex = 0;
-        this.selector = selector;
-        this.jq = $("#"+selector);
-        this.contentSelector = "#"+selector+"-content";
-        this.content = $("<div id='"+selector+"-content'></div>");
-        this.jq.append(this.content);
 
-        this.initTiles();
-        this.loadTileData();
-        this.show();
+        if (selector) {
+            var that = this;
+            this.selector = selector;
+            this.jq = $("#"+selector);
+            this.contentSelector = "#"+selector+"-content";
+            this.content = $("<div id='"+selector+"-content'></div>");
+            this.jq.append(this.content);
 
-        this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
-            function(){that.rotate();});
-        this.touchSurface = new gb.ui.TouchSurface( this.content[0],
-            function(evt, dir, phase, swipetype, distance){
-                that.onTouchEvent(evt, dir, phase, swipetype, distance);});
+            this.initTiles();
+            this.loadTileData();
+            this.show();
 
+            this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
+                function(){that.rotate();});
+            this.touchSurface = new gb.ui.TouchSurface( this.content[0],
+                function(evt, dir, phase, swipetype, distance){
+                    that.onTouchEvent(evt, dir, phase, swipetype, distance);});
 
-        $(window).resize(function(){that.fadeOut();});
-        $("#stage-next").on("click", function(){that.goToNext();});
-        $("#stage-prev").on("click", function(){that.goToPrevious();});
+            $(window).resize(function(){that.fadeOut();});
+            $("#stage-next").on("click", function(){that.goToNext();});
+            $("#stage-prev").on("click", function(){that.goToPrevious();});
 
-        console.log("init: Stage.");
+            console.log("init: Stage.");
+        }
     },
 
     /**
      * @inner
      */
     initTiles: function() {
-
         this.tiles = [];
         this.tileOffsets = [];
         var colorIndex = 0;
-        var xPos = 0;
-
         for (var i=0; i<this.howMany; i++) {
             var tile = new gb.ui.Tile(this.contentSelector,
             {
@@ -1317,7 +1350,9 @@ gb.ui.Stage.include({
             });
             tile.jq.html("<p>Tile: "+i+"</p>");
             var el = tile.jq.get(0);
-            el.style.backgroundColor = this.COLORS[colorIndex];
+            if (el) {
+                el.style.backgroundColor = this.COLORS[colorIndex];
+            }
             this.tiles.push(tile);
             if (colorIndex > this.COLORS.length - 2) {
                 colorIndex = 0;
@@ -1385,13 +1420,14 @@ gb.ui.Stage.include({
         stageWidth = this.jq.width(),
         stageHeight = this.jq.height(),
         t = this.tiles;
-
         for (var i= 0,n=t.length; i<n; i++) {
             t[i].jq.width(stageWidth);
             t[i].jq.height(stageHeight);
             var el = t[i].jq.get(0);
-            el.style.top = "0px";
-            el.style.left = xPos + "px";
+            if (el) {
+                el.style.top = "0px";
+                el.style.left = xPos + "px";
+            }
             this.tileOffsets[i] = xPos;
             xPos += stageWidth;
         }
@@ -1521,14 +1557,16 @@ gb.ui.ContentManager.include({
 
         var that = this;
         this.content = $(selector);
-        this.visible = true;
-        this.fullscreen = new gb.ui.FullScreen();
-        this.stage = new gb.ui.Stage("stage");
-        this.timeline = new gb.ui.Timeline("tile-0");
-        $("#slideshow-button").click(function(){that.toggleSlideShow();});
-        $("#play-button").click(function(){that.toggleStage();});
-        $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-        console.log("init: ContentManager");
+        if (this.content.html()) {
+            this.visible = true;
+            this.fullscreen = new gb.ui.FullScreen();
+            this.stage = new gb.ui.Stage("stage");
+            this.timeline = new gb.ui.Timeline("tile-0");
+            $("#slideshow-button").click(function(){that.toggleSlideShow();});
+            $("#play-button").click(function(){that.toggleStage();});
+            $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
+            console.log("init: ContentManager");
+        }
     },
 
     /**
@@ -1599,6 +1637,79 @@ gb.ui.ContentManager.include({
     }
 });
 
+
+gb.Namespace(gb,"gb.ws.SocketClient");
+gb.ws.SocketClient = new gb.Class();
+
+gb.ws.SocketClient.include({
+
+    init: function() {
+        if (io) {
+            console.log("Init gb.ws.SocketClient.");
+            var that = this;
+            this.socket = io.connect(socketHost);
+
+            this.socket.on('connect', function(){
+                that.onConnect();
+            });
+
+            this.socket.on('updatesystem', function(source, message) {
+                that.onUpdateSystem(source, message);
+            });
+        }
+    },
+
+    appendMessage: function(timestamp, username, message) {
+        var obj = {
+            ts: moment(timestamp).fromNow(),
+            username: username,
+            message: message
+        };
+        // this.conversation.append(this.messageTemplate(obj));
+    },
+
+    onConnect: function() {
+        var that = this;
+        $.ajax({
+            url: "/api/logs",
+            dataType: "json",
+            success: function(data) {
+            }
+        });
+
+    },
+
+    onUpdateSystem: function (source, message) {
+        console.log("server", source, message);
+
+    },
+
+    emit: function(channel, message) {
+        this.socket.emit(channel, message);
+    }
+});
+
+// on page load
+$(function(){
+
+    var chatClient = new gb.ws.SocketClient();
+
+    // clicks on SEND
+//    $('#datasend').click( function() {
+//        var message = $('#data').val();
+//        $('#data').val('');
+//        // tell server to execute 'sendchat' and send along one parameter
+//        chatClient.emit('sendchat', message);
+//    });
+
+    // ENTER key
+//    $('#data').keypress(function(e) {
+//        if(e.which == 13) {
+//            $(this).blur();
+//            $('#datasend').focus().click();
+//        }
+//    });
+});
 
 $(function(){
     "use strict";

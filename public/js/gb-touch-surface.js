@@ -51,9 +51,6 @@ gb.ui.TouchSurface.include({
         } catch(err) {}
     },
 
-    /**
-     *
-     */
     debug: function() {
         console.log("----------------");
         console.log("startX", this.startX, "startY", this.startY);
