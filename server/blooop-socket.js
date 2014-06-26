@@ -1,3 +1,7 @@
+/**
+ * A socket.io server.
+ * @constructor
+ */
 
 var SocketServer = function() {
     console.log("Init SocketServer ...");
@@ -29,12 +33,16 @@ SocketServer.prototype.listen = function(server) {
         socket.on('disconnect', onDisconnect);
 
         socket.broadcast.emit('updatesystem', 'Blooop!', "You're connected to Blooop!");
-    };
 
+    };
     this.io = require('socket.io').listen(server);
     this.io.sockets.on('connection', onConnection);
 };
 
 
-var SocketServer = new SocketServer();
-module.exports = SocketServer;
+SocketServer.prototype.broadcast = function(messageObj) {
+    // console.log("broadcast", messageObj);
+    this.io.sockets.emit(messageObj.channel, messageObj.source, messageObj.message);
+};
+
+module.exports = new SocketServer();

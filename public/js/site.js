@@ -1644,17 +1644,22 @@ gb.ws.SocketClient = new gb.Class();
 gb.ws.SocketClient.include({
 
     init: function() {
+        var that = this;
         if (io) {
             console.log("Init gb.ws.SocketClient.");
-            var that = this;
             this.socket = io.connect(socketHost);
 
             this.socket.on('connect', function(){
+                console.log("Client connected.");
                 that.onConnect();
             });
 
             this.socket.on('updatesystem', function(source, message) {
                 that.onUpdateSystem(source, message);
+            });
+
+            this.socket.on('broadcast', function(source,message) {
+                console.log("broadcast", source, message);
             });
         }
     },
@@ -1665,7 +1670,6 @@ gb.ws.SocketClient.include({
             username: username,
             message: message
         };
-        // this.conversation.append(this.messageTemplate(obj));
     },
 
     onConnect: function() {
@@ -1676,12 +1680,10 @@ gb.ws.SocketClient.include({
             success: function(data) {
             }
         });
-
     },
 
     onUpdateSystem: function (source, message) {
-        console.log("server", source, message);
-
+        console.log("updatesystem", source, message);
     },
 
     emit: function(channel, message) {
@@ -1689,26 +1691,9 @@ gb.ws.SocketClient.include({
     }
 });
 
-// on page load
+
 $(function(){
-
     var chatClient = new gb.ws.SocketClient();
-
-    // clicks on SEND
-//    $('#datasend').click( function() {
-//        var message = $('#data').val();
-//        $('#data').val('');
-//        // tell server to execute 'sendchat' and send along one parameter
-//        chatClient.emit('sendchat', message);
-//    });
-
-    // ENTER key
-//    $('#data').keypress(function(e) {
-//        if(e.which == 13) {
-//            $(this).blur();
-//            $('#datasend').focus().click();
-//        }
-//    });
 });
 
 $(function(){

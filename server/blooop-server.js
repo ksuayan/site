@@ -1,4 +1,20 @@
+#!/usr/bin/env node
+
 "use strict";
+
+/**
+ * Blooop! Server is a website monitoring
+ * tool based on NodeJS, Express and Socket.io.
+ *
+ * blooop-api: REST API endpoint
+ * blooop-groups: sample server config
+ * blooop-monitor: monitoring module
+ * blooop-server: this module
+ * blooop-socket: Socket.IO server
+ * blooop-view: view layer (Jade+Handlebars)
+ * blooop-config: config for blooop-server
+ *
+ */
 
 var express = require('express'),
     http = require('http'),
@@ -8,10 +24,12 @@ var express = require('express'),
     socketServer = require("./blooop-socket"),
     conf = require('./blooop-config'),
     view = require('./blooop-view'),
-    api  = require('./blooop-api');
+    api = require('./blooop-api'),
+    monitor = require('./blooop-monitor');
 
-socketServer.listen(server);
-
+/**
+ * Initialize ExpressJS.
+ */
 var init = function () {
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'jade');
@@ -48,9 +66,17 @@ app.all("*", function (req, res, next) {
 
 app.get('/', view.home);
 
-server.listen(conf.app.port);
-
 console.log('Go to http://localhost:' + conf.app.port);
 console.log('path: ', __dirname);
+
+socketServer.listen(server);
+server.listen(conf.app.port);
+
+/**
+ * Pass in the Socket.io server
+ * into the monitor event loop.
+ */
+monitor.setSocketServer(socketServer);
+monitor.start();
 
 module.exports = app;
