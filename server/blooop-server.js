@@ -25,6 +25,7 @@ var express = require('express'),
     conf = require('./blooop-config'),
     view = require('./blooop-view'),
     api = require('./blooop-api'),
+    db = require('./blooop-content'),
     monitor = require('./blooop-monitor');
 
 /**
@@ -77,6 +78,7 @@ server.listen(conf.app.port);
  * into the monitor event loop.
  */
 monitor.setSocketServer(socketServer);
+monitor.setLogServer(db);
 monitor.start();
 
 module.exports = app;

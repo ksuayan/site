@@ -3,7 +3,7 @@ var config = require('./blooop-config'),
     moment = require('moment');
 
 var ViewHandler = function () {
-    console.log("Initialized WebView handler");
+    console.log("Initialized View handler");
 };
 
 ViewHandler.fn = {

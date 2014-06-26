@@ -2,30 +2,28 @@ var mongoose = require('mongoose'),
     conf = require('./blooop-config'),
     util = require('./apputil');
 
-var Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+var Schema = mongoose.Schema;
 
 var Log = new Schema({
-    ts: {type: Date},
-    group : {type: String, default: ""},
-    host :  {type: String, default: ""},
-    path :  {type: String, default: ""},
-    url :   {type: String, default: ""},
-    status: {type: Number},
-    elapsed :  {type: Number, default: 0}
-});
+    i: {type: Number},
+    of: {type: Number},
+    statusCode: {type: Number},
+    at: {type: Date},
+    time: {type: Number}
+}, {strict:false});
+
 
 
 var BlooopDB = function(){
-    console.log("Initialized Blooop DB.");
     this.locale = conf.app.defaultLocale;
     this.db = mongoose.createConnection(conf.app.mongoURL);
-    this.LogModel = this.db.model('log', Log);
+    this.logModel = this.db.model('log', Log);
+    console.log("Initialized Blooop DB.");
 };
 
 BlooopDB.prototype.getLogById = function(id, onSuccess, onError) {
     var query = {_id: id};
-    this.LogModel
+    this.logModel
         .findOne(query)
         .exec(function (err, logObj) {
             if (err) {
@@ -39,14 +37,14 @@ BlooopDB.prototype.getLogById = function(id, onSuccess, onError) {
 
 BlooopDB.prototype.createLog = function(logObj, onSuccess, onError) {
     var that = this;
-    this.LogModel
+    this.logModel
         .findOne({name: logObj.name})
         .exec(function(err, found){
             if (!err && found) {
                 onError({status:"error", reason:"page.name exists: "+logObj.name});
                 return;
             } else {
-                var page = new that.LogModel(logObj);
+                var page = new that.logModel(logObj);
                 page.save(function(err){
                     if (err) {
                         return util.HandleError(err, onError);
@@ -60,7 +58,7 @@ BlooopDB.prototype.createLog = function(logObj, onSuccess, onError) {
 };
 
 BlooopDB.prototype.updateLog = function(logObj, onSuccess, onError) {
-    this.LogModel
+    this.logModel
         .findById(logObj._id)
         .exec(function(err, found){
             if (err) {
@@ -82,7 +80,7 @@ BlooopDB.prototype.updateLog = function(logObj, onSuccess, onError) {
 };
 
 BlooopDB.prototype.deleteLog = function(id, onSuccess, onError) {
-    this.LogModel
+    this.logModel
         .findById(id)
         .exec(function(err, logObj){
             if (err) {
@@ -103,7 +101,7 @@ BlooopDB.prototype.deleteLog = function(id, onSuccess, onError) {
 
 BlooopDB.prototype.getLogs = function(onSuccess, onError) {
     var query = {};
-    this.LogModel
+    this.logModel
         .find(query)
         .exec(function (err, pages) {
             if (err) {
@@ -115,11 +113,9 @@ BlooopDB.prototype.getLogs = function(onSuccess, onError) {
         });
 };
 
-BlooopDB.prototype.getDocuments = function(id, callback) {
-    var query = {};
-    if (id) {
-        query._id = id;
-    }
+/* ------------- vanilla mongo calls ----------------- */
+
+BlooopDB.prototype.findQuery = function(query, callback) {
     this.model.find(query, function(err,docs){
         if (err) {
             return util.HandleError(err);
@@ -130,8 +126,12 @@ BlooopDB.prototype.getDocuments = function(id, callback) {
     });
 };
 
-BlooopDB.prototype.saveDocument = function(doc) {
-    var instance = new this.model(doc);
+/**
+ * Generic MongoDB save.
+ * @param doc
+ */
+BlooopDB.prototype.saveLogObject = function(doc) {
+    var instance = new this.logModel(doc);
     instance.save();
 };
 

@@ -67,18 +67,40 @@ var keys = function(o){
  * @returns {string}
  */
 var encodeAuth = function(username, password) {
-    return 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+    return 'Basic ' + new Buffer(username+':'+password).toString('base64');
 };
 
 var Monitor = function(){
-    console.log("Initialized Blooop Monitor.");
     this.running = null;
+    console.log("Initialized Blooop Monitor.");
 };
 
+/**
+ * Pass in the websocket server.
+ * @param socketServer
+ */
 Monitor.prototype.setSocketServer = function(socketServer) {
     console.log("Setting socketServer", socketServer);
     this.socketServer = socketServer;
 };
+
+/**
+ * Pass in Mongoose.
+ * @param logServer
+ */
+Monitor.prototype.setLogServer = function(logServer) {
+    this.logServer = logServer;
+};
+
+/**
+ * Save log entry.
+ * @param logObj
+ */
+Monitor.prototype.saveLogObject = function(logObj) {
+    if (this.logServer) {
+        this.logServer.saveLogObject(logObj);
+    }
+}
 
 /**
  * Utility logger.
@@ -98,8 +120,11 @@ Monitor.prototype.logStatus = function(logObj) {
         });
     }
 
-    console.log(logObj.item.group+"-"+logObj.item.host+"-"+logObj.item.path+
-        ": ["+logObj.statusCode+"] "+logObj.time+"ms, ");
+    this.saveLogObject(logObj);
+
+    console.log(this.current+": "+
+        logObj.item.group+"-"+logObj.item.host+"-"+logObj.item.path+
+        ": ["+logObj.statusCode+"] "+logObj.time+"ms");
 };
 
 /**
@@ -109,12 +134,10 @@ Monitor.prototype.logStatus = function(logObj) {
  * @param options
  */
 Monitor.prototype.processWithSave = function(item,options) {
-
     var that = this,
         file_name = item.group+"-"+item.host+"-"+item.path+".json",
         file = fs.createWriteStream(config.downloadDir + file_name),
         startTick = new Date().valueOf();
-
     http.get(options, function(res) {
         res.on('data', function(data) {
             file.write(data);
@@ -122,7 +145,6 @@ Monitor.prototype.processWithSave = function(item,options) {
             var endTick = new Date().valueOf(),
                 totalMS = endTick - startTick;
             file.end();
-
             that.logStatus({
                 i: that.current,
                 of: that.queue.length,
@@ -131,7 +153,6 @@ Monitor.prototype.processWithSave = function(item,options) {
                 at: endTick,
                 time: totalMS
             });
-
             if (config.queueEnabled) {
                 that.doNext();
             }
@@ -155,7 +176,6 @@ Monitor.prototype.processWithTimingOnly = function(item,options) {
         }).on('end', function() {
             var endTick = new Date().valueOf(),
                 totalMS = endTick - startTick;
-
             that.logStatus({
                 i: that.current,
                 of: that.queue.length,
@@ -165,7 +185,6 @@ Monitor.prototype.processWithTimingOnly = function(item,options) {
                 time: totalMS,
                 chunks: chunks
             });
-
             if (config.queueEnabled) {
                 that.doNext();
             }
@@ -221,10 +240,8 @@ Monitor.prototype.generateQueueByPaths = function() {
             group = groups[groupKey],
             hostKeys = keys(group.hosts),
             pathKeys = keys(group.paths);
-
         console.log("hosts:", hostKeys);
         console.log("paths:", pathKeys);
-
         for(var p=0, psize=pathKeys.length; p<psize; p++) {
             for (var h=0, hsize=hostKeys.length; h<hsize; h++) {
                 queue.push({
@@ -246,16 +263,13 @@ Monitor.prototype.generateQueueByHosts = function() {
     var queue = [];
     var groupKeys = keys(groups);
     console.log("groups:", groupKeys);
-
     for (var g=0,gsize=groupKeys.length; g<gsize; g++) {
         var groupKey = groupKeys[g],
             group = groups[groupKey],
             hostKeys = keys(group.hosts),
             pathKeys = keys(group.paths);
-
         console.log("hosts:", hostKeys);
         console.log("paths:", pathKeys);
-
         for (var h=0, hsize=hostKeys.length; h<hsize; h++) {
             for(var p=0, psize=pathKeys.length; p<psize; p++ ) {
                 queue.push({
@@ -268,7 +282,6 @@ Monitor.prototype.generateQueueByHosts = function() {
     }
     return queue;
 };
-
 
 /**
  * Process the current item,
