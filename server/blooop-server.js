@@ -66,6 +66,7 @@ app.all("*", function (req, res, next) {
 });
 
 app.get('/', view.home);
+app.get('/api/config', monitor.getConfig);
 
 console.log('Go to http://localhost:' + conf.app.port);
 console.log('path: ', __dirname);

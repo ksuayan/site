@@ -75,6 +75,103 @@ gb.Class = function(parent){
 
 this["JST"] = this["JST"] || {};
 
+Handlebars.registerPartial("gridCell", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<td id=\"grid-";
+  if (stack1 = helpers.cellName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.cellName); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">&nbsp;</td>";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("gridHeaders", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "";
+  buffer += "\n        <td class=\"head-"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "\">"
+    + escapeExpression((typeof depth0 === functionType ? depth0.apply(depth0) : depth0))
+    + "</td>\n    ";
+  return buffer;
+  }
+
+  buffer += "<thead>\n<tr>\n    <td></td>\n    ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.gridHeaders), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</tr>\n</thead>";
+  return buffer;
+  }));
+
+Handlebars.registerPartial("gridRows", Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var stack1, self=this, functionType="function", escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n  <tr>\n  <td>";
+  if (stack1 = helpers.rowName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.rowName); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n  ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.gridCells), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  </tr>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n      ";
+  stack1 = self.invokePartial(partials.gridCell, 'gridCell', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  ";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.gridRows), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  }));
+
+this["JST"]["handlebars/gridGroups.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n  <h2>";
+  if (stack1 = helpers.groupName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.groupName); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</h2>\n  <table class=\"table\">\n    ";
+  stack1 = self.invokePartial(partials.gridHeaders, 'gridHeaders', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
+  stack1 = self.invokePartial(partials.gridRows, 'gridRows', depth0, helpers, partials, data);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  </table>\n";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.gridList), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
+
 this["JST"]["handlebars/tile.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1659,9 +1756,25 @@ gb.ws.SocketClient.include({
             });
 
             this.socket.on('broadcast', function(source,message) {
-                console.log("broadcast", source, message);
+                that.updateCell(message);
+                // console.log("broadcast", source, message);
             });
         }
+    },
+
+    updateCell: function(message) {
+        var item = message.item,
+            jq = $("#grid-"+item.group+"-"+item.host+"-"+item.path);
+            jq.transition({
+                opacity: 0,
+                duration: 500
+            });
+            jq.text(message.statusCode + ": " + message.time);
+            jq.transition({
+                opacity: 1,
+                duration: 1000,
+                delay:500
+            });
     },
 
     appendMessage: function(timestamp, username, message) {
@@ -1675,10 +1788,9 @@ gb.ws.SocketClient.include({
     onConnect: function() {
         var that = this;
         $.ajax({
-            url: "/api/logs",
+            url: "/api/config",
             dataType: "json",
-            success: function(data) {
-            }
+            success: that.renderGrid
         });
     },
 
@@ -1688,12 +1800,49 @@ gb.ws.SocketClient.include({
 
     emit: function(channel, message) {
         this.socket.emit(channel, message);
+    },
+
+    renderGrid: function(data) {
+
+        var groups = data.groups, grids = [];
+
+        for (var g=0,gsize=groups.length; g<gsize; g++) {
+
+            var groupName = groups[g].name,
+                hosts = groups[g].hosts,
+                paths = groups[g].paths,
+                gridHeaders = [],
+                gridRows = [];
+
+            for (var h=0, hsize=hosts.length; h<hsize; h++) {
+                gridHeaders.push(groupName+"-"+hosts[h]);
+            }
+
+            for (var p=0, psize=paths.length; p<psize; p++) {
+                var gridCells = [];
+                for (h=0, hsize=hosts.length; h<hsize; h++) {
+                    gridCells.push({"cellName": groupName+"-"+hosts[h]+"-"+paths[p]});
+                }
+                gridRows.push({
+                    "rowName": paths[p],
+                    "gridCells": gridCells
+                });
+            }
+            grids.push({
+                "groupName": groupName,
+                "gridHeaders": gridHeaders,
+                "gridRows" : gridRows
+            });
+        }
+        var template = JST["handlebars/gridGroups.hbs"];
+        $("#grid").html(template({gridList:grids}));
     }
 });
 
-
 $(function(){
     var chatClient = new gb.ws.SocketClient();
+
+
 });
 
 $(function(){

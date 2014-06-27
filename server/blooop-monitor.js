@@ -20,7 +20,7 @@ var groups = require('./kyo-groups'),
     conf   = require('./blooop-config');
 
 var config = {
-    saveEnabled: true, // enable saving to downloadDir
+    saveEnabled: false, // enable saving to downloadDir
     queueEnabled: true, // queue generated requests
     authEnabled: false, // global Basic auth
     queueInterval: 3000, // time in MS between requests
@@ -345,5 +345,26 @@ Monitor.prototype.pause = function() {
 Monitor.prototype.continue = function() {
     this.doNext();
 };
+
+/**
+ *
+ */
+Monitor.prototype.getConfig = function(req, res) {
+
+    var groupKeys = keys(groups),
+        groupList = [];
+    for (var i= 0,n=groupKeys.length; i<n; i++) {
+        groupList.push({
+            "name": groupKeys[i],
+            "hosts": keys(groups[groupKeys[i]].hosts),
+            "paths": keys(groups[groupKeys[i]].paths)
+        });
+    }
+    var response = {
+        "groups": groupList
+    };
+    return res.send(response);
+};
+
 
 module.exports = new Monitor();
