@@ -26,4 +26,11 @@ $(function(){
         e.stopPropagation();
     });
 
+    $("#calculate").on("click", function(){
+        var text = $("#specimen").val(),
+            fScore = gb.util.fleschReadingEase(text),
+            fGrade = gb.util.fleschKincaidGradeLevel(text);
+        $("#fscore").text(fScore);
+        $("#fgrade").text(fGrade);
+    });
 });

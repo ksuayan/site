@@ -55,6 +55,56 @@ gb.util = {
     },
 
     /**
+     * Count syllables in a word.
+     * @param word
+     * @returns {*}
+     */
+    countSyllables: function(word) {
+        word = word.toLowerCase();                               //word.downcase!
+        if(word.length <= 3) { return 1; }                       //return 1 if word.length <= 3
+        word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, ''); //word.sub!(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
+        word = word.replace(/^y/, '');                           //word.sub!(/^y/, '')
+        return word.match(/[aeiouy]{1,2}/g).length;              //word.scan(/[aeiouy]{1,2}/).size
+    },
+
+    countWords: function(text) {
+        var words = text.match(/\S+/g) || [];
+        return words.length;
+    },
+
+    countSentences: function(text) {
+        var sentences = text.match(/[\.\?\!]/g) || [];
+        return sentences.length;
+    },
+
+    /**
+     * Flesch-Kincaid Test
+     * http://en.wikipedia.org/wiki/Flesch-Kincaid_Readability_Test
+     * @param text
+     * @returns {number}
+     */
+    fleschReadingEase: function(text) {
+        var totalWords = gb.util.countWords(text),
+            totalSentences = gb.util.countSentences(text),
+            totalSyllables = gb.util.countSyllables(text);
+        console.log("words:", totalWords, "sentences:", totalSentences, "syllables:", totalSyllables);
+        return 206.835 - (1.015*(totalWords/totalSentences)) - (84.6*(totalSyllables/totalWords));
+    },
+
+    /**
+     * Compute Flesch-Kincade Grade level
+     * @param text
+     * @returns {number}
+     */
+    fleschKincaidGradeLevel: function(text) {
+        var totalWords = gb.util.countWords(text),
+            totalSentences = gb.util.countSentences(text),
+            totalSyllables = gb.util.countSyllables(text);
+        console.log("words:", totalWords, "sentences:", totalSentences, "syllables:", totalSyllables);
+        return (0.39*(totalWords/totalSentences)) + (11.8*(totalSyllables/totalWords)) - 15.59;
+    },
+
+    /**
      * Throttle a function invocation.
      * @param callback {Function} the function to call.
      * @param timeoutMS {number} the number of ms to set as cap between calls.
