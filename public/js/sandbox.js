@@ -14,19 +14,20 @@ $(function(){
         e.preventDefault();
         // e.stopPropagation();
     });
-    */
 
     $("body").on("click", function(e){
         console.log("body", e.type, e.target);
-
     });
 
     $(".bg2").on("click",function(e){
         console.log("bg2", e.type, e.target);
         e.stopPropagation();
     });
+    */
 
-    $("#calculate").on("click", function(){
+    $("#calculate").on("click", function(e){
+        e.preventDefault();
+        e.stopImmediatePropagation();
         var text = $("#specimen").val(),
             fScore = gb.util.fleschReadingEase(text),
             fGrade = gb.util.fleschKincaidGradeLevel(text);

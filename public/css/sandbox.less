@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
 html {
     background-color: #fff5bc;
     background: url(../img/grid.gif) repeat; 
@@ -5,20 +7,25 @@ html {
 
 body {
     background: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+input {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 .bg1, .bg2, .bg3 {
     margin: 50px;
     border: 1px solid #6393ba;
     padding: 15px;
-
 }
 
 .bg1 {
     background-color: #ffe670;
     width: 600px;
     height: 300px;
-
 }
 
 .bg2 {
@@ -32,3 +39,9 @@ body {
     width: 400px;
     height: 100px;
 }
+
+h1, h2, h3 {
+    font-family: 'Oswald', sans-serif;
+}
+
+
