@@ -39,3 +39,8 @@ h2,
 h3 {
   font-family: 'Oswald', sans-serif;
 }
+#search-term {
+  width: 700px;
+  height: 80px;
+  font-size: 36pt;
+}

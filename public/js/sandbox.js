@@ -34,4 +34,14 @@ $(function(){
         $("#fscore").text(fScore);
         $("#fgrade").text(fGrade);
     });
+
+    var searchInput = $("#search-term");
+    searchInput.on("mouseup", function(e){
+        console.log("mouseup handler", e.type, e.target);
+        var wrapper = function() {
+            searchInput.select();
+        };
+        setTimeout(wrapper,1);
+
+    });
 });

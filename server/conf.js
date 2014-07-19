@@ -1,6 +1,6 @@
 var config = {
     host : "http://localhost",
-    port : 8000,
+    port : 9000,
     mediaHost : "http://media.suayan.com",
     mongoURL : "mongodb://localhost/site",
     // mongoURL : "mongodb://loader:p3kp3k!!@dharma.mongohq.com:10012/app16612948",
