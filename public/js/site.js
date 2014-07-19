@@ -1817,13 +1817,12 @@ gb.ws.SocketClient.include({
             jq = $("#grid-"+item.group+"-"+item.host+"-"+item.path);
             jq.transition({
                 opacity: 0,
-                duration: 500
+                duration: 3000
             });
             jq.text(message.statusCode + ": " + message.time);
             jq.transition({
                 opacity: 1,
-                duration: 1000,
-                delay:500
+                duration: 3000
             });
     },
 
