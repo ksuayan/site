@@ -5,7 +5,7 @@ gb.ws.SocketClient.include({
 
     init: function() {
         var that = this;
-        if (io) {
+        if (typeof io !== 'undefined' && io) {
             console.log("Init gb.ws.SocketClient.");
             this.socket = io.connect(socketHost);
 
