@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     conf = require('./blooop-config'),
-    util = require('./apputil');
+    util = require('../server/apputil');
 
 var Schema = mongoose.Schema;
 

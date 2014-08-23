@@ -1,5 +1,5 @@
 var content = require('./blooop-content'),
-    util = require('./apputil');
+    util = require('../server/apputil');
 
 var ApiHandler = function() {
     console.log("Initialized API handler");
