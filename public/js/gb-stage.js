@@ -19,9 +19,10 @@ gb.ui.Stage.include({
      * @memberOf gb.ui.Stage
      * @static
      */
-    COLORS: ["#FFF1CE", "#17607D", "#002A4A", "#FF9311", "#E33200",
+    COLORS: ["#17607D", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
              "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
-             "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
+             "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE",
+             "#FFF1CE"],
 
     /**
      * @param selector
@@ -32,7 +33,7 @@ gb.ui.Stage.include({
 
         this.tiles = [];
         this.tileOffsets = [];
-        this.howMany = 15;
+        this.howMany = 14;
         this.intervalMS = 15000;
         this.currentIndex = 0;
 

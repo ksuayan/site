@@ -1258,9 +1258,9 @@ gb.ui.Timeline.include({
     },
 
     drawHeader: function(dataPoint) {
-        var headerStyle = {"font-size":"32pt","text-anchor":"start","font-family":"Source Sans Pro"};
-        var subheadStyle = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
-        var subhead2Style = {"font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
+        var headerStyle = {"fill":"#fff","font-size":"32pt","text-anchor":"start","font-family":"Source Sans Pro"};
+        var subheadStyle = {"fill":"#fff","font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
+        var subhead2Style = {"fill":"#fff","font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
         if (this.title) {
             this.title.remove();
         }
@@ -1282,7 +1282,7 @@ gb.ui.Timeline.include({
 
 
     drawTicks: function() {
-        var dateStyle = { "fill":"#333","font-size":"10pt","font-family":"Source Sans Pro"};
+        var dateStyle = { "fill":"#fff","font-size":"10pt","font-family":"Source Sans Pro"};
         var startDate = new Date(this.dataPoints[0].startDate);
         var startYear = startDate.getUTCFullYear();
         var endDate = new Date(this.dataPoints[this.dataPoints.length - 1].endDate);
@@ -1297,8 +1297,8 @@ gb.ui.Timeline.include({
 
 
     drawDate: function(timestamp) {
-        var monthStyle = { "opacity": 0, "fill" : "#333", "font-size": "16pt", "font-family" : "Source Sans Pro" };
-        var yearStyle = { "opacity": 0, "fill" : "#333", "font-size": "12pt", "font-family" : "Source Sans Pro" };
+        var monthStyle = { "opacity": 0, "fill" : "#fff", "font-size": "16pt", "font-family" : "Source Sans Pro" };
+        var yearStyle = { "opacity": 0, "fill" : "#fff", "font-size": "12pt", "font-family" : "Source Sans Pro" };
         var dateXPos = Math.floor(this.margin + ((timestamp - this.xMin) * this.xScale));
         var date = new Date(timestamp);
         var monthStr = this.MONTHS[date.getUTCMonth()];
@@ -1439,9 +1439,10 @@ gb.ui.Stage.include({
      * @memberOf gb.ui.Stage
      * @static
      */
-    COLORS: ["#FFF1CE", "#17607D", "#002A4A", "#FF9311", "#E33200",
+    COLORS: ["#17607D", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
              "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
-             "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE"],
+             "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE",
+             "#FFF1CE"],
 
     /**
      * @param selector
@@ -1452,7 +1453,7 @@ gb.ui.Stage.include({
 
         this.tiles = [];
         this.tileOffsets = [];
-        this.howMany = 15;
+        this.howMany = 14;
         this.intervalMS = 15000;
         this.currentIndex = 0;
 
