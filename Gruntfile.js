@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                     'public/js/gb-util.js',
                     'public/js/gb-ui.js',
                     'public/js/gb-tile.js',
-                    'public/js/koken-main.js'],
+                    'public/js/koken/koken-main.js'],
                 dest: 'public/js/dist/koken-<%= pkg.name %>.js'
             }
         },

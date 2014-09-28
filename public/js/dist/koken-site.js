@@ -324,3 +324,7 @@ gb.ui.Tile.include({
     deactivate: function() {
     }
 });
+
+$(function(){
+    console.log("Koken Main Module loaded from node.suayan.com.");
+});
