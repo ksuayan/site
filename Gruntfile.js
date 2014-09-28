@@ -121,8 +121,6 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint', 'qunit']);
     grunt.registerTask('hb', ['handlebars']);
     grunt.registerTask('koken', ['jshint','concat:koken','uglify:koken']);
-    grunt.registerTask('default', ['handlebars','jsdoc','jshint',
-        'concat','uglify',
-        'concat:koken','uglify:koken']);
+    grunt.registerTask('default', ['handlebars','jsdoc','jshint','concat','uglify']);
 
 };
