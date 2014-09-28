@@ -39,6 +39,15 @@ module.exports = function(grunt) {
                       'public/js/gb-socket-client.js',
                       'public/js/main.js'],
                 dest: 'public/js/<%= pkg.name %>.js'
+            },
+            koken: {
+                src: [
+                    'public/js/gb.js',
+                    'public/js/gb-util.js',
+                    'public/js/gb-ui.js',
+                    'public/js/gb-tile.js',
+                    'public/js/koken-main.js'],
+                dest: 'public/js/dist/koken-<%= pkg.name %>.js'
             }
         },
         uglify: {
@@ -50,6 +59,11 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'public/js/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                }
+            },
+            koken: {
+                files: {
+                    'public/js/dist/koken-<%= pkg.name %>.min.js': ['<%= concat.koken.dest %>']
                 }
             }
         },
@@ -106,6 +120,9 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', ['jshint', 'qunit']);
     grunt.registerTask('hb', ['handlebars']);
-    grunt.registerTask('default', ['handlebars','jsdoc','jshint','concat','uglify']);
+    grunt.registerTask('koken', ['jshint','concat:koken','uglify:koken']);
+    grunt.registerTask('default', ['handlebars','jsdoc','jshint',
+        'concat','uglify',
+        'concat:koken','uglify:koken']);
 
 };

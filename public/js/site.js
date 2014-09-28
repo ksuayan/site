@@ -712,6 +712,7 @@ gb.util.TimeOutCycle = new gb.Class();
 /**
  * @fileOverview A TimeOutCycle object invokes
  * a callback every timeoutMS milliseconds.
+ *
  * @author Kyo Suayan
  * @module gb.ui.TimeOutCycle
  *

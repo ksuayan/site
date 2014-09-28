@@ -5,6 +5,6 @@ doc
 public/fonts
 public/css/external
 public/js/external
+public/js/dist
 .DS_Store
-
 *.psd
