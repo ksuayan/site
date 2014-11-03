@@ -50,7 +50,14 @@
 
 <div class="col-md-9">
   <!--Body content-->
-  <h3>You searched for: {{query}} <span class="badge">{{list.length}}</span></h3>
+  <div class="well wells-mall" ng-show="list.length">
+    <h3>You searched for: <mark>{{query}}</mark> <span class="badge">{{list.length}}</span></h3>
+  </div>
+
+  <div class="well wells-mall" ng-hide="list.length">
+    <h3>No matches.</h3>
+  </div>
+
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="item in list | limitTo: count | orderBy:orderProp">
       <strong><span class="glyphicon glyphicon-music"></span>&nbsp;{{item.Name}}</strong><br>
