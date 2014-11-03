@@ -40,7 +40,6 @@ function($scope, Track){
     $scope.count = 10;
 
     var onDataReady = function(data) {
-        console.log("list", data);
         if (data.status === "ok") {
             $scope.list = data.result;
         } else {
@@ -49,7 +48,6 @@ function($scope, Track){
     };
 
     $scope.handleKeypress = function(evt) {
-        console.log("key", evt);
         if ($scope.query.length>3) {
             Track.query({term: $scope.query}, onDataReady);
         }
