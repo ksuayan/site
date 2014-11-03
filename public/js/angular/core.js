@@ -36,7 +36,9 @@ var trackControllers = angular.module('trackControllers',[]);
 trackControllers.controller('TrackListController', ['$scope', 'Track',
 function($scope, Track){
 
+    // sort by Name
     $scope.orderProp = 'Name';
+    // show 10 at a time
     $scope.count = 10;
 
     var onDataReady = function(data) {
@@ -50,16 +52,16 @@ function($scope, Track){
     $scope.handleKeypress = function(evt) {
         if ($scope.query.length>3) {
             Track.query({term: $scope.query}, onDataReady);
+        } else {
+            $scope.list = [];
         }
     };
-
 }]);
 
 trackControllers.controller('TrackDetailsController', ['$scope', '$routeParams', 'Track',
 function($scope, $routeParams, Track){
 
     $scope.list = Track.get({term: $routeParams.term}, function(track) {
-        console.log("track", track);
         return track.result;
     });
 
