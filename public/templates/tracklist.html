@@ -1,0 +1,65 @@
+<div class="col-md-3">
+  <!--Sidebar content-->
+  <div class="well well-sm">
+  Search:<br>
+  <input ng-model="query" ng-keyup="handleKeypress($event)">
+  </div>
+
+  <div class="well well-sm">
+  Sort By:<br>
+    <label>
+      <input type="radio" ng-model="orderProp" value="Name">
+      Name
+    </label>
+    <br>
+    <label>
+      <input type="radio" ng-model="orderProp" value="Artist">
+      Artist
+    </label>
+    <br>
+    <label>
+      <input type="radio" ng-model="orderProp" value="Album">
+      Album
+    </label>
+    <br>
+    <label>
+      <input type="radio" ng-model="orderProp" value="Genre">
+      Genre
+    </label>
+  </div>
+
+  <div class="well well-sm">
+    Show:<br>
+    <label>
+      <input type="radio" ng-model="count" value="10">
+      10
+    </label>
+    <br>
+    <label>
+      <input type="radio" ng-model="count" value="20">
+      20
+    </label>
+    <br>
+    <label>
+      <input type="radio" ng-model="count" value="50">
+      50
+    </label>
+  </div>
+</div>
+
+
+<div class="col-md-9">
+  <!--Body content-->
+  <h3>You searched for: {{query}} <span class="badge">{{list.length}}</span></h3>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in list | limitTo: count | orderBy:orderProp">
+      <strong><span class="glyphicon glyphicon-music"></span>&nbsp;{{item.Name}}</strong><br>
+      <p class="list-group-item-text">
+        {{item.Album}}
+        <br>
+        {{item.Artist}}
+      </p>
+      <span class="label label-default">{{item.Genre}}</span>
+    </li>
+  </ul>
+</div>

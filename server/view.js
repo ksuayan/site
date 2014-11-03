@@ -17,6 +17,12 @@ ViewHandler.prototype.fullScreen = function (req, res) {
     });
 };
 
+ViewHandler.prototype.core = function (req, res) {
+    content.getPageText("home", function (content) {
+        res.render('layouts/core', {content: content});
+    });
+};
+
 ViewHandler.prototype.searchDemo = function (req, res) {
     content.getPageText("home", function (content) {
         res.render('layouts/search', {content: content});

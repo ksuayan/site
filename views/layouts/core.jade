@@ -1,0 +1,21 @@
+doctype html
+html(lang="en",ng-app="MainApp")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport",content="width=device-width, initial-scale=1.0")
+    meta(name="description",content=config.description)
+    meta(name="keywords",content=config.keywords)
+    meta(name="author",content=config.author)
+    title=typeof(title) !== 'undefined' ? title : "site"
+    block css
+      link(rel="stylesheet",href="/css/corelib.css")
+      link(rel="stylesheet",href="/css/main.css")
+  body
+    div#content
+      include ../includes/header
+      include ../content/demo
+    div.footer
+      block footer
+    block scripts
+      script(src="/js/dist/corelib.min.js")
+      script(src="/js/angular/core.js")

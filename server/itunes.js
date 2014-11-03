@@ -95,8 +95,11 @@ iTunesDB.prototype.getTrackList = function(request, response) {
 iTunesDB.prototype.searchTerm = function(request, response) {
     var result = {status:"error"};
     var term = request.params.term;
+    if (!term) {
+        term = "summer";
+    }
     if (term && typeof term !== 'undefined') {
-        var re = new RegExp(request.params.term, 'i');
+        var re = new RegExp(term, 'i');
 		var stream = itunesDB.TrackDbModel.find({},
             itunesDB.fields,
             itunesDB.pagination)

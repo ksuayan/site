@@ -2,8 +2,8 @@
 node_modules
 downloads
 doc
-public/fonts
 public/css/external
 public/js/external
 .DS_Store
 *.psd
+bower_components/

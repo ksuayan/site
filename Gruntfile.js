@@ -3,6 +3,15 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
+        bower_concat: {
+            all: {
+                dest: 'public/js/dist/corelib.js',
+                cssDest: 'public/css/corelib.css',
+                bowerOptions: {
+                    relative: false
+                }
+            }
+        },
         handlebars: {
             compile: {
                 options: {
@@ -65,6 +74,11 @@ module.exports = function(grunt) {
                 files: {
                     'public/js/dist/koken-<%= pkg.name %>.min.js': ['<%= concat.koken.dest %>']
                 }
+            },
+            core: {
+                files: {
+                    'public/js/dist/corelib.min.js': ['<%= bower_concat.all.dest %>']
+                }
             }
         },
         qunit: {
@@ -110,6 +124,7 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-bower-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
@@ -121,6 +136,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint', 'qunit']);
     grunt.registerTask('hb', ['handlebars']);
     grunt.registerTask('koken', ['jshint','concat:koken','uglify:koken']);
+    grunt.registerTask('core', ['bower_concat','uglify:core']);
     grunt.registerTask('default', ['handlebars','jsdoc','jshint','concat','uglify']);
 
 };

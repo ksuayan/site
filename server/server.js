@@ -49,11 +49,14 @@ app.get('/page/:page', view.pageView);
 app.get('/live',    view.live); // Backbone Editor
 app.get('/graph',   view.graph); // Raphael Graph
 app.get('/canvas',  view.canvas); // Canvas Experiments
+app.get('/search-ui', view.searchDemo);
+
+app.get('/core',    view.core);
 app.get('/transit', view.transit);
-app.get('/search',  view.searchDemo);
 app.get('/text',    view.textList);
 app.get('/edit',    view.pageEdit);
 
+app.get('/search',             itunes.searchTerm);
 app.get('/search/:term',       itunes.searchTerm);
 app.get('/multi-search/:term', itunes.searchMultiCriteria);
 app.get('/track',              itunes.getTrackList);
