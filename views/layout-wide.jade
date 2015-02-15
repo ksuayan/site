@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport",content="width=device-width, initial-scale=1.0")
+    meta(name="description",content=config.description)
+    meta(name="keywords",content=config.keywords)
+    meta(name="author",content=config.author)
+    title=typeof(title) !== 'undefined' ? title : "site"
+    block css
+      link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap.3.0.2/bootstrap.min.css")
+      link(rel="stylesheet",href=config.mediaHost+"/css/external/bootstrap.3.0.2/bootstrap-theme.min.css")
+      link(rel="stylesheet",href="/css/main.css")
+    block scripts
+      script(src=config.mediaHost+"/js/external/modernizr-2.6.1-respond-1.1.0.min.js")
+      script(src=config.mediaHost+"/js/external/jquery-1.9.1.min.js")
+      script(src=config.mediaHost+"/js/external/bootstrap.3.0.2/bootstrap.min.js")
+      script(src=config.mediaHost+"/js/external/jquery.transit.min.js")
+  body
+    include includes/header
+    block content
+    div.footer
+      block footer

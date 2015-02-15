@@ -1,0 +1,25 @@
+extends ../layout-wide
+
+block append css
+  link(rel="stylesheet",href="/css/map.css")
+
+block append scripts
+  script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U&sensor=false")
+  script(src="/js/map-paris.js")
+
+block content
+  div.row
+    div.col-lg-4
+      h1 Paris, France
+      div#panel
+        form(class="form-inline",role="form")
+          input(id="address",type="textbox",class="form-control input-sm",placeholder="Address")
+          &nbsp;
+          input(type="button",class="btn btn-sm btn-default",value="Go",onclick="codeAddress()")
+    div.col-lg-8
+      div#notes
+  div.row
+    div.col-lg-12
+      div#map-canvas
+
+

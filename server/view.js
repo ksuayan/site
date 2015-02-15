@@ -39,6 +39,10 @@ ViewHandler.prototype.pageEdit = function (req, res) {
     });
 };
 
+ViewHandler.prototype.paris = function (req, res) {
+    res.render('layouts/paris');
+};
+
 ViewHandler.prototype.live = function (req, res) {
     res.render('layouts/live');
 };
