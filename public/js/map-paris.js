@@ -123,6 +123,7 @@ gb.ui.MapDemo.include({
         this.center = "48.852968,2.349902"; // Notre Dame, Paris
         this.maxDistance = 300;
         this.locations = {};
+        this.styleHashes = {};
 
         this.geocoder = new google.maps.Geocoder();
         this.map = new google.maps.Map(
@@ -137,6 +138,7 @@ gb.ui.MapDemo.include({
         });
 
         this.initMap();
+        this.getStyleFilters(that);
     },
 
     initMap: function() {
@@ -195,12 +197,13 @@ gb.ui.MapDemo.include({
         google.maps.event.addListener(marker, 'mouseout', function() {
             infoWindow.close();
         });
+        return marker;
     },
 
     onQueryResponse: function(that, data) {
         if (data.length) {
-            var markerStyles = gb.util.getDedupedValuesByKey(data,"styleHash");
-            console.log("styles", markerStyles);
+            // var markerStyles = gb.util.getDedupedValuesByKey(data,"styleHash");
+            // console.log("styles", markerStyles);
             for (var i=0, n=data.length; i<n; i++) {
                 var item = data[i];
                 that.addLocation(item);
@@ -209,10 +212,11 @@ gb.ui.MapDemo.include({
     },
 
     addLocation: function(location) {
-        if (!this.locations[location._id]) {
+        var id = location._id;
+        if (!this.locations[id]) {
             var coords = location.loc.coordinates;
-            this.locations[location._id] = location;
-            this.createMarker(
+            this.styleHashes[id] = location.styleHash;
+            this.locations[id] = this.createMarker(
                 gb.ui.MapConfig.mapMarkerStyles[location.styleHash],
                 location.name,
                 location.description,
@@ -241,8 +245,6 @@ gb.ui.MapDemo.include({
     },
 
     codeAddress: function(that, queryStr) {
-        console.log("codeAddress...");
-
         that.geocoder.geocode({'address': queryStr}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 that.map.setCenter(results[0].geometry.location);
@@ -254,6 +256,40 @@ gb.ui.MapDemo.include({
                 console.log('Geocode was not successful for the following reason: ' + status);
             }
         });
+    },
+
+    getStyleFilters: function(that) {
+        var countChecked = function() {
+            var selected = [];
+            $("#filter-form input:checked").each(function(){
+                selected.push($(this).val());
+            });
+            // console.log("selected", selected);
+            that.filterLocationsByStyle(selected);
+        };
+
+        var filterForm = $("<form id='filter-form'></form>");
+        for (var key in gb.ui.MapConfig.mapMarkerStyles) {
+            var jq = $("<input type='checkbox'>");
+            var name = key.replace("-","");
+            jq.attr("name", "filter-"+name)
+              .attr("value", key)
+              .prop('checked', true);
+            filterForm.append(jq);
+        }
+        $("#panel").append(filterForm);
+        $("#filter-form input[type=checkbox]").on("click", countChecked);
+        countChecked();
+    },
+
+    filterLocationsByStyle: function(selected) {
+        for (var item in this.locations) {
+            if (selected.indexOf(this.styleHashes[item])>-1) {
+                this.locations[item].setMap(this.map);
+            } else {
+                this.locations[item].setMap(null);
+            }
+        }
     }
 
 });
