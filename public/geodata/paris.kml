@@ -1,0 +1,1378 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+	<Document>
+		<name>Paris City Map (Layered)</name>
+		<description><![CDATA[Sightseeing, Museums, Food, Shops and Markets]]></description>
+		<Folder>
+			<name>Sights</name>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Eiffel Tower</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.294481,48.85837,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Arc de Triomphe</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.295028,48.873792,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Tuileries Garden</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.327494,48.863492,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Pont des Arts</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.337508,48.85834200000001,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Île Saint-Louis</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.356309,48.852034,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Quai de l'Archevêché</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.351984,48.852214,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Pont Neuf</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.341325,48.85705,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Place de la Concorde</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.321236,48.865633,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Champs Elysees</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.309157,48.869275,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Stravinsky Fountain</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.351546,48.859478,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Luxembourg Gardens</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.33716,48.846222,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Jardin des Plantes</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.360959,48.843329,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Sacré-Cœur</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.343104,48.886705,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Place de l'Odéon</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.338403,48.849765000000005,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Grande Mosquée de Paris</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.355172,48.841842,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Saint-Germain-des-Prés</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.333328,48.853798,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Place Saint-Sulpice</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.333672,48.850556,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Sainte-Chapelle</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.344987,48.85542,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-3F5BA9</styleUrl>
+				<name>Cathédrale Notre-Dame de Paris</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.349902,48.852968,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Trocadéro Gardens</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.289282,48.861596,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Grand Palais</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.312454,48.866109,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Place Vendôme</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.329434,48.867447,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Bastille</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.369002,48.853082,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Panthéon</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.3464139999999816,48.846222,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Place Vendôme</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.329434200000037,48.8674469,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Canal Saint Martin</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.364361000000031,48.872564,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>Hôtel de Ville</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.3524139999999534,48.856483,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-4186F0</styleUrl>
+				<name>National Museum of the Legion of Honor &amp; Orders of Chivalry</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[2 Rue de la Légion d'Honneur, 75007 Paris, France]]></description>
+				<Point>
+					<coordinates>2.324679999999944,48.860298,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>Food and Dining</name>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Ladurée (Macarons)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.334081,48.855543,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Des Gâteaux et du Pain</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.32388,48.853866,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-A61B4A</styleUrl>
+				<name>La Pâtisserie des Rêves</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.32393,48.853655,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Fouquet (Chocolatier)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.3067,48.866907,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Du Pain et des Idées (Boulangier)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.362795,48.87125000000001,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Maison Kayser (Boulangier)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.349671,48.848961,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Au Levain du Marais (Boulangier)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.368636,48.855987,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>La Flûte Gana (Boulangier)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.397156,48.866772,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-A61B4A</styleUrl>
+				<name>Berthillon (Ice Cream)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.356703,48.851677,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Saint-Germain-des-Prés</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.333328,48.853798,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Le Valentin</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.342102,48.872315,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Martine Lambert, Ice Cream + Macarons</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.306385,48.856973,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Popelini</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.36382,48.862451,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Carl Marletti (Patisserie)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.350465,48.839325,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-A61B4A</styleUrl>
+				<name>Foyer de la Madeleine</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.324822,48.869852,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Gérard Mulot, Rue de Seine</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.336965,48.85182,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Sapporo (Ramen)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.333124,48.864432,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Gérard Mulot, Rue du Pas de la Mule</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.36735,48.856048,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Ladurée, Champs Elysées</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.303116,48.870792,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Ladurée, Rue Bonaparte</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.334081,48.855543,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Au Petit Fer à Cheval (Cafe)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[30 Rue Vieille du Temple, 75004 Paris, France]]></description>
+				<Point>
+					<coordinates>2.357606000000033,48.857468,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Au Passage (Lunch)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[1bis Passage Saint-Sébastien, 75011 Paris, France]]></description>
+				<Point>
+					<coordinates>2.36898199999996,48.861659,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>L'Avant-Comptoir (Dining)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[3 Carrefour de l'Odéon, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3388119999999617,48.852036,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Aux Deux Amis (Dining)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[45 Rue Oberkampf, 75011 Paris, France]]></description>
+				<Point>
+					<coordinates>2.371838000000025,48.864592,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Le Bistrot Paul Bert</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[18 Rue Paul Bert, 75011 Paris, France]]></description>
+				<Point>
+					<coordinates>2.38493399999993,48.852283,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Septime (Dining)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[80 Rue de Charonne, 75011 Paris, France]]></description>
+				<Point>
+					<coordinates>2.380903999999987,48.853584,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Urfa Durum (Sandwiches)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[58 Rue du Faubourg Saint-Denis, 75010 Paris, France]]></description>
+				<Point>
+					<coordinates>2.354235000000017,48.872426,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>La Palette</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[43 Rue de Seine, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3368619999999964,48.855408,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Le Baratin (Dining)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[3 Rue Jouye-Rouve, 75020 Paris, France]]></description>
+				<Point>
+					<coordinates>2.382857999999942,48.873092,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Le Verre Volé (Wine)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[67 Rue de Lancry, 75010 Paris, France]]></description>
+				<Point>
+					<coordinates>2.363514000000009,48.872843,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Jacques Genin (Caramel)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[133 Rue de Turenne, 75003 Paris, France jacquesgenin.fr]]></description>
+				<Point>
+					<coordinates>2.364594000000011,48.864462,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-A61B4A</styleUrl>
+				<name>Fromagerie Laurent Dubois</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[Buy Le Beurre Bordier Butter.]]></description>
+				<Point>
+					<coordinates>2.348410000000058,48.849686,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Eric Kayser (7e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[18 Rue du Bac, 75007 Paris, France www.maison-kayser.com]]></description>
+				<Point>
+					<coordinates>2.3282930000000306,48.8583,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Eric Kayser (6e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[10 Rue de l'Ancienne Comédie, 75006 Paris, France www.maison-kayser.com]]></description>
+				<Point>
+					<coordinates>2.338416999999936,48.853232,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Eric Kayser (1e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[4 Rue de l'Échelle, 75001 Paris, France www.maison-kayser.com]]></description>
+				<Point>
+					<coordinates>2.3341930000000275,48.863696,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Eric Kayser (2e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[16 Rue des Petits Carreaux, 75002 Paris, France www.maison-kayser.com]]></description>
+				<Point>
+					<coordinates>2.347430000000031,48.867088,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Eric Kayser (8e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[85 Boulevard Malesherbes, 75008 Paris, France www.maison-kayser.com]]></description>
+				<Point>
+					<coordinates>2.3161310000000412,48.87766,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Eric Kayser (17e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[Avenue des Ternes, 75017 Paris, France www.maison-kayser.com]]></description>
+				<Point>
+					<coordinates>2.296065999999996,48.878051,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Jacques Genin, 5e (Chocolatier)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[75005, 68 Rue Monge, 75005 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3519880000000057,48.843605,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Patrick Roger, 6e (Chocolatier)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[108 Boulevard Saint-Germain, 75006 Paris, France www.patrickroger.com]]></description>
+				<Point>
+					<coordinates>2.341894000000025,48.851848,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Patrick Roger, 16e (Chocolatier)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[45 Avenue Victor Hugo, 75016 Paris, France]]></description>
+				<Point>
+					<coordinates>2.2894770000000335,48.871308,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Patrick Roger, 6e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[24 Rue Saint-Sulpice, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3342830000000276,48.851329,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Pierre Marcolini (Marshmallows)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[Details from Google Maps89 Rue de Seine, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3370879999999943,48.852396,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Pierre Marcolini (Marshmallows)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[78 Rue du Bac, 75007 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3252310000000307,48.855171,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>L'As Du Fallafel</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[32-34 Rue des Rosiers, 75004 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3591010000000097,48.857438,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Blé Sucré</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.3768029999999953,48.850612,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Grégory Renard</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.300989999999956,48.858123,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Le Chocolat Alain Ducasse, 11e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[40 Rue de la Roquette, 75011 Paris, France]]></description>
+				<Point>
+					<coordinates>2.372180999999955,48.854481,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Le Chocolat Alain Ducasse, 6e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[26 Rue Saint-Benoît, 75006 Paris, France www.lechocolat-alainducasse.com]]></description>
+				<Point>
+					<coordinates>2.332746000000043,48.85423,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Galette Café</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.3316069999999627,48.856492,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Angelina (1e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[226 Rue de Rivoli, 75001 Paris, France]]></description>
+				<Point>
+					<coordinates>2.328446999999983,48.865039,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Angelina (7e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[108 Rue du Bac, 75007 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3237229999999727,48.853223,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Pierre Hermé (1e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[4 Rue Cambon, 75001 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3254610000000184,48.866526,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Pierre Hermé (6e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[72 Rue Bonaparte, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3328149999999823,48.851564,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Poilane, 7e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[Rue des Saints-Pères, 75007 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3300779999999577,48.854212,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Poilane, 3e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[38 Rue Debelleyme, 75003 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3641761999999744,48.8624406,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Poilane, 15e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[49 Boulevard de Grenelle, 75015 Paris, France]]></description>
+				<Point>
+					<coordinates>2.2919498999999632,48.8516603,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Poilane, 6e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[8 Rue du Cherche-Midi, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3287622000000283,48.8510444,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Lenôtre, 16e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[48 Avenue Victor Hugo, 75016 Paris, France www.lenotre.com]]></description>
+				<Point>
+					<coordinates>2.288830999999959,48.871161,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Lenôtre Bastille, 7e</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[10 Rue Saint-Antoine, 75004 Paris, Francewww.lenotre.fr]]></description>
+				<Point>
+					<coordinates>2.3668179999999666,48.853635,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Lenôtre Wagram</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[121 Avenue de Wagram, 75017 Paris, Francewww.lenotre.com]]></description>
+				<Point>
+					<coordinates>2.3010639999999967,48.882253,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Lenôtre Ecole Militaire</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[36 Avenue de la Motte-Picquet, 75007 Paris, Francewww.lenotre.com]]></description>
+				<Point>
+					<coordinates>2.306406000000038,48.85489,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Café de Flore</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[172 boulevard saint germain, 75006 Paris, France  www.cafedeflore.fr]]></description>
+				<Point>
+					<coordinates>2.3326059999999416,48.854181,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Les Deux Magots</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[6 place Saint-Germain-des-Prés, 75006 Paris, France  www.lesdeuxmagots.fr]]></description>
+				<Point>
+					<coordinates>2.333109000000036,48.854124,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Polidor</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[41 Rue Monsieur le Prince, 75006 Paris, France  www.polidor.com]]></description>
+				<Point>
+					<coordinates>2.340171000000055,48.849797,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Fromagerie Laurent Dubois</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[2 Rue de Lourmel, 75015 Paris, France  www.fromageslaurentdubois.fr]]></description>
+				<Point>
+					<coordinates>2.2923909999999523,48.850701,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-DB4436</styleUrl>
+				<name>Fromagerie Laurent Dubois</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[97 Rue Saint-Antoine, 75004 Paris, France  www.fromageslaurentdubois.fr]]></description>
+				<Point>
+					<coordinates>2.3618880000000217,48.854779,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>Art &amp; Museums</name>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Picasso National Museum</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.362417,48.859674,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Musée d'Orsay</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.326561,48.859961,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Louvre Pyramid</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.335858,48.861014,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-B7DBAB</styleUrl>
+				<name>Rodin Museum</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.315774,48.855312,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>The Centre Pompidou</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.352245,48.860642,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Hôtel des Invalides</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.31288,48.85832,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Orangerie Museum</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.322672,48.863788,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Musée Zadkine</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.334016,48.843061,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Cathédrale Notre-Dame de Paris</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.349902,48.852968,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Maison Européenne de la Photographie</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.359017,48.855164,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Palais de Tokyo</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.296467000000007,48.864211,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>National School of Fine Arts</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[14 Rue Bonaparte, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.333782000000042,48.856856,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Musée Marmottan Monet</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.2672109999999748,48.859268,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-62AF44</styleUrl>
+				<name>Fondation Louis Vuitton</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.2636850000000095,48.876694,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>Shops and Markets</name>
+			<Placemark>
+				<styleUrl>#icon-503-F8971B</styleUrl>
+				<name>Rue Cler</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.30594,48.857677,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-F8971B</styleUrl>
+				<name>Marché couvert Saint-Quentin</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.355109,48.876946,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Grim'Art</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.339044,48.853302,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-F8971B</styleUrl>
+				<name>Aligre Market</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.377734,48.849047,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-F8971B</styleUrl>
+				<name>Rue Mouffetard</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.349757,48.842134,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-F8971B</styleUrl>
+				<name>Rue Montorgueil</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.346793,48.86476,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-F8971B</styleUrl>
+				<name>Marché Président Wilson</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.296042,48.864883000000006,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-F8971B</styleUrl>
+				<name>Marché des Enfants Rouges (Ethnic)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.362015,48.862821,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>E.Dehillerin (Kitchen Eqpmt)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[18-20 Rue Coquillière, 75001 Paris, France]]></description>
+				<Point>
+					<coordinates>2.342796000000021,48.863788,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Shakespeare &amp; Company (Bookstore)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[37 Rue de la Bûcherie, 75005 Paris, France]]></description>
+				<Point>
+					<coordinates>2.347120000000018,48.852547,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Lavrut</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[52 Passage Choiseul, 75002 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3356079999999793,48.868125,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Magasin Sennelier (7e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[3 Quai Voltaire, 75007 Paris, France]]></description>
+				<Point>
+					<coordinates>2.332671000000005,48.858324,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Magasin Sennelier (6e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[4 Rue de la Grande Chaumière, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3313419999999496,48.842588,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Adam Montparnasse (Art Supplies)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[11 Boulevard Edgar Quinet, 75014 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3248859999999922,48.840868,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Rougier &amp; Plé (6e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[108 Boulevard Saint-Germain, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3420469999999796,48.851803000000004,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Rougier &amp; Plé (3e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[13-15 Boulevard des Filles du Calvaire, 75003 Paris, France]]></description>
+				<Point>
+					<coordinates>2.366536999999994,48.862598,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Passage Clouté (6e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[19 Rue Bonaparte, 75006 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3343159999999443,48.855984,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Magasin Graphigro</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[207 Boulevard Voltaire, 75011 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3897230000000036,48.852672,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Le Géant des Beaux Arts (11e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[166 Rue de la Roquette, 75011 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3850119999999606,48.858725,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<name>Le Géant des Beaux-Arts (13e)</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[15 Rue Vergniaud, 75013 Paris, France]]></description>
+				<Point>
+					<coordinates>2.346047999999996,48.829199,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-FAD199</styleUrl>
+				<name>Monoprix Rue de Bac</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[35-37 Rue du Bac, 75007 Paris, France]]></description>
+				<Point>
+					<coordinates>2.327629999999999,48.856895,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-FAD199</styleUrl>
+				<name>Monoprix</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[21 Avenue de l'Opéra, 75001 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3337940000000117,48.866439,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-FAD199</styleUrl>
+				<name>Monoprix</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[24 Boulevard des Italiens, 75009 Paris, France]]></description>
+				<Point>
+					<coordinates>2.336306000000036,48.871498,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-FAD199</styleUrl>
+				<name>Galerie Vivienne</name>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>2.3392730000000483,48.867180000000005,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-FAD199</styleUrl>
+				<name>Galeries Lafayette Haussmann</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[40 Boulevard Haussmann, 75009 Paris, Francehaussmann.galerieslafayette.com]]></description>
+				<Point>
+					<coordinates>2.3322339999999713,48.873679,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<styleUrl>#icon-503-FAD199</styleUrl>
+				<name>BHV</name>
+				<ExtendedData>
+				</ExtendedData>
+				<description><![CDATA[64 Rue de Rivoli, 75001 Paris, France]]></description>
+				<Point>
+					<coordinates>2.3532900000000154,48.857413,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Style id='icon-503-3F5BA9'>
+			<IconStyle>
+				<color>ffA95B3F</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id='icon-503-4186F0'>
+			<IconStyle>
+				<color>ffF08641</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id='icon-503-62AF44'>
+			<IconStyle>
+				<color>ff44AF62</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id='icon-503-A61B4A'>
+			<IconStyle>
+				<color>ff4A1BA6</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id='icon-503-B7DBAB'>
+			<IconStyle>
+				<color>ffABDBB7</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id='icon-503-CDDC39'>
+			<IconStyle>
+				<color>ff39DCCD</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id='icon-503-DB4436'>
+			<IconStyle>
+				<color>ff3644DB</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id='icon-503-F8971B'>
+			<IconStyle>
+				<color>ff1B97F8</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+		<Style id='icon-503-FAD199'>
+			<IconStyle>
+				<color>ff99D1FA</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+			</IconStyle>
+		</Style>
+	</Document>
+</kml>

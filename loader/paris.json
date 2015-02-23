@@ -1,0 +1,2228 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.294481,
+                    48.85837,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Eiffel Tower",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.295028,
+                    48.873792,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Arc de Triomphe",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.327494,
+                    48.863492,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Tuileries Garden",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.337508,
+                    48.85834200000001,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Pont des Arts",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.356309,
+                    48.852034,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Île Saint-Louis",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.351984,
+                    48.852214,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Quai de l'Archevêché",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.341325,
+                    48.85705,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Pont Neuf",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.321236,
+                    48.865633,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Place de la Concorde",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.309157,
+                    48.869275,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Champs Elysees",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.351546,
+                    48.859478,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Stravinsky Fountain",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.33716,
+                    48.846222,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Luxembourg Gardens",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.360959,
+                    48.843329,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Jardin des Plantes",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.343104,
+                    48.886705,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Sacré-Cœur",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.338403,
+                    48.849765000000005,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Place de l'Odéon",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.355172,
+                    48.841842,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Grande Mosquée de Paris",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.333328,
+                    48.853798,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Saint-Germain-des-Prés",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.333672,
+                    48.850556,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Place Saint-Sulpice",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.344987,
+                    48.85542,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Sainte-Chapelle",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.349902,
+                    48.852968,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Cathédrale Notre-Dame de Paris",
+                "styleUrl": "#icon-503-3F5BA9",
+                "styleHash": "6ff19c65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.289282,
+                    48.861596,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Trocadéro Gardens",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.312454,
+                    48.866109,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Grand Palais",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.329434,
+                    48.867447,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Place Vendôme",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.369002,
+                    48.853082,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Bastille",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3464139999999816,
+                    48.846222,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Panthéon",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.329434200000037,
+                    48.8674469,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Place Vendôme",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.364361000000031,
+                    48.872564,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Canal Saint Martin",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3524139999999534,
+                    48.856483,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Hôtel de Ville",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.324679999999944,
+                    48.860298,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "National Museum of the Legion of Honor & Orders of Chivalry",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "583cb885",
+                "description": "2 Rue de la Légion d'Honneur, 75007 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.334081,
+                    48.855543,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Ladurée (Macarons)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.32388,
+                    48.853866,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Des Gâteaux et du Pain",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.32393,
+                    48.853655,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "La Pâtisserie des Rêves",
+                "styleUrl": "#icon-503-A61B4A",
+                "styleHash": "aea67c5"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3067,
+                    48.866907,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Fouquet (Chocolatier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.362795,
+                    48.87125000000001,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Du Pain et des Idées (Boulangier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.349671,
+                    48.848961,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Maison Kayser (Boulangier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.368636,
+                    48.855987,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Au Levain du Marais (Boulangier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.397156,
+                    48.866772,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "La Flûte Gana (Boulangier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.356703,
+                    48.851677,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Berthillon (Ice Cream)",
+                "styleUrl": "#icon-503-A61B4A",
+                "styleHash": "aea67c5"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.333328,
+                    48.853798,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Saint-Germain-des-Prés",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.342102,
+                    48.872315,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Le Valentin",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.306385,
+                    48.856973,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Martine Lambert, Ice Cream + Macarons",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.36382,
+                    48.862451,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Popelini",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.350465,
+                    48.839325,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Carl Marletti (Patisserie)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.324822,
+                    48.869852,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Foyer de la Madeleine",
+                "styleUrl": "#icon-503-A61B4A",
+                "styleHash": "aea67c5"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.336965,
+                    48.85182,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Gérard Mulot, Rue de Seine",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.333124,
+                    48.864432,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Sapporo (Ramen)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.36735,
+                    48.856048,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Gérard Mulot, Rue du Pas de la Mule",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.303116,
+                    48.870792,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Ladurée, Champs Elysées",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.334081,
+                    48.855543,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Ladurée, Rue Bonaparte",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.357606000000033,
+                    48.857468,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Au Petit Fer à Cheval (Cafe)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "30 Rue Vieille du Temple, 75004 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.36898199999996,
+                    48.861659,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Au Passage (Lunch)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "1bis Passage Saint-Sébastien, 75011 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3388119999999617,
+                    48.852036,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "L'Avant-Comptoir (Dining)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "3 Carrefour de l'Odéon, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.371838000000025,
+                    48.864592,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Aux Deux Amis (Dining)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "45 Rue Oberkampf, 75011 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.38493399999993,
+                    48.852283,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Le Bistrot Paul Bert",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "18 Rue Paul Bert, 75011 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.380903999999987,
+                    48.853584,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Septime (Dining)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "80 Rue de Charonne, 75011 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.354235000000017,
+                    48.872426,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Urfa Durum (Sandwiches)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "58 Rue du Faubourg Saint-Denis, 75010 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3368619999999964,
+                    48.855408,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "La Palette",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "43 Rue de Seine, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.382857999999942,
+                    48.873092,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Le Baratin (Dining)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "3 Rue Jouye-Rouve, 75020 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.363514000000009,
+                    48.872843,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Le Verre Volé (Wine)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "67 Rue de Lancry, 75010 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.364594000000011,
+                    48.864462,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Jacques Genin (Caramel)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "133 Rue de Turenne, 75003 Paris, France jacquesgenin.fr"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.348410000000058,
+                    48.849686,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Fromagerie Laurent Dubois",
+                "styleUrl": "#icon-503-A61B4A",
+                "styleHash": "aea67c5",
+                "description": "Buy Le Beurre Bordier Butter."
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3282930000000306,
+                    48.8583,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Eric Kayser (7e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "18 Rue du Bac, 75007 Paris, France www.maison-kayser.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.338416999999936,
+                    48.853232,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Eric Kayser (6e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "10 Rue de l'Ancienne Comédie, 75006 Paris, France www.maison-kayser.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3341930000000275,
+                    48.863696,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Eric Kayser (1e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "4 Rue de l'Échelle, 75001 Paris, France www.maison-kayser.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.347430000000031,
+                    48.867088,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Eric Kayser (2e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "16 Rue des Petits Carreaux, 75002 Paris, France www.maison-kayser.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3161310000000412,
+                    48.87766,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Eric Kayser (8e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "85 Boulevard Malesherbes, 75008 Paris, France www.maison-kayser.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.296065999999996,
+                    48.878051,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Eric Kayser (17e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "Avenue des Ternes, 75017 Paris, France www.maison-kayser.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3519880000000057,
+                    48.843605,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Jacques Genin, 5e (Chocolatier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "75005, 68 Rue Monge, 75005 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.341894000000025,
+                    48.851848,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Patrick Roger, 6e (Chocolatier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "108 Boulevard Saint-Germain, 75006 Paris, France www.patrickroger.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.2894770000000335,
+                    48.871308,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Patrick Roger, 16e (Chocolatier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "45 Avenue Victor Hugo, 75016 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3342830000000276,
+                    48.851329,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Patrick Roger, 6e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "24 Rue Saint-Sulpice, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3370879999999943,
+                    48.852396,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Pierre Marcolini (Marshmallows)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "Details from Google Maps89 Rue de Seine, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3252310000000307,
+                    48.855171,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Pierre Marcolini (Marshmallows)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "78 Rue du Bac, 75007 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3591010000000097,
+                    48.857438,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "L'As Du Fallafel",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "32-34 Rue des Rosiers, 75004 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3768029999999953,
+                    48.850612,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Blé Sucré",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.300989999999956,
+                    48.858123,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Grégory Renard",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.372180999999955,
+                    48.854481,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Le Chocolat Alain Ducasse, 11e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "40 Rue de la Roquette, 75011 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.332746000000043,
+                    48.85423,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Le Chocolat Alain Ducasse, 6e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "26 Rue Saint-Benoît, 75006 Paris, France www.lechocolat-alainducasse.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3316069999999627,
+                    48.856492,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Galette Café",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.328446999999983,
+                    48.865039,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Angelina (1e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "226 Rue de Rivoli, 75001 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3237229999999727,
+                    48.853223,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Angelina (7e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "108 Rue du Bac, 75007 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3254610000000184,
+                    48.866526,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Pierre Hermé (1e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "4 Rue Cambon, 75001 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3328149999999823,
+                    48.851564,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Pierre Hermé (6e)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "72 Rue Bonaparte, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3300779999999577,
+                    48.854212,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Poilane, 7e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "Rue des Saints-Pères, 75007 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3641761999999744,
+                    48.8624406,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Poilane, 3e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "38 Rue Debelleyme, 75003 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.2919498999999632,
+                    48.8516603,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Poilane, 15e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "49 Boulevard de Grenelle, 75015 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3287622000000283,
+                    48.8510444,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Poilane, 6e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "8 Rue du Cherche-Midi, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.288830999999959,
+                    48.871161,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Lenôtre, 16e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "48 Avenue Victor Hugo, 75016 Paris, France www.lenotre.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3668179999999666,
+                    48.853635,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Lenôtre Bastille, 7e",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "10 Rue Saint-Antoine, 75004 Paris, Francewww.lenotre.fr"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3010639999999967,
+                    48.882253,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Lenôtre Wagram",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "121 Avenue de Wagram, 75017 Paris, Francewww.lenotre.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.306406000000038,
+                    48.85489,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Lenôtre Ecole Militaire",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "36 Avenue de la Motte-Picquet, 75007 Paris, Francewww.lenotre.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3326059999999416,
+                    48.854181,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Café de Flore",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "172 boulevard saint germain, 75006 Paris, France  www.cafedeflore.fr"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.333109000000036,
+                    48.854124,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Les Deux Magots",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "6 place Saint-Germain-des-Prés, 75006 Paris, France  www.lesdeuxmagots.fr"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.340171000000055,
+                    48.849797,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Polidor",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "41 Rue Monsieur le Prince, 75006 Paris, France  www.polidor.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.2923909999999523,
+                    48.850701,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Fromagerie Laurent Dubois",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "2 Rue de Lourmel, 75015 Paris, France  www.fromageslaurentdubois.fr"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3618880000000217,
+                    48.854779,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Fromagerie Laurent Dubois",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "328c7205",
+                "description": "97 Rue Saint-Antoine, 75004 Paris, France  www.fromageslaurentdubois.fr"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.362417,
+                    48.859674,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Picasso National Museum",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.326561,
+                    48.859961,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Musée d'Orsay",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.335858,
+                    48.861014,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Louvre Pyramid",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.315774,
+                    48.855312,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Rodin Museum",
+                "styleUrl": "#icon-503-B7DBAB",
+                "styleHash": "4f0e2a65"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.352245,
+                    48.860642,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "The Centre Pompidou",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.31288,
+                    48.85832,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Hôtel des Invalides",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.322672,
+                    48.863788,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Orangerie Museum",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.334016,
+                    48.843061,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Musée Zadkine",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.349902,
+                    48.852968,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Cathédrale Notre-Dame de Paris",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.359017,
+                    48.855164,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Maison Européenne de la Photographie",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.296467000000007,
+                    48.864211,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Palais de Tokyo",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.333782000000042,
+                    48.856856,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "National School of Fine Arts",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b",
+                "description": "14 Rue Bonaparte, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.2672109999999748,
+                    48.859268,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Musée Marmottan Monet",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.2636850000000095,
+                    48.876694,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Fondation Louis Vuitton",
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-7eeb9d7b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.30594,
+                    48.857677,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Rue Cler",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "-65e436fb"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.355109,
+                    48.876946,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Marché couvert Saint-Quentin",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "-65e436fb"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.339044,
+                    48.853302,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Grim'Art",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.377734,
+                    48.849047,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Aligre Market",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "-65e436fb"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.349757,
+                    48.842134,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Rue Mouffetard",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "-65e436fb"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.346793,
+                    48.86476,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Rue Montorgueil",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "-65e436fb"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.296042,
+                    48.864883000000006,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Marché Président Wilson",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "-65e436fb"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.362015,
+                    48.862821,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Marché des Enfants Rouges (Ethnic)",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "-65e436fb"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.342796000000021,
+                    48.863788,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "E.Dehillerin (Kitchen Eqpmt)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "18-20 Rue Coquillière, 75001 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.347120000000018,
+                    48.852547,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Shakespeare & Company (Bookstore)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "37 Rue de la Bûcherie, 75005 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3356079999999793,
+                    48.868125,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Lavrut",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "52 Passage Choiseul, 75002 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.332671000000005,
+                    48.858324,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Magasin Sennelier (7e)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "3 Quai Voltaire, 75007 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3313419999999496,
+                    48.842588,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Magasin Sennelier (6e)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "4 Rue de la Grande Chaumière, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3248859999999922,
+                    48.840868,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Adam Montparnasse (Art Supplies)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "11 Boulevard Edgar Quinet, 75014 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3420469999999796,
+                    48.851803000000004,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Rougier & Plé (6e)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "108 Boulevard Saint-Germain, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.366536999999994,
+                    48.862598,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Rougier & Plé (3e)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "13-15 Boulevard des Filles du Calvaire, 75003 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3343159999999443,
+                    48.855984,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Passage Clouté (6e)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "19 Rue Bonaparte, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3897230000000036,
+                    48.852672,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Magasin Graphigro",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "207 Boulevard Voltaire, 75011 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3850119999999606,
+                    48.858725,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Le Géant des Beaux Arts (11e)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "166 Rue de la Roquette, 75011 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.346047999999996,
+                    48.829199,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Le Géant des Beaux-Arts (13e)",
+                "styleUrl": "#icon-503-CDDC39",
+                "styleHash": "-279282db",
+                "description": "15 Rue Vergniaud, 75013 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.327629999999999,
+                    48.856895,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Monoprix Rue de Bac",
+                "styleUrl": "#icon-503-FAD199",
+                "styleHash": "-3477199b",
+                "description": "35-37 Rue du Bac, 75007 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3337940000000117,
+                    48.866439,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Monoprix",
+                "styleUrl": "#icon-503-FAD199",
+                "styleHash": "-3477199b",
+                "description": "21 Avenue de l'Opéra, 75001 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.336306000000036,
+                    48.871498,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Monoprix",
+                "styleUrl": "#icon-503-FAD199",
+                "styleHash": "-3477199b",
+                "description": "24 Boulevard des Italiens, 75009 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3392730000000483,
+                    48.867180000000005,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Galerie Vivienne",
+                "styleUrl": "#icon-503-FAD199",
+                "styleHash": "-3477199b"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3322339999999713,
+                    48.873679,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Galeries Lafayette Haussmann",
+                "styleUrl": "#icon-503-FAD199",
+                "styleHash": "-3477199b",
+                "description": "40 Boulevard Haussmann, 75009 Paris, Francehaussmann.galerieslafayette.com"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3532900000000154,
+                    48.857413,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "BHV",
+                "styleUrl": "#icon-503-FAD199",
+                "styleHash": "-3477199b",
+                "description": "64 Rue de Rivoli, 75001 Paris, France"
+            }
+        }
+    ]
+}

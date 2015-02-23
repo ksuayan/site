@@ -1,85 +1,263 @@
-/**
- *
- * Paris Map by Kyo Suayan
- *
- *
- */
+gb.Namespace(gb,"gb.ui.MapDemo");
+gb.ui.MapDemo = new gb.Class();
 
-var mapStyles = [
+gb.ui.MapConfig = {
+    mapPath: "/img/map/",
+    mapStyles: [
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+                { "color": "#4875b7" },
+                { "lightness": 13 }
+            ]
+        },{
+            "featureType": "water"  },{
+            "elementType": "labels.text.fill",
+            "stylers": [
+                { "color": "#333333" }
+            ]
+        },
+        {
+            "featureType": "landscape.natural.terrain",
+            "stylers": [
+                { "hue": "#c3ff00" },
+                { "saturation": -48 },
+                { "lightness": -51 }
+            ]
+        },{
+            "featureType": "road.highway",
+            "stylers": [
+                { "hue": "#ff6e00" },
+                { "lightness": -1 },
+                { "saturation": 13 }
+            ]
+        },{
+            "featureType": "road.local",
+            "stylers": [
+                { "saturation": 21 },
+                { "color": "#95cdcf" },
+                { "lightness": 13 }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "labels.text",
+            "stylers": [
+                { "color": "#fff" }
+            ]
+        },
+        {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [
+                { "hue": "#ff8000" },
+                { "color": "#e8be86" }
+            ]
+        }
+    ],
+    mapOptions: {
+        center: new google.maps.LatLng(48.852968,2.349902),
+        zoom: 18,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DEFAULT,
+            mapTypeIds: [
+                google.maps.MapTypeId.ROADMAP,
+                google.maps.MapTypeId.TERRAIN
+            ]
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+        }
+    }
+};
+
+gb.ui.MapConfig.mapMarkers = [
     {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [
-            { "color": "#4875b7" },
-            { "lightness": 13 }
-        ]
-    },{
-        "featureType": "water"  },{
-        "elementType": "labels.text.fill",
-        "stylers": [
-            { "color": "#333333" }
-        ]
+        url: gb.ui.MapConfig.mapPath + "pin-blue-solid-2.png",
+        size: new google.maps.Size(34, 47),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(18, 47)
     },
     {
-        "featureType": "landscape.natural.terrain",
-        "stylers": [
-            { "hue": "#c3ff00" },
-            { "saturation": -48 },
-            { "lightness": -51 }
-        ]
-    },{
-        "featureType": "road.highway",
-        "stylers": [
-            { "hue": "#ff6e00" },
-            { "lightness": -1 },
-            { "saturation": 13 }
-        ]
-    },{
-        "featureType": "road.local",
-        "stylers": [
-            { "saturation": 21 },
-            { "color": "#95cdcf" },
-            { "lightness": 13 }
-        ]
+        url: gb.ui.MapConfig.mapPath + "pin-red-solid-2.png",
+        size: new google.maps.Size(34, 47),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(18, 47)
     },
     {
-        "featureType": "road.local",
-        "elementType": "labels.text",
-        "stylers": [
-            { "color": "#fff" }
-        ]
+        url: gb.ui.MapConfig.mapPath + "pin-green-solid-2.png",
+        size: new google.maps.Size(34, 47),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(18, 47)
     },
     {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [
-            { "hue": "#ff8000" },
-            { "color": "#e8be86" }
-        ]
+        url: gb.ui.MapConfig.mapPath + "pin-yellow-solid-2.png",
+        size: new google.maps.Size(34, 47),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(18, 47)
     }
 ];
 
-var mapOptions = {
-    center: new google.maps.LatLng(48.852968,2.349902),
-    zoom: 14,
-    // mapTypeId: google.maps.MapTypeId.ROADMAP,
-    // mapTypeId: google.maps.MapTypeId.SATELLITE,
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-        style: google.maps.MapTypeControlStyle.DEFAULT,
-        mapTypeIds: [
-            google.maps.MapTypeId.ROADMAP,
-            google.maps.MapTypeId.TERRAIN
-        ]
-    },
-    zoomControl: true,
-    zoomControlOptions: {
-        style: google.maps.ZoomControlStyle.SMALL
-    }
-
+gb.ui.MapConfig.mapMarkerStyles = {
+    "-65e436fb": gb.ui.MapConfig.mapMarkers[0],
+    "328c7205": gb.ui.MapConfig.mapMarkers[1],
+    "-7eeb9d7b": gb.ui.MapConfig.mapMarkers[2],
+    "6ff19c65": gb.ui.MapConfig.mapMarkers[3],
+    "4f0e2a65": gb.ui.MapConfig.mapMarkers[0],
+    "583cb885": gb.ui.MapConfig.mapMarkers[2],
+    "aea67c5": gb.ui.MapConfig.mapMarkers[3],
+    "-3477199b": gb.ui.MapConfig.mapMarkers[0],
+    "-279282db": gb.ui.MapConfig.mapMarkers[1]
 };
 
-var positions = [];
+gb.ui.MapDemo.include({
+
+
+    init: function(window, divID, formID) {
+        var that = this;
+
+
+        this.center = "48.852968,2.349902"; // Notre Dame, Paris
+        this.maxDistance = 300;
+        this.locations = {};
+
+        this.geocoder = new google.maps.Geocoder();
+        this.map = new google.maps.Map(
+            document.getElementById(divID),
+            gb.ui.MapConfig.mapOptions);
+        this.map.setOptions({styles: gb.ui.MapConfig.mapStyles});
+
+        this.geocodeButton = $("#"+formID+" #go");
+        this.geocodeButton.on("click", function(evt){
+            var value = $("#"+formID+" #address").val();
+            that.codeAddress(that, value);
+        });
+
+        this.initMap();
+    },
+
+    initMap: function() {
+        var that = this;
+        google.maps.event.addListener(that.map, 'bounds_changed', function() {
+
+            console.log("bounds_changed...");
+
+            var bounds = that.map.getBounds(),
+                neLatLng = bounds.getNorthEast(),
+                swLatLng = bounds.getSouthWest(),
+                neLatLngStr = neLatLng.lat() + "," + neLatLng.lng(),
+                swLatLngStr = swLatLng.lat() + "," + swLatLng.lng();
+            that.queryMarkersWithin(swLatLngStr, neLatLngStr);
+        });
+
+        google.maps.event.addListener(that.map, 'click', function(event) {
+            var latLng = event.latLng;
+            center = latLng.lat()+","+latLng.lng();
+            console.log("click", center, maxDistance);
+            that.queryMarkersNearPoint(that.center, that.maxDistance);
+        });
+
+        google.maps.event.addListener( that.map, 'maptypeid_changed', function() {
+            console.log("type changed", that.map.getMapTypeId());
+        });
+    },
+
+    createInfoWindow: function(name, description) {
+        var contentString = '<div id="content">'+
+            '<h2 id="firstHeading" class="firstHeading">'+name+'</h2>'+
+            '<div id="bodyContent">'+description+'</div>'+
+            '</div>';
+        return new google.maps.InfoWindow({
+            content: contentString
+        });
+    },
+
+    createMarker: function(icon, name, desc, lat, lng) {
+        // console.log(">> loc", name, desc, lat, lng);
+        var that = this,
+            latLng = new google.maps.LatLng(lat,lng),
+            marker = new google.maps.Marker({
+                position: latLng,
+                map: this.map,
+                icon: icon,
+                title: name,
+                animation: google.maps.Animation.DROP
+            }),
+            infoWindow = this.createInfoWindow(name, desc);
+
+        google.maps.event.addListener(marker, 'mouseover', function() {
+            infoWindow.open(that.map, marker);
+        });
+
+        google.maps.event.addListener(marker, 'mouseout', function() {
+            infoWindow.close();
+        });
+    },
+
+    onQueryResponse: function(that, data) {
+        if (data.length) {
+            var markerStyles = gb.util.getDedupedValuesByKey(data,"styleHash");
+            console.log("styles", markerStyles);
+            for (var i=0, n=data.length; i<n; i++) {
+                var item = data[i];
+                that.addLocation(item);
+            }
+        }
+    },
+
+    addLocation: function(location) {
+        if (!this.locations[location._id]) {
+            var coords = location.loc.coordinates;
+            this.locations[location._id] = location;
+            this.createMarker(
+                gb.ui.MapConfig.mapMarkerStyles[location.styleHash],
+                location.name,
+                location.description,
+                coords[0],
+                coords[1]);
+        }
+    },
+
+    queryMarkersNearPoint: function(ctr, dist) {
+        var that = this;
+        $.ajax({
+            url: "/api/loc/near/"+ctr+"/"+dist
+        }).success(function(data){
+            that.onQueryResponse(that, data);
+        });
+    },
+
+    queryMarkersWithin: function(swLatLng, neLatLng) {
+        var that = this;
+        console.log("/api/loc/within/"+swLatLng+"/"+neLatLng);
+        $.ajax({
+            url: "/api/loc/within/"+swLatLng+"/"+neLatLng
+        }).success(function(data){
+            that.onQueryResponse(that, data);
+        });
+    },
+
+    codeAddress: function(that, queryStr) {
+        console.log("codeAddress...");
+
+        that.geocoder.geocode({'address': queryStr}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                that.map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: that.map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+
+});
+
 
 
 var placeMarkerByAddress = function(addressObj, streetAddress) {
@@ -121,53 +299,25 @@ var zoomToFit = function() {
     map.fitBounds(bounds);
 };
 
-var codeAddress = function() {
-    var address = document.getElementById('address').value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-        } else {
-            console.log('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-};
 
-var initialize = function() {
-
-    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    map.setOptions({styles: mapStyles});
-
-    geocoder = new google.maps.Geocoder();
-    google.maps.event.addListener( map, 'maptypeid_changed', function() {
-        console.log("type changed", map.getMapTypeId());
-    });
-
+var loadFromKml = function(map, url) {
     var layer = new google.maps.KmlLayer({
-        url: 'http://media.suayan.com/geodata/Paris-City-Map-Layered.kmz',
-        // suppressInfoWindows: true,
+        url: 'http://media.suayan.com/geodata/paris.kml',
         map: map
     });
-
-
     google.maps.event.addListener(layer, 'click', function(kmlEvent) {
         var name = kmlEvent.featureData.name,
             id = kmlEvent.featureData.id,
             latLng = kmlEvent.latLng;
-
         $("#notes").html("<h2>"+name+"</h3><p>ID: "+id+"</p>");
         console.log("kmlEvent", kmlEvent);
     });
-
-    console.log("present.", map, geocoder, layer);
-
+    map.data.loadGeoJson('http://media.suayan.com/geodata/paris.json');
 };
 
-var map = null;
-var geocoder = null;
-google.maps.visualRefresh = true;
 
-google.maps.event.addDomListener(window, 'load', initialize);
+
+google.maps.visualRefresh = true;
+google.maps.event.addDomListener(window, 'load', function(){
+    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode");
+});

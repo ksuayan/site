@@ -1,5 +1,6 @@
 var timeline = require('./timeline-db'),
     content = require('./content-db'),
+    locations = require('./locations-db'),
     conf = require('./conf'),
     util = require('./apputil');
 
@@ -193,5 +194,91 @@ ApiHandler.prototype.saveDocument = function(request, response) {
     response.send({status:"ok"});
 };
 
+// ------------------------
+
+ApiHandler.prototype.getLocations = function(req, res) {
+    var onSuccess = function(locations) {
+        return res.send(locations);
+    };
+    var onError = function(err) {
+        return res.send(util.defaultError);
+    };
+    locations.getLocations(onSuccess, onError);
+};
+
+ApiHandler.prototype.getLocationById = function(req, res) {
+    var onSuccess = function(locationObj) {
+        return res.send(locationObj);
+    };
+    var onError = function(err) {
+        return res.send(util.defaultError);
+    };
+    locations.getLocationById(req.params.id, onSuccess, onError);
+};
+
+ApiHandler.prototype.getLocationsNearPoint = function(req, res) {
+    var onSuccess = function(locationObj) {
+        return res.send(locationObj);
+    };
+    var onError = function(err) {
+        return res.send(util.defaultError);
+    };
+
+    var point = req.params.point.split(","),
+        maxDistance = req.params.maxDistance ? parseFloat(req.params.maxDistance) : 8.0,
+        numericList = util.toNumericList(point);
+    locations.getLocationsNearPoint(numericList, maxDistance, onSuccess, onError);
+};
+
+ApiHandler.prototype.getLocationsWithin = function(req, res) {
+    var onSuccess = function(locationObj) {
+        return res.send(locationObj);
+    };
+    var onError = function(err) {
+        return res.send(util.defaultError);
+    };
+    var seLatLng = util.toNumericList(req.params.swLatLng.split(",")),
+        nwLatLng = util.toNumericList(req.params.neLatLng.split(","));
+    locations.getLocationsWithin(seLatLng, nwLatLng, onSuccess, onError);
+};
+
+ApiHandler.prototype.updateLocation = function(req, res) {
+    var onSuccess = function(location) {
+        return res.send(location);
+    };
+    var onError = function(err) {
+        return res.send(err);
+    };
+    var locationObj = {
+        _id: req.params.id,
+        name: req.body.name,
+        description: req.body.description
+    };
+    locations.updateLocation(locationObj, onSuccess, onError);
+};
+
+ApiHandler.prototype.createLocation = function(req, res) {
+    var onSuccess = function(textObj) {
+        return res.send(textObj);
+    };
+    var onError = function(err) {
+        return res.send(err);
+    };
+    var locationObj = {
+        name: req.body.name,
+        description: req.body.description
+    };
+    locations.createLocation(locationObj, onSuccess, onError)
+};
+
+ApiHandler.prototype.deleteLocation = function(req, res) {
+    var onSuccess = function(textObj) {
+        return res.send(textObj);
+    };
+    var onError = function(err) {
+        return res.send(err);
+    };
+    locations.deleteLocation(req.params.id, onSuccess, onError)
+};
 
 module.exports = new ApiHandler();

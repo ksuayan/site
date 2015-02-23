@@ -83,6 +83,14 @@ app.get('/api/doc',         api.getDocument);
 app.get('/api/doc/:id',     api.getDocument);
 app.post('/api/doc/:id',    api.saveDocument);
 
+app.get('/api/loc',         api.getLocations);
+app.get('/api/loc/:id',     api.getLocationById);
+app.get('/api/loc/near/:point/:maxDistance', api.getLocationsNearPoint);
+app.get('/api/loc/within/:swLatLng/:neLatLng', api.getLocationsWithin);
+app.post('/api/loc',        api.createLocation);
+app.put('/api/loc/:id',     api.updateLocation);
+app.delete('/api/log/:id',  api.deleteLocation);
+
 app.listen(conf.app.port);
 console.log('Go to http://localhost:' + conf.app.port);
 console.log('path: ', __dirname);

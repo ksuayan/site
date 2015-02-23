@@ -179,6 +179,22 @@ gb.util = {
         return (0.39*(totalWords/totalSentences)) + (11.8*(totalSyllables/totalWords)) - 15.59;
     },
 
+    getDedupedValuesByKey: function(list, key) {
+        var keyList = [],
+            lookup = {};
+        if (!list.length) {
+            return keyList;
+        }
+        for (var i=0, n=list.length; i<n; i++) {
+            var value = (list[i][key]) ? list[i][key] : "";
+            if (value && !lookup[value]) {
+                keyList.push(value);
+                lookup[value] = 1;
+            }
+        }
+        return keyList;
+    },
+
     /**
      * Throttle a function invocation.
      * @param callback {Function} the function to call.

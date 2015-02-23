@@ -5,11 +5,19 @@ var Util = function() {
     this.defaultError = {status:"error"};
 };
 
-Util.HandleError = function(err, onError){
+Util.prototype.HandleError = function(err, onError){
     console.log(">> Error", err);
     if (typeof onError === 'function') {
         onError(err);
     }
+};
+
+Util.prototype.toNumericList = function(list) {
+    var newList = [];
+    for (var i=0,n=list.length; i<n; i++) {
+        newList.push(parseFloat(list[i]));
+    }
+    return newList;
 };
 
 
