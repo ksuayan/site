@@ -30,14 +30,14 @@ gb.ui.MapConfig = {
             "stylers": [
                 { "hue": "#ff6e00" },
                 { "lightness": -1 },
-                { "saturation": 13 }
+                { "saturation": 5 }
             ]
         },{
             "featureType": "road.local",
             "stylers": [
                 { "saturation": 21 },
                 { "color": "#95cdcf" },
-                { "lightness": 13 }
+                { "lightness": 5 }
             ]
         },
         {
@@ -57,7 +57,7 @@ gb.ui.MapConfig = {
         }
     ],
     mapOptions: {
-        center: new google.maps.LatLng(48.852968,2.349902),
+        center: new google.maps.LatLng(48.85340300000001,2.3487840000000233),
         zoom: 18,
         mapTypeControl: true,
         mapTypeControlOptions: {
@@ -126,15 +126,19 @@ gb.ui.MapConfig.mapMarkers = [
 ];
 
 gb.ui.MapConfig.mapMarkerStyles = {
-    "-65e436fb": gb.ui.MapConfig.mapMarkers[0],
-    "328c7205": gb.ui.MapConfig.mapMarkers[1],
-    "-7eeb9d7b": gb.ui.MapConfig.mapMarkers[2],
-    "6ff19c65": gb.ui.MapConfig.mapMarkers[3],
-    "4f0e2a65": gb.ui.MapConfig.mapMarkers[4],
-    "583cb885": gb.ui.MapConfig.mapMarkers[5],
-    "aea67c5": gb.ui.MapConfig.mapMarkers[6],
-    "-3477199b": gb.ui.MapConfig.mapMarkers[7],
-    "-279282db": gb.ui.MapConfig.mapMarkers[0]
+    "53ca3a80": gb.ui.MapConfig.mapMarkers[0],
+    "-662d500": gb.ui.MapConfig.mapMarkers[1],
+    "3a98100": gb.ui.MapConfig.mapMarkers[2],
+    "1939180": gb.ui.MapConfig.mapMarkers[3],
+    "-2a77fa60": gb.ui.MapConfig.mapMarkers[4]
+};
+
+gb.ui.MapConfig.mapLayerNames = {
+    "53ca3a80": "Food",
+    "-662d500": "Art &amp; Museums",
+    "3a98100": "Landmarks",
+    "1939180": "Shops &amp; Markets",
+    "-2a77fa60": "Specialty"
 };
 
 gb.ui.MapDemo.include({
@@ -142,9 +146,7 @@ gb.ui.MapDemo.include({
 
     init: function(window, divID, formID) {
         var that = this;
-
-
-        this.center = "48.852968,2.349902"; // Notre Dame, Paris
+        this.center = "48.85340300000001,2.3487840000000233"; // Kilometer Zero
         this.maxDistance = 300;
         this.locations = {};
         this.styleHashes = {};
@@ -167,10 +169,8 @@ gb.ui.MapDemo.include({
 
     initMap: function() {
         var that = this;
+
         google.maps.event.addListener(that.map, 'bounds_changed', function() {
-
-            console.log("bounds_changed...");
-
             var bounds = that.map.getBounds(),
                 neLatLng = bounds.getNorthEast(),
                 swLatLng = bounds.getSouthWest(),
@@ -182,7 +182,7 @@ gb.ui.MapDemo.include({
         google.maps.event.addListener(that.map, 'click', function(event) {
             var latLng = event.latLng;
             center = latLng.lat()+","+latLng.lng();
-            console.log("click", center, maxDistance);
+            console.log("click", center, that.maxDistance);
             that.queryMarkersNearPoint(that.center, that.maxDistance);
         });
 
@@ -226,12 +226,14 @@ gb.ui.MapDemo.include({
 
     onQueryResponse: function(that, data) {
         if (data.length) {
-            // var markerStyles = gb.util.getDedupedValuesByKey(data,"styleHash");
+            var markerStyles = gb.util.getDedupedValuesByKey(data,"styleHash");
             // console.log("styles", markerStyles);
             for (var i=0, n=data.length; i<n; i++) {
                 var item = data[i];
                 that.addLocation(item);
             }
+            that.filterLocationsByStyle();
+
         }
     },
 
@@ -260,7 +262,7 @@ gb.ui.MapDemo.include({
 
     queryMarkersWithin: function(swLatLng, neLatLng) {
         var that = this;
-        console.log("/api/loc/within/"+swLatLng+"/"+neLatLng);
+        // console.log("/api/loc/within/"+swLatLng+"/"+neLatLng);
         $.ajax({
             url: "/api/loc/within/"+swLatLng+"/"+neLatLng
         }).success(function(data){
@@ -289,26 +291,30 @@ gb.ui.MapDemo.include({
                 selected.push($(this).val());
             });
             // console.log("selected", selected);
-            that.filterLocationsByStyle(selected);
+            that.enabledList = selected;
+            that.filterLocationsByStyle();
         };
 
         var filterForm = $("<form id='filter-form'></form>");
         for (var key in gb.ui.MapConfig.mapMarkerStyles) {
             var jq = $("<input type='checkbox'>");
             var name = key.replace("-","");
-            jq.attr("name", "filter-"+name)
+            jq.attr("id", "filter-"+name)
               .attr("value", key)
               .prop('checked', true);
-            filterForm.append(jq);
+
+
+            var label = $("<label for='filter-"+name+"'>"+gb.ui.MapConfig.mapLayerNames[key]+"</label>");
+            filterForm.append(jq).append(label);
         }
-        $("#panel").append(filterForm);
+        $("#notes").append(filterForm);
         $("#filter-form input[type=checkbox]").on("click", countChecked);
         countChecked();
     },
 
-    filterLocationsByStyle: function(selected) {
+    filterLocationsByStyle: function() {
         for (var item in this.locations) {
-            if (selected.indexOf(this.styleHashes[item])>-1) {
+            if (this.enabledList.indexOf(this.styleHashes[item])>-1) {
                 this.locations[item].setMap(this.map);
             } else {
                 this.locations[item].setMap(null);

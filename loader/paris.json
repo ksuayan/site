@@ -12,9 +12,10 @@
                 ]
             },
             "properties": {
-                "name": "Eiffel Tower",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "name": "Eiffel Tower, 7th",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100",
+                "description": "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France"
             }
         },
         {
@@ -28,9 +29,10 @@
                 ]
             },
             "properties": {
-                "name": "Arc de Triomphe",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "name": "Arc de Triomphe, 8th",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100",
+                "description": "Place Charles de Gaulle, 75008 Paris, France"
             }
         },
         {
@@ -44,9 +46,10 @@
                 ]
             },
             "properties": {
-                "name": "Tuileries Garden",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "name": "Tuileries Garden, 1st",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100",
+                "description": "113 Rue de Rivoli, 75001 Paris, France"
             }
         },
         {
@@ -60,9 +63,9 @@
                 ]
             },
             "properties": {
-                "name": "Pont des Arts",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "name": "Pont des Arts, 6th",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100"
             }
         },
         {
@@ -77,8 +80,8 @@
             },
             "properties": {
                 "name": "Île Saint-Louis",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100"
             }
         },
         {
@@ -94,7 +97,7 @@
             "properties": {
                 "name": "Quai de l'Archevêché",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100"
             }
         },
         {
@@ -110,7 +113,7 @@
             "properties": {
                 "name": "Pont Neuf",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100"
             }
         },
         {
@@ -126,7 +129,7 @@
             "properties": {
                 "name": "Place de la Concorde",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100"
             }
         },
         {
@@ -142,7 +145,7 @@
             "properties": {
                 "name": "Champs Elysees",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100"
             }
         },
         {
@@ -156,9 +159,10 @@
                 ]
             },
             "properties": {
-                "name": "Stravinsky Fountain",
+                "name": "Stravinsky Fountain, 4th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "Rue Brisemiche, 75004 Paris, France"
             }
         },
         {
@@ -172,9 +176,10 @@
                 ]
             },
             "properties": {
-                "name": "Luxembourg Gardens",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "name": "Luxembourg Gardens, 6th",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100",
+                "description": "6e Arrondissement, 75006 Paris, France"
             }
         },
         {
@@ -188,9 +193,10 @@
                 ]
             },
             "properties": {
-                "name": "Jardin des Plantes",
+                "name": "Jardin des Plantes, 5th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "57 Rue Cuvier, 75005 Paris, France"
             }
         },
         {
@@ -204,9 +210,10 @@
                 ]
             },
             "properties": {
-                "name": "Sacré-Cœur",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "name": "Sacré-Cœur, 18th",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100",
+                "description": "35 Rue du Chevalier de la Barre, 75018 Paris, France"
             }
         },
         {
@@ -222,7 +229,7 @@
             "properties": {
                 "name": "Place de l'Odéon",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100"
             }
         },
         {
@@ -236,9 +243,10 @@
                 ]
             },
             "properties": {
-                "name": "Grande Mosquée de Paris",
+                "name": "Grande Mosquée de Paris, 5th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "2bis Place du Puits de l'Ermite, 75005 Paris, France"
             }
         },
         {
@@ -254,23 +262,7 @@
             "properties": {
                 "name": "Saint-Germain-des-Prés",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    2.333672,
-                    48.850556,
-                    0
-                ]
-            },
-            "properties": {
-                "name": "Place Saint-Sulpice",
-                "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100"
             }
         },
         {
@@ -284,9 +276,10 @@
                 ]
             },
             "properties": {
-                "name": "Sainte-Chapelle",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "name": "Sainte-Chapelle, 1st",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100",
+                "description": "8 Boulevard du Palais, 75001 Paris, France"
             }
         },
         {
@@ -301,8 +294,8 @@
             },
             "properties": {
                 "name": "Cathédrale Notre-Dame de Paris",
-                "styleUrl": "#icon-503-3F5BA9",
-                "styleHash": "6ff19c65"
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100"
             }
         },
         {
@@ -316,9 +309,10 @@
                 ]
             },
             "properties": {
-                "name": "Trocadéro Gardens",
+                "name": "Trocadéro Gardens, 16th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "Place du Trocadéro et du 11 Novembre, 75016 Paris, France"
             }
         },
         {
@@ -332,25 +326,10 @@
                 ]
             },
             "properties": {
-                "name": "Grand Palais",
+                "name": "Grand Palais, 8th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    2.329434,
-                    48.867447,
-                    0
-                ]
-            },
-            "properties": {
-                "name": "Place Vendôme",
-                "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "3 Avenue du Général Eisenhower, 75008 Paris, France"
             }
         },
         {
@@ -364,9 +343,10 @@
                 ]
             },
             "properties": {
-                "name": "Bastille",
+                "name": "Bastille, 11th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "Place de la Bastille, 75011 Paris, France"
             }
         },
         {
@@ -380,9 +360,10 @@
                 ]
             },
             "properties": {
-                "name": "Panthéon",
+                "name": "Panthéon, 5th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "Place du Panthéon, 75005 Paris, France"
             }
         },
         {
@@ -396,9 +377,10 @@
                 ]
             },
             "properties": {
-                "name": "Place Vendôme",
+                "name": "Place Vendôme, 1st",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "Place Vendôme, 75001 Paris, France"
             }
         },
         {
@@ -412,9 +394,9 @@
                 ]
             },
             "properties": {
-                "name": "Canal Saint Martin",
+                "name": "Canal Saint Martin, 10th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100"
             }
         },
         {
@@ -428,9 +410,10 @@
                 ]
             },
             "properties": {
-                "name": "Hôtel de Ville",
+                "name": "Hôtel de Ville, 4th",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885"
+                "styleHash": "3a98100",
+                "description": "Place de l'Hôtel de ville, 75004 Paris, France"
             }
         },
         {
@@ -444,9 +427,9 @@
                 ]
             },
             "properties": {
-                "name": "National Museum of the Legion of Honor & Orders of Chivalry",
+                "name": "Legion of Honor & Orders of Chivalry",
                 "styleUrl": "#icon-503-4186F0",
-                "styleHash": "583cb885",
+                "styleHash": "3a98100",
                 "description": "2 Rue de la Légion d'Honneur, 75007 Paris, France"
             }
         },
@@ -455,15 +438,32 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    2.334081,
-                    48.855543,
+                    2.3344429999999647,
+                    48.850942,
                     0
                 ]
             },
             "properties": {
-                "name": "Ladurée (Macarons)",
-                "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "name": "Église Saint-Sulpice, 6th",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100",
+                "description": "2 Rue Palatine, 75006 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3487840000000233,
+                    48.85340300000001,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Kilometer Zero, France",
+                "styleUrl": "#icon-503-4186F0",
+                "styleHash": "3a98100"
             }
         },
         {
@@ -477,9 +477,10 @@
                 ]
             },
             "properties": {
-                "name": "Des Gâteaux et du Pain",
+                "name": "Des Gâteaux et du Pain $$$",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "63 Boulevard Pasteur, 75015 Paris, France http://www.desgateauxetdupain.com/"
             }
         },
         {
@@ -493,9 +494,10 @@
                 ]
             },
             "properties": {
-                "name": "La Pâtisserie des Rêves",
-                "styleUrl": "#icon-503-A61B4A",
-                "styleHash": "aea67c5"
+                "name": "La Pâtisserie des Rêves $$$",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "53ca3a80",
+                "description": "http://lapatisseriedesreves.com/"
             }
         },
         {
@@ -509,9 +511,10 @@
                 ]
             },
             "properties": {
-                "name": "Fouquet (Chocolatier)",
+                "name": "Fouquet, 8th (Chocolatier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "http://www.fouquet.fr/  22 Rue François 1er"
             }
         },
         {
@@ -527,7 +530,8 @@
             "properties": {
                 "name": "Du Pain et des Idées (Boulangier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "34 Rue Yves Toudic, 75010 Paris, France"
             }
         },
         {
@@ -543,7 +547,7 @@
             "properties": {
                 "name": "Maison Kayser (Boulangier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -559,7 +563,7 @@
             "properties": {
                 "name": "Au Levain du Marais (Boulangier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -575,7 +579,7 @@
             "properties": {
                 "name": "La Flûte Gana (Boulangier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -590,24 +594,8 @@
             },
             "properties": {
                 "name": "Berthillon (Ice Cream)",
-                "styleUrl": "#icon-503-A61B4A",
-                "styleHash": "aea67c5"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    2.333328,
-                    48.853798,
-                    0
-                ]
-            },
-            "properties": {
-                "name": "Saint-Germain-des-Prés",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -623,7 +611,7 @@
             "properties": {
                 "name": "Le Valentin",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -639,7 +627,7 @@
             "properties": {
                 "name": "Martine Lambert, Ice Cream + Macarons",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -655,7 +643,7 @@
             "properties": {
                 "name": "Popelini",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -671,7 +659,7 @@
             "properties": {
                 "name": "Carl Marletti (Patisserie)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -686,8 +674,8 @@
             },
             "properties": {
                 "name": "Foyer de la Madeleine",
-                "styleUrl": "#icon-503-A61B4A",
-                "styleHash": "aea67c5"
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -701,9 +689,10 @@
                 ]
             },
             "properties": {
-                "name": "Gérard Mulot, Rue de Seine",
+                "name": "Gérard Mulot, 6th",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "76, rue de Seine"
             }
         },
         {
@@ -719,7 +708,7 @@
             "properties": {
                 "name": "Sapporo (Ramen)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -733,9 +722,10 @@
                 ]
             },
             "properties": {
-                "name": "Gérard Mulot, Rue du Pas de la Mule",
+                "name": "Gérard Mulot, 3rd",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "6 Rue du Pas de la Mule"
             }
         },
         {
@@ -751,7 +741,8 @@
             "properties": {
                 "name": "Ladurée, Champs Elysées",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "75 Av. des Champs-Élysées"
             }
         },
         {
@@ -767,7 +758,8 @@
             "properties": {
                 "name": "Ladurée, Rue Bonaparte",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "21 Rue Bonaparte"
             }
         },
         {
@@ -783,7 +775,7 @@
             "properties": {
                 "name": "Au Petit Fer à Cheval (Cafe)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "30 Rue Vieille du Temple, 75004 Paris, France"
             }
         },
@@ -800,7 +792,7 @@
             "properties": {
                 "name": "Au Passage (Lunch)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "1bis Passage Saint-Sébastien, 75011 Paris, France"
             }
         },
@@ -817,7 +809,7 @@
             "properties": {
                 "name": "L'Avant-Comptoir (Dining)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "3 Carrefour de l'Odéon, 75006 Paris, France"
             }
         },
@@ -834,7 +826,7 @@
             "properties": {
                 "name": "Aux Deux Amis (Dining)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "45 Rue Oberkampf, 75011 Paris, France"
             }
         },
@@ -851,7 +843,7 @@
             "properties": {
                 "name": "Le Bistrot Paul Bert",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "18 Rue Paul Bert, 75011 Paris, France"
             }
         },
@@ -868,7 +860,7 @@
             "properties": {
                 "name": "Septime (Dining)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "80 Rue de Charonne, 75011 Paris, France"
             }
         },
@@ -885,7 +877,7 @@
             "properties": {
                 "name": "Urfa Durum (Sandwiches)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "58 Rue du Faubourg Saint-Denis, 75010 Paris, France"
             }
         },
@@ -900,9 +892,9 @@
                 ]
             },
             "properties": {
-                "name": "La Palette",
+                "name": "La Palette (Cafe)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "43 Rue de Seine, 75006 Paris, France"
             }
         },
@@ -917,9 +909,9 @@
                 ]
             },
             "properties": {
-                "name": "Le Baratin (Dining)",
+                "name": "Le Baratin (Bistro)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "3 Rue Jouye-Rouve, 75020 Paris, France"
             }
         },
@@ -936,7 +928,7 @@
             "properties": {
                 "name": "Le Verre Volé (Wine)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "67 Rue de Lancry, 75010 Paris, France"
             }
         },
@@ -953,7 +945,7 @@
             "properties": {
                 "name": "Jacques Genin (Caramel)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "133 Rue de Turenne, 75003 Paris, France jacquesgenin.fr"
             }
         },
@@ -968,10 +960,10 @@
                 ]
             },
             "properties": {
-                "name": "Fromagerie Laurent Dubois",
-                "styleUrl": "#icon-503-A61B4A",
-                "styleHash": "aea67c5",
-                "description": "Buy Le Beurre Bordier Butter."
+                "name": "Fromagerie Laurent Dubois, 5th",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "53ca3a80",
+                "description": "47 Ter Boulevard Saint-Germain, 75005 Paris, France Buy Le Beurre Bordier Butter. http://www.fromageslaurentdubois.fr/"
             }
         },
         {
@@ -985,9 +977,9 @@
                 ]
             },
             "properties": {
-                "name": "Eric Kayser (7e)",
+                "name": "Eric Kayser (7th)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "18 Rue du Bac, 75007 Paris, France www.maison-kayser.com"
             }
         },
@@ -1002,9 +994,9 @@
                 ]
             },
             "properties": {
-                "name": "Eric Kayser (6e)",
+                "name": "Eric Kayser (6th)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "10 Rue de l'Ancienne Comédie, 75006 Paris, France www.maison-kayser.com"
             }
         },
@@ -1019,9 +1011,9 @@
                 ]
             },
             "properties": {
-                "name": "Eric Kayser (1e)",
+                "name": "Eric Kayser (1st)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "4 Rue de l'Échelle, 75001 Paris, France www.maison-kayser.com"
             }
         },
@@ -1036,9 +1028,9 @@
                 ]
             },
             "properties": {
-                "name": "Eric Kayser (2e)",
+                "name": "Eric Kayser (2nd)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "16 Rue des Petits Carreaux, 75002 Paris, France www.maison-kayser.com"
             }
         },
@@ -1053,9 +1045,9 @@
                 ]
             },
             "properties": {
-                "name": "Eric Kayser (8e)",
+                "name": "Eric Kayser (8th)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "85 Boulevard Malesherbes, 75008 Paris, France www.maison-kayser.com"
             }
         },
@@ -1070,9 +1062,9 @@
                 ]
             },
             "properties": {
-                "name": "Eric Kayser (17e)",
+                "name": "Eric Kayser (17th)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "Avenue des Ternes, 75017 Paris, France www.maison-kayser.com"
             }
         },
@@ -1087,9 +1079,9 @@
                 ]
             },
             "properties": {
-                "name": "Jacques Genin, 5e (Chocolatier)",
+                "name": "Jacques Genin, 5th (Chocolatier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "75005, 68 Rue Monge, 75005 Paris, France"
             }
         },
@@ -1104,9 +1096,9 @@
                 ]
             },
             "properties": {
-                "name": "Patrick Roger, 6e (Chocolatier)",
+                "name": "Patrick Roger, 6th (Chocolatier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "108 Boulevard Saint-Germain, 75006 Paris, France www.patrickroger.com"
             }
         },
@@ -1121,9 +1113,9 @@
                 ]
             },
             "properties": {
-                "name": "Patrick Roger, 16e (Chocolatier)",
+                "name": "Patrick Roger, 16th (Chocolatier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "45 Avenue Victor Hugo, 75016 Paris, France"
             }
         },
@@ -1138,10 +1130,10 @@
                 ]
             },
             "properties": {
-                "name": "Patrick Roger, 6e",
+                "name": "Patrick Roger, 6th (Chocolatier)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
-                "description": "24 Rue Saint-Sulpice, 75006 Paris, France"
+                "styleHash": "53ca3a80",
+                "description": "24 Rue Saint-Sulpice, 75006 Paris, France http://www.patrickroger.com"
             }
         },
         {
@@ -1157,7 +1149,7 @@
             "properties": {
                 "name": "Pierre Marcolini (Marshmallows)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "Details from Google Maps89 Rue de Seine, 75006 Paris, France"
             }
         },
@@ -1174,7 +1166,7 @@
             "properties": {
                 "name": "Pierre Marcolini (Marshmallows)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "78 Rue du Bac, 75007 Paris, France"
             }
         },
@@ -1191,7 +1183,7 @@
             "properties": {
                 "name": "L'As Du Fallafel",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "32-34 Rue des Rosiers, 75004 Paris, France"
             }
         },
@@ -1206,9 +1198,10 @@
                 ]
             },
             "properties": {
-                "name": "Blé Sucré",
+                "name": "Blé Sucré (Patisserie)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "7 Rue Antoine Vollon, 75012 Paris, France"
             }
         },
         {
@@ -1222,9 +1215,10 @@
                 ]
             },
             "properties": {
-                "name": "Grégory Renard",
+                "name": "Grégory Renard, (Macarons)",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80",
+                "description": "120 Rue Saint-Dominique, 75007 Paris, France"
             }
         },
         {
@@ -1240,7 +1234,7 @@
             "properties": {
                 "name": "Le Chocolat Alain Ducasse, 11e",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "40 Rue de la Roquette, 75011 Paris, France"
             }
         },
@@ -1257,7 +1251,7 @@
             "properties": {
                 "name": "Le Chocolat Alain Ducasse, 6e",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "26 Rue Saint-Benoît, 75006 Paris, France www.lechocolat-alainducasse.com"
             }
         },
@@ -1274,7 +1268,7 @@
             "properties": {
                 "name": "Galette Café",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205"
+                "styleHash": "53ca3a80"
             }
         },
         {
@@ -1288,9 +1282,9 @@
                 ]
             },
             "properties": {
-                "name": "Angelina (1e)",
+                "name": "Angelina, 1st",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "226 Rue de Rivoli, 75001 Paris, France"
             }
         },
@@ -1305,9 +1299,9 @@
                 ]
             },
             "properties": {
-                "name": "Angelina (7e)",
+                "name": "Angelina, 7th",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "108 Rue du Bac, 75007 Paris, France"
             }
         },
@@ -1322,9 +1316,9 @@
                 ]
             },
             "properties": {
-                "name": "Pierre Hermé (1e)",
+                "name": "Pierre Hermé, 1st",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "4 Rue Cambon, 75001 Paris, France"
             }
         },
@@ -1339,9 +1333,9 @@
                 ]
             },
             "properties": {
-                "name": "Pierre Hermé (6e)",
+                "name": "Pierre Hermé, 6th",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "72 Rue Bonaparte, 75006 Paris, France"
             }
         },
@@ -1356,9 +1350,9 @@
                 ]
             },
             "properties": {
-                "name": "Poilane, 7e",
+                "name": "Poilane, 7th",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "Rue des Saints-Pères, 75007 Paris, France"
             }
         },
@@ -1373,9 +1367,9 @@
                 ]
             },
             "properties": {
-                "name": "Poilane, 3e",
+                "name": "Poilane, 3rd",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "38 Rue Debelleyme, 75003 Paris, France"
             }
         },
@@ -1390,9 +1384,9 @@
                 ]
             },
             "properties": {
-                "name": "Poilane, 15e",
+                "name": "Poilane, 15th",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "49 Boulevard de Grenelle, 75015 Paris, France"
             }
         },
@@ -1407,9 +1401,9 @@
                 ]
             },
             "properties": {
-                "name": "Poilane, 6e",
+                "name": "Poilane, 6th",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "8 Rue du Cherche-Midi, 75006 Paris, France"
             }
         },
@@ -1426,7 +1420,7 @@
             "properties": {
                 "name": "Lenôtre, 16e",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "48 Avenue Victor Hugo, 75016 Paris, France www.lenotre.com"
             }
         },
@@ -1441,9 +1435,9 @@
                 ]
             },
             "properties": {
-                "name": "Lenôtre Bastille, 7e",
+                "name": "Lenôtre , 7th, Bastille",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "10 Rue Saint-Antoine, 75004 Paris, Francewww.lenotre.fr"
             }
         },
@@ -1458,9 +1452,9 @@
                 ]
             },
             "properties": {
-                "name": "Lenôtre Wagram",
+                "name": "Lenôtre, 17th, Wagram",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "121 Avenue de Wagram, 75017 Paris, Francewww.lenotre.com"
             }
         },
@@ -1475,9 +1469,9 @@
                 ]
             },
             "properties": {
-                "name": "Lenôtre Ecole Militaire",
+                "name": "Lenôtre, 7th, Ecole Militaire",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "36 Avenue de la Motte-Picquet, 75007 Paris, Francewww.lenotre.com"
             }
         },
@@ -1494,7 +1488,7 @@
             "properties": {
                 "name": "Café de Flore",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "172 boulevard saint germain, 75006 Paris, France  www.cafedeflore.fr"
             }
         },
@@ -1511,7 +1505,7 @@
             "properties": {
                 "name": "Les Deux Magots",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "6 place Saint-Germain-des-Prés, 75006 Paris, France  www.lesdeuxmagots.fr"
             }
         },
@@ -1528,7 +1522,7 @@
             "properties": {
                 "name": "Polidor",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "41 Rue Monsieur le Prince, 75006 Paris, France  www.polidor.com"
             }
         },
@@ -1543,9 +1537,9 @@
                 ]
             },
             "properties": {
-                "name": "Fromagerie Laurent Dubois",
+                "name": "Fromagerie Laurent Dubois, 15th",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "2 Rue de Lourmel, 75015 Paris, France  www.fromageslaurentdubois.fr"
             }
         },
@@ -1560,10 +1554,61 @@
                 ]
             },
             "properties": {
-                "name": "Fromagerie Laurent Dubois",
+                "name": "Fromagerie Laurent Dubois, 4th",
                 "styleUrl": "#icon-503-DB4436",
-                "styleHash": "328c7205",
+                "styleHash": "53ca3a80",
                 "description": "97 Rue Saint-Antoine, 75004 Paris, France  www.fromageslaurentdubois.fr"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3380260000000135,
+                    48.873858,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Fouquet, 9th (Chocolatier)",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "53ca3a80",
+                "description": "36 Rue Laffitte"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.343309999999974,
+                    48.828851,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Gérard Mulot, 13th",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "53ca3a80",
+                "description": "93 Rue de la Glacière, 75013 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3378440000000182,
+                    48.851791,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Gérard Mulot, 6th",
+                "styleUrl": "#icon-503-DB4436",
+                "styleHash": "53ca3a80",
+                "description": "12 Rue des Quatre Vents, 75006 Paris, France"
             }
         },
         {
@@ -1579,7 +1624,8 @@
             "properties": {
                 "name": "Picasso National Museum",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "5 Rue de Thorigny, 75003 Paris, Francewww.museepicassoparis.fr"
             }
         },
         {
@@ -1595,7 +1641,8 @@
             "properties": {
                 "name": "Musée d'Orsay",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "1 Rue de la Légion d'Honneur, 75007 Paris, France"
             }
         },
         {
@@ -1611,7 +1658,7 @@
             "properties": {
                 "name": "Louvre Pyramid",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500"
             }
         },
         {
@@ -1626,8 +1673,9 @@
             },
             "properties": {
                 "name": "Rodin Museum",
-                "styleUrl": "#icon-503-B7DBAB",
-                "styleHash": "4f0e2a65"
+                "styleUrl": "#icon-503-62AF44",
+                "styleHash": "-662d500",
+                "description": "79 Rue de Varenne, 75007 Paris, France"
             }
         },
         {
@@ -1643,7 +1691,8 @@
             "properties": {
                 "name": "The Centre Pompidou",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "Place Georges-Pompidou, 75004 Paris, France www.centrepompidou.fr"
             }
         },
         {
@@ -1659,7 +1708,8 @@
             "properties": {
                 "name": "Hôtel des Invalides",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "129 Rue de Grenelle, 75007 Paris, Francewww.musee-armee.fr"
             }
         },
         {
@@ -1675,7 +1725,8 @@
             "properties": {
                 "name": "Orangerie Museum",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "Jardin Tuileries, 75001 Paris, France"
             }
         },
         {
@@ -1691,23 +1742,8 @@
             "properties": {
                 "name": "Musée Zadkine",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    2.349902,
-                    48.852968,
-                    0
-                ]
-            },
-            "properties": {
-                "name": "Cathédrale Notre-Dame de Paris",
-                "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "100bis Rue d'Assas, 75006 Paris, France"
             }
         },
         {
@@ -1723,7 +1759,8 @@
             "properties": {
                 "name": "Maison Européenne de la Photographie",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "5 Rue de Fourcy, 75004 Paris, France www.mep-fr.org"
             }
         },
         {
@@ -1739,7 +1776,8 @@
             "properties": {
                 "name": "Palais de Tokyo",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "13 Avenue du Président Wilson, 75116 Paris, France http://palaisdetokyo.com"
             }
         },
         {
@@ -1755,7 +1793,7 @@
             "properties": {
                 "name": "National School of Fine Arts",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b",
+                "styleHash": "-662d500",
                 "description": "14 Rue Bonaparte, 75006 Paris, France"
             }
         },
@@ -1772,7 +1810,8 @@
             "properties": {
                 "name": "Musée Marmottan Monet",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "2 Rue Louis Boilly, 75016 Paris, France www.marmottan.fr"
             }
         },
         {
@@ -1788,7 +1827,25 @@
             "properties": {
                 "name": "Fondation Louis Vuitton",
                 "styleUrl": "#icon-503-62AF44",
-                "styleHash": "-7eeb9d7b"
+                "styleHash": "-662d500",
+                "description": "8 Avenue du Mahatma Gandhi, 75116 Paris, France www.fondationlouisvuitton.fr"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.3448940000000675,
+                    48.844311,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Musée Curie - Institut Curie",
+                "styleUrl": "#icon-503-009D57",
+                "styleHash": "7934cf80",
+                "description": "1 Rue Pierre et Marie Curie, 75005 Paris, France musee.curie.fr"
             }
         },
         {
@@ -1804,7 +1861,7 @@
             "properties": {
                 "name": "Rue Cler",
                 "styleUrl": "#icon-503-F8971B",
-                "styleHash": "-65e436fb"
+                "styleHash": "1939180"
             }
         },
         {
@@ -1820,7 +1877,7 @@
             "properties": {
                 "name": "Marché couvert Saint-Quentin",
                 "styleUrl": "#icon-503-F8971B",
-                "styleHash": "-65e436fb"
+                "styleHash": "1939180"
             }
         },
         {
@@ -1836,7 +1893,7 @@
             "properties": {
                 "name": "Grim'Art",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db"
+                "styleHash": "-2a77fa60"
             }
         },
         {
@@ -1852,7 +1909,7 @@
             "properties": {
                 "name": "Aligre Market",
                 "styleUrl": "#icon-503-F8971B",
-                "styleHash": "-65e436fb"
+                "styleHash": "1939180"
             }
         },
         {
@@ -1868,7 +1925,7 @@
             "properties": {
                 "name": "Rue Mouffetard",
                 "styleUrl": "#icon-503-F8971B",
-                "styleHash": "-65e436fb"
+                "styleHash": "1939180"
             }
         },
         {
@@ -1884,7 +1941,7 @@
             "properties": {
                 "name": "Rue Montorgueil",
                 "styleUrl": "#icon-503-F8971B",
-                "styleHash": "-65e436fb"
+                "styleHash": "1939180"
             }
         },
         {
@@ -1900,7 +1957,7 @@
             "properties": {
                 "name": "Marché Président Wilson",
                 "styleUrl": "#icon-503-F8971B",
-                "styleHash": "-65e436fb"
+                "styleHash": "1939180"
             }
         },
         {
@@ -1916,7 +1973,7 @@
             "properties": {
                 "name": "Marché des Enfants Rouges (Ethnic)",
                 "styleUrl": "#icon-503-F8971B",
-                "styleHash": "-65e436fb"
+                "styleHash": "1939180"
             }
         },
         {
@@ -1932,7 +1989,7 @@
             "properties": {
                 "name": "E.Dehillerin (Kitchen Eqpmt)",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "18-20 Rue Coquillière, 75001 Paris, France"
             }
         },
@@ -1949,7 +2006,7 @@
             "properties": {
                 "name": "Shakespeare & Company (Bookstore)",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "37 Rue de la Bûcherie, 75005 Paris, France"
             }
         },
@@ -1966,7 +2023,7 @@
             "properties": {
                 "name": "Lavrut",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "52 Passage Choiseul, 75002 Paris, France"
             }
         },
@@ -1981,9 +2038,9 @@
                 ]
             },
             "properties": {
-                "name": "Magasin Sennelier (7e)",
+                "name": "Magasin Sennelier, 7th",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "3 Quai Voltaire, 75007 Paris, France"
             }
         },
@@ -1998,9 +2055,9 @@
                 ]
             },
             "properties": {
-                "name": "Magasin Sennelier (6e)",
+                "name": "Magasin Sennelier, 6th",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "4 Rue de la Grande Chaumière, 75006 Paris, France"
             }
         },
@@ -2015,9 +2072,9 @@
                 ]
             },
             "properties": {
-                "name": "Adam Montparnasse (Art Supplies)",
+                "name": "Adam Montparnasse, 14th (Art Supplies)",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "11 Boulevard Edgar Quinet, 75014 Paris, France"
             }
         },
@@ -2032,9 +2089,9 @@
                 ]
             },
             "properties": {
-                "name": "Rougier & Plé (6e)",
+                "name": "Rougier & Plé, 6th",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "108 Boulevard Saint-Germain, 75006 Paris, France"
             }
         },
@@ -2049,9 +2106,9 @@
                 ]
             },
             "properties": {
-                "name": "Rougier & Plé (3e)",
+                "name": "Rougier & Plé, 3rd",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "13-15 Boulevard des Filles du Calvaire, 75003 Paris, France"
             }
         },
@@ -2066,9 +2123,9 @@
                 ]
             },
             "properties": {
-                "name": "Passage Clouté (6e)",
+                "name": "Passage Clouté, 6th",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "19 Rue Bonaparte, 75006 Paris, France"
             }
         },
@@ -2085,7 +2142,7 @@
             "properties": {
                 "name": "Magasin Graphigro",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "207 Boulevard Voltaire, 75011 Paris, France"
             }
         },
@@ -2100,9 +2157,9 @@
                 ]
             },
             "properties": {
-                "name": "Le Géant des Beaux Arts (11e)",
+                "name": "Le Géant des Beaux Arts, 11th",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "166 Rue de la Roquette, 75011 Paris, France"
             }
         },
@@ -2117,9 +2174,9 @@
                 ]
             },
             "properties": {
-                "name": "Le Géant des Beaux-Arts (13e)",
+                "name": "Le Géant des Beaux-Arts, 13th",
                 "styleUrl": "#icon-503-CDDC39",
-                "styleHash": "-279282db",
+                "styleHash": "-2a77fa60",
                 "description": "15 Rue Vergniaud, 75013 Paris, France"
             }
         },
@@ -2134,9 +2191,9 @@
                 ]
             },
             "properties": {
-                "name": "Monoprix Rue de Bac",
-                "styleUrl": "#icon-503-FAD199",
-                "styleHash": "-3477199b",
+                "name": "Monoprix, 7th",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "1939180",
                 "description": "35-37 Rue du Bac, 75007 Paris, France"
             }
         },
@@ -2151,9 +2208,9 @@
                 ]
             },
             "properties": {
-                "name": "Monoprix",
-                "styleUrl": "#icon-503-FAD199",
-                "styleHash": "-3477199b",
+                "name": "Monoprix, 1st",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "1939180",
                 "description": "21 Avenue de l'Opéra, 75001 Paris, France"
             }
         },
@@ -2168,9 +2225,9 @@
                 ]
             },
             "properties": {
-                "name": "Monoprix",
-                "styleUrl": "#icon-503-FAD199",
-                "styleHash": "-3477199b",
+                "name": "Monoprix, 9th",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "1939180",
                 "description": "24 Boulevard des Italiens, 75009 Paris, France"
             }
         },
@@ -2186,8 +2243,8 @@
             },
             "properties": {
                 "name": "Galerie Vivienne",
-                "styleUrl": "#icon-503-FAD199",
-                "styleHash": "-3477199b"
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "1939180"
             }
         },
         {
@@ -2202,8 +2259,8 @@
             },
             "properties": {
                 "name": "Galeries Lafayette Haussmann",
-                "styleUrl": "#icon-503-FAD199",
-                "styleHash": "-3477199b",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "1939180",
                 "description": "40 Boulevard Haussmann, 75009 Paris, Francehaussmann.galerieslafayette.com"
             }
         },
@@ -2219,9 +2276,26 @@
             },
             "properties": {
                 "name": "BHV",
-                "styleUrl": "#icon-503-FAD199",
-                "styleHash": "-3477199b",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "1939180",
                 "description": "64 Rue de Rivoli, 75001 Paris, France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    2.326779999999985,
+                    48.869404,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Monoprix, 1st",
+                "styleUrl": "#icon-503-F8971B",
+                "styleHash": "1939180",
+                "description": "9 Boulevard de la Madeleine, 75001 Paris, France"
             }
         }
     ]
