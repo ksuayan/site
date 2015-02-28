@@ -231,10 +231,10 @@ var initialize = function() {
     map.setOptions({styles: mapStyles});
     geocoder = new google.maps.Geocoder();
     google.maps.event.addListener( map, 'maptypeid_changed', function() {
-        console.log("type changed", map.getMapTypeId());
+        // console.log("type changed", map.getMapTypeId());
     });
 
-    console.log("present.", map, geocoder);
+    // console.log("present.", map, geocoder);
 
     var count = addresses.length, i=0;
     var timeoutCycle = new gb.util.TimeOutCycle(1000, function(){
@@ -246,14 +246,11 @@ var initialize = function() {
                 addresses[i].city +
                 ", CA " +
                 addresses[i].zipcode;
-
             addresses[i].state = "CA";
-
             $("#current").text(streetAddress);
             placeMarkerByAddress(addresses[i], streetAddress);
             i++;
         } else {
-
             console.log(JSON.stringify(addresses));
             console.log("timer stopped.");
             timeoutCycle.stop();

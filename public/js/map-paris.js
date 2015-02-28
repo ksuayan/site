@@ -150,19 +150,16 @@ gb.ui.MapDemo.include({
         this.maxDistance = 300;
         this.locations = {};
         this.styleHashes = {};
-
         this.geocoder = new google.maps.Geocoder();
         this.map = new google.maps.Map(
             document.getElementById(divID),
             gb.ui.MapConfig.mapOptions);
         this.map.setOptions({styles: gb.ui.MapConfig.mapStyles});
-
         this.geocodeButton = $("#"+formID+" #go");
         this.geocodeButton.on("click", function(evt){
             var value = $("#"+formID+" #address").val();
             that.codeAddress(that, value);
         });
-
         this.initMap();
         this.getStyleFilters(that);
     },
@@ -170,23 +167,24 @@ gb.ui.MapDemo.include({
     initMap: function() {
         var that = this;
 
-        google.maps.event.addListener(that.map, 'bounds_changed', function() {
+        google.maps.event.addListener(that.map, 'bounds_changed', gb.util.throttle(function(){
             var bounds = that.map.getBounds(),
                 neLatLng = bounds.getNorthEast(),
                 swLatLng = bounds.getSouthWest(),
                 neLatLngStr = neLatLng.lat() + "," + neLatLng.lng(),
                 swLatLngStr = swLatLng.lat() + "," + swLatLng.lng();
+            // console.log("bounds_changed", swLatLngStr, neLatLngStr);
             that.queryMarkersWithin(swLatLngStr, neLatLngStr);
-        });
+        }, 1000));
 
-        google.maps.event.addListener(that.map, 'click', function(event) {
+        google.maps.event.addListener(that.map, 'click', gb.util.throttle(function(event){
             var latLng = event.latLng;
             center = latLng.lat()+","+latLng.lng();
-            console.log("click", center, that.maxDistance);
+            // console.log("click", center, that.maxDistance);
             that.queryMarkersNearPoint(that.center, that.maxDistance);
-        });
+        }, 500));
 
-        google.maps.event.addListener( that.map, 'maptypeid_changed', function() {
+        google.maps.event.addListener(that.map, 'maptypeid_changed', function() {
             console.log("type changed", that.map.getMapTypeId());
         });
     },
@@ -226,14 +224,13 @@ gb.ui.MapDemo.include({
 
     onQueryResponse: function(that, data) {
         if (data.length) {
-            var markerStyles = gb.util.getDedupedValuesByKey(data,"styleHash");
+            // var markerStyles = gb.util.getDedupedValuesByKey(data,"styleHash");
             // console.log("styles", markerStyles);
             for (var i=0, n=data.length; i<n; i++) {
                 var item = data[i];
                 that.addLocation(item);
             }
             that.filterLocationsByStyle();
-
         }
     },
 
@@ -253,6 +250,7 @@ gb.ui.MapDemo.include({
 
     queryMarkersNearPoint: function(ctr, dist) {
         var that = this;
+        // console.log("/api/loc/near/"+ctr+"/"+dist);
         $.ajax({
             url: "/api/loc/near/"+ctr+"/"+dist
         }).success(function(data){
@@ -302,7 +300,6 @@ gb.ui.MapDemo.include({
             jq.attr("id", "filter-"+name)
               .attr("value", key)
               .prop('checked', true);
-
 
             var label = $("<label for='filter-"+name+"'>"+gb.ui.MapConfig.mapLayerNames[key]+"</label>");
             filterForm.append(jq).append(label);

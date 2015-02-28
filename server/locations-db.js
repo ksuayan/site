@@ -153,7 +153,7 @@ LocationDB.prototype.getLocationsNearPoint = function(point, maxDistance, onSucc
                 return util.HandleError(err, onError);
             }
             if (typeof onSuccess ==='function') {
-                console.log("found: ", locations.length);
+                // console.log("found: ", locations.length);
                 onSuccess(locations);
             }
         });
