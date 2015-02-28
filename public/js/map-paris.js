@@ -76,28 +76,52 @@ gb.ui.MapConfig = {
 
 gb.ui.MapConfig.mapMarkers = [
     {
-        url: gb.ui.MapConfig.mapPath + "pin-blue-solid-2.png",
-        size: new google.maps.Size(34, 47),
+        url: gb.ui.MapConfig.mapPath + "pin.png",
+        size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(18, 47)
+        anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin-red-solid-2.png",
-        size: new google.maps.Size(34, 47),
+        url: gb.ui.MapConfig.mapPath + "pin2.png",
+        size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(18, 47)
+        anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin-green-solid-2.png",
-        size: new google.maps.Size(34, 47),
+        url: gb.ui.MapConfig.mapPath + "pin3.png",
+        size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(18, 47)
+        anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin-yellow-solid-2.png",
-        size: new google.maps.Size(34, 47),
+        url: gb.ui.MapConfig.mapPath + "pin4.png",
+        size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(18, 47)
+        anchor: new google.maps.Point(13, 45)
+    },
+        {
+        url: gb.ui.MapConfig.mapPath + "pin5.png",
+        size: new google.maps.Size(25, 45),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(13, 45)
+    },
+    {
+        url: gb.ui.MapConfig.mapPath + "pin6.png",
+        size: new google.maps.Size(25, 45),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(13, 45)
+    },
+    {
+        url: gb.ui.MapConfig.mapPath + "pin7.png",
+        size: new google.maps.Size(25, 45),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(13, 45)
+    },
+    {
+        url: gb.ui.MapConfig.mapPath + "pin8.png",
+        size: new google.maps.Size(25, 45),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(13, 45)
     }
 ];
 
@@ -106,11 +130,11 @@ gb.ui.MapConfig.mapMarkerStyles = {
     "328c7205": gb.ui.MapConfig.mapMarkers[1],
     "-7eeb9d7b": gb.ui.MapConfig.mapMarkers[2],
     "6ff19c65": gb.ui.MapConfig.mapMarkers[3],
-    "4f0e2a65": gb.ui.MapConfig.mapMarkers[0],
-    "583cb885": gb.ui.MapConfig.mapMarkers[2],
-    "aea67c5": gb.ui.MapConfig.mapMarkers[3],
-    "-3477199b": gb.ui.MapConfig.mapMarkers[0],
-    "-279282db": gb.ui.MapConfig.mapMarkers[1]
+    "4f0e2a65": gb.ui.MapConfig.mapMarkers[4],
+    "583cb885": gb.ui.MapConfig.mapMarkers[5],
+    "aea67c5": gb.ui.MapConfig.mapMarkers[6],
+    "-3477199b": gb.ui.MapConfig.mapMarkers[7],
+    "-279282db": gb.ui.MapConfig.mapMarkers[0]
 };
 
 gb.ui.MapDemo.include({
