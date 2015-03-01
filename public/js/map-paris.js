@@ -76,49 +76,31 @@ gb.ui.MapConfig = {
 
 gb.ui.MapConfig.mapMarkers = [
     {
-        url: gb.ui.MapConfig.mapPath + "pin.png",
+        url: gb.ui.MapConfig.mapPath + "pin14.png", // red
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin2.png",
+        url: gb.ui.MapConfig.mapPath + "pin4.png", // green
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin3.png",
+        url: gb.ui.MapConfig.mapPath + "pin10.png", // blue
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin4.png",
+        url: gb.ui.MapConfig.mapPath + "pin9.png", // orange
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
         {
-        url: gb.ui.MapConfig.mapPath + "pin5.png",
-        size: new google.maps.Size(25, 45),
-        origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(13, 45)
-    },
-    {
-        url: gb.ui.MapConfig.mapPath + "pin6.png",
-        size: new google.maps.Size(25, 45),
-        origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(13, 45)
-    },
-    {
-        url: gb.ui.MapConfig.mapPath + "pin7.png",
-        size: new google.maps.Size(25, 45),
-        origin: new google.maps.Point(0,0),
-        anchor: new google.maps.Point(13, 45)
-    },
-    {
-        url: gb.ui.MapConfig.mapPath + "pin8.png",
+        url: gb.ui.MapConfig.mapPath + "pin6.png", // yello-green
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
