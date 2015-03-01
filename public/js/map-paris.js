@@ -56,6 +56,101 @@ gb.ui.MapConfig = {
             ]
         }
     ],
+    mapStyles2: [
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+                { "color": "#4875b7" },
+                { "lightness": 13 }
+            ]
+        },{
+            "featureType": "water"  },{
+            "elementType": "labels.text.fill",
+            "stylers": [
+                { "color": "#333333" }
+            ]
+        },
+        {
+            "featureType": "landscape.natural.terrain",
+            "stylers": [
+                { "hue": "#c3ff00" },
+                { "saturation": -48 },
+                { "lightness": -51 }
+            ]
+        },{
+            "featureType": "road.highway",
+            "stylers": [
+                { "hue": "#ff6e00" },
+                { "lightness": -1 },
+                { "saturation": 5 }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "all",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#dff1ee"
+                }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "geometry.stroke",
+            "stylers": [
+                {
+                    "color": "#b1d7e8"
+                }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "labels.text.fill",
+            "stylers": [
+                {
+                    "color": "#095e5f"
+                }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+                {
+                    "color": "#acf2f7"
+                }
+            ]
+        },
+
+        {
+            "featureType": "road.arterial",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#ffffff"
+                }
+            ]
+        },
+        {
+            "featureType": "road.arterial",
+            "elementType": "geometry.stroke",
+            "stylers": [
+                {
+                    "color": "#ffa75b"
+                }
+            ]
+        }
+    ],
     mapOptions: {
         center: new google.maps.LatLng(48.85340300000001,2.3487840000000233),
         zoom: 18,
@@ -106,7 +201,6 @@ gb.ui.MapConfig.mapMarkers = [
         anchor: new google.maps.Point(13, 45)
     }
 ];
-
 gb.ui.MapConfig.mapMarkerStyles = {
     "53ca3a80": gb.ui.MapConfig.mapMarkers[0],
     "-662d500": gb.ui.MapConfig.mapMarkers[1],
@@ -114,7 +208,6 @@ gb.ui.MapConfig.mapMarkerStyles = {
     "1939180": gb.ui.MapConfig.mapMarkers[3],
     "-2a77fa60": gb.ui.MapConfig.mapMarkers[4]
 };
-
 gb.ui.MapConfig.mapLayerNames = {
     "53ca3a80": "Food",
     "-662d500": "Art &amp; Museums",
@@ -136,7 +229,7 @@ gb.ui.MapDemo.include({
         this.map = new google.maps.Map(
             document.getElementById(divID),
             gb.ui.MapConfig.mapOptions);
-        this.map.setOptions({styles: gb.ui.MapConfig.mapStyles});
+        this.map.setOptions({styles: gb.ui.MapConfig.mapStyles2});
         this.geocodeButton = $("#"+formID+" #go");
         this.geocodeButton.on("click", function(evt){
             var value = $("#"+formID+" #address").val();
