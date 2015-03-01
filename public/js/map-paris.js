@@ -282,8 +282,7 @@ gb.ui.MapDemo.include({
                 position: latLng,
                 map: this.map,
                 icon: icon,
-                title: name,
-                animation: google.maps.Animation.DROP
+                title: name
             }),
             infoWindow = this.createInfoWindow(name, desc);
 
