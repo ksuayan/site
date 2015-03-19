@@ -43,6 +43,10 @@ ViewHandler.prototype.paris = function (req, res) {
     res.render('layouts/paris');
 };
 
+ViewHandler.prototype.video = function (req, res) {
+    res.render('content/video');
+};
+
 ViewHandler.prototype.live = function (req, res) {
     res.render('layouts/live');
 };
