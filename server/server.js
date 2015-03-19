@@ -51,6 +51,7 @@ app.get('/graph',   view.graph); // Raphael Graph
 app.get('/canvas',  view.canvas); // Canvas Experiments
 app.get('/search-ui', view.searchDemo);
 app.get('/video',     view.video); // video background
+app.get('/vimeo',     view.vimeo); // video background
 
 app.get('/paris',   view.paris);
 app.get('/core',    view.core);

@@ -47,6 +47,10 @@ ViewHandler.prototype.video = function (req, res) {
     res.render('content/video');
 };
 
+ViewHandler.prototype.vimeo = function (req, res) {
+    res.render('content/vimeo');
+};
+
 ViewHandler.prototype.live = function (req, res) {
     res.render('layouts/live');
 };
