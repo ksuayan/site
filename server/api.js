@@ -2,12 +2,27 @@ var timeline = require('./timeline-db'),
     content = require('./content-db'),
     locations = require('./locations-db'),
     conf = require('./conf'),
-    util = require('./apputil');
+    util = require('./apputil'),
+    Twitter = require('twitter-node-client').Twitter;
+
+var twitterClient = new Twitter(conf.app.twitter);
 
 var ApiHandler = function() {
     console.log("Initialized API handler");
 };
 
+ApiHandler.prototype.twitter = function(request, response) {
+    var onError = function (err, response, body) {
+        response.send({"error": err});
+    },
+    onSuccess = function (data) {
+        var obj = JSON.parse(data);
+        response.send({"status":"ok","data": obj});
+    };
+    twitterClient.getUserTimeline(
+        {screen_name:"ksuayan", count:'10'},
+        onError, onSuccess);
+};
 
 ApiHandler.prototype.getTileList = function(req, res) {
     var onSuccess = function(tiles) {
@@ -193,6 +208,7 @@ ApiHandler.prototype.saveDocument = function(request, response) {
     instance.save();
     response.send({status:"ok"});
 };
+
 
 // ------------------------
 

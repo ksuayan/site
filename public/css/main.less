@@ -119,6 +119,51 @@ ul {
     }
 }
 
+#twitter {
+  background-color: #ffffff;
+  padding: 15px;
+  height: 300px;
+  overflow-y: auto;
+
+  .media {
+    margin-top: 0px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #ccc;
+    &:first-child {
+      padding-top: 0px;
+    }
+    .media-left {
+      width: 48px;
+      float: left;
+      display: block;
+      margin-right: 10px;
+    }
+    .media-body {
+      display: block;
+      float: left;
+      width: 80%;
+      line-height: 120%;
+    }
+
+    .when {
+      font-size: 16px;
+      color: #ccc;
+      display: block;
+      margin-top: 5px;
+      clear: both;
+    }
+  }
+}
+
+.permalink, .permalink:hover {
+  clear: both;
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
+  margin-top: 10px;
+}
 
 // Large and Below
 @media (max-width: (@screen-md-min)) {
@@ -134,7 +179,7 @@ ul {
     .row.multicol {
         .mod,.mod:first-child {
             margin: 0px;
-            min-height: 360px;
+            min-height: 400px;
             float: left;
         }
         .mod { width: 33%; }
@@ -146,7 +191,7 @@ ul {
 @media (min-width: (@screen-lg-min+1)) {
     .row.multicol {
         .mod,.mod:first-child {
-            min-height: 320px;
+            min-height: 400px;
         }
     }
 }
