@@ -12,7 +12,6 @@ body {
     background-color: transparent;
     padding-top: 60px;
     padding-bottom: 100px;
-
     @media (max-width: (@screen-sm-max)) {
         .container {
             padding: 5px;
@@ -86,6 +85,9 @@ ul {
     .hero-unit {
         height: auto;
         padding-bottom: 10px;
+    }
+    .jumbotron {
+      padding: 5px;
     }
 }
 
@@ -283,4 +285,11 @@ html#slideshow {
   .col-md-9 {
     padding-right: 0px;
   }
+
+  @media (max-width: @screen-sm-max) {
+    .col-md-3, .col-md-9 {
+      padding: 0px;
+    }
+  }
+
 }

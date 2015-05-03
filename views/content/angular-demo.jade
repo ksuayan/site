@@ -3,11 +3,10 @@ extends ../layout
 block content
   div.container
     div.jumbotron
-      div.container
-        h1 Track List
-        p An AngularJS Demo
+      h1 Track List
+      p An AngularJS Demo
 
-  div.container
+  div.container(ng-app="MainApp")
     div.row.track-search
       div(ng-view="")
 

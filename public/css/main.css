@@ -186,6 +186,9 @@ ul li {
     height: auto;
     padding-bottom: 10px;
   }
+  .jumbotron {
+    padding: 5px;
+  }
 }
 .row {
   margin: 0px;
@@ -363,4 +366,10 @@ html#slideshow {
 }
 .row.track-search .col-md-9 {
   padding-right: 0px;
+}
+@media (max-width: 991px) {
+  .row.track-search .col-md-3,
+  .row.track-search .col-md-9 {
+    padding: 0px;
+  }
 }
