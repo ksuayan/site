@@ -19,14 +19,15 @@
   ],
   "main": "./server/server.js",
   "dependencies": {
+    "debug": "0.5.0",
     "express": "3.1.0",
-    "mongoose": ">=3.8.3",
-    "mongodb": "2.0.28",
-    "socket.io": "1.0.6",
     "jade": "0.32.0",
-    "request": "2.9.x",
     "moment": "2.0.0",
-    "debug": "0.5.0"
+    "mongodb": "2.0.28",
+    "mongoose": ">=3.8.3",
+    "request": "2.9.x",
+    "socket.io": "1.0.6",
+    "twitter-node-client": "0.0.6"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
