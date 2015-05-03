@@ -1,4 +1,101 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  width: 100% \9;
+  max-width: 100%;
+  height: auto;
+}
+.form-horizontal .form-group-sm .form-control {
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.form-horizontal .form-group-lg .form-control {
+  height: 46px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+.btn-group-lg > .btn {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+.btn-group-sm > .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.dl-horizontal dd:before,
+.dl-horizontal dd:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after,
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after,
+.btn-toolbar:before,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:before,
+.btn-group-vertical > .btn-group:after,
+.nav:before,
+.nav:after,
+.navbar:before,
+.navbar:after,
+.navbar-header:before,
+.navbar-header:after,
+.navbar-collapse:before,
+.navbar-collapse:after,
+.pager:before,
+.pager:after,
+.panel-body:before,
+.panel-body:after,
+.modal-footer:before,
+.modal-footer:after {
+  content: " ";
+  display: table;
+}
+.dl-horizontal dd:after,
+.container:after,
+.container-fluid:after,
+.row:after,
+.form-horizontal .form-group:after,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:after,
+.nav:after,
+.navbar:after,
+.navbar-header:after,
+.navbar-collapse:after,
+.pager:after,
+.panel-body:after,
+.modal-footer:after {
+  clear: both;
+}
+/*
+@screen-xs-min: 480px;
+@screen-sm-min: 768px;
+@screen-md-min: 992px;
+@screen-lg-min: 1200px;
+@screen-xs-max: (@screen-sm-min - 1);
+@screen-sm-max: (@screen-md-min - 1);
+@screen-md-max: (@screen-lg-min - 1);
+*/
 html {
   background-color: #fff;
 }
@@ -15,6 +112,9 @@ body {
     padding: 5px;
   }
 }
+.dropdown-menu {
+  font-size: 18px;
+}
 h1,
 h2,
 h3,
@@ -29,6 +129,29 @@ h6 {
   padding: 0px;
   line-height: 160%;
 }
+h1 mark,
+h2 mark,
+h3 mark,
+h4 mark,
+h5 mark,
+h6 mark {
+  padding: 0px;
+  margin: 0px;
+}
+h1 mark i,
+h2 mark i,
+h3 mark i,
+h4 mark i,
+h5 mark i,
+h6 mark i {
+  font-weight: 200;
+  font-style: normal;
+  color: #fff;
+  background-color: #999;
+  margin: 0px;
+  padding: 3px 6px;
+  letter-spacing: 3px;
+}
 th {
   background-color: #efefef;
 }
@@ -38,6 +161,9 @@ ul {
 }
 ul li {
   list-style-position: inside;
+}
+.list-group-item {
+  padding: 20px 15px;
 }
 .hero-unit {
   padding: 0px;
@@ -126,7 +252,7 @@ ul li {
 #content #stage {
   width: 100%;
   height: 500px;
-  top: -9px;
+  top: -5px;
   position: relative;
   overflow: hidden;
   margin-bottom: 20px;
@@ -232,23 +358,9 @@ html#slideshow {
   height: auto;
   max-height: none;
 }
-@media (max-width: 767px) {
-  width: 1;
-  
-  /* XS: Extra Small */
+.row.track-search .col-md-3 {
+  padding-left: 0px;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  width: 2;
-  
-  /* SM: Small */
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-  width: 3;
-  
-  /* MD: Medium */
-}
-@media (min-width: 1200px) {
-  width: 4;
-  
-  /* LG: Large */
+.row.track-search .col-md-9 {
+  padding-right: 0px;
 }

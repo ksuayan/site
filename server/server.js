@@ -43,25 +43,18 @@ app.all("*", function (req, res, next) {
 });
 
 app.get('/', view.fullScreen);
+
 app.get('/page/:page', view.pageView);
+app.get('/text',       view.textList);
+app.get('/edit',       view.pageEdit);
 
-// demos
-app.get('/live',    view.live); // Backbone Editor
-app.get('/graph',   view.graph); // Raphael Graph
-app.get('/canvas',  view.canvas); // Canvas Experiments
-app.get('/search-ui', view.searchDemo);
-app.get('/video',     view.video); // video background
-app.get('/vimeo',     view.vimeo); // video background
 
-app.get('/paris',   view.paris);
-app.get('/core',    view.core);
-app.get('/transit', view.transit);
-app.get('/text',    view.textList);
-app.get('/edit',    view.pageEdit);
+app.get('/content/:page', view.content);
+
 
 app.get('/search',             itunes.searchTerm);
 app.get('/search/:term',       itunes.searchTerm);
-app.get('/multi-search/:term', itunes.searchMultiCriteria);
+app.get('/multi/:term',        itunes.searchMultiCriteria);
 app.get('/track',              itunes.getTrackList);
 app.get('/track/:id',          itunes.getTrack);
 

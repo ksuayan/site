@@ -13,21 +13,11 @@ ViewHandler.fn = {
 
 ViewHandler.prototype.fullScreen = function (req, res) {
     content.getPageText("home", function (content) {
-        res.render('layouts/fullscreen', {content: content});
+        res.render('content/home', {content: content});
     });
 };
 
-ViewHandler.prototype.core = function (req, res) {
-    content.getPageText("home", function (content) {
-        res.render('layouts/core', {content: content});
-    });
-};
 
-ViewHandler.prototype.searchDemo = function (req, res) {
-    content.getPageText("home", function (content) {
-        res.render('layouts/search', {content: content});
-    });
-};
 
 ViewHandler.prototype.pageEdit = function (req, res) {
     var locale = null;
@@ -39,38 +29,20 @@ ViewHandler.prototype.pageEdit = function (req, res) {
     });
 };
 
-ViewHandler.prototype.paris = function (req, res) {
-    res.render('layouts/paris');
-};
 
-ViewHandler.prototype.video = function (req, res) {
-    res.render('content/video');
+ViewHandler.prototype.content = function(req, res) {
+    res.render('content/'+req.params.page);
 };
-
-ViewHandler.prototype.vimeo = function (req, res) {
-    res.render('content/vimeo');
-};
-
-ViewHandler.prototype.live = function (req, res) {
-    res.render('layouts/live');
-};
-
-ViewHandler.prototype.graph = function (req, res) {
-    res.render('layouts/graph');
-};
-
-ViewHandler.prototype.canvas = function (req, res) {
-    res.render('layouts/canvas');
-};
-
-ViewHandler.prototype.transit = function (req, res) {
-    res.render('layouts/transit');
-};
-
+/**
+ * Pull content node from MongoDB.
+ *
+ * @param req
+ * @param res
+ */
 ViewHandler.prototype.pageView = function (req, res) {
     var page = req.params.page;
     var onError = function () {
-        res.render('notfound');
+        res.render('content/notfound');
     };
     var onSuccess = function (content) {
         if (content[page]) {
@@ -91,7 +63,7 @@ ViewHandler.prototype.createPage = function (req, res) {
         content: req.body.textId
     };
     var onSuccess = function (content) {
-        return res.render("pageEdit", {content: content, fn: ViewHandler.fn });
+        return res.render("content/db/pageEdit", {content: content, fn: ViewHandler.fn });
     };
     var onError = function (err) {
         return res.render("test", err);
@@ -99,14 +71,13 @@ ViewHandler.prototype.createPage = function (req, res) {
     content.createPage(pageObj, onSuccess, onError);
 };
 
-
 ViewHandler.prototype.textList = function (req, res) {
     var locale = null;
     if (req.params.locale) {
         locale = req.params.locale;
     }
     content.getTextList(locale, function (content) {
-        res.render('textList', {content: content, fn: ViewHandler.fn });
+        res.render('content/db/textList', {content: content, fn: ViewHandler.fn });
     });
 };
 
