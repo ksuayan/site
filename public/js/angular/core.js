@@ -19,11 +19,11 @@ mainApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/home', {
-                templateUrl: 'templates/tracklist.html',
+                templateUrl: '/templates/tracklist.html',
                 controller: 'TrackListController'
             }).
             when('/home/:term', {
-                templateUrl: 'templates/trackdetails.html',
+                templateUrl: '/templates/trackdetails.html',
                 controller: 'TrackListController'
             }).
             otherwise({

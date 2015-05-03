@@ -1,0 +1,16 @@
+extends ../layout
+
+block append css
+  link(rel="stylesheet",href="/css/search.css")
+
+block content
+  div(class="trans")
+    h1 Music Collection
+    p Search Widget Demo using multi-collection query to MongoDB.
+    br
+    form
+      input(type="text",size="30",id="search-field")
+  img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")
+
+block append scripts
+  script(src="/js/main.js")

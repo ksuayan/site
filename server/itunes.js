@@ -124,54 +124,60 @@ iTunesDB.prototype.searchTerm = function(request, response) {
 
 iTunesDB.prototype.queryByAttribute = function(term, queryProfile, onDataSuccess, onError) {
     if (term && queryProfile.attribute) {
-        var docs = [];
-        var query = {};
-        var re = new RegExp(term, 'i'); // case insensitive
+        var docs = [],
+            query = {},
+            stream = null,
+            re = new RegExp(term, 'i'); // case insensitive
         query[queryProfile.attribute] = {$regex:re};
+        // console.log("query collection by attribute:", term);
+        try {
+            stream = itunesDB.TrackDbModel
+                .find(query, queryProfile.fields, itunesDB.pagination)
+                .sort(queryProfile.sortOrder)
+                .stream();
+            stream.on('data', function(doc){
+                docs.push(doc);
+            }).on('error', function(err){
+                if (onError && typeof onError === 'function') {
+                    onError(queryProfile.attribute, err);
+                }
+            }).on('close', function(){
+                if (onDataSuccess && typeof onDataSuccess === 'function') {
+                    onDataSuccess(queryProfile, docs);
+                }
+            });
 
-        var stream = itunesDB.TrackDbModel
-            .find(query, queryProfile.fields, itunesDB.pagination)
-            .sort(queryProfile.sortOrder)
-            .stream();
+        } catch (err) {
+            onError(queryProfile.attribute, err);
+        }
 
-        stream.on('data', function(doc){
-            docs.push(doc);
-        }).on('error', function(err){
-            if (onError && typeof onError === 'function') {
-                onError(queryProfile, err);
-            }
-        }).on('close', function(){
-            if (onDataSuccess && typeof onDataSuccess === 'function') {
-                onDataSuccess(queryProfile, docs);
-            }
-        });
     }
 };
 
 
 iTunesDB.prototype.queryCollectionById = function(term, queryProfile, onDataSuccess, onError) {
     if (term) {
-        var docs = [];
-        var query = {};
-        var re = new RegExp(term, 'i'); // case insensitive
-        query["_id"] = {$regex:re};
+        var docs = [],
+            query = {},
+            re = new RegExp(term, 'i'); // case insensitive
 
+        query["_id"] = {"$regex":re};
+        // console.log("query collection by id:", query);
         var collection = itunesDB.mongodb.collection(queryProfile.collection);
-        var stream = collection.find(query)
-            .sort(queryProfile.sortOrder)
-            .stream();
+        try {
+            collection.find(query)
+                .sort(queryProfile.sortOrder)
+                .toArray(function(err, docs) {
+                    if (err && onError && typeof onError === 'function') {
+                        onError(queryProfile.attribute, err);
+                        return;
+                    }
+                    onDataSuccess(queryProfile, docs);
+                });
 
-        stream.on('data', function(doc){
-            docs.push(doc);
-        }).on('error', function(err){
-            if (onError && typeof onError === 'function') {
-                onError(queryProfile, err);
-            }
-        }).on('close', function(){
-            if (onDataSuccess && typeof onDataSuccess === 'function') {
-                onDataSuccess(queryProfile, docs);
-            }
-        });
+        } catch(err) {
+            onError(queryProfile.attribute, err);
+        }
     }
 };
 
@@ -231,6 +237,7 @@ iTunesDB.prototype.searchMultiCriteria = function(request, response) {
     };
 
     var onError = function(attribute, error) {
+        // console.log("Error on ", attribute, error);
         processed++;
         if (processed === queryProfiles.length) {
             onAllQueriesComplete();
@@ -238,6 +245,7 @@ iTunesDB.prototype.searchMultiCriteria = function(request, response) {
     };
 
     var multiQuery = function () {
+        // console.log("term:", term);
         if (typeof term !== 'undefined') {
             for (var i=0,n=queryProfiles.length; i<n; i++) {
 
@@ -254,7 +262,6 @@ iTunesDB.prototype.searchMultiCriteria = function(request, response) {
             }
         }
     };
-
     multiQuery();
 };
 

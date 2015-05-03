@@ -1,11 +1,7 @@
-extends ../layout-wide
+extends ../layout
 
 block append css
   link(rel="stylesheet",href="/css/map.css")
-
-block append scripts
-  script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U&sensor=false")
-  script(src="/js/map-paris.js")
 
 block content
   div.row
@@ -21,4 +17,6 @@ block content
     div.col-lg-12
       div#map-canvas
 
-
+block append scripts
+  script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U&sensor=false")
+  script(src="/js/map-paris.js")

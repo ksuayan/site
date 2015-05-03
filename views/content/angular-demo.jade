@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  div.container
+    div.jumbotron
+      div.container
+        h1 Track List
+        p An AngularJS Demo
+
+  div.container
+    div.row.track-search
+      div(ng-view="")
+
+block append scripts
+  script(src="/js/angular/core.js")

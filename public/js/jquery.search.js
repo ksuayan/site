@@ -93,7 +93,7 @@
                 return;
             }
             previousTerm = term;
-            var url = "/multi-search/"+term;
+            var url = "/multi/"+term;
             $.ajax({
                 url: url,
                 type: 'GET',
