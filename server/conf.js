@@ -9,7 +9,14 @@ var config = {
     description : 'Design + Development',
     keywords : 'kyo, suayan, design, development, web',
     caching: false,
-    expires: 0
+    expires: 0,
+    twitter: {
+        "consumerKey": process.env['TWITTER_CONSUMER_KEY'],
+        "consumerSecret": process.env['TWITTER_CONSUMER_SECRET'],
+        "accessToken": process.env['TWITTER_ACCESS_TOKEN'],
+        "accessTokenSecret": process.env['TWITTER_ACCESS_SECRET'],
+        "callBackUrl": "http://dev.suayan.com:9000/auth/twitter/callback"
+    }
 };
 
 if (process.env.NODE_ENV === "production") {
@@ -17,6 +24,7 @@ if (process.env.NODE_ENV === "production") {
     config.mongoURL = process.env.MONGOHQ_URL;
     config.caching = true;
     config.expires = 60 * 60 * 24 * 4; // 4 days
+    config.twitter.callbackUrl = "http://node.suayan.com/auth/twitter/callback";
 }
 
 console.log("NODE_ENV:", process.env.NODE_ENV);

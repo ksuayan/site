@@ -196,6 +196,15 @@ gb.util = {
     },
 
     /**
+     * Parse a Twitter Date (created_at).
+     * @param dt
+     * @returns {Date}
+     */
+    parseTwitterDate: function(dt) {
+        return new Date(Date.parse(dt.replace(/( \+)/, ' UTC$1')));
+    },
+
+    /**
      * Throttle a function invocation.
      * @param callback {Function} the function to call.
      * @param timeoutMS {number} the number of ms to set as cap between calls.

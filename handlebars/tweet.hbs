@@ -1,0 +1,21 @@
+<div class="media">
+    <div class="media-left">
+        <a href="{{user.url}}"><img src="{{user.profile_image_url}}" /></a>
+    </div>
+    <div class="media-body">
+        <a href="{{user.url}}">@{{user.screen_name}}</a>
+        {{text}}
+        {{#if permalink}}
+            <a href="{{permalink}}" class="permalink" target="_blank">{{permalink}}</a>
+        {{/if}}
+        <span class="when">{{ago}}</span>
+    </div>
+</div>
+
+
+
+
+
+
+
+
