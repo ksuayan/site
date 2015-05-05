@@ -3,9 +3,13 @@ var timeline = require('./timeline-db'),
     locations = require('./locations-db'),
     conf = require('./conf'),
     util = require('./apputil'),
-    Twitter = require('twitter-node-client').Twitter;
+    Twitter = require('twitter-node-client').Twitter,
+    Vimeo = require('vimeo').Vimeo;
 
 var twitterClient = new Twitter(conf.app.twitter);
+
+var vimeoConfig = conf.app.vimeo;
+var vimeoClient = new Vimeo(vimeoConfig.clientId, vimeoConfig.clientSecret, vimeoConfig.accessToken);
 
 var ApiHandler = function() {
     console.log("Initialized API handler");
@@ -23,6 +27,28 @@ ApiHandler.prototype.twitter = function(request, response) {
         {screen_name:"ksuayan", count:'10'},
         onError, onSuccess);
 };
+
+ApiHandler.prototype.vimeo = function(request, response) {
+    var count = (request.params.count && request.params.count < 30) ? request.params.count : 5;
+    vimeoClient.request({
+        path: '/me/videos',
+        query : {
+            page : 1,
+            per_page : count
+        }
+    }, function (error, body, status_code, headers) {
+        if (error) {
+            response.send({"error": error});
+        } else {
+            response.send({
+                "status": "ok",
+                "statusCode": status_code,
+                "headers": headers,
+                "body": body});
+        }
+    });
+};
+
 
 ApiHandler.prototype.getTileList = function(req, res) {
     var onSuccess = function(tiles) {
