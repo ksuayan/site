@@ -1,11 +1,10 @@
 extends ../layout
 
 block content
-  div#content
     div#stage
     include ksuayan
 
 block append scripts
+  include ../includes/toolbar
   img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")
-  script(src="/js/feeds.js")
   script(src=config.mediaHost+"/js/external/raphael-extensions.js")

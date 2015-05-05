@@ -244,7 +244,7 @@ gb.ui.Stage.include({
     },
 
     fadeOut: function() {
-        this.jq.css({"opacity":0.3});
+        this.jq.css({"opacity":0});
     },
 
     /**

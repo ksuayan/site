@@ -16,6 +16,11 @@ var config = {
         "accessToken": process.env['TWITTER_ACCESS_TOKEN'],
         "accessTokenSecret": process.env['TWITTER_ACCESS_SECRET'],
         "callBackUrl": "http://dev.suayan.com:9000/auth/twitter/callback"
+    },
+    vimeo: {
+        "clientId": process.env['VIMEO_CLIENT_ID'],
+        "clientSecret": process.env['VIMEO_CLIENT_SECRET'],
+        "accessToken": process.env['VIMEO_ACCESS_TOKEN']
     }
 };
 

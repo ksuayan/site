@@ -261,6 +261,31 @@ function program1(depth0,data) {
   return buffer;
   });
 
+this["JST"]["handlebars/vimeo.hbs"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"media\">\n    <div class=\"media-header\">\n        <h2><a href=\"";
+  if (stack1 = helpers.link) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.link); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">";
+  if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.name); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</a>, ";
+  if (stack1 = helpers.ago) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = (depth0 && depth0.ago); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</h2>\n    </div>\n    <div class=\"media-body\">\n        ";
+  stack2 = ((stack1 = ((stack1 = (depth0 && depth0.embed)),stack1 == null || stack1 === false ? stack1 : stack1.html)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\n    </div>\n</div>\n";
+  return buffer;
+  });
+
 
 gb.Namespace(gb, "gb.util");
 
@@ -1733,7 +1758,7 @@ gb.ui.Stage.include({
     },
 
     fadeOut: function() {
-        this.jq.css({"opacity":0.3});
+        this.jq.css({"opacity":0});
     },
 
     /**
@@ -1972,14 +1997,10 @@ $(function(){
     $.ajax({
         url: "/api/twitter",
         success: function(data) {
-
             if (data && data.status === "ok") {
-
                 var tweetTemplate = JST["handlebars/tweet.hbs"],
                     tweets = data.data;
-                console.log("data", data.data);
                 for (var i= 0,n=tweets.length; i<n; i++) {
-
                     var dt = gb.util.parseTwitterDate(tweets[i]['created_at']),
                         permalink = (tweets[i].entities.urls.length) ? tweets[i].entities.urls[0].expanded_url : "";
                     tweets[i].ago = moment(dt).fromNow();
@@ -1987,6 +2008,25 @@ $(function(){
                     $("#twitter").append($(tweetTemplate(tweets[i])));
                 }
 
+            }
+        }
+    });
+
+    $.ajax({
+        url: "/api/vimeo/5",
+        success: function(data) {
+            if (data && data.status === "ok") {
+                var vimeoTemplate = JST["handlebars/vimeo.hbs"],
+                    videos = data.body.data;
+                for (var i= 0,n=videos.length; i<n; i++) {
+                    var vid = videos[i];
+                    if (vid.privacy && vid.privacy.view === "anybody") {
+                        vid.ago = moment(vid.created_time).fromNow();
+                        var jq = $(vimeoTemplate(vid));
+                        jq.find("iframe").attr("width",700).attr("height",395);
+                        $("#vimeo").append(jq);
+                    }
+                }
             }
         }
     });

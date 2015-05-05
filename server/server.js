@@ -62,7 +62,8 @@ app.get('/track/:id',          itunes.getTrack);
 app.get('/api/timeline',    api.getTimeline);
 app.get('/api/tiles',       api.getTileList);
 
-app.get('/api/twitter',     api.twitter);
+app.get('/api/twitter',      api.twitter);
+app.get('/api/vimeo/:count', api.vimeo);
 
 app.get('/api/page',        api.getPageList);
 app.post('/api/page',       api.createPage);
