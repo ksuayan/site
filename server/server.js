@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var express = require('express'),
+    bodyParser = require('body-parser'),
     app = express(),
     path = require('path'),
     conf = require('./conf'),
@@ -12,9 +13,9 @@ var init = function () {
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'jade');
     app.locals({config: conf.app});
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
     app.use(express.compress());
-    // upload turned off
-    // app.use(express.bodyParser({uploadDir: '/tmp/test'}));
     app.use(express.static(path.join(__dirname, "../public")));
     app.use(express.favicon());
     app.use(express.cookieParser());
@@ -48,9 +49,7 @@ app.get('/page/:page', view.pageView);
 app.get('/text',       view.textList);
 app.get('/edit',       view.pageEdit);
 
-
 app.get('/content/:page', view.content);
-
 
 app.get('/search',             itunes.searchTerm);
 app.get('/search/:term',       itunes.searchTerm);
@@ -64,6 +63,7 @@ app.get('/api/tiles',       api.getTileList);
 
 app.get('/api/twitter',      api.twitter);
 app.get('/api/vimeo/:count', api.vimeo);
+app.get('/api/flickr/:count', api.flickr);
 
 app.get('/api/page',        api.getPageList);
 app.post('/api/page',       api.createPage);
@@ -87,7 +87,7 @@ app.get('/api/loc/near/:point/:maxDistance', api.getLocationsNearPoint);
 app.get('/api/loc/within/:swLatLng/:neLatLng', api.getLocationsWithin);
 app.post('/api/loc',        api.createLocation);
 app.put('/api/loc/:id',     api.updateLocation);
-app.delete('/api/log/:id',  api.deleteLocation);
+app.delete('/api/loc/:id',  api.deleteLocation);
 
 app.listen(conf.app.port);
 console.log('Go to http://localhost:' + conf.app.port);

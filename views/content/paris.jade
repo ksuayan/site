@@ -4,19 +4,32 @@ block append css
   link(rel="stylesheet",href="/css/map.css")
 
 block content
-  div.row
-    div.col-md-4
-      div#panel
-        form(id="geocode",class="form-inline",role="form")
-          input(id="address",type="textbox",class="form-control input-sm",placeholder="Address")
-          &nbsp;
-          input(id="go",type="button",class="btn btn-sm btn-default",value="Go")
-    div.col-md-8
-      div#notes
-  div.row
-    div.col-lg-12
-      div#map-canvas
+  div.container
+    div.row
+      div.col-md-12.col-lg-4
+        div#panel
+          form(id="geocode",class="form-inline",role="form")
+            div(class="form-group")
+              input(id="address",type="textbox",class="form-control",placeholder="Address")
+            &nbsp;
+            input(id="go",type="button",class="btn btn-default",value="Go")
+            &nbsp;
+            button(class="btn btn-primary",type="button",data-toggle="collapse",data-target="#notes",aria-expanded="false",aria-controls="collapseNotes") Filters
+      div.col-md-12.col-lg-8
+        div#notes(class="collapse")
+    div.row
+      div.col-lg-12
+        div#map-canvas
+    div.row
+      div.col-lg-12
+        div(data-ng-app="app")
+          div#screen(ui-view="")
+
 
 block append scripts
+  script(src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js")
   script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U&sensor=false")
   script(src="/js/map-paris.js")
+  script(src="/js/angular/locations/app.js")
+  script(src="/js/angular/locations/controllers.js")
+  script(src="/js/angular/locations/services.js")

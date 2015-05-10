@@ -1,3 +1,5 @@
+@import (reference) '../../bower_components/bootstrap/less/bootstrap';
+
 #map-canvas {
   width: 100%;
   height: 700px;
@@ -6,15 +8,19 @@
   h3 {
     font-size: 15px;
   }
+  @media (max-width: @screen-sm-max) {
+    height: 250px;
+  }
+  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+    height: 500px;
+  }
+
 }
 
 #panel {
   background-color: #fff;
   margin: 0px;
   padding: 0px 0px 10px 0px;
-  #address {
-    width: 200px;
-  }
 }
 
 #notes {
@@ -29,6 +35,24 @@
   #filter-form {
     label {
       padding: 0px 20px 0px 7px;
+    }
+  }
+}
+
+#filter-form {
+
+  @media (max-width: @screen-sm-max) {
+    input[type=checkbox] {
+      clear: both;
+      display: block;
+      width: 20px;
+      float: left;
+    }
+    label {
+      display: block;
+      float: left;
+      font-size: 14px;
+      height: 20px;
     }
   }
 }

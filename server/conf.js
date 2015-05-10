@@ -21,6 +21,11 @@ var config = {
         "clientId": process.env['VIMEO_CLIENT_ID'],
         "clientSecret": process.env['VIMEO_CLIENT_SECRET'],
         "accessToken": process.env['VIMEO_ACCESS_TOKEN']
+    },
+    flickr: {
+        "api_key": process.env['FLICKR_KEY'],
+        "secret": process.env['FLICKR_SECRET'],
+        progress: false
     }
 };
 

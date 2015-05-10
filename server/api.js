@@ -4,7 +4,15 @@ var timeline = require('./timeline-db'),
     conf = require('./conf'),
     util = require('./apputil'),
     Twitter = require('twitter-node-client').Twitter,
-    Vimeo = require('vimeo').Vimeo;
+    Vimeo = require('vimeo').Vimeo,
+    Flickr = require('flickrapi');
+
+
+var flickrClient = null;
+Flickr.tokenOnly(conf.app.flickr, function(error, flickr) {
+    console.log("flickr object", flickr);
+    flickrClient = flickr;
+});
 
 var twitterClient = new Twitter(conf.app.twitter);
 
@@ -49,6 +57,22 @@ ApiHandler.prototype.vimeo = function(request, response) {
     });
 };
 
+ApiHandler.prototype.flickr = function(request, response) {
+    var count = (request.params.count && request.params.count < 200) ? request.params.count : 50;
+    var onResponse = function(err, result) {
+        if (err) {
+            response.send({"error": err});
+        } else {
+            response.send({"status": "ok", "data": result});
+        }
+    };
+    flickrClient.photos.search({
+        user_id: "ksuayan",
+        page: 1,
+        per_page: count
+    }, onResponse);
+
+};
 
 ApiHandler.prototype.getTileList = function(req, res) {
     var onSuccess = function(tiles) {

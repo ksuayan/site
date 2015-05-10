@@ -264,17 +264,24 @@ gb.ui.MapDemo.include({
         });
     },
 
-    createInfoWindow: function(name, description) {
+
+    callAngular: function(id) {
+        var scope = angular.element(document.getElementById("screen")).scope();
+        scope.$apply(function () {
+            scope.gotoState("editLocation", {"id":id});
+        });
+    },
+
+    createInfoWindow: function(name) {
         var contentString = '<div id="content">'+
             '<h2 id="firstHeading" class="firstHeading">'+name+'</h2>'+
-            '<div id="bodyContent">'+description+'</div>'+
             '</div>';
         return new google.maps.InfoWindow({
             content: contentString
         });
     },
 
-    createMarker: function(icon, name, desc, lat, lng) {
+    createMarker: function(icon, id, name, desc, lat, lng) {
         // console.log(">> loc", name, desc, lat, lng);
         var that = this,
             latLng = new google.maps.LatLng(lat,lng),
@@ -284,7 +291,7 @@ gb.ui.MapDemo.include({
                 icon: icon,
                 title: name
             }),
-            infoWindow = this.createInfoWindow(name, desc);
+            infoWindow = this.createInfoWindow(name);
 
         google.maps.event.addListener(marker, 'mouseover', function() {
             infoWindow.open(that.map, marker);
@@ -293,6 +300,11 @@ gb.ui.MapDemo.include({
         google.maps.event.addListener(marker, 'mouseout', function() {
             infoWindow.close();
         });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            that.callAngular(id);
+        });
+
         return marker;
     },
 
@@ -315,6 +327,7 @@ gb.ui.MapDemo.include({
             this.styleHashes[id] = location.styleHash;
             this.locations[id] = this.createMarker(
                 gb.ui.MapConfig.mapMarkerStyles[location.styleHash],
+                location._id,
                 location.name,
                 location.description,
                 coords[0],
@@ -344,7 +357,7 @@ gb.ui.MapDemo.include({
 
     codeAddress: function(that, queryStr) {
         that.geocoder.geocode({'address': queryStr}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
+            if (status === google.maps.GeocoderStatus.OK) {
                 that.map.setCenter(results[0].geometry.location);
                 var marker = new google.maps.Marker({
                     map: that.map,
