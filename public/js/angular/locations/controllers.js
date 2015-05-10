@@ -13,27 +13,16 @@ angular.module('app.controllers', [])
 
     $scope.updateLocation = function() {
         $scope.location.$update(function() {
-            console.log("updateLocation", $scope.location);
             Location.update({ id:$scope.location._id }, $scope.location);
             $state.go('home');
         });
     };
 
     $scope.loadLocation = function() {
-        console.log("loadLocation", $stateParams);
         $scope.location = Location.get({ id: $stateParams.id });
     };
 
-    /*
-    $scope.loadLocationById = function(id) {
-        $scope.location = Location.get({ id: id });
-        console.log("loadLocationById", $scope.location);
-    };
-    */
-
     $scope.gotoState = function(state, params) {
-        console.log("-------");
-        console.log("gotoState>>", state, params);
         $state.go(state, params, {reload:true});
     };
 
