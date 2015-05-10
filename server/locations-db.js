@@ -47,7 +47,7 @@ LocationDB.prototype.getLocationById = function(id, onSuccess, onError) {
 
 
 LocationDB.prototype.updateLocation = function(locationObj, onSuccess, onError) {
-    this.Locationodel
+    this.LocationModel
     .findById(locationObj._id)
     .exec(function(err, found){
         if (err) {
