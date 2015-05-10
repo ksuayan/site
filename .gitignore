@@ -4,6 +4,8 @@ downloads
 doc
 public/css/external
 public/js/external
+data/flickr
+data/flickr/methods
 .DS_Store
 *.psd
 bower_components/
