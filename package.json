@@ -21,6 +21,8 @@
   "dependencies": {
     "debug": "0.5.0",
     "express": "3.1.0",
+    "body-parser": "1.12.3",
+    "flickrapi": "^0.3.28",
     "jade": "0.32.0",
     "moment": "2.0.0",
     "mongodb": "2.0.28",
