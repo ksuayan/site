@@ -35,24 +35,6 @@ app.directive('ckEditor', [function () {
         link: function ($scope, elm, attr, ngModel) {
             if (!ngModel) return;
 
-            var ck = CKEDITOR.replace(elm[0]);
-
-            /*
-            ck.on('pasteState', function () {
-                $scope.$apply(function () {
-                    ngModel.$setViewValue(ck.getData());
-                });
-            });
-
-            ngModel.$render = function (value) {
-                ck.setData(ngModel.$modelValue);
-            };
-            */
-
-            ck.on('instanceReady', function() {
-                ck.setData(ngModel.$viewValue);
-            });
-
             function updateModel() {
                 $scope.$apply(function() {
                     if ( ck.getData().length ) {
@@ -61,6 +43,10 @@ app.directive('ckEditor', [function () {
                 });
             }
 
+            var ck = CKEDITOR.replace(elm[0]);
+            ck.on('instanceReady', function() {
+                ck.setData(ngModel.$viewValue);
+            });
             ck.on('pasteState', updateModel);
             ck.on('change', updateModel);
             ck.on('key', updateModel);
