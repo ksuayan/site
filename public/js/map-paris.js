@@ -1,6 +1,33 @@
 gb.Namespace(gb,"gb.ui.MapDemo");
 gb.ui.MapDemo = new gb.Class();
 
+/**
+ * Prototype extension for computing distance
+ * between two points in meters.
+ * @param latlng
+ * @returns {number}
+ */
+google.maps.LatLng.prototype.distanceFrom = function(latlng) {
+    var lat = [this.lat(), latlng.lat()],
+        lng = [this.lng(), latlng.lng()],
+        R = 6378137,
+        dLat = (lat[1]-lat[0]) * Math.PI / 180,
+        dLng = (lng[1]-lng[0]) * Math.PI / 180,
+        a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat[0] * Math.PI / 180 ) * Math.cos(lat[1] * Math.PI / 180 ) *
+            Math.sin(dLng/2) * Math.sin(dLng/2),
+        c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)),
+        d = R * c;
+    return Math.round(d);
+};
+
+/*
+var loc1 = new GLatLng(52.5773139, 1.3712427);
+var loc2 = new GLatLng(52.4788314, 1.7577444);
+var dist = loc2.distanceFrom(loc1);
+alert(dist/1000);
+*/
+
 gb.ui.MapConfig = {
     mapPath: "/img/map/",
     mapStyles: [
@@ -222,7 +249,7 @@ gb.ui.MapDemo.include({
     init: function(window, divID, formID) {
         var that = this;
         this.center = "48.85340300000001,2.3487840000000233"; // Kilometer Zero
-        this.maxDistance = 300;
+        this.queryRadius = 100;
         this.locations = {};
         this.styleHashes = {};
         this.geocoder = new google.maps.Geocoder();
@@ -253,10 +280,9 @@ gb.ui.MapDemo.include({
         }, 1000));
 
         google.maps.event.addListener(that.map, 'click', gb.util.throttle(function(event){
-            var latLng = event.latLng;
-            center = latLng.lat()+","+latLng.lng();
-            // console.log("click", center, that.maxDistance);
-            that.queryMarkersNearPoint(that.center, that.maxDistance);
+            var latLng = event.latLng,
+                clickCoord = latLng.lat()+","+latLng.lng();
+            that.queryMarkersNearPoint(clickCoord, that.queryRadius);
         }, 500));
 
         google.maps.event.addListener(that.map, 'maptypeid_changed', function() {
@@ -323,6 +349,7 @@ gb.ui.MapDemo.include({
     addLocation: function(location) {
         var id = location._id;
         if (!this.locations[id]) {
+            console.log("loc:", location.name);
             var coords = location.loc.coordinates;
             this.styleHashes[id] = location.styleHash;
             this.locations[id] = this.createMarker(
