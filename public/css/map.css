@@ -105,6 +105,9 @@
     height: 500px;
   }
 }
+#map-canvas .firstHeading {
+  font-size: 16px;
+}
 #panel {
   background-color: #fff;
   margin: 0px;

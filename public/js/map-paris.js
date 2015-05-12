@@ -246,22 +246,35 @@ gb.ui.MapConfig.mapLayerNames = {
 gb.ui.MapDemo.include({
 
 
-    init: function(window, divID, formID) {
+    init: function(window, divID, formID, centerID, homeID) {
         var that = this;
-        this.center = "48.85340300000001,2.3487840000000233"; // Kilometer Zero
+
         this.queryRadius = 100;
         this.locations = {};
         this.styleHashes = {};
         this.geocoder = new google.maps.Geocoder();
+
         this.map = new google.maps.Map(
             document.getElementById(divID),
             gb.ui.MapConfig.mapOptions);
         this.map.setOptions({styles: gb.ui.MapConfig.mapStyles2});
+
         this.geocodeButton = $("#"+formID+" #go");
         this.geocodeButton.on("click", function(evt){
             var value = $("#"+formID+" #address").val();
             that.codeAddress(that, value);
         });
+
+        this.centerButton = $("#"+centerID);
+        this.centerButton.on("click",function(){
+            that.getGeoLocation();
+        });
+
+        this.homeButton = $("#"+homeID);
+        this.homeButton.on("click",function(){
+            that.panToHome();
+        });
+
         this.initMap();
         this.getStyleFilters(that);
     },
@@ -307,8 +320,7 @@ gb.ui.MapDemo.include({
         });
     },
 
-    createMarker: function(icon, id, name, desc, lat, lng) {
-        // console.log(">> loc", name, desc, lat, lng);
+    createMarker: function(icon, id, name, desc, lng, lat) {
         var that = this,
             latLng = new google.maps.LatLng(lat,lng),
             marker = new google.maps.Marker({
@@ -394,6 +406,27 @@ gb.ui.MapDemo.include({
                 console.log('Geocode was not successful for the following reason: ' + status);
             }
         });
+    },
+
+    getGeoLocation: function() {
+        var that = this;
+
+        var showPosition = function(position) {
+            var center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var marker = new google.maps.Marker({
+                map: that.map,
+                position: center
+            });
+            that.map.panTo(center);
+        };
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    },
+
+    panToHome: function() {
+        this.map.panTo(gb.ui.MapConfig.mapOptions.center);
     },
 
     getStyleFilters: function(that) {
@@ -496,5 +529,6 @@ var loadFromKml = function(map, url) {
 
 google.maps.visualRefresh = true;
 google.maps.event.addDomListener(window, 'load', function(){
-    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode");
+    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode", "center", "home");
 });
+

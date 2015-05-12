@@ -8,6 +8,8 @@ var Schema = mongoose.Schema,
 var Location = new Schema({
     name        : {type: String, default: "POI"},
     description : {type: String, default: ""},
+    address : {type: String, default: ""},
+    url : {type: String, default: ""},
     loc: {
         type: {
             type: "String",
@@ -56,6 +58,8 @@ LocationDB.prototype.updateLocation = function(locationObj, onSuccess, onError) 
         if (found) {
             found.name = locationObj.name;
             found.description = locationObj.description;
+            found.address = locationObj.address;
+            found.url = locationObj.url;
             found.coordinates = locationObj.coordinates;
             found.save(function(err){
                 if (err) {
@@ -167,11 +171,11 @@ LocationDB.prototype.getLocationsWithin = function(swLatLng, neLatLng, onSuccess
                 "$geometry": {
                     "type": "Polygon",
                     "coordinates": [[
-                        [swLatLng[0], swLatLng[1]],
-                        [neLatLng[0], swLatLng[1]],
-                        [neLatLng[0], neLatLng[1]],
-                        [swLatLng[0], neLatLng[1]],
-                        [swLatLng[0], swLatLng[1]]
+                        [swLatLng[1], swLatLng[0]],
+                        [neLatLng[1], swLatLng[0]],
+                        [neLatLng[1], neLatLng[0]],
+                        [swLatLng[1], neLatLng[0]],
+                        [swLatLng[1], swLatLng[0]]
                     ]]
                 }
             }

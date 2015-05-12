@@ -13,7 +13,6 @@ angular.module('app.controllers', [])
 
     $scope.updateLocation = function() {
         $scope.location.$update(function() {
-            Location.update({ id:$scope.location._id }, $scope.location);
             $state.go('home');
         });
     };

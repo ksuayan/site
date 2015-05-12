@@ -318,7 +318,9 @@ ApiHandler.prototype.updateLocation = function(req, res) {
     var locationObj = {
         _id: req.params.id,
         name: req.body.name,
-        description: req.body.description
+        description: req.body.description,
+        address: req.body.address,
+        url: req.body.url
     };
     locations.updateLocation(locationObj, onSuccess, onError);
 };
@@ -332,7 +334,9 @@ ApiHandler.prototype.createLocation = function(req, res) {
     };
     var locationObj = {
         name: req.body.name,
-        description: req.body.description
+        description: req.body.description,
+        address: req.body.address,
+        url: req.body.url
     };
     locations.createLocation(locationObj, onSuccess, onError)
 };

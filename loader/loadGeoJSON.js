@@ -19,8 +19,8 @@ var GeoJsonLoader = function(){
             item.geometry) {
 
             // Google uses Lat,Lon
-            var lat = item.geometry.coordinates[0],
-                lon = item.geometry.coordinates[1];
+            var lat = item.geometry.coordinates[1],
+                lon = item.geometry.coordinates[0];
 
             var geoLocation = {
                 name: item.properties.name,
