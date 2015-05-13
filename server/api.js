@@ -7,54 +7,76 @@ var timeline = require('./timeline-db'),
     Vimeo = require('vimeo').Vimeo,
     Flickr = require('flickrapi');
 
+var flickrClient = null,
+    twitterClient = null,
+    vimeoClient = null,
+    vimeoConfig = conf.app.vimeo;
 
-var flickrClient = null;
-Flickr.tokenOnly(conf.app.flickr, function(error, flickr) {
-    console.log("flickr object", flickr);
-    flickrClient = flickr;
-});
 
-var twitterClient = new Twitter(conf.app.twitter);
-
-var vimeoConfig = conf.app.vimeo;
-var vimeoClient = new Vimeo(vimeoConfig.clientId, vimeoConfig.clientSecret, vimeoConfig.accessToken);
 
 var ApiHandler = function() {
+    try {
+        flickrClient = null;
+        Flickr.tokenOnly(conf.app.flickr, function(error, flickr) {
+            console.log("flickr object", flickr);
+            flickrClient = flickr;
+        });
+    } catch (err) {
+        console.log("Error Flickr init: ", err);
+    }
+
+    try {
+        twitterClient = new Twitter(conf.app.twitter);
+    } catch (err) {
+        console.log("Error Twitter init: ", err);
+    }
+
+    try {
+        vimeoClient = new Vimeo(vimeoConfig.clientId, vimeoConfig.clientSecret, vimeoConfig.accessToken);
+    } catch (err) {
+        console.log("Error Vimeo init: ", err);
+    }
     console.log("Initialized API handler");
 };
 
 ApiHandler.prototype.twitter = function(request, response) {
-    var onError = function (err, response, body) {
+    var onError = function (err, res, body) {
         response.send({"error": err});
     },
     onSuccess = function (data) {
         var obj = JSON.parse(data);
         response.send({"status":"ok","data": obj});
     };
-    twitterClient.getUserTimeline(
-        {screen_name:"ksuayan", count:'10'},
-        onError, onSuccess);
+    if (twitterClient) {
+        twitterClient.getUserTimeline(
+            {screen_name:"ksuayan", count:'10'},
+            onError, onSuccess);
+    }
+
 };
 
 ApiHandler.prototype.vimeo = function(request, response) {
     var count = (request.params.count && request.params.count < 30) ? request.params.count : 5;
-    vimeoClient.request({
-        path: '/me/videos',
-        query : {
-            page : 1,
-            per_page : count
-        }
-    }, function (error, body, status_code, headers) {
-        if (error) {
-            response.send({"error": error});
-        } else {
-            response.send({
-                "status": "ok",
-                "statusCode": status_code,
-                "headers": headers,
-                "body": body});
-        }
-    });
+
+    if (vimeoClient) {
+        vimeoClient.request({
+            path: '/me/videos',
+            query : {
+                page : 1,
+                per_page : count
+            }
+        }, function (error, body, status_code, headers) {
+            if (error) {
+                response.send({"error": error});
+            } else {
+                response.send({
+                    "status": "ok",
+                    "statusCode": status_code,
+                    "headers": headers,
+                    "body": body});
+            }
+        });
+    }
 };
 
 ApiHandler.prototype.flickr = function(request, response) {
@@ -66,12 +88,13 @@ ApiHandler.prototype.flickr = function(request, response) {
             response.send({"status": "ok", "data": result});
         }
     };
-    flickrClient.photos.search({
-        user_id: "ksuayan",
-        page: 1,
-        per_page: count
-    }, onResponse);
-
+    if (flickrClient) {
+        flickrClient.photos.search({
+            user_id: "ksuayan",
+            page: 1,
+            per_page: count
+        }, onResponse);
+    }
 };
 
 ApiHandler.prototype.getTileList = function(req, res) {
@@ -292,8 +315,8 @@ ApiHandler.prototype.getLocationsNearPoint = function(req, res) {
 
     var point = req.params.point.split(","),
         maxDistance = req.params.maxDistance ? parseFloat(req.params.maxDistance) : 8.0,
-        numericList = util.toNumericList(point);
-    locations.getLocationsNearPoint(numericList, maxDistance, onSuccess, onError);
+        latLng = util.toNumericList(point);
+    locations.getLocationsNearPoint(latLng, maxDistance, onSuccess, onError);
 };
 
 ApiHandler.prototype.getLocationsWithin = function(req, res) {
@@ -336,7 +359,11 @@ ApiHandler.prototype.createLocation = function(req, res) {
         name: req.body.name,
         description: req.body.description,
         address: req.body.address,
-        url: req.body.url
+        url: req.body.url,
+        loc: {
+            coordinates: req.body.loc.coordinates,
+            type: "Point"
+        }
     };
     locations.createLocation(locationObj, onSuccess, onError)
 };

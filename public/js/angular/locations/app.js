@@ -15,6 +15,18 @@ angular.module('app').config(["$stateProvider", "$sceProvider",
             templateUrl: '/templates/locations/edit.html',
             controller: 'LocationEditController'
 
+        }).state('addLocation', {
+
+            url: '/add',
+            templateUrl: '/templates/locations/add.html',
+            controller: 'LocationAddController'
+
+        }).state('error', {
+
+            url: '/error',
+            templateUrl: '/templates/locations/error.html',
+            controller: 'LocationAddController'
+
         }).state('home', {
 
             url: '/home',

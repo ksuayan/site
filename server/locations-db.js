@@ -78,19 +78,19 @@ LocationDB.prototype.updateLocation = function(locationObj, onSuccess, onError) 
 LocationDB.prototype.createLocation = function(locationObj, onSuccess, onError) {
     var that = this;
     this.LocationModel
-    .findOne({coordinates: locationObj.coordinates})
+    .findOne({loc: locationObj.loc })
     .exec(function(err, found){
         if (!err && found) {
-            onError({status:"error", reason:"location exists: "+locationObj.coordinates});
+            onError({status:"error", reason:"location exists: "+found.loc.coordinates});
             return;
         } else {
-            var locationObj = new that.LocationModel(locationObj);
-            locationObj.save(function(err){
+            var newLoc = new that.LocationModel(locationObj);
+            newLoc.save(function(err){
                 if (err) {
                     return util.HandleError(err, onError);
                 }
                 if (typeof onSuccess ==='function') {
-                   onSuccess(locationObj);
+                   onSuccess(newLoc);
                 }
             });
         }
@@ -137,7 +137,8 @@ LocationDB.prototype.getLocations = function(onSuccess, onError) {
         });
 };
 
-LocationDB.prototype.getLocationsNearPoint = function(point, maxDistance, onSuccess, onError) {
+LocationDB.prototype.getLocationsNearPoint = function(latLng, maxDistance, onSuccess, onError) {
+    var point = [latLng[1],latLng[0]];
     var query = {
         loc: {
             $nearSphere: {

@@ -87,15 +87,6 @@
 .modal-footer:after {
   clear: both;
 }
-/*
-@screen-xs-min: 480px;
-@screen-sm-min: 768px;
-@screen-md-min: 992px;
-@screen-lg-min: 1200px;
-@screen-xs-max: (@screen-sm-min - 1);
-@screen-sm-max: (@screen-md-min - 1);
-@screen-md-max: (@screen-lg-min - 1);
-*/
 html {
   background-color: #000;
 }
@@ -253,12 +244,6 @@ ul li {
   padding: 15px;
   height: auto;
   overflow-y: visible;
-  /*
-  @media (min-width: @screen-md-min) {
-    height: 300px;
-    overflow-y: auto;
-  }
-  */
 }
 #twitter .media {
   margin-top: 0px;
@@ -299,6 +284,7 @@ ul li {
 #content {
   background-color: #fff;
   margin-top: 0px;
+  padding-top: 10px;
 }
 #content .navbar.navbar-inverse.navbar-fixed-top {
   margin: 0px;

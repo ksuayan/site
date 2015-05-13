@@ -2,7 +2,6 @@ angular.module('app.controllers', [])
 .controller('LocationViewController', function($scope, $state, $stateParams, Location) {
 
     // Issues a GET to /api/loc/:id
-    console.log("view", $stateParams);
     $scope.location = Location.get({ id: $stateParams.id });
 
     $scope.gotoState = function(state, params) {
@@ -27,6 +26,25 @@ angular.module('app.controllers', [])
 
     $scope.loadLocation($stateParams);
 
+}).controller('LocationAddController', function($scope, $state, $stateParams, Location) {
+
+    $scope.location = new Location();
+
+    $scope.createLocation = function() {
+        $scope.location.$save(function() {
+            $state.go('home');
+        }, function(){
+            $state.go('error');
+        });
+    };
+
+    $scope.setCoords = function(coords) {
+        $scope.location.loc = coords;
+    };
+
+    $scope.gotoState = function(state, params) {
+        $state.go(state, params);
+    };
 
 }).controller('HomeController', function($scope, $state, $stateParams, Location) {
     $scope.gotoState = function(state, params) {

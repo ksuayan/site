@@ -195,7 +195,6 @@ gb.ui.MapConfig = {
         }
     }
 };
-
 gb.ui.MapConfig.mapMarkers = [
     {
         url: gb.ui.MapConfig.mapPath + "pin14.png", // red
@@ -245,7 +244,6 @@ gb.ui.MapConfig.mapLayerNames = {
 
 gb.ui.MapDemo.include({
 
-
     init: function(window, divID, formID, centerID, homeID) {
         var that = this;
 
@@ -253,34 +251,37 @@ gb.ui.MapDemo.include({
         this.locations = {};
         this.styleHashes = {};
         this.geocoder = new google.maps.Geocoder();
+        this.selectorMarker = null;
 
-        this.map = new google.maps.Map(
-            document.getElementById(divID),
-            gb.ui.MapConfig.mapOptions);
-        this.map.setOptions({styles: gb.ui.MapConfig.mapStyles2});
+        this.initMap(divID);
+        this.initButtons(formID, centerID, homeID);
+        this.getStyleFilters(that);
+    },
 
+    initButtons: function(formID, centerID, homeID) {
+        var that = this;
         this.geocodeButton = $("#"+formID+" #go");
         this.geocodeButton.on("click", function(evt){
             var value = $("#"+formID+" #address").val();
-            that.codeAddress(that, value);
+            that.geocode(that, value);
         });
-
         this.centerButton = $("#"+centerID);
         this.centerButton.on("click",function(){
             that.getGeoLocation();
         });
-
         this.homeButton = $("#"+homeID);
         this.homeButton.on("click",function(){
             that.panToHome();
         });
-
-        this.initMap();
-        this.getStyleFilters(that);
     },
-
-    initMap: function() {
+    /**
+     * Initialize map instance.
+     * @param divID
+     */
+    initMap: function(divID) {
         var that = this;
+        this.map = new google.maps.Map(document.getElementById(divID), gb.ui.MapConfig.mapOptions);
+        this.map.setOptions({styles: gb.ui.MapConfig.mapStyles2});
 
         google.maps.event.addListener(that.map, 'bounds_changed', gb.util.throttle(function(){
             var bounds = that.map.getBounds(),
@@ -291,26 +292,39 @@ gb.ui.MapDemo.include({
             // console.log("bounds_changed", swLatLngStr, neLatLngStr);
             that.queryMarkersWithin(swLatLngStr, neLatLngStr);
         }, 1000));
-
         google.maps.event.addListener(that.map, 'click', gb.util.throttle(function(event){
             var latLng = event.latLng,
                 clickCoord = latLng.lat()+","+latLng.lng();
+            // console.log("lat,lng:",clickCoord);
             that.queryMarkersNearPoint(clickCoord, that.queryRadius);
         }, 500));
-
         google.maps.event.addListener(that.map, 'maptypeid_changed', function() {
             console.log("type changed", that.map.getMapTypeId());
         });
     },
-
-
-    callAngular: function(id) {
-        var scope = angular.element(document.getElementById("screen")).scope();
+    /**
+     * Angular utility. Fetch the $scope.
+     * @returns {*}
+     */
+    getAngularScope: function() {
+        return angular.element(document.getElementById("screen")).scope();
+    },
+    /**
+     * Go to an Angular state with parameters.
+     * @param state
+     * @param params
+     */
+    gotoAngularState: function(state, params) {
+        var scope = this.getAngularScope();
         scope.$apply(function () {
-            scope.gotoState("editLocation", {"id":id});
+            scope.gotoState(state, params);
         });
     },
-
+    /**
+     * Create a Google Map InfoWindow.
+     * @param name
+     * @returns {google.maps.InfoWindow}
+     */
     createInfoWindow: function(name) {
         var contentString = '<div id="content">'+
             '<h2 id="firstHeading" class="firstHeading">'+name+'</h2>'+
@@ -319,7 +333,16 @@ gb.ui.MapDemo.include({
             content: contentString
         });
     },
-
+    /**
+     * Create a marker.
+     * @param icon
+     * @param id
+     * @param name
+     * @param desc
+     * @param lng
+     * @param lat
+     * @returns {google.maps.Marker}
+     */
     createMarker: function(icon, id, name, desc, lng, lat) {
         var that = this,
             latLng = new google.maps.LatLng(lat,lng),
@@ -340,12 +363,17 @@ gb.ui.MapDemo.include({
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-            that.callAngular(id);
+            that.map.panTo(latLng);
+            that.gotoAngularState("editLocation", {"id":id});
         });
 
         return marker;
     },
-
+    /**
+     * Handle incoming response data from backend queries.
+     * @param that
+     * @param data
+     */
     onQueryResponse: function(that, data) {
         if (data.length) {
             // var markerStyles = gb.util.getDedupedValuesByKey(data,"styleHash");
@@ -373,7 +401,11 @@ gb.ui.MapDemo.include({
                 coords[1]);
         }
     },
-
+    /**
+     * Query backend for locations near point.
+     * @param ctr
+     * @param dist
+     */
     queryMarkersNearPoint: function(ctr, dist) {
         var that = this;
         // console.log("/api/loc/near/"+ctr+"/"+dist);
@@ -383,7 +415,11 @@ gb.ui.MapDemo.include({
             that.onQueryResponse(that, data);
         });
     },
-
+    /**
+     * Query backend for locations within two points.
+     * @param swLatLng
+     * @param neLatLng
+     */
     queryMarkersWithin: function(swLatLng, neLatLng) {
         var that = this;
         // console.log("/api/loc/within/"+swLatLng+"/"+neLatLng);
@@ -393,8 +429,17 @@ gb.ui.MapDemo.include({
             that.onQueryResponse(that, data);
         });
     },
-
-    codeAddress: function(that, queryStr) {
+    /**
+     * Retrieve geolocation given a query string.
+     * @param that
+     * @param queryStr
+     */
+    geocode: function(that, queryStr) {
+        var errorHandler = function(message) {
+            if (onError && typeof onError === 'function') {
+                onError(message);
+            }
+        };
         that.geocoder.geocode({'address': queryStr}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 that.map.setCenter(results[0].geometry.location);
@@ -403,20 +448,68 @@ gb.ui.MapDemo.include({
                     position: results[0].geometry.location
                 });
             } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
+                errorHandler('Geocode was not successful for the following reason: ' + status);
             }
         });
     },
-
+    /**
+     * Retrieve an address given a latitude and longitude.
+     * @param lat
+     * @param lng
+     * @param onSuccess
+     * @param onError
+     */
+    reverseGeocode: function(lat, lng, onSuccess, onError) {
+        var latlng = new google.maps.LatLng(lat, lng),
+            errorHandler = function(message) {
+                if (onError && typeof onError === 'function') {
+                    onError(message);
+                }
+            };
+        this.geocoder.geocode({'latLng': latlng}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[1] && results[1].formatted_address &&
+                    onSuccess && typeof onSuccess === 'function') {
+                    onSuccess(results[1].formatted_address)
+                } else {
+                    errorHandler("No results found.");
+                }
+            } else {
+                errorHandler('Geocoder failed due to: ' + status);
+            }
+        });
+    },
+    /**
+     * Get geolocation from browser.
+     */
     getGeoLocation: function() {
         var that = this;
 
         var showPosition = function(position) {
-            var center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            var marker = new google.maps.Marker({
+            var lat = position.coords.latitude,
+                lng = position.coords.longitude,
+                geoloc = {coordinates: [lng,lat]},
+                center = new google.maps.LatLng(lat,lng);
+
+            if (that.selectorMarker) {
+                // destroy previous ..
+                that.selectorMarker.setMap(null);
+                that.selectorMarker = null;
+            }
+            that.selectorMarker = new google.maps.Marker({
                 map: that.map,
                 position: center
             });
+
+            google.maps.event.addListener(that.selectorMarker, 'click', function() {
+                console.log("geoloc", geoloc);
+                that.gotoAngularState("addLocation");
+                var scope = that.getAngularScope();
+                scope.$apply(function () {
+                    scope.setCoords(geoloc);
+                });
+            });
+
             that.map.panTo(center);
         };
 
@@ -424,11 +517,9 @@ gb.ui.MapDemo.include({
             navigator.geolocation.getCurrentPosition(showPosition);
         }
     },
-
     panToHome: function() {
         this.map.panTo(gb.ui.MapConfig.mapOptions.center);
     },
-
     getStyleFilters: function(that) {
         var countChecked = function() {
             var selected = [];
@@ -455,7 +546,6 @@ gb.ui.MapDemo.include({
         $("#filter-form input[type=checkbox]").on("click", countChecked);
         countChecked();
     },
-
     filterLocationsByStyle: function() {
         for (var item in this.locations) {
             if (this.enabledList.indexOf(this.styleHashes[item])>-1) {
@@ -465,10 +555,7 @@ gb.ui.MapDemo.include({
             }
         }
     }
-
 });
-
-
 
 var placeMarkerByAddress = function(addressObj, streetAddress) {
     geocoder.geocode( { 'address': streetAddress }, function(results, status) {
@@ -500,7 +587,6 @@ var placeMarkerByAddress = function(addressObj, streetAddress) {
         }
     });
 };
-
 var zoomToFit = function() {
     var bounds = new google.maps.LatLngBounds();
     for (var i = 0, n = positions.length; i < n; i++) {
@@ -508,8 +594,6 @@ var zoomToFit = function() {
     }
     map.fitBounds(bounds);
 };
-
-
 var loadFromKml = function(map, url) {
     var layer = new google.maps.KmlLayer({
         url: 'http://media.suayan.com/geodata/paris.kml',
@@ -524,8 +608,6 @@ var loadFromKml = function(map, url) {
     });
     map.data.loadGeoJson('http://media.suayan.com/geodata/paris.json');
 };
-
-
 
 google.maps.visualRefresh = true;
 google.maps.event.addDomListener(window, 'load', function(){
