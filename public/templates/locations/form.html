@@ -1,3 +1,11 @@
+<div class="well well-sm" data-ng-show="location.loc.coordinates[0]">
+    <p>latitude, longitude:
+        <strong>
+            <span data-ng-bind="location.loc.coordinates[1]"></span>,
+            <span data-ng-bind="location.loc.coordinates[0]"></span>
+        </strong>
+    </p>
+</div>
 <div class="form-group">
     <label for="name" class="control-label">Name</label>
     <input type="text"
@@ -5,13 +13,6 @@
            class="form-control"
            id="name"
            placeholder="Name of this location."/>
-</div>
-<div class="form-group">
-    <label for="desc" class="control-label">Description</label>
-    <textarea data-ck-editor data-ng-model="location.description"
-          class="form-control" id="desc"
-          placeholder="Describe this location">
-    </textarea>
 </div>
 <div class="form-group">
     <label for="address" class="control-label">Address</label>
@@ -30,10 +31,13 @@
            placeholder="http://"/>
 </div>
 <div class="form-group">
-    Longitude: <span data-ng-bind="location.loc.coordinates[0]"></span>
-    <br/>
-    Latitude: <span data-ng-bind="location.loc.coordinates[1]"></span>
+    <label for="desc" class="control-label">Description</label>
+    <textarea data-ck-editor data-ng-model="location.description"
+          class="form-control" id="desc"
+          placeholder="Describe this location">
+    </textarea>
 </div>
+
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Save"/>
 </div>

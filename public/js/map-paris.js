@@ -459,18 +459,18 @@ gb.ui.MapDemo.include({
      * @param onSuccess
      * @param onError
      */
-    reverseGeocode: function(lat, lng, onSuccess, onError) {
-        var latlng = new google.maps.LatLng(lat, lng),
-            errorHandler = function(message) {
+    reverseGeocode: function(latLng, onSuccess, onError) {
+        var errorHandler = function(message) {
                 if (onError && typeof onError === 'function') {
                     onError(message);
                 }
             };
-        this.geocoder.geocode({'latLng': latlng}, function(results, status) {
+        this.geocoder.geocode({'latLng': latLng}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[1] && results[1].formatted_address &&
                     onSuccess && typeof onSuccess === 'function') {
-                    onSuccess(results[1].formatted_address)
+                    // onSuccess(results[1].formatted_address)
+                    onSuccess(results);
                 } else {
                     errorHandler("No results found.");
                 }
@@ -479,18 +479,45 @@ gb.ui.MapDemo.include({
             }
         });
     },
+
     /**
      * Get geolocation from browser.
      */
     getGeoLocation: function() {
-        var that = this;
+        var that = this,
+            loc = null;
+
+        var onGeocoderResponse = function(results) {
+            console.log("resolved:", results);
+            var locationObj = {
+                loc: loc,
+                address: results[0].formatted_address
+            }
+            // refresh angular
+            var scope = that.getAngularScope();
+            scope.$apply(function () {
+                scope.updateLocationInfo(locationObj);
+            });
+        };
+
+        var onError = function(message) {
+            console.log("error:", message);
+        };
+
+        var onPositionUpdate = function() {
+            var newLatLng = that.selectorMarker.getPosition();
+            that.map.panTo(newLatLng);
+            that.reverseGeocode(newLatLng, onGeocoderResponse, onError);
+            loc = {
+                coordinates: [newLatLng.lng(), newLatLng.lat()]
+            };
+        };
 
         var showPosition = function(position) {
-            var lat = position.coords.latitude,
-                lng = position.coords.longitude,
-                geoloc = {coordinates: [lng,lat]},
-                center = new google.maps.LatLng(lat,lng);
-
+            var center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            loc = {
+                coordinates: [position.coords.longitude, position.coords.latitude]
+            };
             if (that.selectorMarker) {
                 // destroy previous ..
                 that.selectorMarker.setMap(null);
@@ -498,22 +525,17 @@ gb.ui.MapDemo.include({
             }
             that.selectorMarker = new google.maps.Marker({
                 map: that.map,
-                position: center
+                position: center,
+                draggable: true
             });
-
-            google.maps.event.addListener(that.selectorMarker, 'click', function() {
-                console.log("geoloc", geoloc);
-                that.gotoAngularState("addLocation");
-                var scope = that.getAngularScope();
-                scope.$apply(function () {
-                    scope.setCoords(geoloc);
-                });
-            });
-
+            that.reverseGeocode(center, onGeocoderResponse, onError);
+            google.maps.event.addListener(that.selectorMarker, 'click', onPositionUpdate);
+            google.maps.event.addListener(that.selectorMarker, 'dragend', onPositionUpdate);
             that.map.panTo(center);
         };
 
         if (navigator.geolocation) {
+            that.gotoAngularState("addLocation");
             navigator.geolocation.getCurrentPosition(showPosition);
         }
     },

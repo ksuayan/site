@@ -38,6 +38,11 @@ angular.module('app.controllers', [])
         });
     };
 
+    $scope.updateLocationInfo = function(locationObj) {
+        $scope.location.loc = locationObj.loc;
+        $scope.location.address = locationObj.address;
+    }
+
     $scope.setCoords = function(coords) {
         $scope.location.loc = coords;
     };

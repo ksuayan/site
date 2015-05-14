@@ -351,6 +351,10 @@ ul li {
 #content #stage #stage-content .tile li {
   font-size: 12pt;
 }
+#content #screen .well p {
+  font-size: 14px;
+  margin: 0px;
+}
 #chart {
   margin: 40px auto 30px auto;
   width: 1002px;
