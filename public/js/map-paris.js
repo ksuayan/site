@@ -326,9 +326,7 @@ gb.ui.MapDemo.include({
      * @returns {google.maps.InfoWindow}
      */
     createInfoWindow: function(name) {
-        var contentString = '<div id="content">'+
-            '<h2 id="firstHeading" class="firstHeading">'+name+'</h2>'+
-            '</div>';
+        var contentString = '<div class="info"><p>'+name+'</p></div>';
         return new google.maps.InfoWindow({
             content: contentString
         });
