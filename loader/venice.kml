@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+	<Document>
+		<name>Venice, Italy</name>
+		<description><![CDATA[]]></description>
+		<Folder>
+			<name>Landmarks</name>
+			<Placemark>
+				<name>Hotel Canal Grande</name>
+				<styleUrl>#icon-503-4186F0-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.324037999999973,45.441366,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Doge's Palace</name>
+				<styleUrl>#icon-503-4186F0-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.34038899999996,45.433704,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Saint Mark's Basilica</name>
+				<styleUrl>#icon-503-4186F0-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.339711999999963,45.434561,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Peggy Guggenheim Collection</name>
+				<styleUrl>#icon-503-4186F0-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.331537000000026,45.430821,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Rialto Bridge</name>
+				<styleUrl>#icon-503-4186F0-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.335898000000043,45.437984,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Basilica dei Frari</name>
+				<styleUrl>#icon-503-4186F0-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.326599999999987,45.436986000000005,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Church of San Giorgio Maggiore</name>
+				<styleUrl>#icon-503-4186F0-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.343204000000014,45.429419,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Hotel Danieli</name>
+				<styleUrl>#icon-503-4186F0-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.342070000000035,45.433919,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Osteria Bea Vita S. N. C. di Avologno Roberto e C.</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.325822000000016,45.44622,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Fabriano</name>
+				<description><![CDATA[Calle del Lovo, 4816, 30124 Venezia, Italy]]></description>
+				<styleUrl>#icon-503-CDDC39</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.336077199999977,45.4367333,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Folder>
+			<name>Food</name>
+			<Placemark>
+				<name>Rialto Markets</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.33460200000002,45.439657,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Muro Venezia Rialto</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.334814000000051,45.43912,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Dal Moro's - Fresh Pasta To Go</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.339801999999963,45.436155,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Antico Forno</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.333503000000064,45.438172,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Trattoria da Romano</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.418143999999984,45.485078,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Cocaeta</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.32189500000004,45.444966,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Trattoria Al Gatto Nero</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.416239000000019,45.484914,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>I Tre Mercanti srl</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.339373000000023,45.436285,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Drogheria Mascari</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.334190000000035,45.43914,0.0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name>Casa del Parmigiano</name>
+				<styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+				<ExtendedData>
+				</ExtendedData>
+				<Point>
+					<coordinates>12.334959000000026,45.43901,0.0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+		<Style id='icon-503-4186F0-nodesc-normal'>
+			<IconStyle>
+				<color>ffF08641</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id='icon-503-4186F0-nodesc-highlight'>
+			<IconStyle>
+				<color>ffF08641</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='icon-503-4186F0-nodesc'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-503-4186F0-nodesc-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-503-4186F0-nodesc-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='icon-503-CDDC39-normal'>
+			<IconStyle>
+				<color>ff39DCCD</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+		</Style>
+		<Style id='icon-503-CDDC39-highlight'>
+			<IconStyle>
+				<color>ff39DCCD</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+		</Style>
+		<StyleMap id='icon-503-CDDC39'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-503-CDDC39-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-503-CDDC39-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+		<Style id='icon-503-DB4436-nodesc-normal'>
+			<IconStyle>
+				<color>ff3644DB</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id='icon-503-DB4436-nodesc-highlight'>
+			<IconStyle>
+				<color>ff3644DB</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='icon-503-DB4436-nodesc'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-503-DB4436-nodesc-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-503-DB4436-nodesc-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+	</Document>
+</kml>

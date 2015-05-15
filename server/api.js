@@ -343,7 +343,9 @@ ApiHandler.prototype.updateLocation = function(req, res) {
         name: req.body.name,
         description: req.body.description,
         address: req.body.address,
-        url: req.body.url
+        url: req.body.url,
+        loc: req.body.loc,
+        styleHash: req.body.styleHash
     };
     locations.updateLocation(locationObj, onSuccess, onError);
 };
@@ -363,7 +365,8 @@ ApiHandler.prototype.createLocation = function(req, res) {
         loc: {
             coordinates: req.body.loc.coordinates,
             type: "Point"
-        }
+        },
+        styleHash: req.body.styleHash
     };
     locations.createLocation(locationObj, onSuccess, onError)
 };

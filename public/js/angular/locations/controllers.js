@@ -33,18 +33,12 @@ angular.module('app.controllers', [])
     $scope.createLocation = function() {
         $scope.location.$save(function() {
             $state.go('home');
-        }, function(){
-            $state.go('error');
         });
     };
 
     $scope.updateLocationInfo = function(locationObj) {
         $scope.location.loc = locationObj.loc;
         $scope.location.address = locationObj.address;
-    }
-
-    $scope.setCoords = function(coords) {
-        $scope.location.loc = coords;
     };
 
     $scope.gotoState = function(state, params) {

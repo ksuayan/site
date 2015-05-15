@@ -1,0 +1,286 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.324037999999973,
+                    45.441366,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Hotel Canal Grande"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.34038899999996,
+                    45.433704,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Doge's Palace"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.339711999999963,
+                    45.434561,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Saint Mark's Basilica"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.331537000000026,
+                    45.430821,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Peggy Guggenheim Collection"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.335898000000043,
+                    45.437984,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Rialto Bridge"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.326599999999987,
+                    45.436986000000005,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Basilica dei Frari"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.343204000000014,
+                    45.429419,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Church of San Giorgio Maggiore"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.342070000000035,
+                    45.433919,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Hotel Danieli"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.325822000000016,
+                    45.44622,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Osteria Bea Vita S. N. C. di Avologno Roberto e C."
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.336077199999977,
+                    45.4367333,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Fabriano",
+                "description": "Calle del Lovo, 4816, 30124 Venezia, Italy"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.33460200000002,
+                    45.439657,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Rialto Markets"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.334814000000051,
+                    45.43912,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Muro Venezia Rialto"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.339801999999963,
+                    45.436155,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Dal Moro's - Fresh Pasta To Go"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.333503000000064,
+                    45.438172,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Antico Forno"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.418143999999984,
+                    45.485078,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Trattoria da Romano"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.32189500000004,
+                    45.444966,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Cocaeta"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.416239000000019,
+                    45.484914,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Trattoria Al Gatto Nero"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.339373000000023,
+                    45.436285,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "I Tre Mercanti srl"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.334190000000035,
+                    45.43914,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Drogheria Mascari"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    12.334959000000026,
+                    45.43901,
+                    0
+                ]
+            },
+            "properties": {
+                "name": "Casa del Parmigiano"
+            }
+        }
+    ]
+}

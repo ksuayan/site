@@ -20,7 +20,7 @@ var Location = new Schema({
         coordinates: [Number]
     },
     styleHash   : {type: String, default: ""},
-    styleUrl    : {type: String, default: ""},
+    map         : {type: String, default: ""},
     date        : {type : Date,  default: Date.now}
 });
 
@@ -60,7 +60,9 @@ LocationDB.prototype.updateLocation = function(locationObj, onSuccess, onError) 
             found.description = locationObj.description;
             found.address = locationObj.address;
             found.url = locationObj.url;
-            found.coordinates = locationObj.coordinates;
+            found.loc = locationObj.loc;
+            found.styleHash = locationObj.styleHash;
+
             found.save(function(err){
                 if (err) {
                     return util.HandleError(err, onError);

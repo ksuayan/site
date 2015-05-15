@@ -220,8 +220,14 @@ gb.ui.MapConfig.mapMarkers = [
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
-        {
+    {
         url: gb.ui.MapConfig.mapPath + "pin6.png", // yello-green
+        size: new google.maps.Size(25, 45),
+        origin: new google.maps.Point(0,0),
+        anchor: new google.maps.Point(13, 45)
+    },
+    {
+        url: gb.ui.MapConfig.mapPath + "pin15.png", // sky blue
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
@@ -232,19 +238,21 @@ gb.ui.MapConfig.mapMarkerStyles = {
     "-662d500": gb.ui.MapConfig.mapMarkers[1],
     "3a98100": gb.ui.MapConfig.mapMarkers[2],
     "1939180": gb.ui.MapConfig.mapMarkers[3],
-    "-2a77fa60": gb.ui.MapConfig.mapMarkers[4]
+    "-2a77fa60": gb.ui.MapConfig.mapMarkers[4],
+    "none": gb.ui.MapConfig.mapMarkers[5]
 };
 gb.ui.MapConfig.mapLayerNames = {
     "53ca3a80": "Food",
     "-662d500": "Art &amp; Museums",
     "3a98100": "Landmarks",
     "1939180": "Shops &amp; Markets",
-    "-2a77fa60": "Specialty"
+    "-2a77fa60": "Specialty",
+    "none": "None"
 };
 
 gb.ui.MapDemo.include({
 
-    init: function(window, divID, formID, centerID, homeID) {
+    init: function(window, divID, formID, centerID, addID, homeID) {
         var that = this;
 
         this.queryRadius = 100;
@@ -254,11 +262,11 @@ gb.ui.MapDemo.include({
         this.selectorMarker = null;
 
         this.initMap(divID);
-        this.initButtons(formID, centerID, homeID);
+        this.initButtons(formID, centerID, addID, homeID);
         this.getStyleFilters(that);
     },
 
-    initButtons: function(formID, centerID, homeID) {
+    initButtons: function(formID, centerID, addID, homeID) {
         var that = this;
         this.geocodeButton = $("#"+formID+" #go");
         this.geocodeButton.on("click", function(evt){
@@ -267,7 +275,11 @@ gb.ui.MapDemo.include({
         });
         this.centerButton = $("#"+centerID);
         this.centerButton.on("click",function(){
-            that.getGeoLocation();
+            that.getGeoLocation(true);
+        });
+        this.addButton = $("#"+addID);
+        this.addButton.on("click",function(){
+            that.getGeoLocation(false);
         });
         this.homeButton = $("#"+homeID);
         this.homeButton.on("click",function(){
@@ -387,7 +399,7 @@ gb.ui.MapDemo.include({
     addLocation: function(location) {
         var id = location._id;
         if (!this.locations[id]) {
-            console.log("loc:", location.name);
+            // console.log("loc:", location.name);
             var coords = location.loc.coordinates;
             this.styleHashes[id] = location.styleHash;
             this.locations[id] = this.createMarker(
@@ -479,14 +491,16 @@ gb.ui.MapDemo.include({
     },
 
     /**
-     * Get geolocation from browser.
+     *
+     * @param detectLocation
      */
-    getGeoLocation: function() {
+    getGeoLocation: function(detectLocation) {
         var that = this,
             loc = null;
 
         var onGeocoderResponse = function(results) {
-            console.log("resolved:", results);
+            // console.log("resolved:", results);
+            that.gotoAngularState("addLocation");
             var locationObj = {
                 loc: loc,
                 address: results[0].formatted_address
@@ -511,10 +525,9 @@ gb.ui.MapDemo.include({
             };
         };
 
-        var showPosition = function(position) {
-            var center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var showPosition = function(latLng) {
             loc = {
-                coordinates: [position.coords.longitude, position.coords.latitude]
+                coordinates: [latLng.lng(), latLng.lat()]
             };
             if (that.selectorMarker) {
                 // destroy previous ..
@@ -523,20 +536,31 @@ gb.ui.MapDemo.include({
             }
             that.selectorMarker = new google.maps.Marker({
                 map: that.map,
-                position: center,
+                position: latLng,
                 draggable: true
             });
-            that.reverseGeocode(center, onGeocoderResponse, onError);
+            that.reverseGeocode(latLng, onGeocoderResponse, onError);
             google.maps.event.addListener(that.selectorMarker, 'click', onPositionUpdate);
             google.maps.event.addListener(that.selectorMarker, 'dragend', onPositionUpdate);
-            that.map.panTo(center);
+            that.map.panTo(latLng);
         };
 
-        if (navigator.geolocation) {
-            that.gotoAngularState("addLocation");
-            navigator.geolocation.getCurrentPosition(showPosition);
+        if (detectLocation && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position){
+                showPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+            });
+        } else {
+            /*
+            var str = that.map.getCenter().toUrlValue(),
+                pos = str.split(",");
+            console.log("pos",pos);
+            showPosition(new google.maps.LatLng(parseFloat(pos[0]),parseFloat(pos[1])));
+            */
+            showPosition(that.map.getCenter());
         }
     },
+
+
     panToHome: function() {
         this.map.panTo(gb.ui.MapConfig.mapOptions.center);
     },
@@ -552,14 +576,18 @@ gb.ui.MapDemo.include({
         };
 
         var filterForm = $("<form id='filter-form'></form>");
+
         for (var key in gb.ui.MapConfig.mapMarkerStyles) {
-            var jq = $("<input type='checkbox'>");
-            var name = key.replace("-","");
+            var jq = $("<input type='checkbox'>"),
+                name = key.replace("-",""),
+                layerName = gb.ui.MapConfig.mapLayerNames[key],
+                label = $("<label for='filter-"+name+"'>"+layerName+"</label>");
+
             jq.attr("id", "filter-"+name)
               .attr("value", key)
               .prop('checked', true);
 
-            var label = $("<label for='filter-"+name+"'>"+gb.ui.MapConfig.mapLayerNames[key]+"</label>");
+            console.log(key, layerName);
             filterForm.append(jq).append(label);
         }
         $("#notes").append(filterForm);
@@ -631,6 +659,6 @@ var loadFromKml = function(map, url) {
 
 google.maps.visualRefresh = true;
 google.maps.event.addDomListener(window, 'load', function(){
-    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode", "center", "home");
+    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode", "center", "add", "home");
 });
 

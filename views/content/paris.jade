@@ -18,6 +18,8 @@ block content
             &nbsp;
             button(class="btn",type="button",id="center") Locate Me
             &nbsp;
+            button(class="btn",type="button",id="add") Add
+            &nbsp;
             button(class="btn",type="button",id="home") Home
       div.col-lg-12
         div#notes(class="collapse")
@@ -33,7 +35,7 @@ block content
 block append scripts
   script(src="/js/ckeditor/ckeditor.js")
   // script(src="//cdn.ckeditor.com/4.4.7/basic/ckeditor.js")
-  script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U")
+  script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U&sensor=false")
   script(src="/js/map-paris.js")
   script(src="/js/angular/locations/app.js")
   script(src="/js/angular/locations/controllers.js")
