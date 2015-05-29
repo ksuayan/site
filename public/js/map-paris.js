@@ -264,6 +264,7 @@ gb.ui.MapDemo.include({
         this.initMap(divID);
         this.initButtons(formID, centerID, addID, homeID);
         this.getStyleFilters(that);
+        $("#message").hide();
     },
 
     initButtons: function(formID, centerID, addID, homeID) {
@@ -400,11 +401,14 @@ gb.ui.MapDemo.include({
         var id = location._id;
         if (!this.locations[id]) {
             // console.log("loc:", location.name);
-            var coords = location.loc.coordinates;
-            this.styleHashes[id] = location.styleHash;
+            var coords = location.loc.coordinates,
+                style = (location.styleHash) ? location.styleHash : "none",
+                mapMarkerStyle = gb.ui.MapConfig.mapMarkerStyles[style];
+            // used for filtering
+            this.styleHashes[id] = style;
             this.locations[id] = this.createMarker(
-                gb.ui.MapConfig.mapMarkerStyles[location.styleHash],
-                location._id,
+                mapMarkerStyle,
+                id,
                 location.name,
                 location.description,
                 coords[0],
@@ -445,20 +449,16 @@ gb.ui.MapDemo.include({
      * @param queryStr
      */
     geocode: function(that, queryStr) {
-        var errorHandler = function(message) {
-            if (onError && typeof onError === 'function') {
-                onError(message);
-            }
-        };
-        that.geocoder.geocode({'address': queryStr}, function(results, status) {
+        that.geocoder.geocode({
+            'address': queryStr,
+            'bounds': that.map.getBounds()
+        }, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
-                that.map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: that.map,
-                    position: results[0].geometry.location
-                });
+                var latLng = results[0].geometry.location;
+                that.map.panTo(latLng);
+                that.updateSelectorMarker(latLng, true);
             } else {
-                errorHandler('Geocode was not successful for the following reason: ' + status);
+                that.showError('Geocode was not successful for the following reason: ' + status);
             }
         });
     },
@@ -470,41 +470,45 @@ gb.ui.MapDemo.include({
      * @param onError
      */
     reverseGeocode: function(latLng, onSuccess, onError) {
-        var errorHandler = function(message) {
-                if (onError && typeof onError === 'function') {
-                    onError(message);
-                }
-            };
+        var that = this;
         this.geocoder.geocode({'latLng': latLng}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[1] && results[1].formatted_address &&
                     onSuccess && typeof onSuccess === 'function') {
-                    // onSuccess(results[1].formatted_address)
                     onSuccess(results);
                 } else {
-                    errorHandler("No results found.");
+                    that.showError("No results found.");
                 }
             } else {
-                errorHandler('Geocoder failed due to: ' + status);
+                that.showError('Geocoder failed due to: ' + status);
             }
         });
     },
-
     /**
+     * The selector marker is a draggable
+     * marker used to define new locations.
      *
-     * @param detectLocation
+     * @param latLng
+     * @param draggable
      */
-    getGeoLocation: function(detectLocation) {
+    updateSelectorMarker: function(latLng, draggable) {
         var that = this,
-            loc = null;
-
+            newLatLng = null;
+        /**
+         * Let's notify the Angular side whenever the
+         * user drags the marker on the map.
+         * @param results
+         */
         var onGeocoderResponse = function(results) {
-            // console.log("resolved:", results);
+            console.log("resolved:", results);
             that.gotoAngularState("addLocation");
             var locationObj = {
-                loc: loc,
-                address: results[0].formatted_address
-            }
+                    loc: {
+                        coordinates: [newLatLng.lng(), newLatLng.lat()]
+                    },
+                    address: results[0].formatted_address,
+                    name: results[1].formatted_address
+                };
             // refresh angular
             var scope = that.getAngularScope();
             scope.$apply(function () {
@@ -513,53 +517,57 @@ gb.ui.MapDemo.include({
         };
 
         var onError = function(message) {
-            console.log("error:", message);
+            that.showError("message");
         };
 
         var onPositionUpdate = function() {
-            var newLatLng = that.selectorMarker.getPosition();
+            newLatLng = that.selectorMarker.getPosition();
             that.map.panTo(newLatLng);
             that.reverseGeocode(newLatLng, onGeocoderResponse, onError);
-            loc = {
-                coordinates: [newLatLng.lng(), newLatLng.lat()]
-            };
         };
+
+        /**
+         * Replace previous instance.
+         */
+        if (this.selectorMarker) {
+            this.selectorMarker.setMap(null);
+            this.selectorMarker = null;
+        }
+        this.selectorMarker = new google.maps.Marker({
+            map: this.map,
+            position: latLng,
+            draggable: draggable
+        });
+        google.maps.event.addListener(this.selectorMarker, 'click', onPositionUpdate);
+        google.maps.event.addListener(this.selectorMarker, 'dragend', onPositionUpdate);
+        onPositionUpdate();
+    },
+
+    /**
+     *
+     * @param detectLocation
+     */
+    getGeoLocation: function(detectLocation) {
+        var that = this;
 
         var showPosition = function(latLng) {
-            loc = {
-                coordinates: [latLng.lng(), latLng.lat()]
-            };
-            if (that.selectorMarker) {
-                // destroy previous ..
-                that.selectorMarker.setMap(null);
-                that.selectorMarker = null;
-            }
-            that.selectorMarker = new google.maps.Marker({
-                map: that.map,
-                position: latLng,
-                draggable: true
-            });
-            that.reverseGeocode(latLng, onGeocoderResponse, onError);
-            google.maps.event.addListener(that.selectorMarker, 'click', onPositionUpdate);
-            google.maps.event.addListener(that.selectorMarker, 'dragend', onPositionUpdate);
-            that.map.panTo(latLng);
+            that.updateSelectorMarker(latLng, true);
         };
-
+        /** either get the location from the browser
+         *  or just use the current map center.
+         */
         if (detectLocation && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position){
                 showPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
             });
         } else {
-            /*
-            var str = that.map.getCenter().toUrlValue(),
-                pos = str.split(",");
-            console.log("pos",pos);
-            showPosition(new google.maps.LatLng(parseFloat(pos[0]),parseFloat(pos[1])));
-            */
             showPosition(that.map.getCenter());
         }
     },
 
+    showError: function(message) {
+        $("#message").text(message).slideDown();
+    },
 
     panToHome: function() {
         this.map.panTo(gb.ui.MapConfig.mapOptions.center);

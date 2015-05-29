@@ -39,6 +39,7 @@ angular.module('app.controllers', [])
     $scope.updateLocationInfo = function(locationObj) {
         $scope.location.loc = locationObj.loc;
         $scope.location.address = locationObj.address;
+        $scope.location.name = locationObj.name;
     };
 
     $scope.gotoState = function(state, params) {
