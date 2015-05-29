@@ -457,6 +457,7 @@ gb.ui.MapDemo.include({
                 var latLng = results[0].geometry.location;
                 that.map.panTo(latLng);
                 that.updateSelectorMarker(latLng, true);
+                that.hideError();
             } else {
                 that.showError('Geocode was not successful for the following reason: ' + status);
             }
@@ -469,13 +470,14 @@ gb.ui.MapDemo.include({
      * @param onSuccess
      * @param onError
      */
-    reverseGeocode: function(latLng, onSuccess, onError) {
+    reverseGeocode: function(latLng, onSuccess) {
         var that = this;
         this.geocoder.geocode({'latLng': latLng}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[1] && results[1].formatted_address &&
                     onSuccess && typeof onSuccess === 'function') {
                     onSuccess(results);
+                    that.hideError();
                 } else {
                     that.showError("No results found.");
                 }
@@ -516,14 +518,10 @@ gb.ui.MapDemo.include({
             });
         };
 
-        var onError = function(message) {
-            that.showError("message");
-        };
-
         var onPositionUpdate = function() {
             newLatLng = that.selectorMarker.getPosition();
             that.map.panTo(newLatLng);
-            that.reverseGeocode(newLatLng, onGeocoderResponse, onError);
+            that.reverseGeocode(newLatLng, onGeocoderResponse);
         };
 
         /**
@@ -567,6 +565,10 @@ gb.ui.MapDemo.include({
 
     showError: function(message) {
         $("#message").text(message).slideDown();
+    },
+
+    hideError: function() {
+        $("#message").text("").slideUp();
     },
 
     panToHome: function() {
