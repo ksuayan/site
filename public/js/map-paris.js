@@ -180,13 +180,14 @@ gb.ui.MapConfig = {
     ],
     mapOptions: {
         center: new google.maps.LatLng(48.85340300000001,2.3487840000000233),
-        zoom: 18,
+        zoom: 16,
         mapTypeControl: true,
         mapTypeControlOptions: {
             style: google.maps.MapTypeControlStyle.DEFAULT,
             mapTypeIds: [
                 google.maps.MapTypeId.ROADMAP,
-                google.maps.MapTypeId.TERRAIN
+                google.maps.MapTypeId.TERRAIN,
+                google.maps.MapTypeId.SATELLITE
             ]
         },
         zoomControl: true,
@@ -272,24 +273,29 @@ gb.ui.MapDemo.include({
         var that = this;
         this.geocodeButton = $("#"+formID+" #go");
         this.geocodeButton.on("click", function(evt){
+            evt.preventDefault();
             var value = $("#"+formID+" #address").val();
             that.geocode(that, value);
         });
 
         this.centerButton = $("#"+centerID);
-        this.centerButton.on("click",function(){
+        this.centerButton.on("click",function(evt){
+            evt.preventDefault();
             that.getGeoLocation(true);
         });
         this.addButton = $("#"+addID);
-        this.addButton.on("click",function(){
+        this.addButton.on("click",function(evt){
+            evt.preventDefault();
             that.getGeoLocation(false);
         });
         this.homeButton = $("#"+homeID);
-        this.homeButton.on("click",function(){
+        this.homeButton.on("click",function(evt){
+            evt.preventDefault();
             that.updateSelectorMarker(gb.ui.MapConfig.mapOptions.center, true);
         });
         this.directionsButton = $("#"+dirID);
-        this.directionsButton.on("click",function(){
+        this.directionsButton.on("click",function(evt){
+            evt.preventDefault();
             if (that.selectorMarker && that.destination) {
                 that.calculateDirections(that.selectorMarker.getPosition(), that.destination);
             }
@@ -531,6 +537,7 @@ gb.ui.MapDemo.include({
         var onPositionUpdate = function() {
             newLatLng = that.selectorMarker.getPosition();
             that.map.panTo(newLatLng);
+            that.setCircleFocus(newLatLng);
             that.reverseGeocode(newLatLng, onGeocoderResponse);
         };
 
@@ -581,12 +588,32 @@ gb.ui.MapDemo.include({
         $("#message").text("").slideUp();
     },
 
+    setCircleFocus: function(latLng) {
+        /*
+        if (this.selectCircle) {
+            this.selectCircle.setMap(null);
+        }
+        var circleOptions = {
+            strokeColor: '#000000',
+            strokeOpacity: 0.20,
+            strokeWeight: 1,
+            fillColor: '#000000',
+            fillOpacity: 0.10,
+            map: this.map,
+            center: latLng,
+            radius: 50
+        };
+        this.selectCircle = new google.maps.Circle(circleOptions);
+        */
+    },
+
     selectLocation: function(latLng, name) {
         if (latLng) {
             this.destination = latLng;
+            this.setCircleFocus(latLng);
         }
         if (name) {
-            $("#info").html("<h3>Selected: "+name+"</h3>");
+            $("#info").html('<span class="label label-primary">Destination</span><h3>'+name+'</h3>');
         }
     },
 
@@ -644,58 +671,6 @@ gb.ui.MapDemo.include({
         }
     }
 });
-
-var placeMarkerByAddress = function(addressObj, streetAddress) {
-    geocoder.geocode( { 'address': streetAddress }, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-            var isOpen = false;
-            var position = results[0].geometry.location;
-
-            addressObj["latitude"] = position.lat().toFixed(5);
-            addressObj["longitude"] = position.lng().toFixed(5);
-
-            positions.push(new google.maps.LatLng(position.lat(), position.lng()));
-            console.log('Success: ' + addressObj.address + ": " + position);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: position
-            });
-
-            var infoWindow = createInfoWindow(addressObj);
-
-            google.maps.event.addListener(marker, 'mouseover', function() {
-                infoWindow.open(map, marker);
-            });
-
-            google.maps.event.addListener(marker, 'mouseout', function() {
-                infoWindow.close();
-            });
-        } else {
-            console.log('Failed: ' + addressObj.address + ": " + status);
-        }
-    });
-};
-var zoomToFit = function() {
-    var bounds = new google.maps.LatLngBounds();
-    for (var i = 0, n = positions.length; i < n; i++) {
-        bounds.extend(positions[i]);
-    }
-    map.fitBounds(bounds);
-};
-var loadFromKml = function(map, url) {
-    var layer = new google.maps.KmlLayer({
-        url: 'http://media.suayan.com/geodata/paris.kml',
-        map: map
-    });
-    google.maps.event.addListener(layer, 'click', function(kmlEvent) {
-        var name = kmlEvent.featureData.name,
-            id = kmlEvent.featureData.id,
-            latLng = kmlEvent.latLng;
-        $("#notes").html("<h2>"+name+"</h3><p>ID: "+id+"</p>");
-        console.log("kmlEvent", kmlEvent);
-    });
-    map.data.loadGeoJson('http://media.suayan.com/geodata/paris.json');
-};
 
 google.maps.visualRefresh = true;
 google.maps.event.addDomListener(window, 'load', function(){
