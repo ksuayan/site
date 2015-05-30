@@ -116,7 +116,7 @@
 #panel {
   background-color: #fff;
   margin: 0px;
-  padding: 0px 0px 10px 0px;
+  padding: 10px 0px 10px 0px;
 }
 #notes h2 {
   font-size: 18px;
@@ -130,7 +130,7 @@
   padding: 0px 20px 0px 7px;
 }
 #info {
-  font-size: 12px;
+  font-size: 14px;
 }
 @media (max-width: 991px) {
   #filter-form input[type=checkbox] {

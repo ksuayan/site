@@ -87,6 +87,15 @@
 .modal-footer:after {
   clear: both;
 }
+/*
+@screen-xs-min: 480px;
+@screen-sm-min: 768px;
+@screen-md-min: 992px;
+@screen-lg-min: 1200px;
+@screen-xs-max: (@screen-sm-min - 1);
+@screen-sm-max: (@screen-md-min - 1);
+@screen-md-max: (@screen-lg-min - 1);
+*/
 html {
   background-color: #000;
 }
@@ -95,7 +104,7 @@ body {
   font-size: 13pt;
   font-weight: 400;
   background-color: transparent;
-  padding-top: 60px;
+  padding-top: 50px;
   padding-bottom: 100px;
 }
 @media (max-width: 991px) {
@@ -284,7 +293,7 @@ ul li {
 #content {
   background-color: #fff;
   margin-top: 0px;
-  padding-top: 10px;
+  padding-top: 0px;
 }
 #content .navbar.navbar-inverse.navbar-fixed-top {
   margin: 0px;

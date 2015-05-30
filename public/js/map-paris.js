@@ -275,6 +275,7 @@ gb.ui.MapDemo.include({
             var value = $("#"+formID+" #address").val();
             that.geocode(that, value);
         });
+
         this.centerButton = $("#"+centerID);
         this.centerButton.on("click",function(){
             that.getGeoLocation(true);
@@ -285,7 +286,7 @@ gb.ui.MapDemo.include({
         });
         this.homeButton = $("#"+homeID);
         this.homeButton.on("click",function(){
-            that.panToHome();
+            that.updateSelectorMarker(gb.ui.MapConfig.mapOptions.center, true);
         });
         this.directionsButton = $("#"+dirID);
         this.directionsButton.on("click",function(){
@@ -585,7 +586,7 @@ gb.ui.MapDemo.include({
             this.destination = latLng;
         }
         if (name) {
-            $("#info").html("<div class='active'>Selected: "+name+"</div>");
+            $("#info").html("<h3>Selected: "+name+"</h3>");
         }
     },
 
@@ -603,9 +604,6 @@ gb.ui.MapDemo.include({
         });
     },
 
-    panToHome: function() {
-        this.map.panTo(gb.ui.MapConfig.mapOptions.center);
-    },
     getStyleFilters: function(that) {
         var countChecked = function() {
             var selected = [];

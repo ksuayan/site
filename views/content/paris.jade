@@ -4,6 +4,8 @@ block append css
   link(rel="stylesheet",href="/css/map.css")
 
 block content
+  div#map-canvas
+
   div.container
     div.row
       div.col-lg-12
@@ -11,31 +13,39 @@ block content
           form(id="geocode",class="form-inline",role="form")
             div(class="form-group")
               input(id="address",type="textbox",class="form-control",placeholder="Address")
-            &nbsp;
-            input(id="go",type="button",class="btn btn-default",value="Find")
-            &nbsp;
-            button(class="btn",type="button",data-toggle="collapse",data-target="#notes",aria-expanded="false",aria-controls="collapseNotes") Filters
-            &nbsp;
-            button(class="btn",type="button",id="center") Locate Me
-            &nbsp;
-            button(class="btn",type="button",id="add") Center
-            &nbsp;
-            button(class="btn",type="button",id="home") Home
-            &nbsp;
-            button(class="btn",type="button",id="directions") Get Directions
+              &nbsp;
+              button(class="btn btn-default", id="go")
+                span.glyphicon.glyphicon-search
+                | &nbsp; Find
+              &nbsp;
+              button(class="btn",data-toggle="collapse",data-target="#notes",aria-expanded="false",aria-controls="collapseNotes")
+                span.glyphicon.glyphicon-filter
+                | &nbsp; Filter
+              &nbsp;
+              button(class="btn",id="center")
+                span.glyphicon.glyphicon-globe
+                | &nbsp; Locate Me
+              &nbsp;
+              button(class="btn",id="add")
+                span.glyphicon.glyphicon-screenshot
+                | &nbsp; Center
+              &nbsp;
+              button(class="btn",id="home")
+                span.glyphicon.glyphicon-home
+                | &nbsp; Home
+              &nbsp;
+              button(class="btn",id="directions")
+                span.glyphicon.glyphicon-road
+                | &nbsp; Directions
       div.col-lg-12
         div#notes(class="collapse")
     div.row
       div.col-lg-12
         div#message.well.well-sm
     div.row
-      div.col-lg-12
-        div#map-canvas
-    div.row
       div.col-md-6
         div#info
-    div.row
-      div.col-lg-12
+      div.col-md-6
         div(data-ng-app="app")
           div#screen(ui-view="")
 
