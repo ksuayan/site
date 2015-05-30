@@ -12,15 +12,17 @@ block content
             div(class="form-group")
               input(id="address",type="textbox",class="form-control",placeholder="Address")
             &nbsp;
-            input(id="go",type="button",class="btn btn-default",value="Go")
+            input(id="go",type="button",class="btn btn-default",value="Find")
             &nbsp;
             button(class="btn",type="button",data-toggle="collapse",data-target="#notes",aria-expanded="false",aria-controls="collapseNotes") Filters
             &nbsp;
             button(class="btn",type="button",id="center") Locate Me
             &nbsp;
-            button(class="btn",type="button",id="add") Add
+            button(class="btn",type="button",id="add") Center
             &nbsp;
             button(class="btn",type="button",id="home") Home
+            &nbsp;
+            button(class="btn",type="button",id="directions") Get Directions
       div.col-lg-12
         div#notes(class="collapse")
     div.row
@@ -29,6 +31,9 @@ block content
     div.row
       div.col-lg-12
         div#map-canvas
+    div.row
+      div.col-md-6
+        div#info
     div.row
       div.col-lg-12
         div(data-ng-app="app")

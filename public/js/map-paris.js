@@ -252,22 +252,23 @@ gb.ui.MapConfig.mapLayerNames = {
 
 gb.ui.MapDemo.include({
 
-    init: function(window, divID, formID, centerID, addID, homeID) {
+    init: function(window, divID, formID, centerID, addID, homeID, dirID) {
         var that = this;
 
         this.queryRadius = 100;
         this.locations = {};
         this.styleHashes = {};
         this.geocoder = new google.maps.Geocoder();
+        this.directionsService = new google.maps.DirectionsService();
+        this.directionsDisplay = new google.maps.DirectionsRenderer();
         this.selectorMarker = null;
-
         this.initMap(divID);
-        this.initButtons(formID, centerID, addID, homeID);
+        this.initButtons(formID, centerID, addID, homeID, dirID);
         this.getStyleFilters(that);
         $("#message").hide();
     },
 
-    initButtons: function(formID, centerID, addID, homeID) {
+    initButtons: function(formID, centerID, addID, homeID, dirID) {
         var that = this;
         this.geocodeButton = $("#"+formID+" #go");
         this.geocodeButton.on("click", function(evt){
@@ -286,6 +287,12 @@ gb.ui.MapDemo.include({
         this.homeButton.on("click",function(){
             that.panToHome();
         });
+        this.directionsButton = $("#"+dirID);
+        this.directionsButton.on("click",function(){
+            if (that.selectorMarker && that.destination) {
+                that.calculateDirections(that.selectorMarker.getPosition(), that.destination);
+            }
+        });
     },
     /**
      * Initialize map instance.
@@ -295,6 +302,8 @@ gb.ui.MapDemo.include({
         var that = this;
         this.map = new google.maps.Map(document.getElementById(divID), gb.ui.MapConfig.mapOptions);
         this.map.setOptions({styles: gb.ui.MapConfig.mapStyles2});
+        this.directionsDisplay.setMap(this.map);
+        this.directionsDisplay.setPanel($("#info").get(0));
 
         google.maps.event.addListener(that.map, 'bounds_changed', gb.util.throttle(function(){
             var bounds = that.map.getBounds(),
@@ -375,6 +384,7 @@ gb.ui.MapDemo.include({
 
         google.maps.event.addListener(marker, 'click', function() {
             that.map.panTo(latLng);
+            that.selectLocation(latLng, name);
             that.gotoAngularState("editLocation", {"id":id});
         });
 
@@ -502,7 +512,6 @@ gb.ui.MapDemo.include({
          * @param results
          */
         var onGeocoderResponse = function(results) {
-            console.log("resolved:", results);
             that.gotoAngularState("addLocation");
             var locationObj = {
                     loc: {
@@ -569,6 +578,29 @@ gb.ui.MapDemo.include({
 
     hideError: function() {
         $("#message").text("").slideUp();
+    },
+
+    selectLocation: function(latLng, name) {
+        if (latLng) {
+            this.destination = latLng;
+        }
+        if (name) {
+            $("#info").html("<div class='active'>Selected: "+name+"</div>");
+        }
+    },
+
+    calculateDirections: function(start, end) {
+        var request = {
+                origin:start,
+                destination:end,
+                travelMode: google.maps.TravelMode.WALKING // or DRIVING or TRANSIT
+            },
+            that = this;
+        this.directionsService.route(request, function(result, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                that.directionsDisplay.setDirections(result);
+            }
+        });
     },
 
     panToHome: function() {
@@ -669,6 +701,6 @@ var loadFromKml = function(map, url) {
 
 google.maps.visualRefresh = true;
 google.maps.event.addDomListener(window, 'load', function(){
-    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode", "center", "add", "home");
+    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode", "center", "add", "home", "directions");
 });
 
