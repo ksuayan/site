@@ -123,10 +123,13 @@
   padding: 0px;
   font-weight: 600;
 }
-#panel {
-  background-color: #fff;
+#geocode {
+  background-color: #efefef;
   margin: 0px;
-  padding: 10px 0px 10px 0px;
+}
+#geocode .form-group {
+  padding-right: 10px;
+  padding-top: 10px;
 }
 #notes {
   margin-bottom: 20px;

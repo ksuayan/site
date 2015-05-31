@@ -1,33 +1,3 @@
-gb.Namespace(gb,"gb.ui.MapDemo");
-gb.ui.MapDemo = new gb.Class();
-
-/**
- * Prototype extension for computing distance
- * between two points in meters.
- * @param latlng
- * @returns {number}
- */
-google.maps.LatLng.prototype.distanceFrom = function(latlng) {
-    var lat = [this.lat(), latlng.lat()],
-        lng = [this.lng(), latlng.lng()],
-        R = 6378137,
-        dLat = (lat[1]-lat[0]) * Math.PI / 180,
-        dLng = (lng[1]-lng[0]) * Math.PI / 180,
-        a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(lat[0] * Math.PI / 180 ) * Math.cos(lat[1] * Math.PI / 180 ) *
-            Math.sin(dLng/2) * Math.sin(dLng/2),
-        c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)),
-        d = R * c;
-    return Math.round(d);
-};
-
-/*
-var loc1 = new GLatLng(52.5773139, 1.3712427);
-var loc2 = new GLatLng(52.4788314, 1.7577444);
-var dist = loc2.distanceFrom(loc1);
-alert(dist/1000);
-*/
-
 gb.ui.MapConfig = {
     mapPath: "/img/map/",
     mapStyles: [
@@ -196,30 +166,6 @@ gb.ui.MapConfig = {
         }
     }
 };
-
-gb.ui.MapConfig.screens = [
-    {
-        name: "San Mateo, CA",
-        center: new google.maps.LatLng(37.556425880972185, -122.29441177542719),
-        zoom: 16
-    },
-    {
-        name: "San Francisco, CA",
-        center: new google.maps.LatLng(37.7749295, -122.41941550000001),
-        zoom: 14
-    },
-    {
-        name: "Paris, France",
-        center: new google.maps.LatLng(48.856614, 2.3522219000000177),
-        zoom: 15
-    },
-    {
-        name: "Venice, Italy",
-        center: new google.maps.LatLng(45.43992899642088, 12.331973134515351),
-        zoom: 14
-    }
-];
-
 gb.ui.MapConfig.mapMarkers = [
     {
         url: gb.ui.MapConfig.mapPath + "pin14.png", // red
@@ -275,7 +221,9 @@ gb.ui.MapConfig.mapLayerNames = {
     "none": "None"
 };
 
-gb.ui.MapDemo.include({
+gb.Namespace(gb,"gb.ui.MapNav");
+gb.ui.MapNav = new gb.Class();
+gb.ui.MapNav.include({
 
     init: function(window, divID, formID, centerID, addID, homeID, dirID) {
         var that = this;
@@ -289,7 +237,6 @@ gb.ui.MapDemo.include({
         this.selectorMarker = null;
         this.initMap(divID);
         this.initButtons(formID, centerID, addID, homeID, dirID);
-        this.initScreens();
         this.getStyleFilters(that);
         $("#message").hide();
     },
@@ -316,7 +263,7 @@ gb.ui.MapDemo.include({
         this.homeButton = $("#"+homeID);
         this.homeButton.on("click",function(evt){
             evt.preventDefault();
-            that.updateSelectorMarker(gb.ui.MapConfig.screens[0].center, true);
+            that.updateSelectorMarker(gb.ui.MapConfig.mapOptions.center, true);
         });
         this.directionsButton = $("#"+dirID);
         this.directionsButton.on("click",function(evt){
@@ -354,49 +301,6 @@ gb.ui.MapDemo.include({
         }, 500));
         google.maps.event.addListener(that.map, 'maptypeid_changed', function() {
             console.log("type changed", that.map.getMapTypeId());
-        });
-    },
-    initScreens: function() {
-        var screens = gb.ui.MapConfig.screens,
-            screenList = $("#screen-list"),
-            that = this,
-            clickHandler = function(evt){
-                var jq = $(evt.target),
-                    index = jq.attr("data-index");
-                that.gotoScreen(screens[index]);
-            };
-        for (var i=0,n=screens.length; i<n; i++){
-            var screen = screens[i],
-                html = "<li role='presentation'>"+
-                       "<a href='#' tabindex='-1' role='menuitem' data-index='"+i+"'>"+
-                       screen.name + "</a></li>",
-                menuItem = $(html);
-            menuItem.on("click", clickHandler);
-            screenList.append(menuItem);
-        }
-    },
-    gotoScreen: function(screen) {
-        if (this.map && screen) {
-            this.map.panTo(screen.center);
-            this.map.setZoom(screen.zoom);
-        }
-    },
-    /**
-     * Angular utility. Fetch the $scope.
-     * @returns {*}
-     */
-    getAngularScope: function() {
-        return angular.element(document.getElementById("screen")).scope();
-    },
-    /**
-     * Go to an Angular state with parameters.
-     * @param state
-     * @param params
-     */
-    gotoAngularState: function(state, params) {
-        var scope = this.getAngularScope();
-        scope.$apply(function () {
-            scope.gotoState(state, params);
         });
     },
     /**
@@ -562,32 +466,10 @@ gb.ui.MapDemo.include({
     updateSelectorMarker: function(latLng, draggable) {
         var that = this,
             newLatLng = null;
-        /**
-         * Let's notify the Angular side whenever the
-         * user drags the marker on the map.
-         * @param results
-         */
-        var onGeocoderResponse = function(results) {
-            that.gotoAngularState("addLocation");
-            var locationObj = {
-                    loc: {
-                        coordinates: [newLatLng.lng(), newLatLng.lat()]
-                    },
-                    address: results[0].formatted_address,
-                    name: results[1].formatted_address
-                };
-            // refresh angular
-            var scope = that.getAngularScope();
-            scope.$apply(function () {
-                scope.updateLocationInfo(locationObj);
-            });
-        };
 
         var onPositionUpdate = function() {
             newLatLng = that.selectorMarker.getPosition();
             that.map.panTo(newLatLng);
-            that.setCircleFocus(newLatLng);
-            that.reverseGeocode(newLatLng, onGeocoderResponse);
         };
 
         /**
@@ -633,28 +515,9 @@ gb.ui.MapDemo.include({
     hideError: function() {
         $("#message").text("").slideUp();
     },
-    setCircleFocus: function(latLng) {
-        /*
-        if (this.selectCircle) {
-            this.selectCircle.setMap(null);
-        }
-        var circleOptions = {
-            strokeColor: '#000000',
-            strokeOpacity: 0.20,
-            strokeWeight: 1,
-            fillColor: '#000000',
-            fillOpacity: 0.10,
-            map: this.map,
-            center: latLng,
-            radius: 50
-        };
-        this.selectCircle = new google.maps.Circle(circleOptions);
-        */
-    },
     selectLocation: function(latLng, name) {
         if (latLng) {
             this.destination = latLng;
-            this.setCircleFocus(latLng);
         }
         if (name) {
             $("#info").html('<h3>To: '+name+'</h3>');
@@ -716,11 +579,6 @@ gb.ui.MapDemo.include({
 
 google.maps.visualRefresh = true;
 google.maps.event.addDomListener(window, 'load', function(){
-    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode", "center", "add", "home", "directions");
-
-    $(".dropdown").on("hidden.bs.dropdown", function(evt){
-        console.log("hidden.bs.dropdown", evt);
-    });
-
+    var parisMap = new gb.ui.MapNav(window, "map-canvas", "geocode", "center", "add", "home", "directions");
 });
 
