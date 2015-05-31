@@ -209,6 +209,11 @@ gb.ui.MapConfig.screens = [
         zoom: 14
     },
     {
+        name: "Copenhagen, Denmark",
+        center: new google.maps.LatLng(55.6877104529202, 12.598292010278355),
+        zoom: 14
+    },
+    {
         name: "Paris, France",
         center: new google.maps.LatLng(48.856614, 2.3522219000000177),
         zoom: 15
