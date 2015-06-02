@@ -15,18 +15,16 @@ block content
       div.col-lg-12
         div#message.well.well-sm
     div.row
-      div.col-md-5
+      div.col-sm-7
+        div#screen(data-ng-app="app",ui-view="")
+      div.col-sm-5
         div#info
-      div.col-md-7
-        div(data-ng-app="app")
-          div#screen(ui-view="")
-
 
 block append scripts
   script(src="/js/ckeditor/ckeditor.js")
   script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U&sensor=false")
   script(src="/js/gb-ui-mapconfig.js")
-  script(src="/js/map-paris.js")
+  script(src="/js/gb-map-edit.js")
   script(src="/js/angular/locations/app.js")
   script(src="/js/angular/locations/controllers.js")
   script(src="/js/angular/locations/services.js")
