@@ -3,7 +3,13 @@ var app = angular.module('app', ['ui.router', 'ngSanitize', 'ngResource', 'app.c
 angular.module('app').config(["$stateProvider", "$sceProvider",
     function($stateProvider, $sceProvider) {
 
-        $stateProvider.state('viewLocation', {
+        $stateProvider.state('listLocations', {
+
+            url: '/list',
+            templateUrl: '/templates/locations/list.html',
+            controller: 'LocationListController'
+
+        }).state('viewLocation', {
 
             url: '/view/:id',
             templateUrl: '/templates/locations/view.html',
@@ -37,7 +43,7 @@ angular.module('app').config(["$stateProvider", "$sceProvider",
 
     }
     ]).run(function($state) {
-        $state.go('home');
+        $state.go('listLocations');
     });
 
 app.directive('ckEditor', [function () {

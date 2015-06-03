@@ -1,5 +1,5 @@
 gb.Namespace(gb,"gb.ui.MapDemo");
-gb.ui.MapDemo = new gb.Class();
+gb.ui.MapEdit = new gb.Class();
 
 /**
  * Prototype extension for computing distance
@@ -21,7 +21,8 @@ google.maps.LatLng.prototype.distanceFrom = function(latlng) {
     return Math.round(d);
 };
 
-gb.ui.MapDemo.include({
+
+gb.ui.MapEdit.include({
 
     init: function(window, divID, formID, centerID, addID, homeID, dirID) {
         var that = this;
@@ -332,7 +333,6 @@ gb.ui.MapDemo.include({
         var onPositionUpdate = function() {
             newLatLng = that.selectorMarker.getPosition();
             that.map.panTo(newLatLng);
-            that.setCircleFocus(newLatLng);
             that.reverseGeocode(newLatLng, onGeocoderResponse);
         };
 
@@ -379,28 +379,9 @@ gb.ui.MapDemo.include({
     hideError: function() {
         $("#message").text("").slideUp();
     },
-    setCircleFocus: function(latLng) {
-        /*
-        if (this.selectCircle) {
-            this.selectCircle.setMap(null);
-        }
-        var circleOptions = {
-            strokeColor: '#000000',
-            strokeOpacity: 0.20,
-            strokeWeight: 1,
-            fillColor: '#000000',
-            fillOpacity: 0.10,
-            map: this.map,
-            center: latLng,
-            radius: 50
-        };
-        this.selectCircle = new google.maps.Circle(circleOptions);
-        */
-    },
     selectLocation: function(latLng, name) {
         if (latLng) {
             this.destination = latLng;
-            this.setCircleFocus(latLng);
         }
         if (name) {
             $("#info").html('<h3>To: '+name+'</h3>');
@@ -429,9 +410,7 @@ gb.ui.MapDemo.include({
             that.enabledList = selected;
             that.filterLocationsByStyle();
         };
-
         var filterForm = $("<form id='filter-form'></form>");
-
         for (var key in gb.ui.MapConfig.mapMarkerStyles) {
             var jq = $("<input type='checkbox'>"),
                 name = key.replace("-",""),
@@ -462,6 +441,5 @@ gb.ui.MapDemo.include({
 
 google.maps.visualRefresh = true;
 google.maps.event.addDomListener(window, 'load', function(){
-    var parisMap = new gb.ui.MapDemo(window, "map-canvas", "geocode", "center", "add", "home", "directions");
+    var mapEditor = new gb.ui.MapEdit(window, "map-canvas", "geocode", "center", "add", "home", "directions");
 });
-

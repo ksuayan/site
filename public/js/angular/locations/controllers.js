@@ -1,14 +1,12 @@
 angular.module('app.controllers', [])
-.controller('LocationViewController', function($scope, $state, $stateParams, Location) {
+.controller('LocationViewController', function($scope, $state, $stateParams, StateService, Location) {
 
     // Issues a GET to /api/loc/:id
     $scope.location = Location.get({ id: $stateParams.id });
 
-    $scope.gotoState = function(state, params) {
-        $state.go(state, params);
-    };
+    $scope.gotoState = StateService.gotoState;
 
-}).controller('LocationEditController', function($scope, $state, $stateParams, Location) {
+}).controller('LocationEditController', function($scope, $state, $stateParams, StateService, Location) {
 
     $scope.updateLocation = function() {
         $scope.location.$update(function() {
@@ -20,13 +18,11 @@ angular.module('app.controllers', [])
         $scope.location = Location.get({ id: $stateParams.id });
     };
 
-    $scope.gotoState = function(state, params) {
-        $state.go(state, params, {reload:true});
-    };
+    $scope.gotoState = StateService.gotoState;
 
     $scope.loadLocation($stateParams);
 
-}).controller('LocationAddController', function($scope, $state, $stateParams, Location) {
+}).controller('LocationAddController', function($scope, $state, $stateParams, StateService, Location) {
 
     $scope.location = new Location();
 
@@ -42,12 +38,17 @@ angular.module('app.controllers', [])
         $scope.location.name = locationObj.name;
     };
 
-    $scope.gotoState = function(state, params) {
-        $state.go(state, params);
-    };
+    $scope.gotoState = StateService.gotoState;
 
-}).controller('HomeController', function($scope, $state, $stateParams, Location) {
-    $scope.gotoState = function(state, params) {
-        $state.go(state, params);
-    };
+
+}).controller('HomeController', function($scope, $state, $stateParams, StateService, Location) {
+
+    $scope.gotoState = StateService.gotoState;
+
+}).controller('LocationListController', function($scope, $state, $window, StateService, Location) {
+
+    $scope.locations = Location.query(); //fetch all locations. Issues a GET to /api/movies
+    $scope.gotoState = StateService.gotoState;
+
+    console.log("locations", $scope.locations);
 });
