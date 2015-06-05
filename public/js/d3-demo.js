@@ -20,7 +20,9 @@ var slots = [
 
 ];
 
-var margin = {top: 20, right: 20, bottom: 20, left: 50},
+var zero = d3.format("02d");
+
+var margin = {top: 20, right: 20, bottom: 20, left: 40},
     vHeight = 500,
     vWidth = 700,
     slotWidth = 100,
@@ -30,7 +32,7 @@ var margin = {top: 20, right: 20, bottom: 20, left: 50},
 
 var x = d3.scale.linear()
         .domain([0, vWidth])
-        .range([0, vWidth]);
+        .range([0, vWidth - margin.right - margin.left]);
 
 var y = d3.scale.linear()
         .domain([0, dayInSeconds])
@@ -44,8 +46,11 @@ var yAxis = d3.svg.axis()
     .scale(yTime)
     .orient('left')
     .ticks(24)
+    .tickFormat(function(d,i){
+        return zero(d) + "00h"
+    })
     .tickSize(5)
-    .tickPadding(8);
+    .tickPadding(5);
 
 var viewport = d3.select("#viewport")
     .append("svg:svg")
