@@ -2,7 +2,7 @@
 // time slots are in [h,m,s]
 var slots = [
     // work hours
-    { from: [8,0,0],  to: [17,0,0], fill: "#000000" },
+    { from: [8,0,0],  to: [17,0,0], fill: "#666666" },
 
     { from: [0,0,0],  to: [1,30,0], fill: "#1e3e4a" },
 
@@ -15,20 +15,25 @@ var slots = [
 
     // noche buena
     { from: [23,0,0], to: [23,45,0], fill: "#fd8765" },
-    { from: [23,58,0], to: [23,59,0], fill: "#ffffff" },
+    { from: [23,58,0], to: [23,59,0], fill: "#000000" },
+
+
 ];
 
-var margin = {top: 20, right: 20, bottom: 20, left: 30},
-    vHeight = 800,
-    vWidth = 800,
-    slotWidth = 125;
+var margin = {top: 20, right: 20, bottom: 20, left: 50},
+    vHeight = 500,
+    vWidth = 700,
+    slotWidth = 100,
+    gutter = 30,
+    dayInSeconds = (24 * 60 * 60) - 1;
+
 
 var x = d3.scale.linear()
         .domain([0, vWidth])
         .range([0, vWidth]);
 
 var y = d3.scale.linear()
-        .domain([0, (24 * 60 * 60) - 1])
+        .domain([0, dayInSeconds])
         .range([vHeight - margin.top - margin.bottom, 0]);
 
 var yTime = d3.scale.linear()
@@ -38,7 +43,8 @@ var yTime = d3.scale.linear()
 var yAxis = d3.svg.axis()
     .scale(yTime)
     .orient('left')
-    .tickSize(0)
+    .ticks(24)
+    .tickSize(5)
     .tickPadding(8);
 
 var viewport = d3.select("#viewport")
@@ -46,36 +52,47 @@ var viewport = d3.select("#viewport")
     .attr('class', 'chart')
     .attr("width", vWidth)
     .attr("height", vHeight)
-    .style("background-color", "#666666")
+    .style("background-color", "#efefef")
     .append('g')
         .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+/**
+ * convert [h,m,s] to seconds
+ * @param list
+ * @returns {*}
+ */
+var toSeconds = function(list) {
+    return (list[0]*60*60) + (list[1]*60) + list[2]
+}
 
-viewport.selectAll(".chart")
-    .data(slots)
-    .enter().append("svg:rect")
-    .attr("x", 0)
-    .attr("y", function(datum, index) {
-        var seconds = (datum.from[0]*60*60) +
-                      (datum.from[1]*60) +
-                       datum.from[2];
-        console.log("y:", index, seconds);
-        return (vHeight - margin.top - margin.bottom - y(seconds));
-    })
-    .attr("height", function(datum, index) {
-        var from = (datum.from[0]*60*60) +
-                   (datum.from[1]*60) +
-                    datum.from[2],
-            to = (datum.to[0]*60*60) +
-                 (datum.to[1]*60) +
-                  datum.to[2];
-        console.log("height:", index, to - from);
-        return vHeight - margin.top - margin.bottom - y(to-from)
-    })
-    .attr("width", slotWidth)
-    .attr("fill", function(datum){
-        return datum.fill;
-    });
+var loadSlots = function(day) {
+    viewport.selectAll(".chart")
+        .data(slots)
+        .enter().append("svg:rect")
+        .attr("x", 20 + ((day * slotWidth) + (gutter*day)))
+        .attr("y", function(datum, index) {
+            var seconds = toSeconds(datum.from);
+            console.log("y:", index, seconds);
+            return (vHeight - margin.top - margin.bottom - y(seconds));
+        })
+        .attr("height", function(datum, index) {
+            var from = toSeconds(datum.from),
+                to = toSeconds(datum.to);
+            console.log("height:", index, to - from);
+            return vHeight - margin.top - margin.bottom - y(to-from)
+        })
+        .attr("width", slotWidth)
+        .attr("fill", function(datum){
+            return datum.fill;
+        });
+};
+
 
 viewport.append('g')
   .attr('class', 'y axis')
   .call(yAxis);
+
+loadSlots(0);
+loadSlots(1);
+loadSlots(2);
+loadSlots(3);
+loadSlots(4);
