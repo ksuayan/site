@@ -1,0 +1,28 @@
+<table class="table">
+  <tr>
+    <td>Name</td>
+    <td>{{page.name}}</td>
+  </tr>
+  <tr>
+    <td>Title</td>
+    <td>{{page.title}}</td>
+  </tr>
+</table>
+
+<a class="btn btn-primary" ui-sref="editPage({id:page._id})">Edit</a>
+<a class="btn btn-default" ng-click="deletePage(page)">Delete</a>
+<a class="btn btn-default" ui-sref="listPages">Back to Pages</a>
+
+<script type="text/ng-template" id="deleteModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Delete this page?</h3>
+    </div>
+    <div class="modal-body">
+        <h2>{{page.name}}</h2>
+        <p>{{page.title}}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

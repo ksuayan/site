@@ -87,6 +87,15 @@
 .modal-footer:after {
   clear: both;
 }
+/*
+@screen-xs-min: 480px;
+@screen-sm-min: 768px;
+@screen-md-min: 992px;
+@screen-lg-min: 1200px;
+@screen-xs-max: (@screen-sm-min - 1);
+@screen-sm-max: (@screen-md-min - 1);
+@screen-md-max: (@screen-lg-min - 1);
+*/
 html {
   background-color: #000;
 }
@@ -177,14 +186,8 @@ ul li {
     padding-bottom: 10px;
   }
   .jumbotron {
-    padding: 5px;
+    padding: 5px 10px 5px 10px;
   }
-}
-.row.multicol {
-  /*
-    margin-left: 0px;
-    margin-right: 0px;
-    */
 }
 .row.multicol .mod:first-child {
   margin: 2px 0px 0px 0px;
@@ -354,6 +357,9 @@ ul li {
 #content #screen .well p {
   font-size: 14px;
   margin: 0px;
+}
+#content .container .jumbotron {
+  margin-top: 20px;
 }
 #chart {
   margin: 40px auto 30px auto;

@@ -11,13 +11,18 @@ ViewHandler.fn = {
     }
 };
 
-ViewHandler.prototype.fullScreen = function (req, res) {
-    content.getPageText("home", function (content) {
-        res.render('content/home', {content: content});
-    });
+ViewHandler.prototype.notfound = function(req, res) {
+    res.render('content/notfound');
 };
 
-
+ViewHandler.prototype.fullScreen = function (req, res) {
+    content.getPageText("home", function (content) {
+            res.render('content/home', {content: content});
+        },
+        function () {
+            res.render('content/notfound');
+        });
+};
 
 ViewHandler.prototype.pageEdit = function (req, res) {
     var locale = null;
@@ -25,7 +30,7 @@ ViewHandler.prototype.pageEdit = function (req, res) {
         locale = req.params.locale;
     }
     content.getTextList(locale, function (content) {
-        res.render('pageEdit', {content: content, fn: ViewHandler.fn });
+        res.render('content/db/pageEdit', {content: content, fn: ViewHandler.fn });
     });
 };
 

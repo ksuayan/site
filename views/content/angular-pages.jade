@@ -1,0 +1,16 @@
+extends ../layout
+block content
+  div.container(data-ng-app="site")
+    div.row
+      div.col-lg-12
+        div.jumbotron
+          h1 Pages
+          p An AngularJS Simple CMS Demo
+
+        div(ui-view="")
+
+block append scripts
+  script(src="http://ckeditor.com/apps/ckeditor/4.2/ckeditor.js")
+  script(src="/js/angular/pages/app.js")
+  script(src="/js/angular/pages/controllers.js")
+  script(src="/js/angular/pages/services.js")

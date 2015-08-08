@@ -127,7 +127,7 @@ ApiHandler.prototype.getTextList = function(req, res) {
     content.getTextList(null, onSuccess, onError);
 };
 
-ApiHandler.prototype.getText = function(req, res) {
+ApiHandler.prototype.getTextById = function(req, res) {
     var onSuccess = function(textObj) {
         return res.send(textObj);
     };
@@ -190,11 +190,15 @@ ApiHandler.prototype.getPageList = function(req, res) {
 };
 
 
-ApiHandler.prototype.getPage = function(req, res) {
+ApiHandler.prototype.getPageText = function(req, res) {
     var onSuccess = function(contentMap) {
         res.send(contentMap);
     };
-    content.getPageText(req.params.id, onSuccess);
+    var onError = function(err) {
+        return res.send(util.defaultError);
+    };
+    var page = (req.params.page) ? req.params.page : "home";
+    content.getPageText(page, onSuccess, onError);
 };
 
 ApiHandler.prototype.getPageById = function(req, res) {

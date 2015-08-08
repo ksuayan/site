@@ -1,0 +1,18 @@
+<a ui-sref="addPage" class="btn btn-default">New Page</a>
+
+<table class="table">
+  <tr>
+    <td><h3>All Pages</h3></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr ng-repeat="page in pages">
+    <td>{{page.name}}</td>
+    <td>{{page.title}}</td>
+    <td>
+      <a class="btn btn-default" ui-sref="viewPage({id:page._id})">View</a>
+    </td>
+  </tr>
+</table>
+
+

@@ -1,44 +1,45 @@
 extends ../../layout
 
 block content
-  - if (content && content.length)
-    br
-    form(class="form-horizontal", method="post")
-      div(class="control-group")
-        label(class="control-label",for="name") Page Name
-        div(class="controls")
-          input(type="text", id="name", name="name", placeholder="Page Name")
-      div(class="control-group")
-        label(class="control-label",for="title") Page Title
-        div(class="controls")
-          input(type="text", id="title",name="title", placeholder="Document Title")
-      div(class="control-group")
-        label(class="control-label",for="description") Description
-        div(class="controls")
-          textarea(rows="3", id="description", name="description", placeholder="metadata")
-      div(class="control-group")
-        label(class="control-label",for="keywords") Keywords
-        div(class="controls")
-          textarea(rows="3", id="keywords", name="keywords", placeholder="keywords")
-      div(class="control-group")
-        div(class="textListWindow")
-          table(class="table")
-            tr
-              th Name
-              th Value
-              th Date Created
-            - each textObj in content
+  div.container
+    - if (content && content.length)
+      br
+      form(class="form-horizontal", method="post")
+        div(class="control-group")
+          label(class="control-label",for="name") Page Name
+          div(class="controls")
+            input(type="text", id="name", name="name", placeholder="Page Name")
+        div(class="control-group")
+          label(class="control-label",for="title") Page Title
+          div(class="controls")
+            input(type="text", id="title",name="title", placeholder="Document Title")
+        div(class="control-group")
+          label(class="control-label",for="description") Description
+          div(class="controls")
+            textarea(rows="3", id="description", name="description", placeholder="metadata")
+        div(class="control-group")
+          label(class="control-label",for="keywords") Keywords
+          div(class="controls")
+            textarea(rows="3", id="keywords", name="keywords", placeholder="keywords")
+        div(class="control-group")
+          div(class="textListWindow")
+            table(class="table")
               tr
-                td
-                  label(class="checkbox")
-                    input(type="checkbox",name="textId",value=textObj._id)
-                    = textObj.name
-                td
-                  = textObj.text
-                td
-                  = fn.fromNow(textObj.dateCreated)
-      div(class="control-group")
-        div(class="controls")
-          button(type="submit",class="btn") Save
-        
+                th Name
+                th Value
+                th Date Created
+              - each textObj in content
+                tr
+                  td
+                    label(class="checkbox")
+                      input(type="checkbox",name="textId",value=textObj._id)
+                      = textObj.name
+                  td
+                    = textObj.text
+                  td
+                    = fn.fromNow(textObj.dateCreated)
+        div(class="control-group")
+          div(class="controls")
+            button(type="submit",class="btn") Save
+
         

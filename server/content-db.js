@@ -159,6 +159,22 @@ DocumentDB.prototype.deleteText = function(id, onSuccess, onError) {
 
 
 
+DocumentDB.prototype.getPageList = function(onSuccess, onError) {
+    var query = {};
+    var that = this;
+    this.PageModel
+        .find(query)
+        .sort("name")
+        .populate("content")
+        .exec(function (err, pages) {
+            if (err) {
+                return util.HandleError(err, onError);
+            }
+            if (typeof onSuccess ==='function') {
+                onSuccess(pages);
+            }
+        });
+};
 
 DocumentDB.prototype.getPageById = function(id, onSuccess, onError) {
     var query = {_id: id};
@@ -173,45 +189,6 @@ DocumentDB.prototype.getPageById = function(id, onSuccess, onError) {
             }
         });
 };
-
-DocumentDB.prototype.getPageText = function(page, onSuccess, onError) {
-    var result = {status:"error"};
-    var query = {name: page};
-    var that = this;
-    this.PageModel
-    .findOne(query)
-    .populate("content")
-    .exec(function (err, page) {
-        if (err) {
-            return util.HandleError(err);
-        }
-        var contentMap = that.getPageContentMap(page);
-        if (!contentMap && typeof onError ==='function') {
-            onError(err);
-            return;
-        }
-        if (typeof onSuccess === 'function') {
-            onSuccess(contentMap);
-        } 
-    });
-};
-
-
-DocumentDB.prototype.getPageContentMap = function(page) {
-    if (!page || !page.content || !page.content.length) {
-        return null;
-    }
-    var contentMap = {};
-    var contentArray = page.content;
-    for (var i=0,n=contentArray.length;i<n;i++){
-        var textObj = contentArray[i];
-        if (textObj.name && textObj.text) {
-            contentMap[textObj.name] = textObj.text;
-        }
-    }
-    return contentMap;
-};
-
 
 DocumentDB.prototype.createPage = function(pageObj, onSuccess, onError) {
     var that = this;
@@ -250,7 +227,7 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
                 if (pageObj.content && pageObj.content.length) {
                     found.content = pageObj.content.split("|");
                 } else {
-                    found.constent = null;
+                    found.content = null;
                 }
                 found.save(function(err){
                     if (err) {
@@ -286,22 +263,44 @@ DocumentDB.prototype.deletePage = function(id, onSuccess, onError) {
         });
 };
 
-DocumentDB.prototype.getPageList = function(onSuccess, onError) {
-    var query = {};
+
+DocumentDB.prototype.getPageText = function(page, onSuccess, onError) {
+    var query = {name: page};
     var that = this;
     this.PageModel
-    .find(query)
-    .sort("name")
-    .populate("content")
-    .exec(function (err, pages) {
-        if (err) {
-            return util.HandleError(err, onError);
-        }
-        if (typeof onSuccess ==='function') {
-            onSuccess(pages);
-        }
-    });
+        .findOne(query)
+        .populate("content")
+        .exec(function (err, page) {
+            if (err) {
+                return util.HandleError(err);
+            }
+            var contentMap = that.getPageContentMap(page);
+            if (!contentMap && typeof onError ==='function') {
+                onError(err);
+                return;
+            }
+            if (typeof onSuccess === 'function') {
+                onSuccess(contentMap);
+            }
+        });
 };
+
+DocumentDB.prototype.getPageContentMap = function(page) {
+    if (!page || !page.content || !page.content.length) {
+        return null;
+    }
+    var contentMap = {};
+    var contentArray = page.content;
+    for (var i=0,n=contentArray.length;i<n;i++){
+        var textObj = contentArray[i];
+        if (textObj.name && textObj.text) {
+            contentMap[textObj.name] = textObj.text;
+        }
+    }
+    return contentMap;
+};
+
+
 
 DocumentDB.prototype.getDocuments = function(id, callback) {
     var result = null;

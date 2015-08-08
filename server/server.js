@@ -43,6 +43,11 @@ app.all("*", function (req, res, next) {
     next();
 });
 
+app.all("/view/*", function(req, res, next){
+    console.log(">> path", req.path);
+    next();
+});
+
 app.get('/', view.fullScreen);
 
 app.get('/page/:page', view.pageView);
@@ -65,6 +70,9 @@ app.get('/api/twitter',      api.twitter);
 app.get('/api/vimeo/:count', api.vimeo);
 app.get('/api/flickr/:count', api.flickr);
 
+app.get('/api/page/text/:page', api.getPageText);
+app.get('/api/page/text', api.getPageText);
+
 app.get('/api/page',        api.getPageList);
 app.post('/api/page',       api.createPage);
 app.get('/api/page/:id',    api.getPageById);
@@ -73,7 +81,7 @@ app.delete('/api/page/:id', api.deletePage);
 
 app.get('/api/text',        api.getTextList);
 app.post('/api/text',       api.createText);
-app.get('/api/text/:id',    api.getText);
+app.get('/api/text/:id',    api.getTextById);
 app.put('/api/text/:id',    api.updateText);
 app.delete('/api/text/:id', api.deleteText);
 
@@ -88,6 +96,9 @@ app.get('/api/loc/within/:swLatLng/:neLatLng', api.getLocationsWithin);
 app.post('/api/loc',        api.createLocation);
 app.put('/api/loc/:id',     api.updateLocation);
 app.delete('/api/loc/:id',  api.deleteLocation);
+
+// default handler
+app.get('*',                view.notfound);
 
 app.listen(conf.app.port);
 console.log('Go to http://localhost:' + conf.app.port);
