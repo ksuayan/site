@@ -11,8 +11,49 @@
   </div>
 </div>
 <div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <input type="submit" class="btn btn-primary" value="Save"/>
+    <div class="col-sm-12">
+        <label for="body" class="control-label">Body</label>
+        <textarea data-ng-model="page.body"
+                  data-ck-editor class="form-control" id="body">
+        </textarea>
+    </div>
+</div>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Description
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <textarea data-ng-model="page.description" class="form-control" id="description"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Keywords
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+                <textarea data-ng-model="page.keywords" class="form-control" id="keywords"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group">
+  <div class="col-sm-12">
     <a ui-sref="listPages" class="btn btn-default">Back to List</a>
+    <input type="submit" class="btn btn-primary" value="Save"/>
   </div>
 </div>

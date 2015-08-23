@@ -7,26 +7,21 @@ html {
 
 body {
     font-family: @basefont;
-    font-size: 13pt;
-    font-weight: 400;
+    font-size: @basefont-size;
+    font-weight: @font-weight-normal;
     background-color: transparent;
     padding-top: 50px;
     padding-bottom: 100px;
     @media (max-width: (@screen-sm-max)) {
         .container {
-            padding: 5px;
+            padding: 10px;
         }
     }
 }
 
-.dropdown-menu {
-  font-size: 18px;
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: @basefont;
-    font-weight: 600;
-    font-size: 18pt;
+    font-weight: @font-weight-bold;
     color: #333;
     margin: 0px;
     padding: 0px;
@@ -36,7 +31,7 @@ h1, h2, h3, h4, h5, h6 {
      padding: 0px;
      margin: 0px;
      i {
-       font-weight: 200;
+       font-weight: @font-weight-light;
        font-style: normal;
        color: #fff;
        background-color: #999;
@@ -45,6 +40,10 @@ h1, h2, h3, h4, h5, h6 {
        letter-spacing: 3px;
      }
    }
+}
+
+.space-bottom {
+  margin-bottom: 30px;
 }
 
 th {
@@ -59,6 +58,15 @@ ul {
     }
 }
 
+/* FORMS */
+textarea {
+  resize: vertical;
+}
+
+input.form-control, textarea.form-control {
+  font-size: @basefont-size;
+}
+
 .list-group-item {
     padding: 20px 15px;
 }
@@ -69,12 +77,6 @@ ul {
     h1, p {
         margin: 15px;
         line-height: 120%;
-    }
-    h1 {
-        font-size: 18pt;
-    }
-    p {
-        font-size: 12pt;
     }
 }
 
@@ -105,16 +107,11 @@ ul {
             margin: 5px;
             color: #fff;
         }
-
         p, ul {
-            font-weight: 300;
-            font-size: 12pt;
             padding-bottom: 10px;
         }
     }
 }
-
-
 
 // Large and Below
 @media (max-width: (@screen-md-min)) {
@@ -130,20 +127,11 @@ ul {
     .row.multicol {
         .mod,.mod:first-child {
             margin: 0px;
-            min-height: 400px;
+            min-height: 500px;
             float: left;
         }
         .mod { width: 33%; }
         .mod:first-child { width:34%; }
-    }
-}
-
-// Large Layouts and up
-@media (min-width: (@screen-lg-min+1)) {
-    .row.multicol {
-        .mod,.mod:first-child {
-            min-height: 400px;
-        }
     }
 }
 
@@ -197,20 +185,34 @@ ul {
   margin-top: 10px;
 }
 
+/* NAVIGATION */
 
+.navbar.navbar-inverse.navbar-fixed-top {
+  margin: 0px;
+}
+
+.navbar-brand {
+  font-size: @basefont-small;
+}
+
+.navbar-nav {
+  font-size: @basefont-small;
+}
+
+.dropdown-menu {
+  font-size: @basefont-small;
+}
+
+
+/* CONTENT */
 #content {
-
     background-color: #fff;
     margin-top: 0px;
     padding-top: 0px;
 
-    .navbar.navbar-inverse.navbar-fixed-top {
-        margin: 0px;
-    }
-
     #stage {
         width: 100%;
-        height: 400px;
+        height: 500px;
         @media (max-width: @screen-md-max) {
           height: 400px;
         }
@@ -232,7 +234,6 @@ ul {
                 opacity: 1;
                 h2,h3,p,li {
                     color: #fff;
-                    font-weight: 300;
                     margin: 0px;
                     padding: 0px 30px 0 30px;
                 }
@@ -241,22 +242,12 @@ ul {
                 }
                 h2 {
                     padding: 30px 30px 10px 30px;
-                    font-size: 36pt;
+                    font-size: 36px;
                     line-height: 110%;
                 }
                 h3 {
                     padding: 0px 30px 30px 30px;
-                    font-size: 18pt;
                     line-height: 110%;
-                }
-                p {
-                    font-size: 14pt;
-                }
-                p.description {
-                    font-weight: 600;
-                }
-                li {
-                    font-size: 12pt;
                 }
             }
         }
@@ -264,7 +255,6 @@ ul {
 
     #screen {
         .well p {
-            font-size: 14px;
             margin: 0px;
         }
     }
@@ -287,7 +277,6 @@ ul {
     background-color: rgba(0, 0, 0, 0.85);
     a, a:visited {
         font-family: @basefont;
-        font-size: 12pt;
         display: block;
         float: left;
         margin: 10px 17px 10px 17px;

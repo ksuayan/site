@@ -25,7 +25,7 @@ TimelineDB.prototype.getJobs = function(onSuccess, onError) {
     var that = this;
     this.JobModel
     .find(query)
-    .sort("-dateCreated")
+    .sort("startDate")
     .exec(function (err, texts) {
         if (err) {
             return util.HandleError(err, onError);

@@ -19,10 +19,10 @@ gb.ui.Stage.include({
      * @memberOf gb.ui.Stage
      * @static
      */
-    COLORS: ["#17607D", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
+    COLORS: ["#333", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
              "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
              "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE",
-             "#FFF1CE"],
+             "#FFF1CE", "#17607D",],
 
     /**
      * @param selector
@@ -33,7 +33,7 @@ gb.ui.Stage.include({
 
         this.tiles = [];
         this.tileOffsets = [];
-        this.howMany = 14;
+        this.howMany = 20;
         this.intervalMS = 15000;
         this.currentIndex = 0;
 
@@ -55,7 +55,7 @@ gb.ui.Stage.include({
                 function(evt, dir, phase, swipetype, distance){
                     that.onTouchEvent(evt, dir, phase, swipetype, distance);});
 
-            $(window).resize(function(){that.fadeOut();});
+            // $(window).resize(function(){that.fadeOut();});
             $("#stage-next").on("click", function(){that.goToNext();});
             $("#stage-prev").on("click", function(){that.goToPrevious();});
 
@@ -76,7 +76,6 @@ gb.ui.Stage.include({
                 "id": "tile-"+i,
                 "class" : "tile"
             });
-            tile.jq.html("<p>Tile: "+i+"</p>");
             var el = tile.jq.get(0);
             if (el) {
                 el.style.backgroundColor = this.COLORS[colorIndex];
@@ -95,9 +94,9 @@ gb.ui.Stage.include({
         var that = this;
 
         $.get( "/api/tiles", function( data ) {
-            var current = 1;
+            var current = 2;
             var template = JST["handlebars/tile.hbs"];
-            for(var i= 0, n=data.length; i<n; i++) {
+            for(var i = 0, n=data.length; i<n; i++) {
                 that.tiles[current].jq.html(template(data[i]));
                 current++;
             }
@@ -252,7 +251,7 @@ gb.ui.Stage.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        this.fadeOut();
+        // this.hide();
         this.resizeTiles();
         this.show();
     }

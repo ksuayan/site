@@ -220,6 +220,7 @@ ApiHandler.prototype.createPage = function(req, res) {
         title: req.body.title,
         description: req.body.description,
         keywords: req.body.keywords,
+        body: req.body.body,
         content: req.body.content
     };
     content.createPage(pageObj, onSuccess, onError)
@@ -239,6 +240,7 @@ ApiHandler.prototype.updatePage = function(req, res) {
         title: req.body.title,
         description: req.body.description,
         keywords: req.body.keywords,
+        body: req.body.body,
         content: req.body.content
     };
 
@@ -274,7 +276,6 @@ ApiHandler.prototype.getDocument = function(request, response) {
         response.send(result);
     });
 };
-
 
 ApiHandler.prototype.saveDocument = function(request, response) {
     var doc = {

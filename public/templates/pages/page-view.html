@@ -1,17 +1,14 @@
-<table class="table">
-  <tr>
-    <td>Name</td>
-    <td>{{page.name}}</td>
-  </tr>
-  <tr>
-    <td>Title</td>
-    <td>{{page.title}}</td>
-  </tr>
-</table>
+<div class="col-sm-3">
+    <a class="btn btn-default" ui-sref="listPages">Back to Pages</a>
+    <a class="btn btn-default" ng-click="deletePage(page)">Delete</a>
+    <a class="btn btn-primary" ui-sref="editPage({id:page._id})">Edit</a>
+</div>
 
-<a class="btn btn-primary" ui-sref="editPage({id:page._id})">Edit</a>
-<a class="btn btn-default" ng-click="deletePage(page)">Delete</a>
-<a class="btn btn-default" ui-sref="listPages">Back to Pages</a>
+<div class="col-sm-9">
+    <h1>{{page.title}} <small>{{page.name}}</small></h1>
+    <span ng-bind-html="page.body | trusted"></span>
+</div>
+
 
 <script type="text/ng-template" id="deleteModal.html">
     <div class="modal-header">

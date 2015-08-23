@@ -23,10 +23,12 @@ var TextContent = new Schema({
 });
 
 var Page = new Schema({
+    dateCreated : {type: Date,   default: Date.now},
     name        : {type: String, default: ""},
     title       : {type: String, default: ""},
     description : {type: String, default: ""},
     keywords    : {type: String, default: ""},
+    body        : {type: String, default: ""},
     content     : [{ type: Schema.Types.ObjectId, ref: 'text' }]
 });
 
@@ -224,6 +226,7 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
                 found.title = pageObj.title;
                 found.description = pageObj.description;
                 found.keywords = pageObj.keywords;
+                found.body = pageObj.body;
                 if (pageObj.content && pageObj.content.length) {
                     found.content = pageObj.content.split("|");
                 } else {
