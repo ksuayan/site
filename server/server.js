@@ -48,19 +48,18 @@ app.all("/view/*", function(req, res, next){
     next();
 });
 
-app.get('/', view.fullScreen);
-
-app.get('/page/:page', view.pageView);
-app.get('/text',       view.textList);
-app.get('/edit',       view.pageEdit);
-
+app.get('/',              view.fullScreen);
+app.get('/page/:page',    view.pageView);
+app.get('/text',          view.textList);
+app.get('/edit',          view.pageEdit);
 app.get('/content/:page', view.content);
 
-app.get('/search',             itunes.searchTerm);
-app.get('/search/:term',       itunes.searchTerm);
-app.get('/multi/:term',        itunes.searchMultiCriteria);
-app.get('/track',              itunes.getTrackList);
-app.get('/track/:id',          itunes.getTrack);
+// TRACKS Demo
+app.get('/search',        itunes.searchTerm);
+app.get('/search/:term',  itunes.searchTerm);
+app.get('/multi/:term',   itunes.searchMultiCriteria);
+app.get('/track',         itunes.getTrackList);
+app.get('/track/:id',     itunes.getTrack);
 
 // API
 app.get('/api/timeline',    api.getTimeline);

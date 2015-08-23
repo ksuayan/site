@@ -1,0 +1,8 @@
+mixin mod(parId, c, textHead, textBody)
+  div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
+    -var txthead = (c && c[textHead]) ? c[textHead] : ""
+    -var txtbody = (c && c[textBody]) ? c[textBody] : ""
+    h2!= txthead
+    p(id!=parId)!= txtbody
+    p
+      a(class="btn btn-default",href="#") More &raquo;

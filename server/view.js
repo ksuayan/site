@@ -11,10 +11,20 @@ ViewHandler.fn = {
     }
 };
 
+/**
+ * Page not found handler.
+ * @param req
+ * @param res
+ */
 ViewHandler.prototype.notfound = function(req, res) {
     res.render('content/notfound');
 };
 
+/**
+ * Home Page loader.
+ * @param req
+ * @param res
+ */
 ViewHandler.prototype.fullScreen = function (req, res) {
     content.getPageText("home", function (content) {
             res.render('content/home', {content: content});
@@ -34,12 +44,16 @@ ViewHandler.prototype.pageEdit = function (req, res) {
     });
 };
 
-
+/**
+ * Simple layout passthrough.
+ * @param req
+ * @param res
+ */
 ViewHandler.prototype.content = function(req, res) {
     res.render('content/'+req.params.page);
 };
 /**
- * Pull content node from MongoDB.
+ * Pull content node from MongoDB by page name.
  *
  * @param req
  * @param res
@@ -65,6 +79,7 @@ ViewHandler.prototype.createPage = function (req, res) {
         title: req.body.title,
         description: req.body.description,
         keywords: req.body.keywords,
+        body: req.body.body,
         content: req.body.textId
     };
     var onSuccess = function (content) {

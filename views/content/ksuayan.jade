@@ -1,3 +1,5 @@
+include ../includes/mixins
+
 div.container
   div.row.hero-unit
     p
@@ -8,21 +10,9 @@ div.container
       | Motivated by technical challenges and enjoys contributing in a team environment.
 
   div.row.multicol
-    div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
-      h2=content.leftHeader
-      p(id="leftBody")!=content.leftBody
-      p
-        a(class="btn btn-default",href="#") More &raquo;
-    div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
-      h2=content.centerHeader
-      p(id="centerBody")!=content.centerBody
-      p
-        a(class="btn btn-default",href="#") More &raquo;
-    div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
-      h2=content.rightHeader
-      p(id="rightBody")!=content.rightBody
-      p
-        a(class="btn btn-default",href="#") More &raquo;
+    +mod("leftBody", content, "leftHeader", "leftBody")
+    +mod("centerBody", content, "centerHeader", "centerBody")
+    +mod("rightBody", content, "rightHeader", "rightBody")
 
   div.row
     div#twitter(class="col-lg-4")
