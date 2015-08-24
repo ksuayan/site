@@ -2,23 +2,25 @@
 Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 */
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
 
 body
 {
 	/* Font */
-	font-family: "Source Sans Pro", sans-serif, Arial, Verdana, "Trebuchet MS";
+	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
 	font-size: 12px;
+
 	/* Text color */
 	color: #333;
+
 	/* Remove the background color to make it transparent */
 	background-color: #fff;
-	margin: 10px;
+
+	margin: 20px;
 }
 
 .cke_editable
 {
-	font-size: 16px;
+	font-size: 13px;
 	line-height: 1.6;
 }
 
@@ -92,8 +94,6 @@ pre
 	white-space: pre-wrap; /* CSS 2.1 */
 	word-wrap: break-word; /* IE7 */
 	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	-webkit-tab-size: 4;
 	tab-size: 4;
 }
 
