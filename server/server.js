@@ -53,6 +53,8 @@ app.get('/page/:page',    view.pageView);
 app.get('/text',          view.textList);
 app.get('/edit',          view.pageEdit);
 app.get('/content/:page', view.content);
+app.get('/view/:page',    view.pageView);
+
 
 // TRACKS Demo
 app.get('/search',        itunes.searchTerm);

@@ -137,6 +137,6 @@ module.exports = function(grunt) {
     grunt.registerTask('hb', ['handlebars']);
     grunt.registerTask('koken', ['jshint','concat:koken','uglify:koken']);
     grunt.registerTask('core', ['bower_concat','uglify:core']);
-    grunt.registerTask('default', ['handlebars','jsdoc','jshint','concat','uglify']);
+    grunt.registerTask('default', ['handlebars','jsdoc','jshint','core','concat','uglify']);
 
 };

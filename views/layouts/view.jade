@@ -1,9 +1,13 @@
 extends ../layout
+include ../includes/mixins
+
 block content
-  .container
+  .container.article
     .row
-      for item in components
-        .col-sm-12
-          +#{item.template}(item)
-    .row
-      != content.body
+      .col-sm-8
+        h1!= content.title
+        != content.body
+      .col-sm-4
+        for component in components
+          .col-sm-12
+            +#{component.template}(component)

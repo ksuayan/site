@@ -15,6 +15,7 @@ var flickrClient = null,
 
 
 var ApiHandler = function() {
+    /*
     try {
         flickrClient = null;
         Flickr.tokenOnly(conf.app.flickr, function(error, flickr) {
@@ -24,6 +25,7 @@ var ApiHandler = function() {
     } catch (err) {
         console.log("Error Flickr init: ", err);
     }
+    */
 
     try {
         twitterClient = new Twitter(conf.app.twitter);

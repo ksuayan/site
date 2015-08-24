@@ -1,10 +1,12 @@
 <div class="col-sm-3">
-    <a class="btn btn-default" ui-sref="listPages">Back to Pages</a>
-    <a class="btn btn-default" ng-click="deletePage(page)">Delete</a>
-    <a class="btn btn-primary" ui-sref="editPage({id:page._id})">Edit</a>
 </div>
 
 <div class="col-sm-9">
+    <a class="btn btn-default" ui-sref="listPages">Back to Pages</a>
+    <a class="btn btn-default" ng-click="deletePage(page)">Delete</a>
+    <a class="btn btn-primary" ui-sref="editPage({id:page._id})">Edit</a>
+    <hr/>
+
     <h1>{{page.title}} <small>{{page.name}}</small></h1>
     <span ng-bind-html="page.body | trusted"></span>
 </div>

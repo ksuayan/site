@@ -6,3 +6,16 @@ mixin mod(parId, c, textHead, textBody)
     p(id!=parId)!= txtbody
     p
       a(class="btn btn-default",href="#") More &raquo;
+
+
+mixin alert_warning(item)
+  .alert.alert-warning.alert-dismissible.fade.in(role='alert')
+    button.close(type='button', data-dismiss='alert', aria-label='Close')
+      span(aria-hidden='true') ×
+    != item.message
+
+mixin alert_danger(item)
+  .alert.alert-danger.alert-dismissible.fade.in(role='alert')
+    button.close(type='button', data-dismiss='alert', aria-label='Close')
+      span(aria-hidden='true') ×
+    != item.message

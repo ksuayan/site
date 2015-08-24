@@ -192,6 +192,20 @@ DocumentDB.prototype.getPageById = function(id, onSuccess, onError) {
         });
 };
 
+DocumentDB.prototype.getPageByName = function(name, onSuccess, onError) {
+    var query = {name: name};
+    this.PageModel
+        .findOne(query)
+        .exec(function (err, pageObj) {
+            if (err) {
+                return util.HandleError(err, onError);
+            }
+            if (typeof onSuccess ==='function') {
+                onSuccess(pageObj);
+            }
+        });
+};
+
 DocumentDB.prototype.createPage = function(pageObj, onSuccess, onError) {
     var that = this;
     this.PageModel
@@ -227,11 +241,7 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
                 found.description = pageObj.description;
                 found.keywords = pageObj.keywords;
                 found.body = pageObj.body;
-                if (pageObj.content && pageObj.content.length) {
-                    found.content = pageObj.content.split("|");
-                } else {
-                    found.content = null;
-                }
+                found.content = pageObj.content;
                 found.save(function(err){
                     if (err) {
                         return util.HandleError(err);

@@ -59,18 +59,38 @@ ViewHandler.prototype.content = function(req, res) {
  * @param res
  */
 ViewHandler.prototype.pageView = function (req, res) {
-    var page = req.params.page;
-    var onError = function () {
-        res.render('content/notfound');
-    };
-    var onSuccess = function (content) {
-        if (content[page]) {
-            res.render('layouts/pageView', {content: content[page]});
-        } else {
-            onError();
-        }
-    };
-    content.getPageText(page, onSuccess, onError);
+
+    var page = req.params.page,
+        components = [
+            {
+                "template": "alert_danger",
+                "message": "This is a danger alert."
+            },
+            {
+                "template": "alert_warning",
+                "message": "This is a warning alert."
+            }
+        ],
+
+        onError = function () {
+            res.render('content/notfound');
+        },
+        onSuccess = function (content) {
+
+            if (content) {
+
+                var pageObject = {
+                    page: page,
+                    components: components,
+                    content: content
+                };
+                res.render('layouts/view', pageObject);
+            } else {
+                onError();
+            }
+        };
+
+    content.getPageByName(page, onSuccess, onError);
 };
 
 ViewHandler.prototype.createPage = function (req, res) {
