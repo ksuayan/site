@@ -37,15 +37,25 @@ site.directive('ckEditor', [function () {
 
             var ck = CKEDITOR.replace(elm[0]);
 
-            ck.on('pasteState', function () {
+            var onChangeHandler = function () {
                 $scope.$apply(function () {
                     ngModel.$setViewValue(ck.getData());
                 });
-            });
+            };
+
+            ck.on('pasteState', onChangeHandler);
+            ck.on('change', onChangeHandler);
+            ck.on('blur', onChangeHandler);
+            ck.on('dataReady', onChangeHandler);
 
             ngModel.$render = function (value) {
                 ck.setData(ngModel.$modelValue);
             };
+
+            $scope.$on("$destroy",function() {
+                ck.destroy();
+            });
+
         }
     };
 }]);
