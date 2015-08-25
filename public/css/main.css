@@ -222,8 +222,11 @@ textarea.form-control {
     width: 34%;
   }
 }
+.social {
+  background-color: #f7f7f7;
+  padding-bottom: 50px;
+}
 #vimeo {
-  background-color: #efefef;
   padding: 20px;
 }
 #vimeo .media-heading {
@@ -252,7 +255,6 @@ textarea.form-control {
   text-decoration: none;
 }
 #twitter {
-  background-color: #efefef;
   padding: 15px;
   height: auto;
   overflow-y: visible;
@@ -314,7 +316,7 @@ textarea.form-control {
 }
 #content #stage {
   width: 100%;
-  height: 500px;
+  height: 560px;
   top: -5px;
   position: relative;
   overflow: hidden;
@@ -322,12 +324,12 @@ textarea.form-control {
 }
 @media (max-width: 1199px) {
   #content #stage {
-    height: 400px;
+    height: 500px;
   }
 }
 @media (max-width: 991px) {
   #content #stage {
-    height: 300px;
+    height: 400px;
   }
 }
 @media (max-width: 767px) {
