@@ -51,7 +51,7 @@ ViewHandler.prototype.pageEdit = function (req, res) {
  * @param res
  */
 ViewHandler.prototype.content = function(req, res) {
-    res.render('content/'+req.params.page, { mediaHost: conf.app.mediaHost });
+    res.render('content/'+req.params.page);
 };
 /**
  * Pull content node from MongoDB by page name.
@@ -83,8 +83,7 @@ ViewHandler.prototype.pageView = function (req, res) {
                 var pageObject = {
                     page: page,
                     components: [], // turn off
-                    content: content,
-                    mediaHost: conf.app.mediaHost
+                    content: content
                 };
                 res.render('layouts/view', pageObject);
             } else {
