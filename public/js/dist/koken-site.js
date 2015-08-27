@@ -301,6 +301,11 @@ gb.ui = {
     }
 };
 
+/**
+ * Global MediaHost static config.
+ * @type {string}
+ */
+gb.ui.mediaHost = "//cdn.suayan.com";
 
 
 gb.Namespace(gb,"gb.ui.Tile");

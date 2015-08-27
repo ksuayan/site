@@ -514,6 +514,11 @@ gb.ui = {
     }
 };
 
+/**
+ * Global MediaHost static config.
+ * @type {string}
+ */
+gb.ui.mediaHost = "//cdn.suayan.com";
 
 gb.Namespace(gb, "gb.ui.TouchSurface");
 gb.ui.TouchSurface = new gb.Class();
@@ -1491,7 +1496,6 @@ gb.ui.FullScreen.include({
         "use strict";
         this.spinner = $("#spinner");
         this.spinner.show();
-        this.mediaHost = "//media.suayan.com/";
         this.images = [];
         this.howMany = 3;
         this.countLoaded = 0;
@@ -1535,7 +1539,7 @@ gb.ui.FullScreen.include({
         this.images = [];
         for (var i=1; i<=this.howMany; i++) {
             var numStr = gb.util.zeroFill(i,3);
-            this.images.push(this.mediaHost+"images/image-"+numStr+".jpg");
+            this.images.push(gb.ui.mediaHost+"/images/image-"+numStr+".jpg");
         }
     }
 });

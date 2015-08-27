@@ -8,6 +8,6 @@ iframe {
   width: auto;
   height: auto;
   z-index: -100;
-  background: url(http://media.suayan.com/images/image-026.jpg) no-repeat;
+  background: url(//cdn.suayan.com/images/image-026.jpg) no-repeat;
   background-size: cover;
 }

@@ -2,7 +2,7 @@ var config = {
     host : "http://localhost",
     port : 9000,
     socketHost: "http://localhost:9000",
-    mediaHost : "http://media.suayan.com",
+    mediaHost : "//cdn.suayan.com",
     mongoURL : "mongodb://localhost/site",
     defaultLocale : "en_US",
     name : 'Blooop Server',

@@ -1,7 +1,7 @@
 var config = {
     host : "http://localhost",
     port : 9000,
-    mediaHost : "http://media.suayan.com",
+    mediaHost : "http://cdn.suayan.com",
     mongoURL : "mongodb://localhost/site",
     defaultLocale : "en_US",
     name : 'kyo suayan',

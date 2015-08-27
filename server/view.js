@@ -1,5 +1,6 @@
-var content = require('./content-db');
-var moment = require('moment');
+var conf = require('./conf'),
+    content = require('./content-db'),
+    moment = require('moment');
 
 var ViewHandler = function () {
     console.log("Initialized WebView handler");
@@ -50,7 +51,7 @@ ViewHandler.prototype.pageEdit = function (req, res) {
  * @param res
  */
 ViewHandler.prototype.content = function(req, res) {
-    res.render('content/'+req.params.page);
+    res.render('content/'+req.params.page, { mediaHost: conf.app.mediaHost });
 };
 /**
  * Pull content node from MongoDB by page name.
@@ -81,8 +82,9 @@ ViewHandler.prototype.pageView = function (req, res) {
 
                 var pageObject = {
                     page: page,
-                    components: components,
-                    content: content
+                    components: [], // turn off
+                    content: content,
+                    mediaHost: conf.app.mediaHost
                 };
                 res.render('layouts/view', pageObject);
             } else {
