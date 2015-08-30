@@ -12,7 +12,7 @@ var express = require('express'),
 var init = function () {
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'jade');
-    app.locals({config: conf.app});
+    app.locals({config: conf});
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(express.compress());
@@ -103,7 +103,7 @@ app.delete('/api/loc/:id',  api.deleteLocation);
 // default handler
 app.get('*',                view.notfound);
 
-app.listen(conf.app.port);
-console.log('Go to http://localhost:' + conf.app.port);
+app.listen(conf.port);
+console.log('Go to http://localhost:' + conf.port);
 console.log('path: ', __dirname);
 module.exports = app;

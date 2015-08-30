@@ -54,8 +54,8 @@ var TileContent = new Schema({
 
 var DocumentDB = function(){
     console.log("Initialized DocumentDB.");
-    this.locale = conf.app.defaultLocale;
-    this.db = mongoose.createConnection(conf.app.mongoURL);
+    this.locale = conf.defaultLocale;
+    this.db = mongoose.createConnection(conf.mongoURL);
     this.TextModel = this.db.model('text', TextContent);
     this.PageModel = this.db.model('page', Page);
     this.TileModel = this.db.model('tile', TileContent);

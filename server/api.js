@@ -10,7 +10,7 @@ var timeline = require('./timeline-db'),
 var flickrClient = null,
     twitterClient = null,
     vimeoClient = null,
-    vimeoConfig = conf.app.vimeo;
+    vimeoConfig = conf.vimeo;
 
 
 
@@ -18,7 +18,7 @@ var ApiHandler = function() {
     /*
     try {
         flickrClient = null;
-        Flickr.tokenOnly(conf.app.flickr, function(error, flickr) {
+        Flickr.tokenOnly(conf.flickr, function(error, flickr) {
             console.log("flickr object", flickr);
             flickrClient = flickr;
         });
@@ -28,7 +28,7 @@ var ApiHandler = function() {
     */
 
     try {
-        twitterClient = new Twitter(conf.app.twitter);
+        twitterClient = new Twitter(conf.twitter);
     } catch (err) {
         console.log("Error Twitter init: ", err);
     }
@@ -165,7 +165,7 @@ ApiHandler.prototype.createText = function(req, res) {
     var textObj = {
         name: req.body.name,
         text: req.body.text,
-        locale: req.body.locale || conf.app.defaultLocale
+        locale: req.body.locale || conf.defaultLocale
     };
     content.createText(textObj, onSuccess, onError)
 };

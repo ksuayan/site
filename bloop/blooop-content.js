@@ -15,8 +15,8 @@ var Log = new Schema({
 
 
 var BlooopDB = function(){
-    this.locale = conf.app.defaultLocale;
-    this.db = mongoose.createConnection(conf.app.mongoURL);
+    this.locale = conf.defaultLocale;
+    this.db = mongoose.createConnection(conf.mongoURL);
     this.logModel = this.db.model('log', Log);
     console.log("Initialized Blooop DB.");
 };

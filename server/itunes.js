@@ -28,7 +28,7 @@ var TrackItem = new Schema({
 var iTunesDB = function(){
     var that = this;
     console.log("Initialized iTunesDB.");
-    mongoose.connect(conf.app.mongoURL, {db:{safe:true}});
+    mongoose.connect(conf.mongoURL, {db:{safe:true}});
     this.pagination = {skip:0,pagination:10};
     this.fields = {
         "_id": 1,
@@ -51,7 +51,7 @@ var iTunesDB = function(){
 
     this.TrackDbModel = this.db.model('trackdbs', TrackItem);
 
-    MongoClient.connect(conf.app.mongoURL, {}, function(err, db){
+    MongoClient.connect(conf.mongoURL, {}, function(err, db){
         if (err) {
             console.log("MongoDB error", err);
         }

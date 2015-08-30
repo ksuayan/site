@@ -16,7 +16,7 @@ var JobModel = new Schema({
 
 var TimelineDB = function(){
     console.log("Initialized TimelineDB.");
-    this.db = mongoose.createConnection(conf.app.mongoURL);
+    this.db = mongoose.createConnection(conf.mongoURL);
     this.JobModel = this.db.model('job', JobModel);
 };
 

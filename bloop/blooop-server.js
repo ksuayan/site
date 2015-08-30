@@ -34,7 +34,7 @@ var express = require('express'),
 var init = function () {
     app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'jade');
-    app.locals({config: conf.app});
+    app.locals({config: conf});
     app.use(express.compress());
     // upload turned off
     // app.use(express.bodyParser({uploadDir: '/tmp/test'}));
@@ -68,11 +68,11 @@ app.all("*", function (req, res, next) {
 app.get('/', view.home);
 app.get('/api/config', monitor.getConfig);
 
-console.log('Go to http://localhost:' + conf.app.port);
+console.log('Go to http://localhost:' + conf.port);
 console.log('path: ', __dirname);
 
 socketServer.listen(server);
-server.listen(conf.app.port);
+server.listen(conf.port);
 
 /**
  * Pass in the Socket.io server

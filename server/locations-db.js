@@ -29,7 +29,7 @@ Location.index({ 'loc': '2dsphere' });
 
 var LocationDB = function(){
     console.log("Initialized LocationsDB.");
-    this.db = mongoose.createConnection(conf.app.mongoURL);
+    this.db = mongoose.createConnection(conf.mongoURL);
     this.LocationModel = this.db.model('location', Location);
 };
 
