@@ -43,9 +43,12 @@ app.all("*", function (req, res, next) {
     next();
 });
 
-app.all("/view/*", function(req, res, next){
-    console.log(">> path", req.path);
-    next();
+app.get("/view/*", function(req, res){
+    var pseudoPath = req.path.toString();
+    pseudoPath = pseudoPath.replace("/view/","");
+    req.params.page = pseudoPath;
+    console.log(">> path", pseudoPath);
+    return view.pageView(req, res);
 });
 
 app.get('/',              view.fullScreen);
@@ -53,7 +56,6 @@ app.get('/page/:page',    view.pageView);
 app.get('/text',          view.textList);
 app.get('/edit',          view.pageEdit);
 app.get('/content/:page', view.content);
-app.get('/view/:page',    view.pageView);
 
 
 // TRACKS Demo
