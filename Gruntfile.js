@@ -3,6 +3,10 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
+
+        //  Concatenate external JS and CSS libraries into
+        //  corelib.js and corelib.css.
+
         bower_concat: {
             all: {
                 dest: 'public/js/dist/corelib.js',
@@ -12,6 +16,8 @@ module.exports = function(grunt) {
                 }
             }
         },
+
+        // Precompile external Handlebar Templates.
         handlebars: {
             compile: {
                 options: {
@@ -133,10 +139,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-jsdoc');
 
-    grunt.registerTask('test', ['jshint', 'qunit']);
-    grunt.registerTask('hb', ['handlebars']);
-    grunt.registerTask('koken', ['jshint','concat:koken','uglify:koken']);
-    grunt.registerTask('core', ['bower_concat','uglify:core']);
+    grunt.registerTask('test',    ['jshint', 'qunit']);
+    grunt.registerTask('hb',      ['handlebars']);
+    grunt.registerTask('koken',   ['jshint','concat:koken','uglify:koken']);
+    grunt.registerTask('core',    ['bower_concat','uglify:core']);
     grunt.registerTask('default', ['handlebars','jsdoc','jshint','core','concat','uglify']);
-
 };

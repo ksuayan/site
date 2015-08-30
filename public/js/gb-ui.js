@@ -46,9 +46,3 @@ gb.ui = {
         $(this).trigger('resizeEnd');
     }
 };
-
-/**
- * Global MediaHost static config.
- * @type {string}
- */
-gb.ui.mediaHost = "//cdn.suayan.com";
