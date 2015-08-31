@@ -1,7 +1,7 @@
 include ../includes/mixins
 
-div.container
-  div.row.hero-unit
+.container
+  .row.hero-unit
     p
       | Nineteen years of web application development experience (Waterfall &amp; Agile)
       | with various technology stacks. Strong visual design sense complimented by
@@ -9,12 +9,25 @@ div.container
       | Usability and Branding issues in a high traffic website.
       | Motivated by technical challenges and enjoys contributing in a team environment.
 
-  div.row.multicol
+  if (!user)
+    .row
+      .well
+        a(class="btn btn-primary",href="/login") Sign In
+        | &nbsp; &nbsp;
+        a(class="btn btn-default",href="/auth/facebook") Sign In via Facebook
+        | &nbsp; &nbsp;
+        a(class="btn btn-default",href="/auth/google") Sign In via Google
+        | &nbsp; &nbsp;
+        a(class="btn btn-default",href="/auth/twitter") Sign In via Twitter
+        | &nbsp; &nbsp;
+        a(class="btn btn-default",href="/auth/linkedin") Sign In via LinkedIn
+
+  .row.multicol
     +mod("leftBody", content, "leftHeader", "leftBody")
     +mod("centerBody", content, "centerHeader", "centerBody")
     +mod("rightBody", content, "rightHeader", "rightBody")
 
-  div.row.social
+  .row.social
     div#twitter(class="col-lg-4")
       h2 @ksuayan on Twitter
     div#vimeo(class="col-lg-8")

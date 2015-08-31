@@ -28,7 +28,7 @@ ViewHandler.prototype.notfound = function(req, res) {
  */
 ViewHandler.prototype.fullScreen = function (req, res) {
     content.getPageText("home", function (content) {
-            res.render('content/home', {content: content});
+            res.render('content/home',{content: content,user: req.user});
         },
         function () {
             res.render('content/notfound');
@@ -41,7 +41,11 @@ ViewHandler.prototype.pageEdit = function (req, res) {
         locale = req.params.locale;
     }
     content.getTextList(locale, function (content) {
-        res.render('content/db/pageEdit', {content: content, fn: ViewHandler.fn });
+        res.render('content/db/pageEdit',
+            { content: content,
+              user: req.user,
+              fn: ViewHandler.fn
+            });
     });
 };
 
@@ -51,7 +55,7 @@ ViewHandler.prototype.pageEdit = function (req, res) {
  * @param res
  */
 ViewHandler.prototype.content = function(req, res) {
-    res.render('content/'+req.params.page);
+    res.render('content/'+req.params.page, {user: req.user});
 };
 /**
  * Pull content node from MongoDB by page name.
@@ -83,7 +87,8 @@ ViewHandler.prototype.pageView = function (req, res) {
                 var pageObject = {
                     page: page,
                     components: [], // turn off
-                    content: content
+                    content: content,
+                    user: req.user
                 };
                 res.render('layouts/view', pageObject);
             } else {
@@ -104,7 +109,11 @@ ViewHandler.prototype.createPage = function (req, res) {
         content: req.body.textId
     };
     var onSuccess = function (content) {
-        return res.render("content/db/pageEdit", {content: content, fn: ViewHandler.fn });
+        return res.render("content/db/pageEdit",
+            { content: content,
+              fn: ViewHandler.fn,
+              user: req.user
+            });
     };
     var onError = function (err) {
         return res.render("test", err);

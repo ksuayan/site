@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .col-xs-12
+        form(action='/login', method='post')
+          div(class="col-xs-12 col-sm-4 col-md-4 col-lg-4")
+            .well
+              p.lead Login
+              .form-group
+                label(for="username", class="control-label") Username
+                input(name="username", type="text", class="form-control", maxlength="20")
+              .form-group
+                label(for="password", class="control-label") Password
+                input(name="password", type="password", class="form-control", maxlength="15")
+              button(type='submit', class="btn btn-info") Login
