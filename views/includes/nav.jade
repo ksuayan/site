@@ -51,3 +51,10 @@ ul(class="nav navbar-nav")
         a(href="https://www.youtube.com/ksuayan") Youtube
       li
         a(href="https://www.vimeo.com/ksuayan") Vimeo
+
+  if (user)
+    li
+      a(href="/logout") Logout
+  else
+    li
+      a(href="/login") Sign in

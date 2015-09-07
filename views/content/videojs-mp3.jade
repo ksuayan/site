@@ -1,0 +1,16 @@
+extends ../layout
+
+block append css
+  link(href="/css/video.css",rel="stylesheet")
+  link(href="/js/videojs/video-js.min.css",rel="stylesheet")
+
+block append scripts
+  script(src="/js/videojs/video.min.js")
+
+block footer
+
+block content
+  .row
+    .col-lg-12
+      video(id="bgvid-blank",class="video-js vjs-default-skin vjs-big-play-centered",poster=config.mediaHost+"/images/bay-bridge.jpg",controls="controls",preload="auto",data-setup='{}')
+        source(src="http://stream.suayan.com.s3.amazonaws.com/audio/Pisay90_2010_Uptempo.mp3" type="audio/mp3")

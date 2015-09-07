@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  #content
+    .container.article
+      .row
+        .col-xs-12.col-sm-4
+          form(action='/login', method='post')
+            .well
+              p.lead Login
+              .form-group
+                label(for="username", class="control-label") Username
+                input(name="username", type="text", class="form-control", maxlength="20")
+              .form-group
+                label(for="password", class="control-label") Password
+                input(name="password", type="password", class="form-control", maxlength="15")
+              button(type='submit', class="btn btn-info") Login
+              | &nbsp;
+              a(href='/signup', class="btn btn-default") Signup
+        .col-xs-12.col-sm-8
+          if (!user)
+            .well
+              a(class="btn btn-default",href="/auth/facebook") Sign In via Facebook
+              | &nbsp; &nbsp;
+              a(class="btn btn-default",href="/auth/google") Sign In via Google
+              | &nbsp; &nbsp;
+              a(class="btn btn-default",href="/auth/twitter") Sign In via Twitter
+              | &nbsp; &nbsp;
+              a(class="btn btn-default",href="/auth/linkedin") Sign In via LinkedIn

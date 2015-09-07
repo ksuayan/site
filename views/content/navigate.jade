@@ -1,51 +1,54 @@
 extends ../layout
+
 block append css
   link(rel="stylesheet",href="/css/map.css")
-block content
-  div#map-canvas
-  div.container
-    div.row
-      div#panel
-        form(id="geocode",class="form-inline",role="form")
-          div.col-md-12
-            div(class="form-group")
-              input(id="address",type="textbox",class="form-control",placeholder="Address")
-              &nbsp;
-              button(class="btn btn-default", id="go")
-                span.glyphicon.glyphicon-search
-                | &nbsp; Find
-              &nbsp;
-              button(class="btn",data-toggle="collapse",data-target="#notes",aria-expanded="false",aria-controls="collapseNotes")
-                span.glyphicon.glyphicon-filter
-                | &nbsp;
-              &nbsp;
-              button(class="btn",id="center")
-                span.glyphicon.glyphicon-globe
-                | &nbsp;
-              &nbsp;
-              button(class="btn",id="add")
-                span.glyphicon.glyphicon-screenshot
-                | &nbsp;
-              &nbsp;
-              button(class="btn",id="home")
-                span.glyphicon.glyphicon-home
-                | &nbsp;
-              &nbsp;
-              button(class="btn",id="directions")
-                span.glyphicon.glyphicon-road
-                | &nbsp;
 
-      div.col-lg-12
-        div#notes(class="collapse")
-    div.row
-      div.col-lg-12
-        div#message.well.well-sm
-    div.row
-      div.col-md-5
-        div#info
-      div.col-md-7
-        div(data-ng-app="app")
-          div#screen(ui-view="")
+block content
+  #content
+    #map-canvas
+    .container
+      .row
+        #panel
+          form(id="geocode",class="form-inline",role="form")
+            .col-md-12
+              .form-group
+                input(id="address",type="textbox",class="form-control",placeholder="Address")
+                | &nbsp;
+                button(class="btn btn-default", id="go")
+                  span.glyphicon.glyphicon-search
+                  | &nbsp; Find
+                | &nbsp;
+                button(class="btn",data-toggle="collapse",data-target="#notes",aria-expanded="false",aria-controls="collapseNotes")
+                  span.glyphicon.glyphicon-filter
+                  | &nbsp;
+                | &nbsp;
+                button(class="btn",id="center")
+                  span.glyphicon.glyphicon-globe
+                  | &nbsp;
+                | &nbsp;
+                button(class="btn",id="add")
+                  span.glyphicon.glyphicon-screenshot
+                  | &nbsp;
+                | &nbsp;
+                button(class="btn",id="home")
+                  span.glyphicon.glyphicon-home
+                  | &nbsp;
+                | &nbsp;
+                button(class="btn",id="directions")
+                  span.glyphicon.glyphicon-road
+                  | &nbsp;
+
+        .col-lg-12
+          #notes(class="collapse")
+      .row
+        .col-lg-12
+          #message.well.well-sm
+      .row
+        .col-md-5
+          #info
+        .col-md-7
+          div(data-ng-app="app")
+            #screen(ui-view="")
 block append scripts
   script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U&sensor=false")
   script(src="/js/map-navigate.js")

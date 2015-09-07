@@ -76,14 +76,11 @@ ViewHandler.prototype.pageView = function (req, res) {
                 "message": "This is a warning alert."
             }
         ],
-
         onError = function () {
             res.render('content/notfound');
         },
         onSuccess = function (content) {
-
             if (content) {
-
                 var pageObject = {
                     page: page,
                     components: [], // turn off
@@ -95,7 +92,6 @@ ViewHandler.prototype.pageView = function (req, res) {
                 onError();
             }
         };
-
     content.getPageByName(page, onSuccess, onError);
 };
 

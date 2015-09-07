@@ -1,0 +1,14 @@
+extends ../layout
+include ../includes/mixins
+
+block content
+  #content
+  .container.article
+    .row
+      .col-sm-8
+        h1!= content.title
+        != content.body
+      .col-sm-4
+        for component in components
+          .col-sm-12
+            +#{component.template}(component)

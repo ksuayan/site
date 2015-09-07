@@ -104,7 +104,7 @@ app.use(globalErrorHandler);
 
 
 app.get('/login', function(req, res) {
-    res.render('layouts/login');
+    res.render('content/login');
 });
 
 app.post('/login',
@@ -176,28 +176,53 @@ app.all("*", function (req, res, next) {
     next();
 });
 
-app.get("/view/*", function(req, res){
-    var pseudoPath = req.path.toString();
-    pseudoPath = pseudoPath.replace("/view/","");
-    req.params.page = pseudoPath;
-    console.log(">> path", pseudoPath);
-    return view.pageView(req, res);
-});
-
-app.get('/',              view.fullScreen);
-app.get('/page/:page',    view.pageView);
-app.get('/text',          view.textList);
-app.get('/edit',          view.pageEdit);
-app.get('/content/:page', view.content);
-
 app.get('/members', function(req, res) {
-    var path = 'layouts/signup';
+    var path = 'content/signup';
     if (req.user && req.user.status === 'complete') {
         path = 'layouts/members';
     }
     res.render(path, {user: req.user});
 });
-app.post('/members',      users.SaveProfile);
+
+/**
+ * Load jade content files.
+ */
+app.get('/members/:page', function(req, res) {
+    var path = 'content/login';
+    if (req.user && req.user.status === 'complete') {
+        return view.content(req, res);
+    }
+    res.render(path, {user: req.user});
+});
+
+app.post('/members', users.SaveProfile);
+
+app.get('/signup', function(req,res){
+    req.logout();
+    res.render("content/signup");
+});
+app.post('/signup', users.SaveProfile);
+
+/**
+ * Published view. Publicly viewable.
+ */
+app.get("/view/*", function(req, res){
+    var pseudoPath = req.path.toString();
+    pseudoPath = pseudoPath.replace("/view/","");
+    req.params.page = pseudoPath;
+    return view.pageView(req, res);
+});
+
+app.get('/page/:page',    view.pageView);
+
+// HOME
+app.get('/',              view.fullScreen);
+
+
+// DEPRECATED
+// app.get('/text',          view.textList);
+// app.get('/edit',          view.pageEdit);
+
 
 // TRACKS Demo
 app.get('/search',        itunes.searchTerm);

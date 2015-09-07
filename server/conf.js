@@ -2,6 +2,7 @@ var config = {
     host : "http://localhost",
     port : 9000,
     mediaHost : "//cdn.suayan.com",
+    streamHost : "rtmp://stream.suayan.com",
     mongoURL : "mongodb://localhost/site",
     defaultLocale : "en_US",
     name : 'kyo suayan',

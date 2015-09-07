@@ -146,8 +146,8 @@ UserDB.prototype.MapReduceProfileKey = function(parentAttribute, childAttribute)
 
 UserDB.prototype.SaveProfile = function(req, res) {
 
-    var successPath = 'layouts/success',
-        errorPath = 'layouts/signup',
+    var successPath = 'content/success',
+        errorPath = 'content/signup',
         messages = [],
         username = req.body.username,
         password = req.body.password,

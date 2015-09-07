@@ -9,24 +9,10 @@ include ../includes/mixins
       | Usability and Branding issues in a high traffic website.
       | Motivated by technical challenges and enjoys contributing in a team environment.
 
-  if (!user)
-    .row
-      .well
-        a(class="btn btn-primary",href="/login") Sign In
-        | &nbsp; &nbsp;
-        a(class="btn btn-default",href="/auth/facebook") Sign In via Facebook
-        | &nbsp; &nbsp;
-        a(class="btn btn-default",href="/auth/google") Sign In via Google
-        | &nbsp; &nbsp;
-        a(class="btn btn-default",href="/auth/twitter") Sign In via Twitter
-        | &nbsp; &nbsp;
-        a(class="btn btn-default",href="/auth/linkedin") Sign In via LinkedIn
-
   .row.multicol
     +mod("leftBody", content, "leftHeader", "leftBody")
     +mod("centerBody", content, "centerHeader", "centerBody")
     +mod("rightBody", content, "rightHeader", "rightBody")
-
   .row.social
     div#twitter(class="col-lg-4")
       h2 @ksuayan on Twitter

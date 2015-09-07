@@ -4,23 +4,23 @@ block append css
   link(rel="stylesheet",href="/css/map.css")
 
 block content
-  div#map-canvas
-  div.container
-    div.row
-      div.col-lg-12
-        include ../includes/map-toolbar
-      div.col-lg-12
-        div#notes(class="collapse")
-    div.row
-      div.col-lg-12
-        div#message.well.well-sm
-    div.row
-      div.col-md-5
-        div#info
-      div.col-md-7
-        div(data-ng-app="app")
-          div#screen(ui-view="")
-
+  #content
+    #map-canvas
+    .container
+      .row
+        .col-lg-12
+          include ../includes/map-toolbar
+        .col-lg-12
+          #notes.collapse
+      .row
+        .col-lg-12
+          #message.well.well-sm
+      .row
+        .col-md-5
+          #info
+        .col-md-7
+          div(data-ng-app="app")
+            #screen(ui-view="")
 
 block append scripts
   script(src="/js/ckeditor/ckeditor.js")

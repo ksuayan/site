@@ -1,4 +1,5 @@
-video#bgvid,
+#bgvid,
+#bgvid-blank,
 iframe {
   position: fixed;
   right: 0;
@@ -8,6 +9,10 @@ iframe {
   width: auto;
   height: auto;
   z-index: -100;
-  background: url(//cdn.suayan.com/images/image-026.jpg) no-repeat;
+  background: url(//cdn.suayan.com/images/bay-bridge.jpg) no-repeat;
   background-size: cover;
+}
+#bgvid-blank {
+  background: none;
+  background-color: #333;
 }

@@ -1,14 +1,14 @@
 extends ../layout
 
 block content
-  div.container
-    div.jumbotron
-      h1 Track List
-      p An AngularJS Demo
-
-  div.container(ng-app="MainApp")
-    div.row.track-search
-      div(ng-view="")
+  #content
+    .container.article
+      .jumbotron
+        h1 Track List
+        p An AngularJS Demo
+    .container(ng-app="MainApp")
+      .row.track-search
+        div(ng-view="")
 
 block append scripts
   script(src="/js/angular/core.js")
