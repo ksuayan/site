@@ -5,10 +5,10 @@
     <td align="right"><a ui-sref="addPage" class="btn btn-primary">New Page</a></td>
   </tr>
   <tr ng-repeat="page in pages">
-    <td>{{page.name}}</td>
+    <td><a href="/page/{{page.name}}" title="Published View" target="_blank">{{page.name}}</a></td>
     <td>{{page.title}}</td>
     <td align="right">
-      <a class="btn btn-default" ui-sref="viewPage({id:page._id})">View</a>
+      <a class="btn btn-default" ui-sref="editPage({id:page._id})">Edit</a>
     </td>
   </tr>
 </table>

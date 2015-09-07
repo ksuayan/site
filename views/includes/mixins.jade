@@ -19,3 +19,11 @@ mixin alert_danger(item)
     button.close(type='button', data-dismiss='alert', aria-label='Close')
       span(aria-hidden='true') ×
     != item.message
+
+mixin meta_description(desc)
+  if (desc)
+    meta(name="description",content=desc)
+
+mixin meta_keywords(keywords)
+  if (keywords)
+    meta(name="keywords",content=keywords)

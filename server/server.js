@@ -206,14 +206,12 @@ app.post('/signup', users.SaveProfile);
 /**
  * Published view. Publicly viewable.
  */
-app.get("/view/*", function(req, res){
+app.get("/page/*", function(req, res){
     var pseudoPath = req.path.toString();
-    pseudoPath = pseudoPath.replace("/view/","");
+    pseudoPath = pseudoPath.replace("/page/","");
     req.params.page = pseudoPath;
     return view.pageView(req, res);
 });
-
-app.get('/page/:page',    view.pageView);
 
 // HOME
 app.get('/',              view.fullScreen);

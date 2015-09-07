@@ -18,39 +18,17 @@ angular.module('site.controllers', [])
 }).controller('PageViewController', ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
     function($log, $scope, $state, $stateParams, $modal, Page) {
 
-
-
         $scope.page = Page.get({ id: $stateParams.id });
 
         $scope.editPage = function() {
             $state.go('editPage');
         };
 
-        $scope.deletePage = function(pageObj){
-            var modalInstance = $modal.open({
-                animation: false,
-                templateUrl: 'deleteModal.html',
-                controller: 'DeleteModalController',
-                resolve: {
-                    page: function (){
-                        $scope.page = pageObj;
-                        return $scope.page;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function (page) {
-                $scope.page = page;
-                $scope.page.$delete(function() {
-                    $state.go('listPages');
-                });
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
 
 
-}]).controller('PageEditController', function($scope, $state, $stateParams, Page) {
+
+}]).controller('PageEditController', ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
+    function($log, $scope, $state, $stateParams, $modal, Page) {
 
     $scope.page = Page.get({ id: $stateParams.id });
 
@@ -59,6 +37,28 @@ angular.module('site.controllers', [])
         // Issue a PUT to /api/profile/:id
         $scope.page.$update(function() {
             $state.go('listPages'); // on success go back to home i.e. movies state.
+        });
+    };
+
+    $scope.deletePage = function(pageObj){
+        var modalInstance = $modal.open({
+            animation: false,
+            templateUrl: 'deleteModal.html',
+            controller: 'DeleteModalController',
+            resolve: {
+                page: function (){
+                    $scope.page = pageObj;
+                    return $scope.page;
+                }
+            }
+        });
+        modalInstance.result.then(function (page) {
+            $scope.page = page;
+            $scope.page.$delete(function() {
+                $state.go('listPages');
+            });
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
@@ -109,7 +109,7 @@ angular.module('site.controllers', [])
 
     $scope.loadPage();
 
-}).controller('DeleteModalController', function ($scope, $modalInstance, page) {
+}]).controller('DeleteModalController', function ($scope, $modalInstance, page) {
 
     $scope.page = page;
 
