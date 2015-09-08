@@ -203,6 +203,10 @@ app.get('/signup', function(req,res){
 });
 app.post('/signup', users.SaveProfile);
 
+app.get('/radio/pisay90', function(req, res) {
+    res.render("content/videojs-mp3");
+});
+
 /**
  * Published view. Publicly viewable.
  */
