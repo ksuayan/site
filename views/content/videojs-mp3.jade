@@ -10,7 +10,27 @@ block append scripts
 block footer
 
 block content
-  .row
-    .col-lg-12
-      video(id="bgvid-blank",class="video-js vjs-default-skin vjs-big-play-centered",poster=config.mediaHost+"/images/bay-bridge.jpg",controls="controls",preload="auto",data-setup='{}')
-        source(src="http://stream.suayan.com.s3.amazonaws.com/audio/Pisay90_2010_Uptempo.mp3" type="audio/mp3")
+  #content
+    .container.article
+      .row
+        .col-lg-6
+
+          h1 Pisay90 MixTapes
+
+          .media
+            .media-left
+              audio(src="http://stream.suayan.com.s3.amazonaws.com/audio/Pisay90_2010_Uptempo.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-gray-inverse.png",controls="controls",preload="auto",data-setup='{}')
+            .media-body
+              h4.media-heading 2010: A Pisay90 Odyssey, Uptempo Mix
+
+          .media
+            .media-left
+              audio(src="http://stream.suayan.com.s3.amazonaws.com/audio/Pisay90_2010_Chill.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-gray-inverse.png",controls="controls",preload="auto",data-setup='{}')
+            .media-body
+              h4.media-heading 2010: A Pisay90 Odyssey, Chill Mix
+
+          .media
+            .media-left
+              audio(src="http://stream.suayan.com.s3.amazonaws.com/audio/By_Request.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-gray-inverse.png",controls="controls",preload="auto",data-setup='{}')
+            .media-body
+              h4.media-heading 2010: A Pisay90 Odyssey, By Request
