@@ -3,6 +3,8 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
+    multer = require('multer'),
+    upload = multer({ dest: './uploads'}),
     app = express(),
     path = require('path'),
     conf = require('./conf'),
@@ -11,7 +13,9 @@ var express = require('express'),
     api = require('./api'),
     users = require('./users');
 
-var passport = require('passport'),
+
+var socialEnabled = false,
+    passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
@@ -27,57 +31,60 @@ passport.deserializeUser(function(obj, done) { done(null, obj); });
  *   ----------------------
  */
 
-passport.use(new FacebookStrategy({
-        clientID: conf.facebook.clientId,
-        clientSecret: conf.facebook.secret,
-        callbackURL: conf.facebook.callbackURL
-    },
-    function(accessToken, refreshToken, profile, done) {
-        process.nextTick(function () {
-            if (profile.provider !== "facebook") {
-                var error = "Invalid provider: " + profile.provider;
-                return done(null, false, { message: error });
-            }
-            return users.FindOrCreateFacebookUser(profile, done);
-        });
-    }
-));
 
-passport.use(new GoogleStrategy({
-        clientID: conf.google.clientID,
-        clientSecret: conf.google.clientSecret,
-        callbackURL: conf.google.callbackURL
-    },
-    function(accessToken, refreshToken, profile, done) {
-        process.nextTick(function(){
-            return users.FindOrCreateGoogleUser(profile, done);
-        });
-    }
-));
+if (socialEnabled) {
+    passport.use(new FacebookStrategy({
+            clientID: conf.facebook.clientId,
+            clientSecret: conf.facebook.secret,
+            callbackURL: conf.facebook.callbackURL
+        },
+        function(accessToken, refreshToken, profile, done) {
+            process.nextTick(function () {
+                if (profile.provider !== "facebook") {
+                    var error = "Invalid provider: " + profile.provider;
+                    return done(null, false, { message: error });
+                }
+                return users.FindOrCreateFacebookUser(profile, done);
+            });
+        }
+    ));
 
-passport.use(new TwitterStrategy({
-        consumerKey: conf.twitter.consumerKey,
-        consumerSecret: conf.twitter.consumerSecret,
-        callbackURL: conf.twitter.callbackURL
-    },
-    function(accessToken, refreshToken, profile, done) {
-        process.nextTick(function () {
-            return users.FindOrCreateTwitterUser(profile, done);
-        });
-    }
-));
+    passport.use(new GoogleStrategy({
+            clientID: conf.google.clientID,
+            clientSecret: conf.google.clientSecret,
+            callbackURL: conf.google.callbackURL
+        },
+        function(accessToken, refreshToken, profile, done) {
+            process.nextTick(function(){
+                return users.FindOrCreateGoogleUser(profile, done);
+            });
+        }
+    ));
 
-passport.use(new LinkedInStrategy({
-        consumerKey: conf.linkedin.consumerKey,
-        consumerSecret: conf.linkedin.consumerSecret,
-        callbackURL: conf.linkedin.callbackURL
-    },
-    function(token, tokenSecret, profile, done) {
-        process.nextTick(function () {
-            return users.FindOrCreateLinkedInUser(profile, done);
-        });
-    }
-));
+    passport.use(new TwitterStrategy({
+            consumerKey: conf.twitter.consumerKey,
+            consumerSecret: conf.twitter.consumerSecret,
+            callbackURL: conf.twitter.callbackURL
+        },
+        function(accessToken, refreshToken, profile, done) {
+            process.nextTick(function () {
+                return users.FindOrCreateTwitterUser(profile, done);
+            });
+        }
+    ));
+
+    passport.use(new LinkedInStrategy({
+            consumerKey: conf.linkedin.consumerKey,
+            consumerSecret: conf.linkedin.consumerSecret,
+            callbackURL: conf.linkedin.callbackURL
+        },
+        function(token, tokenSecret, profile, done) {
+            process.nextTick(function () {
+                return users.FindOrCreateLinkedInUser(profile, done);
+            });
+        }
+    ));
+}
 
 passport.use(new LocalStrategy(users.FindLocalUser));
 
@@ -114,51 +121,53 @@ app.post('/login',
     })
 );
 
-app.get('/auth/facebook', passport.authenticate('facebook',
-    {scope: ['public_profile', 'email']}));
+if (socialEnabled) {
+    app.get('/auth/facebook', passport.authenticate('facebook',
+        {scope: ['public_profile', 'email']}));
 
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/members',
-        failureRedirect: '/login'
-    })
-);
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/members',
+            failureRedirect: '/login'
+        })
+    );
 
-app.get('/auth/google',
-    passport.authenticate('google', {
-        scope: ['https://www.googleapis.com/auth/userinfo.profile',
-            'https://www.googleapis.com/auth/userinfo.email']}),
-    function(req, res){
-    });
+    app.get('/auth/google',
+        passport.authenticate('google', {
+            scope: ['https://www.googleapis.com/auth/userinfo.profile',
+                'https://www.googleapis.com/auth/userinfo.email']}),
+        function(req, res){
+        });
 
-app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
-        res.redirect('/members');
-    });
+    app.get('/auth/google/callback',
+        passport.authenticate('google', { failureRedirect: '/login' }),
+        function(req, res) {
+            res.redirect('/members');
+        });
 
-app.get('/auth/twitter',
-    passport.authenticate('twitter'),
-    function(req, res){
-    });
+    app.get('/auth/twitter',
+        passport.authenticate('twitter'),
+        function(req, res){
+        });
 
-app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', { failureRedirect: '/login' }),
-    function(req, res) {
-        res.redirect('/members');
-    });
+    app.get('/auth/twitter/callback',
+        passport.authenticate('twitter', { failureRedirect: '/login' }),
+        function(req, res) {
+            res.redirect('/members');
+        });
 
-app.get('/auth/linkedin',
-    passport.authenticate('linkedin'),
-    function(req, res){
-        // not called
-    });
+    app.get('/auth/linkedin',
+        passport.authenticate('linkedin'),
+        function(req, res){
+            // not called
+        });
 
-app.get('/auth/linkedin/callback',
-    passport.authenticate('linkedin', { failureRedirect: '/login' }),
-    function(req, res) {
-        res.redirect('/members');
-    });
+    app.get('/auth/linkedin/callback',
+        passport.authenticate('linkedin', { failureRedirect: '/login' }),
+        function(req, res) {
+            res.redirect('/members');
+        });
+}
 
 
 app.all("*", function (req, res, next) {
@@ -197,6 +206,8 @@ app.get('/members/:page', function(req, res) {
 
 app.post('/members', users.SaveProfile);
 
+app.post('/upload', upload.single('file'), view.createFile);
+
 app.get('/signup', function(req,res){
     req.logout();
     res.render("content/signup");
@@ -219,7 +230,6 @@ app.get("/page/*", function(req, res){
 
 // HOME
 app.get('/',              view.fullScreen);
-
 
 // DEPRECATED
 // app.get('/text',          view.textList);

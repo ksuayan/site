@@ -32,6 +32,19 @@ var Page = new Schema({
     content     : [{ type: Schema.Types.ObjectId, ref: 'text' }]
 });
 
+var File = new  Schema({
+    dateCreated  : {type: Date,   default: Date.now},
+    status       : {type: String, default: "new"},
+    fieldname    : {type: String, default: ""},
+    originalname : {type: String, default: ""},
+    encoding     : {type: String, default: ""},
+    mimetype     : {type: String, default: ""},
+    destination  : {type: String, default: ""},
+    filename     : {type: String, default: ""},
+    path         : {type: String, default: ""},
+    size         : {type: String, default: ""}
+});
+
 var Pic = new Schema({
     width : {type: Number,  default: ""},
     height : {type: Number, default: ""},
@@ -59,6 +72,7 @@ var DocumentDB = function(){
     this.TextModel = this.db.model('text', TextContent);
     this.PageModel = this.db.model('page', Page);
     this.TileModel = this.db.model('tile', TileContent);
+    this.FileModel = this.db.model('file', File);
 };
 
 DocumentDB.prototype.getTextList = function(locale, onSuccess, onError) {
@@ -372,6 +386,28 @@ DocumentDB.prototype.getTileList = function(onSuccess, onError) {
                 onSuccess(pages);
             }
         });
+};
+
+DocumentDB.prototype.createFile = function(fileObj, onSuccess, onError) {
+    var that = this;
+    this.FileModel
+    .findOne({filename: fileObj.filename})
+    .exec(function(err, found){
+        if (!err && found) {
+            onError({status:"error", reason:"file already exists: "+fileObj.name});
+            return;
+        } else {
+            var file = new that.FileModel(fileObj);
+            file.save(function(err){
+                if (err) {
+                    return util.HandleError(err, onError);
+                }
+                if (typeof onSuccess ==='function') {
+                   onSuccess(file);
+                }
+            });
+        }
+    });
 };
 
 module.exports = new DocumentDB();

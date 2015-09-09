@@ -143,5 +143,16 @@ ViewHandler.prototype.viewDocument = function (req, res) {
     }
 };
 
+ViewHandler.prototype.createFile = function (req, res) {
+    var onSuccess = function (content) {
+        return res.render("content/upload-success", {
+              file: req.file
+            });
+    };
+    var onError = function (err) {
+        return res.render("errors", err);
+    };
+    content.createFile(req.file, onSuccess, onError);
+};
 
 module.exports = new ViewHandler();

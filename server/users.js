@@ -160,8 +160,12 @@ UserDB.prototype.SaveProfile = function(req, res) {
     };
 
     var updateUserDB = function() {
+        var searchUserQuery = {"username": username};
+        if (req.user && req.user._id) {
+            searchUserQuery = {"_id": req.user._id};
+        }
         userdb.UserModel.update(
-            {"_id":req.user._id},
+            searchUserQuery,
             {$set: {
                 username:  username,
                 password:  password,

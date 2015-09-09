@@ -1,0 +1,13 @@
+extends ../layout
+block content
+  #content
+    .container
+      .row
+        .col-xs-12
+          H1 Uploaded
+          .alert.alert-success Your file was uploaded.
+            ul
+              li=file.originalname
+              li=file.mimetype
+              li=file.size
+              li=file.filename
