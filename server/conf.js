@@ -47,8 +47,12 @@ var config = {
 };
 
 if (process.env.NODE_ENV === "production") {
-    config.port = process.env.PORT;
-    config.mongoURL = process.env.MONGOHQ_URL;
+    if (process.env.PORT) {
+        config.port = process.env.PORT;
+    }
+    if (process.env.MONGOHQ_URL) {
+        config.mongoURL = process.env.MONGOHQ_URL;
+    }
     config.caching = true;
     config.expires = 60 * 60 * 24 * 4; // 4 days
     config.facebook.callbackURL= "http://node.suayan.com/auth/facebook/callback";
