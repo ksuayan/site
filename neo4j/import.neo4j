@@ -1,0 +1,17 @@
+https://www.airpair.com/neo4j/posts/getting-started-with-neo4j-and-cypher
+
+CREATE CONSTRAINT on (u:User) ASSERT u.id IS UNIQUE;
+CREATE INDEX on :User(name);
+
+LOAD CSV FROM 'file:///tmp/users.csv' as line
+MERGE (:User {id:toInt(line[0]), name:line[1]});
+
+LOAD CSV FROM 'file:////Users/kyo/test.csv' as line
+MERGE (:User {id:toInt(line[0]), name:line[1]});
+
+LOAD CSV FROM 'file:///tmp/user_asset_access.csv' as line
+MATCH (u:User {id:toInt(line[0])}), (a:Asset {id:toInt(line[1])})
+MERGE (u)-[:HAS_ACCESS]->(a);
+
+MATCH shortestPath((neo:User {name:'neo'})-[:HAS_ACCESS|IS_MEMBER*]->(a:Asset {uri:'/the/red/pill'}))
+RETURN count(*) > 0 as hasAccess
