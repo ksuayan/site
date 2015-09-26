@@ -14,7 +14,7 @@ var express = require('express'),
     users = require('./users');
 
 
-var socialEnabled = false,
+var socialEnabled = true,
     passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
