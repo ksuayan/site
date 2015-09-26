@@ -1,0 +1,5 @@
+[
+{"name":"Home","address":"1787 S Norfolk St","city":"San Mateo","state":"CA","zipcode":94403,"latitude":"","longitude":""},
+{"name":"Ferry Building","address":"San Francisco Ferry Bldg","city":"San Francisco","state":"CA","zipcode":94105,"latitude":"","longitude":""},
+{"name":"Test Something","address":"123 Something, Something Something","city":"Somewhere","state":"XX","zipcode":10000,"latitude":"","longitude":""}
+]
