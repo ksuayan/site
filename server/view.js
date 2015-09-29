@@ -143,7 +143,7 @@ ViewHandler.prototype.viewDocument = function (req, res) {
     }
 };
 
-ViewHandler.prototype.createFile = function (req, res) {
+ViewHandler.prototype.processFileUploads = function (req, res) {
     var onSuccess = function (okFiles) {
         return res.render("content/upload-success", {
           okFiles: okFiles
@@ -152,7 +152,7 @@ ViewHandler.prototype.createFile = function (req, res) {
     var onError = function (err) {
         return res.render("errors", err);
     };
-    content.createFile(req.files, onSuccess, onError);
+    content.processFileUploads(req.files, onSuccess, onError);
 };
 
 module.exports = new ViewHandler();

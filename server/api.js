@@ -12,8 +12,6 @@ var flickrClient = null,
     vimeoClient = null,
     vimeoConfig = conf.vimeo;
 
-
-
 var ApiHandler = function() {
     try {
         var FlickrOptions = {
@@ -395,6 +393,13 @@ ApiHandler.prototype.deleteLocation = function(req, res) {
         return res.send(err);
     };
     locations.deleteLocation(req.params.id, onSuccess, onError)
+};
+
+var twitterData = require('../public/data/twitter.json');
+
+ApiHandler.prototype.importTwitterFeed = function(req, res) {
+    var normalized = content.normalizeList(twitterData.data, content.normalizeTwitter);
+    res.send(normalized);
 };
 
 module.exports = new ApiHandler();

@@ -13,8 +13,7 @@ var express = require('express'),
     api = require('./api'),
     users = require('./users');
 
-
-var socialEnabled = true,
+var socialEnabled = false,
     passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
@@ -206,7 +205,7 @@ app.get('/members/:page', function(req, res) {
 
 app.post('/members', users.SaveProfile);
 
-app.post('/upload', upload.array('files'), view.createFile);
+app.post('/upload', upload.array('files'), view.processFileUploads);
 
 app.get('/signup', function(req,res){
     req.logout();
@@ -235,7 +234,6 @@ app.get('/',              view.fullScreen);
 // app.get('/text',          view.textList);
 // app.get('/edit',          view.pageEdit);
 
-
 // TRACKS Demo
 app.get('/search',        itunes.searchTerm);
 app.get('/search/:term',  itunes.searchTerm);
@@ -244,15 +242,17 @@ app.get('/track',         itunes.getTrackList);
 app.get('/track/:id',     itunes.getTrack);
 
 // API
+app.get('/api/twitterStub', api.importTwitterFeed);
+
 app.get('/api/timeline',    api.getTimeline);
 app.get('/api/tiles',       api.getTileList);
 
-app.get('/api/twitter',      api.twitter);
-app.get('/api/vimeo/:count', api.vimeo);
-app.get('/api/flickr/:count', api.flickr);
+app.get('/api/twitter',         api.twitter);
+app.get('/api/vimeo/:count',    api.vimeo);
+app.get('/api/flickr/:count',   api.flickr);
 
 app.get('/api/page/text/:page', api.getPageText);
-app.get('/api/page/text', api.getPageText);
+app.get('/api/page/text',       api.getPageText);
 
 app.get('/api/page',        api.getPageList);
 app.post('/api/page',       api.createPage);

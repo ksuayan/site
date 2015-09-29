@@ -388,12 +388,11 @@ DocumentDB.prototype.getTileList = function(onSuccess, onError) {
         });
 };
 
-DocumentDB.prototype.createFile = function(fileArray, onSuccess, onError) {
+DocumentDB.prototype.processFileUploads = function(fileArray, onSuccess, onError) {
     var that = this,
         remaining = fileArray.length,
         okFiles = [],
         errFiles = [];
-
     var checkLast = function() {
             remaining--;
             console.log("remaining", remaining);
@@ -418,14 +417,16 @@ DocumentDB.prototype.createFile = function(fileArray, onSuccess, onError) {
         var fileObj = fileArray[i];
         this.updateUploadsDB(fileObj, onSaveSuccess, onSaveError);
     }
-
-
 };
 
-
+/**
+ * Update our database for each individual file.
+ * @param fileObj
+ * @param onSuccess
+ * @param onError
+ */
 DocumentDB.prototype.updateUploadsDB = function(fileObj, onSuccess, onError) {
     var that = this;
-
     var saveFile = function(err, found){
         if (!err && found) {
             onError({status:"error", reason:"file already exists: "+fileObj.name});
@@ -443,10 +444,47 @@ DocumentDB.prototype.updateUploadsDB = function(fileObj, onSuccess, onError) {
             });
         }
     };
-
     this.FileModel
         .findOne({filename: fileObj.filename})
         .exec(saveFile);
 };
+
+/**
+ * Normalize an array of data with a specified converter.
+ * @param data
+ * @param converter
+ */
+DocumentDB.prototype.normalizeList = function(data, converter) {
+    var normalized = [];
+    if (!data) {
+        return null;
+    }
+    for (var i= 0,n=data.length; i<n; i++) {
+        var item = data[i];
+        normalized.push(converter(item));
+    }
+    return normalized;
+};
+/**
+ * Convert a twitter feed into our standard stream format.
+ * @param item
+ * @returns {{recordType: string, user: (screen_name|*|params.screen_name), dateCreated: Date, id: (*|id|creds.id|test.id|a.id|$scope.location.id), body: (*|text|module.exports.text|e.text|callback.text|TextContent.defaults.text), geo: *, coordinates: (*|LocationObject.loc.coordinates|data.loc.coordinates|coords.coordinates|geoLocation.loc.coordinates|Location.loc.coordinates), source: (*|exports.source|resolver.source|.test_vars.source|expectSources.env.source|defaults.source), entities: (*|CKBUILDER_CONFIG.plugins.entities|NamedNodeMap|CKEDITOR.config.entities)}}
+ */
+DocumentDB.prototype.normalizeTwitter = function(item) {
+    var newObj = {
+        recordType: "twitter",
+        user: item.user.screen_name,
+        dateCreated: new Date(item.created_at),
+        id: item.id,
+        body: item.text,
+        geo: item.geo,
+        coordinates: item.coordinates,
+        source: item.source,
+        entities: item.entities
+    };
+    return newObj;
+};
+
+
 
 module.exports = new DocumentDB();
