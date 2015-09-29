@@ -6,7 +6,7 @@ block content
         .col-xs-12
           H1 Uploaded
           .alert.alert-success Your files were uploaded.
-            each file in okFiles
+            - each file in okFiles
               ul
                 li= file.originalname
                 li= file.mimetype

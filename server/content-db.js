@@ -390,26 +390,36 @@ DocumentDB.prototype.getTileList = function(onSuccess, onError) {
 
 DocumentDB.prototype.createFile = function(fileArray, onSuccess, onError) {
     var that = this,
+        remaining = fileArray.length,
         okFiles = [],
         errFiles = [];
 
-    var onSaveSuccess = function(okFile){
-        okFiles.push(okFile);
-    }, onSaveError = function(err) {
-        console.log("save error: ", err);
-        errFiles.push(err);
-    };
+    var checkLast = function() {
+            remaining--;
+            console.log("remaining", remaining);
+            if (remaining==0) {
+                if (errFiles.length) {
+                    onError(errFiles);
+                } else if (onSuccess && typeof onSuccess ==='function') {
+                    onSuccess(okFiles);
+                }
+            }
+        },
+        onSaveSuccess = function(okFile){
+            okFiles.push(okFile);
+            checkLast();
+        }, onSaveError = function(err) {
+            console.log("save error: ", err);
+            errFiles.push(err);
+            checkLast();
+        };
 
     for (var i=0,n=fileArray.length; i<n; i++ ) {
         var fileObj = fileArray[i];
         this.updateUploadsDB(fileObj, onSaveSuccess, onSaveError);
     }
 
-    if (errFiles.length) {
-        onError(errFiles);
-    } else if (onSuccess && typeof onSuccess ==='function') {
-        onSuccess(okFiles);
-    }
+
 };
 
 
