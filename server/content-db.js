@@ -1,4 +1,5 @@
-var mongoose = require('mongoose'),
+var mongoClient = require('./mongo-client'),
+    mongoose = mongoClient.mongoose,
     conf = require('./conf'),
     util = require('./apputil');
 
@@ -66,13 +67,12 @@ var TileContent = new Schema({
 
 
 var DocumentDB = function(){
-    console.log("Initialized DocumentDB.");
     this.locale = conf.defaultLocale;
-    this.db = mongoose.createConnection(conf.mongoURL);
-    this.TextModel = this.db.model('text', TextContent);
-    this.PageModel = this.db.model('page', Page);
-    this.TileModel = this.db.model('tile', TileContent);
-    this.FileModel = this.db.model('file', File);
+    this.TextModel = mongoose.model('text', TextContent);
+    this.PageModel = mongoose.model('page', Page);
+    this.TileModel = mongoose.model('tile', TileContent);
+    this.FileModel = mongoose.model('file', File);
+    console.log("Initialized DocumentDB.");
 };
 
 DocumentDB.prototype.getTextList = function(locale, onSuccess, onError) {
@@ -388,11 +388,35 @@ DocumentDB.prototype.getTileList = function(onSuccess, onError) {
         });
 };
 
-DocumentDB.prototype.createFile = function(fileObj, onSuccess, onError) {
+DocumentDB.prototype.createFile = function(fileArray, onSuccess, onError) {
+    var that = this,
+        okFiles = [],
+        errFiles = [];
+
+    var onSaveSuccess = function(okFile){
+        okFiles.push(okFile);
+    }, onSaveError = function(err) {
+        console.log("save error: ", err);
+        errFiles.push(err);
+    };
+
+    for (var i=0,n=fileArray.length; i<n; i++ ) {
+        var fileObj = fileArray[i];
+        this.updateUploadsDB(fileObj, onSaveSuccess, onSaveError);
+    }
+
+    if (errFiles.length) {
+        onError(errFiles);
+    } else if (onSuccess && typeof onSuccess ==='function') {
+        onSuccess(okFiles);
+    }
+};
+
+
+DocumentDB.prototype.updateUploadsDB = function(fileObj, onSuccess, onError) {
     var that = this;
-    this.FileModel
-    .findOne({filename: fileObj.filename})
-    .exec(function(err, found){
+
+    var saveFile = function(err, found){
         if (!err && found) {
             onError({status:"error", reason:"file already exists: "+fileObj.name});
             return;
@@ -402,12 +426,17 @@ DocumentDB.prototype.createFile = function(fileObj, onSuccess, onError) {
                 if (err) {
                     return util.HandleError(err, onError);
                 }
-                if (typeof onSuccess ==='function') {
-                   onSuccess(file);
+                console.log("ok:", fileObj);
+                if (typeof onSuccess === 'function') {
+                    onSuccess(fileObj);
                 }
             });
         }
-    });
+    };
+
+    this.FileModel
+        .findOne({filename: fileObj.filename})
+        .exec(saveFile);
 };
 
 module.exports = new DocumentDB();

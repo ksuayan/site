@@ -1,5 +1,11 @@
 
 .well
   form(method="post",enctype="multipart/form-data",action="/upload")
-    input(type="file",name="file")
-    input(type="submit")
+    .input-group
+      span.input-group-btn
+        span.btn.btn-primary.btn-file Browse &hellip;
+          input(type="file",name="files",multiple="multiple")
+        input.btn(type="submit")
+      input.form-control(type="text")
+
+

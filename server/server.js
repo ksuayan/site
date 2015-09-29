@@ -206,7 +206,7 @@ app.get('/members/:page', function(req, res) {
 
 app.post('/members', users.SaveProfile);
 
-app.post('/upload', upload.single('file'), view.createFile);
+app.post('/upload', upload.array('files'), view.createFile);
 
 app.get('/signup', function(req,res){
     req.logout();

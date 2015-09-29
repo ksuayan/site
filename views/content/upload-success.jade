@@ -5,9 +5,9 @@ block content
       .row
         .col-xs-12
           H1 Uploaded
-          .alert.alert-success Your file was uploaded.
-            ul
-              li=file.originalname
-              li=file.mimetype
-              li=file.size
-              li=file.filename
+          .alert.alert-success Your files were uploaded.
+            each file in okFiles
+              ul
+                li= file.originalname
+                li= file.mimetype
+                li= file.size
