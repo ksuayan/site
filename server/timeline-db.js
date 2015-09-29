@@ -1,4 +1,5 @@
-var mongoose = require('mongoose'),
+var mongoClient = require('./mongo-client'),
+    mongoose = mongoClient.mongoose,
     conf = require('./conf'),
     util = require('./apputil');
 
@@ -16,8 +17,7 @@ var JobModel = new Schema({
 
 var TimelineDB = function(){
     console.log("Initialized TimelineDB.");
-    this.db = mongoose.createConnection(conf.mongoURL);
-    this.JobModel = this.db.model('job', JobModel);
+    this.JobModel = mongoose.model('job', JobModel);
 };
 
 TimelineDB.prototype.getJobs = function(onSuccess, onError) {

@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-    conf = require('./conf'),
+var mongoClient = require('./mongo-client'),
+    mongoose = mongoClient.mongoose,
     util = require('./apputil');
 
 var Schema = mongoose.Schema,
@@ -28,9 +28,8 @@ Location.index({ 'loc': '2dsphere' });
 
 
 var LocationDB = function(){
+    this.LocationModel = mongoose.model('location', Location);
     console.log("Initialized LocationsDB.");
-    this.db = mongoose.createConnection(conf.mongoURL);
-    this.LocationModel = this.db.model('location', Location);
 };
 
 LocationDB.prototype.getLocationById = function(id, onSuccess, onError) {

@@ -1,6 +1,7 @@
 "use strict";
 
-var mongoose = require('mongoose'),
+var mongoClient = require('./mongo-client'),
+    mongoose = mongoClient.mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     conf = require('./conf'),
@@ -101,9 +102,8 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
 
 
 var UserDB = function(){
+    this.UserModel = mongoose.model('user', UserSchema);
     console.log("Initialized UserDB.");
-    this.db = mongoose.createConnection(conf.mongoURL);
-    this.UserModel = this.db.model('user', UserSchema);
 };
 
 UserDB.prototype.MapReduceProfileKey = function(parentAttribute, childAttribute) {
@@ -295,7 +295,7 @@ var sanitizeProfile = function(profile) {
 UserDB.prototype.FindOrCreateFacebookUser = function(profile, done) {
     var that = this;
 
-    console.log("FB Profile >>>>", profile);
+    // console.log("FB Profile >>>>", profile);
 
     this.UserModel
         .findOne({"fbProfile.fbId" : profile.id})
@@ -338,7 +338,7 @@ UserDB.prototype.FindOrCreateFacebookUser = function(profile, done) {
 UserDB.prototype.FindOrCreateGoogleUser = function(profile, done) {
     var that = this;
 
-    console.log("Google Profile >>>>", profile);
+    // console.log("Google Profile >>>>", profile);
 
     this.UserModel
         .findOne({"googleProfile.googleId" : profile.id})
@@ -386,7 +386,7 @@ UserDB.prototype.FindOrCreateTwitterUser = function(profile, done) {
     var that = this;
     var twitter = profile._json;
 
-    console.log("Twitter Profile >>>>", profile);
+    // console.log("Twitter Profile >>>>", profile);
 
     this.UserModel
         .findOne({"twitterProfile.twId" : twitter.id})

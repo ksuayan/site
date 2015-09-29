@@ -1,9 +1,9 @@
 "use strict";
 
-var mongoose = require('mongoose');
-var MongoClient = require('mongodb').MongoClient;
-var conf = require('./conf');
-var Schema = mongoose.Schema,
+
+var mongoClient = require('./mongo-client'),
+    mongoose = mongoClient.mongoose,
+    Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
 var TrackItem = new Schema({
@@ -26,9 +26,6 @@ var TrackItem = new Schema({
 });
 
 var iTunesDB = function(){
-    var that = this;
-    console.log("Initialized iTunesDB.");
-    mongoose.connect(conf.mongoURL, {db:{safe:true}});
     this.pagination = {skip:0,pagination:10};
     this.fields = {
         "_id": 1,
@@ -38,26 +35,8 @@ var iTunesDB = function(){
         "Genre": 1,
         "Total Time": 1
     };
-
-    this.db = mongoose.connection;
-    this.db.on('error', console.error.bind(console, 'Connection error.'));
-    this.db.once('open', function(){
-        console.log("Mongoose Connected.");
-    });
-    this.db.once('close', function(){
-        console.log("Closing.");
-        that.close();
-    });
-
-    this.TrackDbModel = this.db.model('trackdbs', TrackItem);
-
-    MongoClient.connect(conf.mongoURL, {}, function(err, db){
-        if (err) {
-            console.log("MongoDB error", err);
-        }
-        console.log("MongoDB Connected.");
-        that.mongodb = db;
-    });
+    this.TrackDbModel = mongoose.model('trackdbs', TrackItem);
+    console.log("Initialized iTunesDB.");
 };
 
 iTunesDB.prototype.getTrack = function(request, response) {
@@ -163,7 +142,7 @@ iTunesDB.prototype.queryCollectionById = function(term, queryProfile, onDataSucc
 
         query["_id"] = {"$regex":re};
         // console.log("query collection by id:", query);
-        var collection = itunesDB.mongodb.collection(queryProfile.collection);
+        var collection = mongoClient.db.collection(queryProfile.collection);
         try {
             collection.find(query)
                 .sort(queryProfile.sortOrder)
@@ -265,11 +244,6 @@ iTunesDB.prototype.searchMultiCriteria = function(request, response) {
     multiQuery();
 };
 
-iTunesDB.prototype.close = function(){
-    this.db.close(function() {
-        console.log("DB Closed.");
-    });
-};
 
 var itunesDB = new iTunesDB();
 module.exports = itunesDB;

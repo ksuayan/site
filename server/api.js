@@ -15,17 +15,23 @@ var flickrClient = null,
 
 
 var ApiHandler = function() {
-    /*
     try {
-        flickrClient = null;
-        Flickr.tokenOnly(conf.flickr, function(error, flickr) {
-            console.log("flickr object", flickr);
+        var FlickrOptions = {
+            api_key: process.env['FLICKR_KEY'],
+            secret: process.env['FLICKR_USER_ID'],
+            user_id: process.env['FLICKR_SECRET'],
+            access_token: process.env['FLICKR_ACCESS_TOKEN'],
+            access_token_secret: process.env['FLICKR_ACCESS_TOKEN_SECRET'],
+            progress: false,
+            silent: true,
+            nobrowser: true
+        };
+        Flickr.authenticate(FlickrOptions, function(error, flickr) {
             flickrClient = flickr;
         });
     } catch (err) {
         console.log("Error Flickr init: ", err);
     }
-    */
 
     try {
         twitterClient = new Twitter(conf.twitter);
@@ -50,9 +56,10 @@ ApiHandler.prototype.twitter = function(request, response) {
         response.send({"status":"ok","data": obj});
     };
     if (twitterClient) {
-        twitterClient.getUserTimeline(
-            {screen_name:"ksuayan", count:'10'},
-            onError, onSuccess);
+        twitterClient.getCustomApiCall('/statuses/user_timeline.json', {
+            screen_name: "ksuayan",
+            count: 100
+        }, onError, onSuccess);
     }
 
 };
@@ -65,7 +72,7 @@ ApiHandler.prototype.vimeo = function(request, response) {
             path: '/me/videos',
             query : {
                 page : 1,
-                per_page : count
+                per_page : 100
             }
         }, function (error, body, status_code, headers) {
             if (error) {
@@ -91,10 +98,12 @@ ApiHandler.prototype.flickr = function(request, response) {
         }
     };
     if (flickrClient) {
-        flickrClient.photos.search({
+        flickrClient.people.getPhotos({
+            api_key: conf.flickr.api_key,
             user_id: "ksuayan",
             page: 1,
-            per_page: count
+            per_page: 500,
+            authenticated: true
         }, onResponse);
     }
 };
