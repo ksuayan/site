@@ -10,7 +10,8 @@ var timeline = require('./timeline-db'),
 var flickrClient = null,
     twitterClient = null,
     vimeoClient = null,
-    vimeoConfig = conf.vimeo;
+    vimeoConfig = conf.vimeo,
+    streamCollection = "stream";
 
 var ApiHandler = function() {
     try {
@@ -46,21 +47,87 @@ var ApiHandler = function() {
 };
 
 ApiHandler.prototype.twitter = function(request, response) {
-    var onError = function (err, res, body) {
-        response.send({"error": err});
-    },
-    onSuccess = function (data) {
-        var obj = JSON.parse(data);
-        response.send({"status":"ok","data": obj});
-    };
     if (twitterClient) {
-        twitterClient.getCustomApiCall('/statuses/user_timeline.json', {
-            screen_name: "ksuayan",
-            count: 100
+        var onError = function (err, res, body) {
+            response.send({"error": err});
+        },
+        onSuccess = function (data) {
+            var obj = JSON.parse(data);
+            response.send({"status":"ok","data": obj});
+        };
+        twitterClient.getUserTimeline({
+            screen_name:"ksuayan",
+            count:'200'
         }, onError, onSuccess);
     }
-
 };
+
+
+ApiHandler.prototype.importTwitterFeed = function(req, res) {
+
+    if (twitterClient) {
+        var getMinAttributeValue = function(key, list) {
+            var minValue = 0;
+            if (list.length === 1) {
+                minValue = list[0][key];
+            } else if (list.length > 1) {
+                minValue = list[0][key];
+                for (var i= 1, n=list.length; i<n; i++) {
+                    if (list[i][key] < minValue) {
+                        minValue = list[i][key];
+                    }
+                }
+            }
+            return minValue;
+        };
+        var throttleInterval = 2000,
+            totalDocs = 0,
+        query = {
+            screen_name:"ksuayan",
+            count:'200'
+        },
+        onError = function (err, res, body) {
+            res.send({"error": err});
+        },
+
+        onSuccess = function (data) {
+
+            var twitterData = JSON.parse(data);
+            if (twitterData && twitterData.length) {
+                var normalized = content.normalizeList(twitterData, content.normalizeTwitter),
+                    current_max_id = getMinAttributeValue("sourceId", normalized);
+                    totalDocs = totalDocs + normalized.length;
+
+                console.log("current_max_id", current_max_id);
+                content.saveDocumentList(streamCollection, normalized,
+                    function(okDocs){
+                        console.log("saved", okDocs.length);
+                        if (normalized.length === 200) {
+                            getTwitterData(current_max_id);
+                        } else {
+                            res.send({"status": "ok", "total": totalDocs});
+                        }
+                    },
+                    function(errDocs){
+                        console.log("errDocs", errDocs.length);
+                    });
+            } else {
+                res.send({"status":"ok"});
+            }
+        };
+
+        var getTwitterData = function(max_id) {
+            if (max_id) {
+                query.max_id = max_id;
+            }
+            setTimeout(function(){
+                twitterClient.getUserTimeline(query, onError, onSuccess);
+            }, throttleInterval);
+        };
+        getTwitterData(null);
+    }
+};
+
 
 ApiHandler.prototype.vimeo = function(request, response) {
     var count = (request.params.count && request.params.count < 30) ? request.params.count : 5;
@@ -148,7 +215,7 @@ ApiHandler.prototype.getTextById = function(req, res) {
 
 ApiHandler.prototype.updateText = function(req, res) {
     var onSuccess = function(textObj) {
-        return res.send(textObj)
+        return res.send(textObj);
     };
     var onError = function(err) {
         return res.send(err);
@@ -174,7 +241,7 @@ ApiHandler.prototype.createText = function(req, res) {
         text: req.body.text,
         locale: req.body.locale || conf.defaultLocale
     };
-    content.createText(textObj, onSuccess, onError)
+    content.createText(textObj, onSuccess, onError);
 };
 
 ApiHandler.prototype.deleteText = function(req, res) {
@@ -184,7 +251,7 @@ ApiHandler.prototype.deleteText = function(req, res) {
     var onError = function(err) {
         return res.send(err);
     };
-    content.deleteText(req.params.id, onSuccess, onError)
+    content.deleteText(req.params.id, onSuccess, onError);
 };
 
 
@@ -232,12 +299,12 @@ ApiHandler.prototype.createPage = function(req, res) {
         body: req.body.body,
         content: req.body.content
     };
-    content.createPage(pageObj, onSuccess, onError)
+    content.createPage(pageObj, onSuccess, onError);
 };
 
 ApiHandler.prototype.updatePage = function(req, res) {
     var onSuccess = function(pageObj) {
-        return res.send(pageObj)
+        return res.send(pageObj);
     };
     var onError = function(err) {
         return res.send(err);
@@ -263,7 +330,7 @@ ApiHandler.prototype.deletePage = function(req, res) {
     var onError = function(err) {
         return res.send(err);
     };
-    content.deletePage(req.params.id, onSuccess, onError)
+    content.deletePage(req.params.id, onSuccess, onError);
 };
 
 //
@@ -273,7 +340,7 @@ ApiHandler.prototype.deletePage = function(req, res) {
 ApiHandler.prototype.getDocument = function(request, response) {
     var result = {status:"error"};
     var query = {};
-    if (typeof request.params.id != 'undefined') {
+    if (typeof request.params.id !== 'undefined') {
         query = { _id: request.params.id };
     }
     content.TextModel.find(query, function(err, docs) {
@@ -382,7 +449,7 @@ ApiHandler.prototype.createLocation = function(req, res) {
         },
         styleHash: req.body.styleHash
     };
-    locations.createLocation(locationObj, onSuccess, onError)
+    locations.createLocation(locationObj, onSuccess, onError);
 };
 
 ApiHandler.prototype.deleteLocation = function(req, res) {
@@ -392,14 +459,7 @@ ApiHandler.prototype.deleteLocation = function(req, res) {
     var onError = function(err) {
         return res.send(err);
     };
-    locations.deleteLocation(req.params.id, onSuccess, onError)
-};
-
-var twitterData = require('../public/data/twitter.json');
-
-ApiHandler.prototype.importTwitterFeed = function(req, res) {
-    var normalized = content.normalizeList(twitterData.data, content.normalizeTwitter);
-    res.send(normalized);
+    locations.deleteLocation(req.params.id, onSuccess, onError);
 };
 
 module.exports = new ApiHandler();

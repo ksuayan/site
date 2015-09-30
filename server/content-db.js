@@ -389,14 +389,12 @@ DocumentDB.prototype.getTileList = function(onSuccess, onError) {
 };
 
 DocumentDB.prototype.processFileUploads = function(fileArray, onSuccess, onError) {
-    var that = this,
-        remaining = fileArray.length,
+    var remaining = fileArray.length,
         okFiles = [],
         errFiles = [];
     var checkLast = function() {
             remaining--;
-            console.log("remaining", remaining);
-            if (remaining==0) {
+            if (remaining===0) {
                 if (errFiles.length) {
                     onError(errFiles);
                 } else if (onSuccess && typeof onSuccess ==='function') {
@@ -472,10 +470,10 @@ DocumentDB.prototype.normalizeList = function(data, converter) {
  */
 DocumentDB.prototype.normalizeTwitter = function(item) {
     var newObj = {
-        recordType: "twitter",
+        type: "twitter",
+        sourceId: item.id,
         user: item.user.screen_name,
         dateCreated: new Date(item.created_at),
-        id: item.id,
         body: item.text,
         geo: item.geo,
         coordinates: item.coordinates,
@@ -486,5 +484,57 @@ DocumentDB.prototype.normalizeTwitter = function(item) {
 };
 
 
+DocumentDB.prototype.saveDocumentList = function(collectionName, docList, onSuccess, onError) {
+    var remaining = docList.length,
+        okDocs = [],
+        errDocs = [];
+    var checkLast = function() {
+            remaining--;
+            if (remaining===0) {
+                if (errDocs.length) {
+                    onError(errDocs);
+                } else if (onSuccess && typeof onSuccess ==='function') {
+                    onSuccess(okDocs);
+                }
+            }
+        },
+        onSaveSuccess = function(okDoc){
+            okDocs.push(okDoc);
+            checkLast();
+        }, onSaveError = function(err) {
+            console.log("save error: ", err);
+            errDocs.push(err);
+            checkLast();
+        };
+
+    for (var i=0,n=docList.length; i<n; i++ ) {
+        var docObj = docList[i];
+        this.saveDocument(collectionName, docObj, onSaveSuccess, onSaveError);
+    }
+};
+
+DocumentDB.prototype.saveDocument = function(collectionName, docObj, onSuccess, onError) {
+    var collection = mongoClient.db.collection(collectionName),
+        query = {
+            type: docObj.type,
+            sourceId: docObj.sourceId
+        },
+        sort = {
+            dateCreated: 1
+        },
+        options = {
+            new:true,
+            upsert:true
+        };
+
+    collection.findAndModify(query, sort, docObj, options, function(err, foundDoc) {
+        if (err) {
+            return util.HandleError(err, onError);
+        }
+        if (typeof onSuccess === 'function') {
+            onSuccess(foundDoc);
+        }
+    });
+};
 
 module.exports = new DocumentDB();

@@ -242,7 +242,7 @@ app.get('/track',         itunes.getTrackList);
 app.get('/track/:id',     itunes.getTrack);
 
 // API
-app.get('/api/twitterStub', api.importTwitterFeed);
+app.get('/api/twitter/import', api.importTwitterFeed);
 
 app.get('/api/timeline',    api.getTimeline);
 app.get('/api/tiles',       api.getTileList);
