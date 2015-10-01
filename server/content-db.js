@@ -483,6 +483,20 @@ DocumentDB.prototype.normalizeTwitter = function(item) {
     return newObj;
 };
 
+DocumentDB.prototype.normalizeVimeo = function(item) {
+    var newObj = {
+        type: "vimeo",
+        sourceId: item.uri,
+        user: item.user.uri,
+        dateCreated: new Date(item.created_time),
+        body: item.embed.html,
+        title: item.name,
+        description: item.description,
+        duration: item.duration,
+        pictures: item.pictures
+    };
+    return newObj;
+};
 
 DocumentDB.prototype.saveDocumentList = function(collectionName, docList, onSuccess, onError) {
     var remaining = docList.length,

@@ -80,34 +80,34 @@ ApiHandler.prototype.importTwitterFeed = function(req, res) {
             }
             return minValue;
         };
-        var throttleInterval = 2000,
+        var throttleInterval = 500,
             totalDocs = 0,
         query = {
             screen_name:"ksuayan",
-            count:'200'
+            count: 200
         },
         onError = function (err, res, body) {
             res.send({"error": err});
         },
-
         onSuccess = function (data) {
-
             var twitterData = JSON.parse(data);
             if (twitterData && twitterData.length) {
                 var normalized = content.normalizeList(twitterData, content.normalizeTwitter),
                     current_max_id = getMinAttributeValue("sourceId", normalized);
-                    totalDocs = totalDocs + normalized.length;
 
+                totalDocs = totalDocs + normalized.length;
                 console.log("current_max_id", current_max_id);
                 content.saveDocumentList(streamCollection, normalized,
+
                     function(okDocs){
                         console.log("saved", okDocs.length);
-                        if (normalized.length === 200) {
-                            getTwitterData(current_max_id);
-                        } else {
+                        if (okDocs.length < query.count) {
                             res.send({"status": "ok", "total": totalDocs});
+                        } else {
+                            getTwitterData(current_max_id);
                         }
                     },
+
                     function(errDocs){
                         console.log("errDocs", errDocs.length);
                     });
@@ -128,6 +128,52 @@ ApiHandler.prototype.importTwitterFeed = function(req, res) {
     }
 };
 
+
+ApiHandler.prototype.importVimeoFeed = function(req, res) {
+
+    if (vimeoClient) {
+        var totalDocs = 0,
+            query = { page: 0, count:25 },
+            onError = function (err, res, body) {
+                res.send({"error": err});
+            },
+            onSuccess = function (body) {
+                var vimeoData = body.data;
+                if (vimeoData && vimeoData.length) {
+                    var normalized = content.normalizeList(vimeoData, content.normalizeVimeo);
+                    totalDocs = totalDocs + normalized.length;
+                    content.saveDocumentList(streamCollection, normalized,
+                        function(okDocs){
+                            console.log("saved", okDocs.length);
+                            if (normalized.length === query.count) {
+                                getVimeoData();
+                            } else {
+                                res.send({"status": "ok", "total": totalDocs});
+                            }
+                        },
+                        function(errDocs){
+                            console.log("errDocs", errDocs.length);
+                        });
+                } else {
+                    res.send({"status":"ok"});
+                }
+            };
+        var getVimeoData = function() {
+            query.page++;
+            vimeoClient.request({
+                path: '/me/videos',
+                query : query
+            }, function (error, body, status_code, headers) {
+                if (error) {
+                    onError(error);
+                } else {
+                    onSuccess(body);
+                }
+            });
+        };
+        getVimeoData();
+    }
+};
 
 ApiHandler.prototype.vimeo = function(request, response) {
     var count = (request.params.count && request.params.count < 30) ? request.params.count : 5;
