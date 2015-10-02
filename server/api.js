@@ -59,7 +59,7 @@ ApiHandler.prototype.twitter = function(request, response) {
         };
         twitterClient.getUserTimeline({
             screen_name:"ksuayan",
-            count:'200'
+            count:'20'
         }, onError, onSuccess);
     }
 };
@@ -192,7 +192,7 @@ ApiHandler.prototype.vimeo = function(request, response) {
             path: '/me/videos',
             query : {
                 page : 1,
-                per_page : 100
+                per_page : 10
             }
         }, function (error, body, status_code, headers) {
             if (error) {
