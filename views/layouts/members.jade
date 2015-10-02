@@ -8,4 +8,9 @@ block content
           include ../content/js-demo
 
 block append scripts
-  script(src="/js/sandbox.js")
+  script.
+    var socketHost = "#{config.socketHost}",
+        username = "#{user.username}";
+  script(type="text/javascript", src="/js/sandbox.js")
+  script(type="text/javascript", src="/socket.io/socket.io.js")
+  script(type="text/javascript", src="/js/gb-chat-client.js")

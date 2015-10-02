@@ -1,7 +1,8 @@
 var mongoClient = require('./mongo-client'),
     mongoose = mongoClient.mongoose,
     conf = require('./conf'),
-    util = require('./apputil');
+    util = require('./apputil'),
+    chatServer = require('./chat-server');
 
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
@@ -436,6 +437,7 @@ DocumentDB.prototype.updateUploadsDB = function(fileObj, onSuccess, onError) {
                     return util.HandleError(err, onError);
                 }
                 console.log("ok:", fileObj);
+                chatServer.message("uploaded: "+fileObj.originalname);
                 if (typeof onSuccess === 'function') {
                     onSuccess(fileObj);
                 }

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-var express = require('express'),
+var http = require('http'),
+    express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     multer = require('multer'),
@@ -11,9 +12,13 @@ var express = require('express'),
     view = require('./view'),
     itunes = require('./itunes'),
     api = require('./api'),
-    users = require('./users');
+    users = require('./users'),
+    server = http.createServer(app),
+    chatServer = require('./chat-server');
 
-var socialEnabled = false,
+chatServer.listen(server);
+
+var socialEnabled = true,
     passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
@@ -29,7 +34,6 @@ passport.deserializeUser(function(obj, done) { done(null, obj); });
  *   Passport.JS Strategies
  *   ----------------------
  */
-
 
 if (socialEnabled) {
     passport.use(new FacebookStrategy({
@@ -287,7 +291,9 @@ app.get('/logout', function(req, res){
 // default handler
 app.get('*',                view.notfound);
 
-app.listen(conf.port);
+// app.listen(conf.port);
+server.listen(conf.port);
+
 console.log('Go to http://localhost:' + conf.port);
 console.log('path: ', __dirname);
 module.exports = app;

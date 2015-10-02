@@ -3,6 +3,7 @@ var config = {
     port : 9000,
     mediaHost : "//cdn.suayan.com",
     streamHost : "rtmp://stream.suayan.com",
+    socketHost : "http://dev.suayan.com:9000",
     mongoURL : "mongodb://localhost/site",
     defaultLocale : "en_US",
     name : 'kyo suayan',
@@ -55,6 +56,7 @@ if (process.env.NODE_ENV === "production") {
     }
     config.caching = true;
     config.expires = 60 * 60 * 24 * 4; // 4 days
+    config.socketHost = "http://node.suayan.com";
     config.facebook.callbackURL= "http://node.suayan.com/auth/facebook/callback";
     config.google.callbackURL= "http://node.suayan.com/auth/google/callback";
     config.twitter.callbackUrl= "http://node.suayan.com/auth/twitter/callback";

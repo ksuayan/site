@@ -180,9 +180,6 @@ input[readonly] {
   cursor: text !important;
   color: #333;
 }
-.list-group-item {
-  padding: 20px 15px;
-}
 .hero-unit {
   padding: 0px;
   background-color: rgba(255, 255, 255, 0.75);

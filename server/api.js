@@ -3,6 +3,8 @@ var timeline = require('./timeline-db'),
     locations = require('./locations-db'),
     conf = require('./conf'),
     util = require('./apputil'),
+    chatServer = require('./chat-server'),
+
     Twitter = require('twitter-node-client').Twitter,
     Vimeo = require('vimeo').Vimeo,
     Flickr = require('flickrapi');
@@ -100,8 +102,10 @@ ApiHandler.prototype.importTwitterFeed = function(req, res) {
                 content.saveDocumentList(streamCollection, normalized,
 
                     function(okDocs){
-                        console.log("saved", okDocs.length);
+                        chatServer.message("twitter saved: " + okDocs.length);
+                        console.log("twiter saved: ", okDocs.length);
                         if (okDocs.length < query.count) {
+                            chatServer.message("twitter import done. " + totalDocs);
                             res.send({"status": "ok", "total": totalDocs});
                         } else {
                             getTwitterData(current_max_id);
@@ -124,6 +128,8 @@ ApiHandler.prototype.importTwitterFeed = function(req, res) {
                 twitterClient.getUserTimeline(query, onError, onSuccess);
             }, throttleInterval);
         };
+
+        chatServer.message("twitter import started");
         getTwitterData(null);
     }
 };
@@ -144,10 +150,12 @@ ApiHandler.prototype.importVimeoFeed = function(req, res) {
                     totalDocs = totalDocs + normalized.length;
                     content.saveDocumentList(streamCollection, normalized,
                         function(okDocs){
+                            chatServer.message("vimeo saved: " + okDocs.length);
                             console.log("saved", okDocs.length);
                             if (normalized.length === query.count) {
                                 getVimeoData();
                             } else {
+                                chatServer.message("vimeo import done. " + totalDocs);
                                 res.send({"status": "ok", "total": totalDocs});
                             }
                         },
@@ -171,6 +179,7 @@ ApiHandler.prototype.importVimeoFeed = function(req, res) {
                 }
             });
         };
+        chatServer.message("start vimeo import.");
         getVimeoData();
     }
 };
