@@ -56,11 +56,11 @@ ApiHandler.prototype.instagramHandleAuth  = function(request, response) {
     Instagram.authorize_user(request.query.code, conf.instagram.callbackURL, function(err, result) {
         if (err) {
             console.log(err.body);
-            response.send("Didn't work");
+            response.send({"status":"error", "error": err.body});
         } else {
             Instagram.use({access_token: result.access_token});
-            console.log('Yay! Access token is ' + result.access_token);
-            response.send('You made it!!');
+            // console.log('Yay! Access token is ' + result.access_token);
+            response.send({"status":"ok"});
         }
     });
 };
@@ -70,12 +70,15 @@ ApiHandler.prototype.instagramSelfFeed = function(request, response) {
         if (err) {
             response.send({"status":"error", "error": err});
         } else {
-            response.send({"status":"ok", "data": medias});
+            response.send({"status":"ok",
+                "pagination":pagination,
+                "limit": limit,
+                "remaining":remaining,
+                "data": medias
+            });
         }
     });
 };
-
-
 
 ApiHandler.prototype.twitter = function(request, response) {
     if (twitterClient) {
