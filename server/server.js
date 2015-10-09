@@ -170,6 +170,10 @@ if (socialEnabled) {
         function(req, res) {
             res.redirect('/members');
         });
+
+    app.get('/auth/instagram', api.instagramAuthorize);
+    app.get('/auth/instagram/callback', api.instagramHandleAuth);
+    app.get('/api/instagram', api.instagramSelfFeed);
 }
 
 

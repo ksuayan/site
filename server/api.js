@@ -5,6 +5,7 @@ var timeline = require('./timeline-db'),
     util = require('./apputil'),
     chatServer = require('./chat-server'),
 
+    Instagram = require('instagram-node').instagram(),
     Twitter = require('twitter-node-client').Twitter,
     Vimeo = require('vimeo').Vimeo,
     Flickr = require('flickrapi');
@@ -17,17 +18,7 @@ var flickrClient = null,
 
 var ApiHandler = function() {
     try {
-        var FlickrOptions = {
-            api_key: process.env['FLICKR_KEY'],
-            secret: process.env['FLICKR_USER_ID'],
-            user_id: process.env['FLICKR_SECRET'],
-            access_token: process.env['FLICKR_ACCESS_TOKEN'],
-            access_token_secret: process.env['FLICKR_ACCESS_TOKEN_SECRET'],
-            progress: false,
-            silent: true,
-            nobrowser: true
-        };
-        Flickr.authenticate(FlickrOptions, function(error, flickr) {
+        Flickr.authenticate(conf.flickr, function(error, flickr) {
             flickrClient = flickr;
         });
     } catch (err) {
@@ -45,8 +36,46 @@ var ApiHandler = function() {
     } catch (err) {
         console.log("Error Vimeo init: ", err);
     }
+
+    Instagram.use({
+        client_id: conf.instagram.client_id,
+        client_secret: conf.instagram.client_secret
+    });
+
     console.log("Initialized API handler");
 };
+
+ApiHandler.prototype.instagramAuthorize = function(request, response) {
+    response.redirect(Instagram.get_authorization_url(conf.instagram.callbackURL, {
+        scope: ['likes'],
+        state: 'a state'
+    }));
+};
+
+ApiHandler.prototype.instagramHandleAuth  = function(request, response) {
+    Instagram.authorize_user(request.query.code, conf.instagram.callbackURL, function(err, result) {
+        if (err) {
+            console.log(err.body);
+            response.send("Didn't work");
+        } else {
+            Instagram.use({access_token: result.access_token});
+            console.log('Yay! Access token is ' + result.access_token);
+            response.send('You made it!!');
+        }
+    });
+};
+
+ApiHandler.prototype.instagramSelfFeed = function(request, response) {
+    Instagram.user_self_media_recent(function(err, medias, pagination, remaining, limit) {
+        if (err) {
+            response.send({"status":"error", "error": err});
+        } else {
+            response.send({"status":"ok", "data": medias});
+        }
+    });
+};
+
+
 
 ApiHandler.prototype.twitter = function(request, response) {
     if (twitterClient) {

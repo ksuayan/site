@@ -1,5 +1,5 @@
 var config = {
-    host : "http://localhost",
+    host : "http://dev.suayan.com:9000",
     port : 9000,
     mediaHost : "//cdn.suayan.com",
     streamHost : "rtmp://stream.suayan.com",
@@ -29,22 +29,34 @@ var config = {
         callbackURL: "http://dev.suayan.com:9000/auth/linkedin/callback"
     },
     twitter: {
-        "consumerKey": process.env['TWITTER_CONSUMER_KEY'],
-        "consumerSecret": process.env['TWITTER_CONSUMER_SECRET'],
-        "accessToken": process.env['TWITTER_ACCESS_TOKEN'],
-        "accessTokenSecret": process.env['TWITTER_ACCESS_SECRET'],
-        "callbackURL": "http://dev.suayan.com:9000/auth/twitter/callback"
+        consumerKey: process.env['TWITTER_CONSUMER_KEY'],
+        consumerSecret: process.env['TWITTER_CONSUMER_SECRET'],
+        accessToken: process.env['TWITTER_ACCESS_TOKEN'],
+        accessTokenSecret: process.env['TWITTER_ACCESS_SECRET'],
+        callbackURL: "http://dev.suayan.com:9000/auth/twitter/callback"
     },
     vimeo: {
-        "clientId": process.env['VIMEO_CLIENT_ID'],
-        "clientSecret": process.env['VIMEO_CLIENT_SECRET'],
-        "accessToken": process.env['VIMEO_ACCESS_TOKEN']
+        clientId: process.env['VIMEO_CLIENT_ID'],
+        clientSecret: process.env['VIMEO_CLIENT_SECRET'],
+        accessToken: process.env['VIMEO_ACCESS_TOKEN']
     },
     flickr: {
-        "api_key": process.env['FLICKR_KEY'],
-        "secret": process.env['FLICKR_SECRET'],
-        progress: false
+        api_key: process.env['FLICKR_KEY'],
+        secret: process.env['FLICKR_USER_ID'],
+        user_id: process.env['FLICKR_SECRET'],
+        access_token: process.env['FLICKR_ACCESS_TOKEN'],
+        access_token_secret: process.env['FLICKR_ACCESS_TOKEN_SECRET'],
+        progress: false,
+        silent: true,
+        nobrowser: true
+    },
+    instagram: {
+       client_id: process.env['INSTAGRAM_CLIENT_ID'],
+       client_secret: process.env['INSTAGRAM_CLIENT_SECRET'],
+       callbackURL: "http://dev.suayan.com:9000/auth/instagram/callback"
     }
+
+
 };
 
 if (process.env.NODE_ENV === "production") {
@@ -62,9 +74,9 @@ if (process.env.NODE_ENV === "production") {
     config.twitter.callbackUrl= "http://node.suayan.com/auth/twitter/callback";
     config.linkedin.callbackURL= "http://node.suayan.com/auth/linkedin/callback";
     config.twitter.callbackUrl = "http://node.suayan.com/auth/twitter/callback";
+    config.instagram.callbackURL= "http://node.suayan.com/auth/instagram/callback";
 }
 
 console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("config:", config);
 
 module.exports = config;
