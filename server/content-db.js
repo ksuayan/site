@@ -500,6 +500,23 @@ DocumentDB.prototype.normalizeVimeo = function(item) {
     return newObj;
 };
 
+DocumentDB.prototype.normalizeInstagram = function(item) {
+    var newObj = {
+        type: "instagram",
+        sourceId: item.id,
+        url: item.link,
+        user: item.user,
+        dateCreated: new Date(item.created_time * 1000),
+        geo: item.location,
+        body: (item.caption && item.caption.text) ? item.caption.text : "",
+        pictures: item.images,
+        media: item.type,
+        likes: item.likes,
+        tags: item.tags
+    };
+    return newObj;
+};
+
 DocumentDB.prototype.saveDocumentList = function(collectionName, docList, onSuccess, onError) {
     var remaining = docList.length,
         okDocs = [],
@@ -549,6 +566,18 @@ DocumentDB.prototype.saveDocument = function(collectionName, docObj, onSuccess, 
         }
         if (typeof onSuccess === 'function') {
             onSuccess(foundDoc);
+        }
+    });
+};
+
+DocumentDB.prototype.getDocumentList = function(collectionName, query, limit, onSuccess, onError) {
+    var collection = mongoClient.db.collection(collectionName);
+    collection.find(query).limit(limit).toArray(function(err, docs) {
+        if (err) {
+            return util.HandleError(err, onError);
+        }
+        if (typeof onSuccess === 'function') {
+            onSuccess(docs);
         }
     });
 };

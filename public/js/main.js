@@ -44,4 +44,23 @@ $(function(){
         });
     }
 
+    if ($("#stream").length) {
+        $.ajax({
+            url: "/api/stream",
+            success: function(data) {
+                if (data && data.status === "ok") {
+                    var instagramTemplate = JST["handlebars/instagram.hbs"],
+                        items = data.data;
+                    for (var i= 0,n=items.length; i<n; i++) {
+                        var item = items[i];
+                        if (item.type === "instagram") {
+                            item.ago = moment(item.dateCreated).fromNow();
+                            $("#stream").append($(instagramTemplate(item)));
+                        }
+                    }
+                }
+            }
+        });
+    }
+
 });

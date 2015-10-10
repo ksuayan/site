@@ -59,6 +59,7 @@ ChatServer.prototype.listen = function(server) {
 };
 
 ChatServer.prototype.message = function(message) {
+    console.log("system", message);
     this.io.sockets.emit('system', {"message": message});
 };
 

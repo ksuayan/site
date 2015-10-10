@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-var express = require('express'),
+var http = require('http'),
+    express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     multer = require('multer'),
@@ -11,7 +12,11 @@ var express = require('express'),
     view = require('./view'),
     api = require('./api'),
     csv = require('./api-csv'),
-    users = require('./users');
+    users = require('./users'),
+    server = http.createServer(app),
+    chatServer = require('./chat-server');
+
+chatServer.listen(server);
 
 var globalErrorHandler = function(err, req, res, next){
     console.error(err.stack);
@@ -60,12 +65,19 @@ app.get("/page/*", function(req, res){
 app.get('/', view.fullScreen);
 
 
-app.get('/geo', function(req, res){
-    res.render("content/geo");
-});
+app.get('/geo', function(req, res){ res.render("content/geo"); });
 app.post('/api/csv', csv.saveJsonToCSV);
 
+app.get('/auth/instagram', api.instagramAuthorize);
+app.get('/auth/instagram/callback', api.instagramHandleAuth);
+app.get('/api/instagram', api.instagramSelfFeed);
+
+
 // API
+app.get('/api/twitter/import', api.importTwitterFeed);
+app.get('/api/vimeo/import', api.importVimeoFeed);
+app.get('/api/instagram/import', api.importInstagram);
+
 app.get('/api/timeline',    api.getTimeline);
 app.get('/api/tiles',       api.getTileList);
 
@@ -103,9 +115,8 @@ app.delete('/api/loc/:id',  api.deleteLocation);
 // default handler
 app.get('*',                view.notfound);
 
-app.listen(8100);
-console.log('geo-csv-server\nGo to http://localhost:8100');
+app.listen(conf.port);
+console.log('batch-server\nGo to '+conf.host);
 console.log('path: ', __dirname);
-
 
 module.exports = app;

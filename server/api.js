@@ -16,6 +16,21 @@ var flickrClient = null,
     vimeoConfig = conf.vimeo,
     streamCollection = "stream";
 
+var getMinAttributeValue = function(key, list) {
+    var minValue = 0;
+    if (list.length === 1) {
+        minValue = list[0][key];
+    } else if (list.length > 1) {
+        minValue = list[0][key];
+        for (var i= 1, n=list.length; i<n; i++) {
+            if (list[i][key] < minValue) {
+                minValue = list[i][key];
+            }
+        }
+    }
+    return minValue;
+};
+
 var ApiHandler = function() {
     try {
         Flickr.authenticate(conf.flickr, function(error, flickr) {
@@ -45,6 +60,17 @@ var ApiHandler = function() {
     console.log("Initialized API handler");
 };
 
+ApiHandler.prototype.getStream = function(request, response) {
+
+    var onError = function (err, res, body) {
+            response.send({"error": err});
+        },
+        onSuccess = function (data) {
+            response.send({"status":"ok","data": data});
+        };
+    content.getDocumentList(streamCollection, {type:"instagram"}, 24, onSuccess, onError);
+};
+
 ApiHandler.prototype.instagramAuthorize = function(request, response) {
     response.redirect(Instagram.get_authorization_url(conf.instagram.callbackURL, {
         scope: ['likes'],
@@ -59,7 +85,6 @@ ApiHandler.prototype.instagramHandleAuth  = function(request, response) {
             response.send({"status":"error", "error": err.body});
         } else {
             Instagram.use({access_token: result.access_token});
-            // console.log('Yay! Access token is ' + result.access_token);
             response.send({"status":"ok"});
         }
     });
@@ -80,6 +105,54 @@ ApiHandler.prototype.instagramSelfFeed = function(request, response) {
     });
 };
 
+ApiHandler.prototype.importInstagram = function(req, res) {
+
+    var totalDocs = 0,
+        query = { count:20 },
+        onError = function (err, res, body) {
+            res.send({"error": err});
+        },
+        onSuccess = function (igData) {
+            // console.log("igData>>> ", igData);
+            if (igData && igData.length) {
+                var normalized = content.normalizeList(igData, content.normalizeInstagram);
+                totalDocs = totalDocs + normalized.length;
+
+                content.saveDocumentList(streamCollection, normalized,
+                    function(okDocs){
+                        chatServer.message("instagram saved: " + okDocs.length);
+                        console.log("saved", okDocs.length);
+                        if (normalized.length === query.count) {
+                            getInstagramData();
+                        } else {
+                            chatServer.message("instagram import done. " + totalDocs);
+                            res.send({"status": "ok", "total": totalDocs});
+                        }
+                    },
+                    function(errDocs){
+                        console.log("errDocs", errDocs.length);
+                    });
+            } else {
+                res.send({"status":"ok"});
+            }
+        };
+    var getInstagramData = function() {
+        Instagram.user_self_media_recent(query, function(err, medias, pagination, remaining, limit) {
+            if (err) {
+                onError(err);
+            } else {
+                if (pagination.next_max_id) {
+                    query.max_id = pagination.next_max_id;
+                }
+                onSuccess(medias);
+            }
+        });
+    };
+    chatServer.message("start instagram import.");
+    getInstagramData();
+
+};
+
 ApiHandler.prototype.twitter = function(request, response) {
     if (twitterClient) {
         var onError = function (err, res, body) {
@@ -96,24 +169,9 @@ ApiHandler.prototype.twitter = function(request, response) {
     }
 };
 
-
 ApiHandler.prototype.importTwitterFeed = function(req, res) {
 
     if (twitterClient) {
-        var getMinAttributeValue = function(key, list) {
-            var minValue = 0;
-            if (list.length === 1) {
-                minValue = list[0][key];
-            } else if (list.length > 1) {
-                minValue = list[0][key];
-                for (var i= 1, n=list.length; i<n; i++) {
-                    if (list[i][key] < minValue) {
-                        minValue = list[i][key];
-                    }
-                }
-            }
-            return minValue;
-        };
         var throttleInterval = 500,
             totalDocs = 0,
         query = {
@@ -165,7 +223,6 @@ ApiHandler.prototype.importTwitterFeed = function(req, res) {
         getTwitterData(null);
     }
 };
-
 
 ApiHandler.prototype.importVimeoFeed = function(req, res) {
 

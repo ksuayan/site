@@ -250,9 +250,7 @@ app.get('/track',         itunes.getTrackList);
 app.get('/track/:id',     itunes.getTrack);
 
 // API
-app.get('/api/twitter/import', api.importTwitterFeed);
-app.get('/api/vimeo/import', api.importVimeoFeed);
-
+app.get('/api/stream',      api.getStream);
 app.get('/api/timeline',    api.getTimeline);
 app.get('/api/tiles',       api.getTileList);
 
