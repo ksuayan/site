@@ -475,6 +475,8 @@ DocumentDB.prototype.normalizeTwitter = function(item) {
         type: "twitter",
         sourceId: item.id,
         user: item.user.screen_name,
+        userPic: item.user.profile_background_image_url,
+        userId: item.user.id,
         dateCreated: new Date(item.created_at),
         body: item.text,
         geo: item.geo,
@@ -490,12 +492,15 @@ DocumentDB.prototype.normalizeVimeo = function(item) {
         type: "vimeo",
         sourceId: item.uri,
         user: item.user.uri,
+        url: item.link,
         dateCreated: new Date(item.created_time),
         body: item.embed.html,
         title: item.name,
         description: item.description,
         duration: item.duration,
-        pictures: item.pictures
+        pictures: item.pictures,
+        privacy: item.privacy,
+        tags: item.tags
     };
     return newObj;
 };
@@ -572,7 +577,10 @@ DocumentDB.prototype.saveDocument = function(collectionName, docObj, onSuccess, 
 
 DocumentDB.prototype.getDocumentList = function(collectionName, query, limit, onSuccess, onError) {
     var collection = mongoClient.db.collection(collectionName);
-    collection.find(query).limit(limit).toArray(function(err, docs) {
+    collection.find(query)
+        .sort({dateCreated: -1})
+        .limit(limit)
+        .toArray(function(err, docs) {
         if (err) {
             return util.HandleError(err, onError);
         }
