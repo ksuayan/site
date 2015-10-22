@@ -89,7 +89,7 @@
 }
 #map-canvas {
   width: 100%;
-  height: 700px;
+  height: 500px;
   padding: 0px;
   display: block;
 }
@@ -103,7 +103,7 @@
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   #map-canvas {
-    height: 500px;
+    height: 400px;
   }
 }
 #map-canvas .info {

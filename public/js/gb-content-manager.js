@@ -56,11 +56,13 @@ gb.ui.ContentManager.include({
                 .removeClass("glyphicon-home")
                 .addClass("glyphicon-picture");
             this.show();
+            $(".container").fadeIn();
         } else {
             $("#ui-toolbar .glyphicon-picture")
                 .removeClass("glyphicon-picture")
                 .addClass("glyphicon-home");
             this.hide();
+            $(".container").fadeOut();
         }
     },
 
@@ -87,7 +89,7 @@ gb.ui.ContentManager.include({
     show: function() {
         var that = this;
         this.content.transition({opacity:1},
-            2000,
+            800,
             function(){
                 that.content.attr({"visibility":"visible", "display":"block"});
             });
@@ -99,7 +101,7 @@ gb.ui.ContentManager.include({
     hide: function() {
         var that = this;
         this.content.transition({opacity:0},
-            2000,
+            800,
             function(){
                 that.content.attr({"visibility":"hidden", "display":"none"});
             });

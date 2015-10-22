@@ -160,7 +160,8 @@ input[readonly] {
 }
 
 .media {
-    padding-top: 20px;
+    padding: 10px 0px;
+    border-bottom: 1px solid #cecece;
     h2 {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -170,7 +171,11 @@ input[readonly] {
     }
     .instagram {
         display: block;
-        margin: 0px auto 20px auto;
+        margin: 0px auto 10px auto;
+        @media (max-width: (@screen-sm-max)) {
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 
@@ -182,7 +187,7 @@ input[readonly] {
 .when {
     font-size: 16px;
     color: #999;
-    margin-left: 15px;
+    margin-left: 10px;
     margin-right: 5px;
 }
 
