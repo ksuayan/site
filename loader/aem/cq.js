@@ -14,6 +14,7 @@ var postData = qs.stringify({
         status: "yey!",
         multi: ['eenie','mini','miney','moe']
     }),
+
     postOptions = {
         hostname: 'localhost',
         auth: 'admin:admin',
@@ -25,9 +26,9 @@ var postData = qs.stringify({
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': postData.length
         }
-    };
+    },
 
-var responseHandler = function (response) {
+    responseHandler = function (response) {
     console.log('status: ' + response.statusCode);
     console.log('headers: ' + JSON.stringify(response.headers));
     response.setEncoding('utf8');
