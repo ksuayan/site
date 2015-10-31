@@ -144,22 +144,35 @@ UserDB.prototype.MapReduceProfileKey = function(parentAttribute, childAttribute)
 };
 
 
-UserDB.prototype.SaveProfile = function(req, res) {
+UserDB.prototype.SaveProfile = function(req, res, next) {
 
-    var successPath = 'content/success',
+    var successPath = 'content/login',
         errorPath = 'content/signup',
         messages = [],
-        username = req.body.username,
-        password = req.body.password,
-        email = req.body.email,
+        username  = req.body.username,
+        password  = req.body.password,
+        email     = req.body.email,
         firstName = req.body.firstName,
-        lastName = req.body.lastName;
+        lastName  = req.body.lastName;
 
-    var onErrorCallback = function() {
-        res.render(errorPath, { "user": req.user, "errors" : {"messages": messages}});
+    var userForm = {
+        username: username,
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        displayName: firstName
+    };
+
+    var onErrorCallback = function(errorMessages) {
+        // console.log("SaveProfile.onErrorCallback");
+        messages.push(errorMessages);
+        res.render(errorPath, { "user": userForm, "errors" : {"messages": messages}});
     };
 
     var updateUserDB = function() {
+
+        // console.log("SaveProfile.updateUserDB");
+
         var searchUserQuery = {"username": username};
         if (req.user && req.user._id) {
             searchUserQuery = {"_id": req.user._id};
@@ -177,10 +190,14 @@ UserDB.prototype.SaveProfile = function(req, res) {
             {upsert: true},
             function(err){
                 if (err) {
-                    console.log("error on update:", err);
+                    // console.log("error on update:", err);
                     messages.push(err);
                     onErrorCallback();
+
                 } else {
+                    if (!req.user) {
+                        req.user = userForm;
+                    }
                     req.user.username = username;
                     req.user.status = "complete";
                     res.render(successPath);
@@ -230,12 +247,14 @@ UserDB.prototype.SaveProfile = function(req, res) {
 };
 
 UserDB.prototype.IsUsernameAvailable = function(username, onAvailableCallback, onErrorCallback) {
+
+    // console.log("IsUsernameAvailable?", username);
     userdb.UserModel
         .findOne({username: username}, function(err, found){
             if (err || found) {
                 console.log("Username is taken: ", err, found);
                 if (onErrorCallback && typeof onErrorCallback === 'function') {
-                    onErrorCallback();
+                    onErrorCallback(["Username is not available."]);
                 }
             } else {
                 console.log("Username is available: ", username);
