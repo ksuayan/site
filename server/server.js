@@ -193,7 +193,7 @@ app.all("*", function (req, res, next) {
 });
 
 app.get('/members', function(req, res) {
-    var path = 'content/login';
+    var path = 'content/signup';
     if (req.user && req.user.status === 'complete') {
         path = 'layouts/members';
     }
