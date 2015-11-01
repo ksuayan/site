@@ -1,6 +1,5 @@
 var json2csv = require('json2csv'),
     fs = require('fs'),
-
     geoColumns = ['name','address','city','state','zipcode','phone','latitude','longitude'];
 
 var CsvApiHandler = function() {

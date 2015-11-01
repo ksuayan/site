@@ -1,6 +1,5 @@
 var mongoClient = require('./mongo-client'),
     mongoose = mongoClient.mongoose,
-    conf = require('./conf'),
     util = require('./apputil');
 
 var Schema = mongoose.Schema,

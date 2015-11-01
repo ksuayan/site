@@ -4,7 +4,6 @@ var mongoClient = require('./mongo-client'),
     mongoose = mongoClient.mongoose,
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    conf = require('./conf'),
     bcrypt = require('bcrypt-nodejs'),
     SALT_WORK_FACTOR = 10,
     PASS_LENGTH = 4;

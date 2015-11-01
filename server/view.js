@@ -1,5 +1,4 @@
-var conf = require('./conf'),
-    content = require('./content-db'),
+var content = require('./content-db'),
     moment = require('moment');
 
 var ViewHandler = function () {

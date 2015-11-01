@@ -1,10 +1,9 @@
-var timeline = require('./timeline-db'),
+var conf = require('./conf'),
+    timeline = require('./timeline-db'),
     content = require('./content-db'),
     locations = require('./locations-db'),
-    conf = require('./conf'),
     util = require('./apputil'),
     chatServer = require('./chat-server'),
-
     Instagram = require('instagram-node').instagram(),
     Twitter = require('twitter-node-client').Twitter,
     Vimeo = require('vimeo').Vimeo,

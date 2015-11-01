@@ -1,5 +1,3 @@
-var conf = require('./conf');
-
 var Util = function() {
     console.log("Util loaded");
     this.defaultError = {status:"error"};
