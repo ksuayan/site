@@ -1624,7 +1624,7 @@ gb.ui.Stage.include({
     COLORS: ["#333", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
              "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
              "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE",
-             "#FFF1CE", "#17607D",],
+             "#FFF1CE", "#17607D"],
 
     /**
      * @param selector
@@ -1645,11 +1645,10 @@ gb.ui.Stage.include({
             this.jq = $("#"+selector);
             this.contentSelector = "#"+selector+"-content";
             this.content = $("<div id='"+selector+"-content'></div>");
-            this.jq.append(this.content);
 
+            this.jq.append(this.content);
             this.initTiles();
             this.loadTileData();
-            this.show();
 
             this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
                 function(){that.rotate();});
@@ -1686,7 +1685,7 @@ gb.ui.Stage.include({
                 colorIndex++;
             }
         }
-        // this.resizeTiles();
+        this.resizeTiles();
     },
 
     loadTileData: function() {
@@ -1826,7 +1825,9 @@ gb.ui.Stage.include({
         var that = this;
 
         // fadeOut
-        this.tiles[this.currentIndex].jq.transition({opacity:0, queue:false}, 100, "ease");
+        if (this.currentIndex) {
+            this.tiles[this.currentIndex].jq.transition({opacity:0, queue:false}, 100, "ease");
+        }
 
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
