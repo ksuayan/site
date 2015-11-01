@@ -33,8 +33,8 @@ gb.ui.Stage.include({
 
         this.tiles = [];
         this.tileOffsets = [];
-        this.howMany = 20;
-        this.intervalMS = 15000;
+        this.howMany = 15;
+        this.intervalMS = 6000;
         this.currentIndex = 0;
 
         if (selector) {
@@ -55,10 +55,8 @@ gb.ui.Stage.include({
                 function(evt, dir, phase, swipetype, distance){
                     that.onTouchEvent(evt, dir, phase, swipetype, distance);});
 
-            // $(window).resize(function(){that.fadeOut();});
             $("#stage-next").on("click", function(){that.goToNext();});
             $("#stage-prev").on("click", function(){that.goToPrevious();});
-
             console.log("init: Stage.");
         }
     },
@@ -71,8 +69,7 @@ gb.ui.Stage.include({
         this.tileOffsets = [];
         var colorIndex = 0;
         for (var i=0; i<this.howMany; i++) {
-            var tile = new gb.ui.Tile(this.contentSelector,
-            {
+            var tile = new gb.ui.Tile(this.contentSelector, {
                 "id": "tile-"+i,
                 "class" : "tile"
             });
@@ -87,12 +84,11 @@ gb.ui.Stage.include({
                 colorIndex++;
             }
         }
-        this.resizeTiles();
+        // this.resizeTiles();
     },
 
     loadTileData: function() {
         var that = this;
-
         $.get( "/api/tiles", function( data ) {
             var current = 2;
             var template = JST["handlebars/tile.hbs"];
@@ -100,6 +96,7 @@ gb.ui.Stage.include({
                 that.tiles[current].jq.html(template(data[i]));
                 current++;
             }
+            setTimeout(function(){that.start();}, that.intervalMS);
         });
     },
     /**
@@ -224,9 +221,22 @@ gb.ui.Stage.include({
      * @param index {number} the index to go to
      */
     goTo: function(index) {
+        var that = this;
+
+        // fadeOut
+        this.tiles[this.currentIndex].jq.transition({opacity:0, queue:false}, 100, "ease");
+
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset, queue:false}, 1000, "ease");
+        this.content.transition({x:xOffset, queue:false}, 500, "ease", function(){
+            that.jq.trigger({
+                type: "goto-end",
+                slideIndex: index,
+                slideXOffset: xOffset
+            });
+            that.tiles[that.currentIndex]
+                .jq.transition({opacity:1, queue:false}, 1000, "ease");
+        });
     },
 
     /**

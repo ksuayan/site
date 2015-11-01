@@ -3,10 +3,18 @@ extends ../layout
 block content
   #content
     #stage
+      a(href="#", id="stage-prev")
+        span.glyphicon.glyphicon-chevron-left
+      a(href="#", id="stage-next")
+        span.glyphicon.glyphicon-chevron-right
+      a(href="#", id="play-button")
+        span.glyphicon.glyphicon-pause
 
   include ksuayan
-  include ../includes/toolbar
+
+  a(href="#", id="slideshow-button")
+    span.glyphicon.glyphicon-picture
 
 block append scripts
-  img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")
+  // img(src=config.mediaHost+"/images/image-001.jpg",id="background",class="bgheight",alt="")
   script(src=config.mediaHost+"/js/external/raphael-extensions.js")

@@ -1272,6 +1272,12 @@ gb.ui.Timeline.include({
         this.timelineData = null;
 
         var that = this;
+        console.log("timeline init.");
+
+        $("#stage").on("goto-end", function(evt){
+            that.onResizeEndHandler();
+        });
+
         $.getJSON(this.ajaxURL, function(data) {
             that.timelineData = data;
             that.onDataHandler();
@@ -1501,10 +1507,16 @@ gb.ui.Timeline.include({
     },
 
     onResizeEndHandler: function() {
+
         if (this.paper) {
             this.paper.clear();
         }
         this.resize();
+
+        var that = this;
+        gb.util.throttle(function(){
+
+        }, 500);
     },
 
     onDataHandler: function() {
@@ -1623,8 +1635,8 @@ gb.ui.Stage.include({
 
         this.tiles = [];
         this.tileOffsets = [];
-        this.howMany = 20;
-        this.intervalMS = 15000;
+        this.howMany = 15;
+        this.intervalMS = 6000;
         this.currentIndex = 0;
 
         if (selector) {
@@ -1645,10 +1657,8 @@ gb.ui.Stage.include({
                 function(evt, dir, phase, swipetype, distance){
                     that.onTouchEvent(evt, dir, phase, swipetype, distance);});
 
-            // $(window).resize(function(){that.fadeOut();});
             $("#stage-next").on("click", function(){that.goToNext();});
             $("#stage-prev").on("click", function(){that.goToPrevious();});
-
             console.log("init: Stage.");
         }
     },
@@ -1661,8 +1671,7 @@ gb.ui.Stage.include({
         this.tileOffsets = [];
         var colorIndex = 0;
         for (var i=0; i<this.howMany; i++) {
-            var tile = new gb.ui.Tile(this.contentSelector,
-            {
+            var tile = new gb.ui.Tile(this.contentSelector, {
                 "id": "tile-"+i,
                 "class" : "tile"
             });
@@ -1677,12 +1686,11 @@ gb.ui.Stage.include({
                 colorIndex++;
             }
         }
-        this.resizeTiles();
+        // this.resizeTiles();
     },
 
     loadTileData: function() {
         var that = this;
-
         $.get( "/api/tiles", function( data ) {
             var current = 2;
             var template = JST["handlebars/tile.hbs"];
@@ -1690,6 +1698,7 @@ gb.ui.Stage.include({
                 that.tiles[current].jq.html(template(data[i]));
                 current++;
             }
+            setTimeout(function(){that.start();}, that.intervalMS);
         });
     },
     /**
@@ -1814,9 +1823,22 @@ gb.ui.Stage.include({
      * @param index {number} the index to go to
      */
     goTo: function(index) {
+        var that = this;
+
+        // fadeOut
+        this.tiles[this.currentIndex].jq.transition({opacity:0, queue:false}, 100, "ease");
+
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset, queue:false}, 1000, "ease");
+        this.content.transition({x:xOffset, queue:false}, 500, "ease", function(){
+            that.jq.trigger({
+                type: "goto-end",
+                slideIndex: index,
+                slideXOffset: xOffset
+            });
+            that.tiles[that.currentIndex]
+                .jq.transition({opacity:1, queue:false}, 1000, "ease");
+        });
     },
 
     /**
@@ -1876,7 +1898,7 @@ gb.ui.ContentManager.include({
         this.content = $(selector);
         if (this.content.html()) {
             this.visible = true;
-            this.fullscreen = new gb.ui.FullScreen();
+            // this.fullscreen = new gb.ui.FullScreen();
             this.stage = new gb.ui.Stage("stage");
             this.timeline = new gb.ui.Timeline("tile-1");
             $("#tile-0").html('<img src="/img/splash-02.svg"/>');
@@ -1901,13 +1923,13 @@ gb.ui.ContentManager.include({
     toggleSlideShow: function() {
         this.visible = (!this.visible);
         if (this.visible) {
-            $("#ui-toolbar .glyphicon-home")
+            $(".glyphicon-home")
                 .removeClass("glyphicon-home")
                 .addClass("glyphicon-picture");
             this.show();
             $(".container").fadeIn();
         } else {
-            $("#ui-toolbar .glyphicon-picture")
+            $(".glyphicon-picture")
                 .removeClass("glyphicon-picture")
                 .addClass("glyphicon-home");
             this.hide();
@@ -1920,12 +1942,12 @@ gb.ui.ContentManager.include({
      */
     toggleStage: function() {
         if (this.stage.isRunning()) {
-            $("#ui-toolbar .glyphicon-pause")
+            $(".glyphicon-pause")
                 .removeClass("glyphicon-pause")
                 .addClass("glyphicon-play");
             this.stage.stop();
         } else {
-            $("#ui-toolbar .glyphicon-play")
+            $(".glyphicon-play")
                 .removeClass("glyphicon-play")
                 .addClass("glyphicon-pause");
             this.stage.start();

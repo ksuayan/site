@@ -1,8 +1,9 @@
 @import (reference) '../../bower_components/bootstrap/less/bootstrap';
 @import "global.less";
 
+
 html {
-    background-color: #000;
+    background-color: #294860;
 }
 
 body {
@@ -204,77 +205,12 @@ input[readonly] {
     margin: 0px;
 }
 
-.navbar-brand {
+.navbar-brand, .navbar-nav, .dropdown-menu {
     font-size: @basefont-small;
 }
 
-.navbar-nav {
-    font-size: @basefont-small;
-}
 
-.dropdown-menu {
-    font-size: @basefont-small;
-}
 
-/* CONTENT */
-#content {
-    background-color: #fff;
-    margin-top: 0px;
-    padding-top: 0px;
-
-    #stage {
-        width: 100%;
-        height: 560px;
-        @media (max-width: @screen-md-max) {
-            height: 500px;
-        }
-        @media (max-width: @screen-sm-max) {
-            height: 400px;
-        }
-        @media (max-width: @screen-xs-max) {
-            display: none;
-        }
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 20px;
-        #stage-content {
-            position: absolute;
-            .tile {
-                display: block;
-                position: absolute;
-                opacity: 1;
-                h2, h3, p, li {
-                    color: #fff;
-                    margin: 0px;
-                    padding: 0px 30px 0 30px;
-                }
-                .indent {
-                    padding: 10px 30px 0 30px;
-                }
-                h2 {
-                    padding: 30px 30px 10px 30px;
-                    font-size: 36px;
-                    line-height: 110%;
-                }
-                h3 {
-                    padding: 0px 30px 30px 30px;
-                    line-height: 110%;
-                }
-            }
-        }
-    }
-    #screen {
-        .well p {
-            margin: 0px;
-        }
-    }
-    .container.article {
-        padding: 20px 0px 30px 0px;
-        @media (max-width: (@screen-md-min)) {
-            padding: 10px;
-        }
-    }
-}
 
 #chart {
     margin: 40px auto 30px auto;
@@ -282,23 +218,7 @@ input[readonly] {
     height: 802px;
 }
 
-#ui-toolbar {
-    position: fixed;
-    right: 20px;
-    bottom: 10px;
-    background-color: rgba(0, 0, 0, 0.85);
-    a, a:visited {
-        font-family: @basefont;
-        display: block;
-        float: left;
-        margin: 10px 17px 10px 17px;
-        text-decoration: none;
-        color: #999;
-    }
-    a:hover {
-        color: #fff;
-    }
-}
+
 
 .sidebar-nav {
     padding: 9px 0;
@@ -349,3 +269,5 @@ html#slideshow {
     height: auto;
     max-height: none;
 }
+
+@import 'content.less';

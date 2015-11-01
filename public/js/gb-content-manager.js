@@ -27,7 +27,7 @@ gb.ui.ContentManager.include({
         this.content = $(selector);
         if (this.content.html()) {
             this.visible = true;
-            this.fullscreen = new gb.ui.FullScreen();
+            // this.fullscreen = new gb.ui.FullScreen();
             this.stage = new gb.ui.Stage("stage");
             this.timeline = new gb.ui.Timeline("tile-1");
             $("#tile-0").html('<img src="/img/splash-02.svg"/>');
@@ -52,13 +52,13 @@ gb.ui.ContentManager.include({
     toggleSlideShow: function() {
         this.visible = (!this.visible);
         if (this.visible) {
-            $("#ui-toolbar .glyphicon-home")
+            $(".glyphicon-home")
                 .removeClass("glyphicon-home")
                 .addClass("glyphicon-picture");
             this.show();
             $(".container").fadeIn();
         } else {
-            $("#ui-toolbar .glyphicon-picture")
+            $(".glyphicon-picture")
                 .removeClass("glyphicon-picture")
                 .addClass("glyphicon-home");
             this.hide();
@@ -71,12 +71,12 @@ gb.ui.ContentManager.include({
      */
     toggleStage: function() {
         if (this.stage.isRunning()) {
-            $("#ui-toolbar .glyphicon-pause")
+            $(".glyphicon-pause")
                 .removeClass("glyphicon-pause")
                 .addClass("glyphicon-play");
             this.stage.stop();
         } else {
-            $("#ui-toolbar .glyphicon-play")
+            $(".glyphicon-play")
                 .removeClass("glyphicon-play")
                 .addClass("glyphicon-pause");
             this.stage.start();

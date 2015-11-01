@@ -39,6 +39,12 @@ gb.ui.Timeline.include({
         this.timelineData = null;
 
         var that = this;
+        console.log("timeline init.");
+
+        $("#stage").on("goto-end", function(evt){
+            that.onResizeEndHandler();
+        });
+
         $.getJSON(this.ajaxURL, function(data) {
             that.timelineData = data;
             that.onDataHandler();
@@ -268,10 +274,16 @@ gb.ui.Timeline.include({
     },
 
     onResizeEndHandler: function() {
+
         if (this.paper) {
             this.paper.clear();
         }
         this.resize();
+
+        var that = this;
+        gb.util.throttle(function(){
+
+        }, 500);
     },
 
     onDataHandler: function() {
