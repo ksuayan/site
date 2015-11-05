@@ -38,6 +38,7 @@ var config = {
     author : 'Kyo Suayan',
     description : 'Design + Development',
     keywords : 'kyo, suayan, design, development, web',
+    socialEnabled: true,
     caching: false,
     expires: 0,
 

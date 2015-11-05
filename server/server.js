@@ -18,8 +18,7 @@ var http = require('http'),
 
 chatServer.listen(server);
 
-var socialEnabled = true,
-    passport = require('passport'),
+var passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
@@ -35,7 +34,7 @@ passport.deserializeUser(function(obj, done) { done(null, obj); });
  *   ----------------------
  */
 
-if (socialEnabled) {
+if (conf.socialEnabled) {
     passport.use(new FacebookStrategy({
             clientID: conf.facebook.clientId,
             clientSecret: conf.facebook.secret,
@@ -124,7 +123,7 @@ app.post('/login',
     })
 );
 
-if (socialEnabled) {
+if (conf.socialEnabled) {
     app.get('/auth/facebook', passport.authenticate('facebook',
         {scope: ['public_profile', 'email']}));
 

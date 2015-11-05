@@ -31,31 +31,32 @@ var getMinAttributeValue = function(key, list) {
 };
 
 var ApiHandler = function() {
-    try {
-        Flickr.authenticate(conf.flickr, function(error, flickr) {
-            flickrClient = flickr;
+    if (conf.socialEnabled) {
+        try {
+            Flickr.authenticate(conf.flickr, function(error, flickr) {
+                flickrClient = flickr;
+            });
+        } catch (err) {
+            console.log("Error Flickr init: ", err);
+        }
+
+        try {
+            twitterClient = new Twitter(conf.twitter);
+        } catch (err) {
+            console.log("Error Twitter init: ", err);
+        }
+
+        try {
+            vimeoClient = new Vimeo(vimeoConfig.clientId, vimeoConfig.clientSecret, vimeoConfig.accessToken);
+        } catch (err) {
+            console.log("Error Vimeo init: ", err);
+        }
+
+        Instagram.use({
+            client_id: conf.instagram.client_id,
+            client_secret: conf.instagram.client_secret
         });
-    } catch (err) {
-        console.log("Error Flickr init: ", err);
     }
-
-    try {
-        twitterClient = new Twitter(conf.twitter);
-    } catch (err) {
-        console.log("Error Twitter init: ", err);
-    }
-
-    try {
-        vimeoClient = new Vimeo(vimeoConfig.clientId, vimeoConfig.clientSecret, vimeoConfig.accessToken);
-    } catch (err) {
-        console.log("Error Vimeo init: ", err);
-    }
-
-    Instagram.use({
-        client_id: conf.instagram.client_id,
-        client_secret: conf.instagram.client_secret
-    });
-
     console.log("Initialized API handler");
 };
 

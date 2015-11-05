@@ -39,8 +39,6 @@ gb.ui.Timeline.include({
         this.timelineData = null;
 
         var that = this;
-        console.log("timeline init.");
-
         $("#stage").on("goto-end", function(evt){
             that.onResizeEndHandler();
         });

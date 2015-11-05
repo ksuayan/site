@@ -87,6 +87,11 @@
 .modal-footer:after {
   clear: both;
 }
+html,
+html a {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
 html {
   background-color: #294860;
 }
@@ -95,7 +100,6 @@ body {
   font-size: 18px;
   font-weight: 300;
   background-color: transparent;
-  padding-top: 50px;
   padding-bottom: 100px;
 }
 @media (max-width: 991px) {
@@ -243,10 +247,11 @@ input[readonly] {
   }
 }
 .media {
-  padding: 10px 0px;
-  border-bottom: 1px solid #cecece;
+  padding: 20px;
+  background-color: #efefef;
 }
 .media h2 {
+  font-size: 24px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -264,10 +269,6 @@ input[readonly] {
     height: 100%;
   }
 }
-.social {
-  background-color: #f7f7f7;
-  padding-bottom: 50px;
-}
 .when {
   font-size: 16px;
   color: #999;
@@ -283,6 +284,10 @@ input[readonly] {
   margin-top: 10px;
 }
 /* NAVIGATION */
+.navbar {
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
 .navbar.navbar-inverse.navbar-fixed-top {
   margin: 0px;
 }
