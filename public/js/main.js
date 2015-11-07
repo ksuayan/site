@@ -13,7 +13,7 @@ $(function(){
             vimeoTemplate = JST["handlebars/stream-vimeo.hbs"];
 
         $window.on("resizeEnd", function(){
-            var vimeoWidth = streamDiv.width(),
+            var vimeoWidth = streamDiv.width() - 40,
                 vimeoHeight = (vimeoWidth/16) * 9; // widescreen aspect ratio.
 
             streamDiv.find("iframe")

@@ -34,7 +34,7 @@ gb.ui.Stage.include({
         this.tiles = [];
         this.tileOffsets = [];
         this.howMany = 15;
-        this.intervalMS = 6000;
+        this.intervalMS = 8000;
         this.currentIndex = 0;
 
         if (selector) {
@@ -95,7 +95,9 @@ gb.ui.Stage.include({
                 that.tiles[current].jq.html(template(data[i]));
                 current++;
             }
-            setTimeout(function(){that.start();}, that.intervalMS);
+            setTimeout(function(){
+                that.start();
+            }, that.intervalMS);
         });
     },
     /**

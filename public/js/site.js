@@ -249,19 +249,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.ago) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.ago); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span>\n    <h2><a href=\"";
-  if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = (depth0 && depth0.url); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">";
-  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = (depth0 && depth0.title); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</a></h2>\n    ";
+    + "</span>\n    <div class=\"vimeo\">";
   if (stack1 = helpers.body) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.body); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n";
+  buffer += "</div>\n</div>\n";
   return buffer;
   });
 
@@ -1272,8 +1264,6 @@ gb.ui.Timeline.include({
         this.timelineData = null;
 
         var that = this;
-        console.log("timeline init.");
-
         $("#stage").on("goto-end", function(evt){
             that.onResizeEndHandler();
         });
@@ -2105,7 +2095,7 @@ $(function(){
             vimeoTemplate = JST["handlebars/stream-vimeo.hbs"];
 
         $window.on("resizeEnd", function(){
-            var vimeoWidth = streamDiv.width(),
+            var vimeoWidth = streamDiv.width() - 40,
                 vimeoHeight = (vimeoWidth/16) * 9; // widescreen aspect ratio.
 
             streamDiv.find("iframe")

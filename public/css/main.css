@@ -259,9 +259,12 @@ input[readonly] {
 .media h2 a:hover {
   text-decoration: none;
 }
+.media .vimeo {
+  margin-top: 20px;
+}
 .media .instagram {
   display: block;
-  margin: 0px auto 10px auto;
+  margin: 0px auto;
 }
 @media (max-width: 991px) {
   .media .instagram {
