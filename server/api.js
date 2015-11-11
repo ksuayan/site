@@ -52,10 +52,15 @@ var ApiHandler = function() {
             console.log("Error Vimeo init: ", err);
         }
 
-        Instagram.use({
-            client_id: conf.instagram.client_id,
-            client_secret: conf.instagram.client_secret
-        });
+        try {
+            Instagram.use({
+                client_id: conf.instagram.client_id,
+                client_secret: conf.instagram.client_secret
+            });
+        } catch (err) {
+            console.log("Error on Instagram init.");
+        }
+
     }
     console.log("Initialized API handler");
 };
