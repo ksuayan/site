@@ -1,0 +1,30 @@
+<div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Save"/>
+</div>
+<div class="form-group">
+    <label for="name" class="control-label">Map Name</label>
+    <input type="text"
+           data-ng-model="map.name"
+           class="form-control"
+           id="name"
+           placeholder="Name of this map."/>
+</div>
+<div class="form-group">
+    <label for="description" class="control-label">Description</label>
+    <textarea data-ck-editor data-ng-model="map.description"
+              class="form-control"
+              id="description"
+              placeholder="Describe this location">
+    </textarea>
+</div>
+<div class="well well-sm" data-ng-show="map.center">
+    <p>latitude, longitude:
+        <strong>
+            <span data-ng-bind="map.center[1]"></span>,
+            <span data-ng-bind="map.center[0]"></span>
+        </strong>
+    </p>
+</div>
+<div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Save"/>
+</div>

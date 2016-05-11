@@ -611,4 +611,65 @@ ApiHandler.prototype.deleteLocation = function(req, res) {
     locations.deleteLocation(req.params.id, onSuccess, onError);
 };
 
+/* ------------------------- */
+
+ApiHandler.prototype.createMapDocument = function(req, res) {
+    var onSuccess = function(mapObj) {
+        return res.send(mapObj);
+    }, onError = function(err) {
+        return res.send(err);
+    }, mapObj = {
+        name: req.body.name,
+        description: req.body.description,
+        owner: req.user,
+        center: req.body.center,
+        zoom: req.body.zoom
+    };
+    locations.createMapDocument(mapObj, onSuccess, onError);
+};
+
+ApiHandler.prototype.getMapDocuments = function(req, res) {
+    var onSuccess = function(maps) {
+        return res.send(maps);
+    }, onError = function(err) {
+        return res.send(util.defaultError);
+    }, query = {
+        owner: req.user
+    };
+    locations.getMapDocuments(query, onSuccess, onError);
+};
+
+ApiHandler.prototype.getMapDocumentById = function(req, res) {
+    var onSuccess = function(mapObj) {
+        return res.send(mapObj);
+    }, onError = function(err) {
+        return res.send(util.defaultError);
+    };
+    locations.getMapDocumentById(req.params.id, onSuccess, onError);
+};
+
+ApiHandler.prototype.updateMapDocument = function(req, res) {
+    var onSuccess = function(location) {
+        return res.send(location);
+    }, onError = function(err) {
+        return res.send(err);
+    }, mapObj = {
+        _id: req.params.id,
+        name: req.body.name,
+        description: req.body.description,
+        center: req.body.center,
+        zoom: req.body.zoom
+    };
+    locations.updateMapDocument(mapObj, onSuccess, onError);
+};
+
+ApiHandler.prototype.deleteMapDocument = function(req, res) {
+    var onSuccess = function(mapObj) {
+        return res.send(mapObj);
+    }, onError = function(err) {
+        return res.send(err);
+    };
+    locations.deleteMapDocument(req.params.id, onSuccess, onError);
+};
+
 module.exports = new ApiHandler();

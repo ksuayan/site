@@ -284,6 +284,12 @@ app.post('/api/loc',        api.createLocation);
 app.put('/api/loc/:id',     api.updateLocation);
 app.delete('/api/loc/:id',  api.deleteLocation);
 
+app.get('/api/map',         api.getMapDocuments);
+app.post('/api/map',        api.createMapDocument);
+app.get('/api/map/:id',     api.getMapDocumentById);
+app.put('/api/map/:id',     api.updateMapDocument);
+app.delete('/api/map/:id',  api.deleteMapDocument);
+
 app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');

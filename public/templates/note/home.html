@@ -1,0 +1,10 @@
+<h3>Home View</h3>
+<table class="table">
+<tr ng-repeat="loc in locations">
+    <td><a href="/location/{{loc._id}}" target="_blank">{{loc.name}}</a></td>
+    <td>{{loc.address}}</td>
+    <td align="right">
+        <a class="btn btn-default">Edit</a>
+    </td>
+</tr>
+</table>
