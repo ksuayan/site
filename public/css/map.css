@@ -87,6 +87,22 @@
 .modal-footer:after {
   clear: both;
 }
+#map-widget {
+  width: 100%;
+  height: 500px;
+  padding: 0px;
+  display: block;
+}
+@media (max-width: 991px) {
+  #map-widget {
+    height: 300px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  #map-widget {
+    height: 400px;
+  }
+}
 #map-canvas {
   width: 100%;
   height: 500px;

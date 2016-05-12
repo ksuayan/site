@@ -58,7 +58,7 @@ angular.module('app.controllers', [])
     $scope.map = new MapDocument();
 
     google.maps.visualRefresh = true;
-    var mapWidget = new gb.ui.MapWidget(window, "map-canvas");
+    var mapWidget = new gb.ui.MapWidget(window, "map-widget");
 
     $scope.createMap = function() {
         $scope.map.$save(function() {
@@ -95,7 +95,7 @@ angular.module('app.controllers', [])
     $scope.loadMap = function(param) {
         $scope.map = MapDocument.get({ id: param.id }, function(mapObj){
             google.maps.visualRefresh = true;
-            var mapWidget = new gb.ui.MapWidget(window, "map-canvas", mapObj);
+            var mapWidget = new gb.ui.MapWidget(window, "map-widget", mapObj);
         });
     };
 
