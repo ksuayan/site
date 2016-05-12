@@ -5,11 +5,14 @@ block content
   #content
     .container
       .row
-        .col-lg-12(data-ng-app="app",ui-view="")
+        .col-lg-12
+          #screen(data-ng-app="app",ui-view="")
 
 block append scripts
   script(src="/js/ckeditor/ckeditor.js")
   script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U")
+  script(src="/js/gb-ui-mapconfig.js")
+  script(src="/js/gb-map-widget.js")
   script(src="/js/angular/note/app.js")
   script(src="/js/angular/note/controllers.js")
   script(src="/js/angular/note/services.js")

@@ -28,7 +28,15 @@ var MapDocument = new Schema({
     name: {type: String, default: "default"},
     description: {type: String, default: ""},
     owner: {type: String, default: ""},
-    center: [Number],
+    center: {
+        type: {
+            type: "String",
+            required: true,
+            enum: ['Point', 'LineString', 'Polygon'],
+            default: 'Point'
+        },
+        coordinates: [Number]
+    },
     zoom: {type: Number, default: 14},
     date: {type: Date,  default: Date.now}
 });

@@ -57,10 +57,21 @@ angular.module('app.controllers', [])
 
     $scope.map = new MapDocument();
 
+    google.maps.visualRefresh = true;
+    var mapWidget = new gb.ui.MapWidget(window, "map-canvas");
+
     $scope.createMap = function() {
         $scope.map.$save(function() {
             $state.go('maps');
         });
+    };
+
+    $scope.updateMapSetting = function(zoom, lat, lng) {
+        $scope.map.zoom = zoom;
+        $scope.map.center = {
+            type: 'Point',
+            coordinates: [lng, lat]
+        };
     };
 
     $scope.updateMapInfo = function(mapObj) {
@@ -80,9 +91,22 @@ angular.module('app.controllers', [])
             $state.go('maps');
         });
     };
-    $scope.loadMap = function() {
-        $scope.map = MapDocument.get({ id: $stateParams.id });
+
+    $scope.loadMap = function(param) {
+        $scope.map = MapDocument.get({ id: param.id }, function(mapObj){
+            google.maps.visualRefresh = true;
+            var mapWidget = new gb.ui.MapWidget(window, "map-canvas", mapObj);
+        });
     };
+
+    $scope.updateMapSetting = function(zoom, lat, lng) {
+       $scope.map.zoom = zoom;
+       $scope.map.center = {
+           type: 'Point',
+           coordinates: [lng, lat]
+       };
+    };
+
     $scope.gotoState = StateService.gotoState;
     $scope.loadMap($stateParams);
 });

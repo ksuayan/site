@@ -622,7 +622,10 @@ ApiHandler.prototype.createMapDocument = function(req, res) {
         name: req.body.name,
         description: req.body.description,
         owner: req.user,
-        center: req.body.center,
+        center: {
+            coordinates: req.body.center.coordinates,
+            type: "Point"
+        },
         zoom: req.body.zoom
     };
     locations.createMapDocument(mapObj, onSuccess, onError);
@@ -660,6 +663,7 @@ ApiHandler.prototype.updateMapDocument = function(req, res) {
         center: req.body.center,
         zoom: req.body.zoom
     };
+    console.log("mapObj", mapObj);
     locations.updateMapDocument(mapObj, onSuccess, onError);
 };
 
