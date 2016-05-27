@@ -28,7 +28,6 @@
   @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
     height: 400px;
   }
-
   // InfoWindow
   .info {
       margin: 3px;
@@ -40,13 +39,21 @@
   }
 }
 
+#map-canvas.tall {
+    height: 700px;
+}
+
+#lat, #lng {
+    font-weight: 600;
+    font-size: 14px
+}
+
 #geocode {
   background-color: #fff;
   margin: 0px;
   padding: 0px 0px 10px 0px;
   .form-group {
-    margin-right: 10px;
-    margin-top: 10px;
+    margin: 15px;
   }
 }
 

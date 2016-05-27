@@ -130,14 +130,21 @@
   padding: 0px;
   font-weight: 600;
 }
+#map-canvas.tall {
+  height: 700px;
+}
+#lat,
+#lng {
+  font-weight: 600;
+  font-size: 14px;
+}
 #geocode {
   background-color: #fff;
   margin: 0px;
   padding: 0px 0px 10px 0px;
 }
 #geocode .form-group {
-  margin-right: 10px;
-  margin-top: 10px;
+  margin: 15px;
 }
 #notes {
   margin-bottom: 20px;

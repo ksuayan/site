@@ -224,6 +224,10 @@ app.get('/radio/pisay90', function(req, res) {
     res.render("content/videojs-mp3");
 });
 
+app.get('/map-doctors', function(req, res) {
+    res.render("content/map-doctors");
+});
+
 /**
  * Published view. Publicly viewable.
  */
