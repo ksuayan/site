@@ -11,7 +11,7 @@ var positions = [],
     map = null,
     geocoder = null,
     throttleInterval = 1000,
-    dataSource = "/data/geo-csv.json",
+    dataSource = "/data/geo.json",
     postURL    = "/api/csv",
     targetFile = "geo-resolved.csv";
 

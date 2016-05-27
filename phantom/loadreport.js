@@ -1,3 +1,5 @@
+#!/usr/bin/env phantomjs
+
 var fs = require('fs');
 var WebPage = require('webpage');
 
