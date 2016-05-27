@@ -30,10 +30,7 @@ gb.ui.DoctorsMap.include({
         this.findButton = $("#find");
         this.findButton.on("click", function(evt){
             evt.preventDefault();
-            var radius = $("select[name=radius]").val(),
-                lat = $("#lat").val(),
-                lng = $("#lng").val();
-            console.log("radius: " + radius +" lat: " + lat + " lng: " + lng);
+            that.sendAjaxQuery();
         });
     },
     /**
@@ -386,7 +383,31 @@ gb.ui.DoctorsMap.include({
                 this.locations[item].setMap(null);
             }
         }
+    },
+    sendAjaxQuery: function() {
+
+        var query = {
+            radius: $("#radius").val(),
+            latitude: $("#lat").val(),
+            longitue: $("#lng").val()
+        };
+
+        $.ajax({
+            url: "http://localhost:4502/bin/locations",
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(query),
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            success: function (data) {
+                console.log("data >> ", data);
+            },
+            error: function(data,status,er) {
+                console.log("error: "+data+" status: "+status+" er:"+er);
+            }
+        });
     }
+
 });
 
 google.maps.visualRefresh = true;
