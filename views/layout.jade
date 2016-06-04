@@ -16,8 +16,14 @@ html(lang="en")
     block content
     block footer
       include includes/footer
+    block css
+      -if (env==="production")
+        link(rel="stylesheet",href="http://cdn.suayan.com/dist/css/corelib.min.css")
+        link(rel="stylesheet",href="http://cdn.suayan.com/dist/css/main.min.css")
+      -else
+        link(rel="stylesheet",href="/dist/css/corelib.css")
+        link(rel="stylesheet",href="/css/main.css")
     block scripts
-      include includes/gtm
       -if (env==="production")
         script(src="http://cdn.suayan.com/dist/js/all-site.min.js",async="async")
       -else
@@ -26,10 +32,4 @@ html(lang="en")
         include includes/dev-scripts
       script.
         gb.ui.mediaHost = "#{config.mediaHost}";
-    block css
-      -if (env==="production")
-        link(rel="stylesheet",href="http://cdn.suayan.com/dist/css/corelib.min.css")
-        link(rel="stylesheet",href="http://cdn.suayan.com/dist/css/main.min.css")
-      -else
-        link(rel="stylesheet",href="/dist/css/corelib.css")
-        link(rel="stylesheet",href="/css/main.css")
+    include includes/gtm
