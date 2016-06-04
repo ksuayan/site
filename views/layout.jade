@@ -20,14 +20,12 @@ html(lang="en")
       link(rel="stylesheet",href="/css/corelib.css")
       link(rel="stylesheet",href="/css/main.css")
     block scripts
+      include includes/gtm
       -if (env==="production")
-        script(src="/js/dist/corelib.min.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.runtime.min.js")
-        script(src="/js/site.min.js")
+        script(src="http://cdn.suayan.com/dist/js/all-site.min.js")
       -else
+        script(src="/js/dist/extras-site.js")
         script(src="/js/dist/corelib.js")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.runtime.min.js")
         include includes/dev-scripts
       script.
         gb.ui.mediaHost = "#{config.mediaHost}";
-      include includes/gtm

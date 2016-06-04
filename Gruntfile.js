@@ -35,7 +35,13 @@ module.exports = function(grunt) {
             options: {
                 separator: '\n\n'
             },
-            dist: {
+            extras: {
+                src: [
+                    'public/js/handlebars/handlebars.runtime.min.js'
+                ],
+                dest: 'public/js/dist/extras-<%= pkg.name %>.js'
+            },
+            site: {
                 src: [
                       'public/js/gb.js',
                       'public/js/gb-templates.js',
@@ -53,32 +59,25 @@ module.exports = function(grunt) {
                       'public/js/gb-content-manager.js',
                       'public/js/gb-socket-client.js',
                       'public/js/main.js'],
-                dest: 'public/js/<%= pkg.name %>.js'
+                dest: 'public/js/dist/<%= pkg.name %>.js'
             },
-            koken: {
+            all: {
                 src: [
-                    'public/js/gb.js',
-                    'public/js/gb-util.js',
-                    'public/js/gb-ui.js',
-                    'public/js/gb-tile.js',
-                    'public/js/koken/koken-main.js'],
-                dest: 'public/js/dist/koken-<%= pkg.name %>.js'
+                    '<%= concat.extras.dest %>',
+                    '<%= bower_concat.all.dest %>',
+                    '<%= concat.site.dest %>'
+                ],
+                dest: 'public/js/dist/all-<%= pkg.name %>.min.js'
             }
         },
         uglify: {
             options: {
                 mangle: true,
-                sourceMap: true,
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
-            dist: {
+            site: {
                 files: {
-                    'public/js/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-                }
-            },
-            koken: {
-                files: {
-                    'public/js/dist/koken-<%= pkg.name %>.min.js': ['<%= concat.koken.dest %>']
+                    'public/js/dist/<%= pkg.name %>.min.js': ['<%= concat.site.dest %>']
                 }
             },
             core: {
@@ -92,7 +91,7 @@ module.exports = function(grunt) {
         },
         jshint: {
             // files: ['Gruntfile.js', 'public/js/**/*.js', 'test/**/*.js'],
-            files: ['Gruntfile.js', '<%= concat.dist.src %>'],
+            files: ['Gruntfile.js', '<%= concat.site.src %>'],
             options: {
                 // options here to override JSHint defaults
                 globals: {
@@ -140,8 +139,24 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.registerTask('test',    ['jshint', 'qunit']);
-    grunt.registerTask('hb',      ['handlebars']);
-    grunt.registerTask('koken',   ['jshint','concat:koken','uglify:koken']);
+    grunt.registerTask('jsdoc',   ['jsdoc']);
     grunt.registerTask('core',    ['bower_concat','uglify:core']);
-    grunt.registerTask('default', ['handlebars','jsdoc','jshint','core','concat','uglify']);
+
+    grunt.registerTask('site',[
+        'handlebars',
+        'jshint',
+        'concat:site',
+        'uglify:site'
+    ]);
+
+    grunt.registerTask('default',[
+        'bower_concat',
+        'handlebars',
+        'jshint',
+        'concat:extras',
+        'concat:site',
+        'uglify:core',
+        'uglify:site',
+        'concat:all'
+    ]);
 };
