@@ -24,7 +24,6 @@ html(lang="en")
         link(rel="stylesheet",href="/dist/css/corelib.css")
         link(rel="stylesheet",href="/css/main.css")
     block scripts
-      include includes/gtm
       -if (env==="production")
         script(src="http://cdn.suayan.com/dist/js/all-site.min.js")
       -else
@@ -33,3 +32,4 @@ html(lang="en")
         include includes/dev-scripts
       script.
         gb.ui.mediaHost = "#{config.mediaHost}";
+    include includes/gtm

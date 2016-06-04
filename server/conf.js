@@ -91,7 +91,7 @@ if (process.env.NODE_ENV === "production") {
         config.mongoURL = process.env.MONGOHQ_URL;
     }
     config.caching = true;
-    config.expires = 60 * 60 * 24 * 4; // 4 days
+    config.expires = 60 * 60 * 24 * 7; // 7 days
 }
 
 console.log("NODE_ENV:", process.env.NODE_ENV);
