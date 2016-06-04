@@ -178,9 +178,11 @@ if (conf.socialEnabled) {
 
 app.all("*", function (req, res, next) {
     if (conf.caching) {
-        if ((req.url.indexOf("/js/")  === 0)||
-            (req.url.indexOf("/css/") === 0)||
-            (req.url.indexOf("/img/") === 0)) {
+        if ((req.url.indexOf("/js/")   === 0)||
+            (req.url.indexOf("/css/")  === 0)||
+            (req.url.indexOf("/img/")  === 0)||
+            (req.url.indexOf("/api/")  === 0)||
+            (req.url.indexOf("/page/") === 0)) {
             res.setHeader("Cache-Control", "public, max-age="+conf.expires);
             res.setHeader("Expires", new Date(Date.now() + conf.expires * 1000).toUTCString());
         }
