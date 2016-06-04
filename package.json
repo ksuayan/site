@@ -49,6 +49,7 @@
     "grunt": "~0.4.2",
     "grunt-bower-concat": "^0.4.0",
     "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-cssmin": "^1.0.1",
     "grunt-contrib-handlebars": "~0.6.1",
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-qunit": "~0.3.0",

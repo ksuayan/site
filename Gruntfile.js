@@ -9,8 +9,8 @@ module.exports = function(grunt) {
 
         bower_concat: {
             all: {
-                dest: 'public/js/dist/corelib.js',
-                cssDest: 'public/css/corelib.css',
+                dest:    'public/js/dist/corelib.js',
+                cssDest: 'public/css/dist/corelib.css',
                 bowerOptions: {
                     relative: false
                 }
@@ -64,8 +64,8 @@ module.exports = function(grunt) {
             all: {
                 src: [
                     '<%= concat.extras.dest %>',
-                    '<%= bower_concat.all.dest %>',
-                    '<%= concat.site.dest %>'
+                    'public/js/dist/corelib.min.js',
+                    'public/js/dist/<%= pkg.name %>.min.js'
                 ],
                 dest: 'public/js/dist/all-<%= pkg.name %>.min.js'
             }
@@ -83,6 +83,26 @@ module.exports = function(grunt) {
             core: {
                 files: {
                     'public/js/dist/corelib.min.js': ['<%= bower_concat.all.dest %>']
+                }
+            }
+        },
+        cssmin: {
+            dist: {
+                options: {
+                    banner: '/*! corelib.min.css 1.0.0 | @ksuayan */'
+                },
+                files: {
+                    'public/css/dist/corelib.min.css': ['<%= bower_concat.all.cssDest %>']
+                }
+            },
+            main: {
+                options: {
+                    banner: '/*! main.min.css 1.0.0 | @ksuayan */'
+                },
+                files: {
+                    'public/css/dist/main.min.css': [
+                        'public/css/main.css'
+                    ]
                 }
             }
         },
@@ -130,6 +150,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-bower-concat');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
@@ -153,6 +174,7 @@ module.exports = function(grunt) {
         'bower_concat',
         'handlebars',
         'jshint',
+        'cssmin',
         'concat:extras',
         'concat:site',
         'uglify:core',
