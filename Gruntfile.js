@@ -161,7 +161,21 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test',    ['jshint', 'qunit']);
     grunt.registerTask('jsdoc',   ['jsdoc']);
-    grunt.registerTask('core',    ['bower_concat','uglify:core']);
+
+    grunt.registerTask('hb',[
+        'handlebars',
+        'concat:site',
+        'uglify:site',
+        'concat:all'
+    ]);
+
+
+    grunt.registerTask('core', [
+        'bower_concat',
+        'uglify:core',
+        'cssmin:dist',
+        'concat:all'
+    ]);
 
     grunt.registerTask('site',[
         'handlebars',

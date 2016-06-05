@@ -33,8 +33,8 @@ gb.ui.Stage.include({
 
         this.tiles = [];
         this.tileOffsets = [];
-        this.howMany = 15;
-        this.intervalMS = 8000;
+        this.howMany = 12;
+        this.intervalMS = 15000;
         this.currentIndex = 0;
 
         if (selector) {

@@ -1,9 +1,13 @@
 <div class="media">
-    <span class="label label-primary">Instagram</span>
-    <span class="when">{{ago}}</span>
-
-    <h2>{{body}}</h2>
-    <a href="{{url}}" target="_blank">
+    <a href="{{url}}" target="_blank" class="hidden-xs">
+        <img src="{{pictures.low_resolution.url}}" class="instagram"/>
+    </a>
+    <a href="{{url}}" target="_blank" class="visible-xs">
         <img src="{{pictures.standard_resolution.url}}" class="instagram"/>
     </a>
+    <div class="caption">
+        <span class="label label-primary">Instagram</span>
+        <span class="when">{{ago}}</span>
+        <h2>{{body}}</h2>
+    </div>
 </div>

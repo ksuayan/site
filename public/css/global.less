@@ -1,10 +1,84 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600);
+@import url(https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700);
 @import (reference) '../../bower_components/bootstrap/less/bootstrap';
 
 @basefont: "Source Sans Pro", Helvetica, Arial, sans-serif;
 @basefont-small: 16px;
-@basefont-size: 18px;
+@basefont-size: 20px;
+@basefont-size-medium: 20px;
+
+@textfont: "PT Serif", Georgia, serif;
 
 @font-weight-light: 200;
 @font-weight-normal: 300;
 @font-weight-bold: 600;
+
+@navfont: "Source Sans Pro", Helvetica, Arial, sans-serif;
+
+
+
+html, html a {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+html {
+    background-color: #294860;
+}
+
+body {
+    font-family: @textfont;
+    font-size: @basefont-size;
+    font-weight: @font-weight-normal;
+    background-color: transparent;
+    padding-bottom: 100px;
+    @media (max-width: (@screen-sm-max)) {
+        .container {
+            padding: 10px;
+        }
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: @basefont;
+    font-weight: @font-weight-bold;
+    color: #333;
+    margin: 0px;
+    padding: 0px;
+    line-height: 140%;
+    mark {
+        padding: 0px;
+        margin: 0px;
+        i {
+            font-weight: @font-weight-light;
+            font-style: normal;
+            color: #fff;
+            background-color: #999;
+            margin: 0px;
+            padding: 3px 6px;
+            letter-spacing: 3px;
+        }
+    }
+}
+
+th {
+    background-color: #efefef;
+}
+
+ul {
+    margin-left: 0px;
+    padding-left: 0px;
+    li {
+        list-style-position: inside;
+    }
+}
+
+/* FORMS */
+textarea {
+    resize: vertical;
+}
+
+input.form-control, textarea.form-control {
+    font-size: @basefont-size;
+}
+

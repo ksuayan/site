@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600);
+@import url(https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700);
 .thumbnail > img,
 .thumbnail a > img,
 .carousel-inner > .item > img,
@@ -96,8 +97,8 @@ html {
   background-color: #294860;
 }
 body {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-family: "PT Serif", Georgia, serif;
+  font-size: 20px;
   font-weight: 300;
   background-color: transparent;
   padding-bottom: 100px;
@@ -114,11 +115,11 @@ h4,
 h5,
 h6 {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 600;
   color: #333;
   margin: 0px;
   padding: 0px;
-  line-height: 120%;
+  line-height: 140%;
 }
 h1 mark,
 h2 mark,
@@ -159,7 +160,7 @@ textarea {
 }
 input.form-control,
 textarea.form-control {
-  font-size: 18px;
+  font-size: 20px;
 }
 .btn-file {
   position: relative;
@@ -246,46 +247,6 @@ input[readonly] {
     width: 34%;
   }
 }
-.media {
-  padding: 20px;
-  background-color: #efefef;
-}
-.media h2 {
-  font-size: 24px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.media h2 a,
-.media h2 a:hover {
-  text-decoration: none;
-}
-.media .vimeo {
-  margin-top: 20px;
-}
-.media .instagram {
-  display: block;
-  margin: 0px auto;
-}
-@media (max-width: 991px) {
-  .media .instagram {
-    width: 100%;
-    height: 100%;
-  }
-}
-.when {
-  font-size: 16px;
-  color: #999;
-  margin-left: 10px;
-  margin-right: 5px;
-}
-.permalink,
-.permalink:hover {
-  clear: both;
-  display: block;
-  font-size: 16px;
-  text-decoration: none;
-  margin-top: 10px;
-}
 /* NAVIGATION */
 .navbar {
   border-radius: 0px;
@@ -297,7 +258,17 @@ input[readonly] {
 .navbar-brand,
 .navbar-nav,
 .dropdown-menu {
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 300;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-brand {
+  color: #ccc;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-brand:hover {
+  color: #fff;
 }
 #chart {
   margin: 40px auto 30px auto;
@@ -343,6 +314,71 @@ html#slideshow {
   width: 100%;
   height: auto;
   max-height: none;
+}
+#stream {
+  background-color: #333333;
+  padding: 15px;
+}
+@media (min-width: 767px) {
+  #stream {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-basis: auto;
+  }
+}
+#stream .media {
+  width: 93%;
+  padding: 0px;
+  margin: 0px 0px 20px 15px;
+  background-color: #fff;
+}
+@media (min-width: 767px) {
+  #stream .media {
+    margin: 0px 0px 15px 15px;
+    width: 320px;
+    background-color: #efefef;
+  }
+}
+#stream .media .instagram {
+  max-width: 100%;
+  max-height: 100%;
+}
+#stream .media .caption {
+  padding: 15px;
+}
+#stream .media .caption h2 {
+  font-size: 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+@media (min-width: 767px) {
+  #stream .media .caption h2 {
+    font-size: 16px;
+  }
+}
+#stream .media .caption h2 a,
+#stream .media .caption h2 a:hover {
+  text-decoration: none;
+}
+#stream .media .caption .vimeo {
+  margin-top: 20px;
+}
+.when {
+  font-size: 16px;
+  color: #999;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.permalink,
+.permalink:hover {
+  clear: both;
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
+  margin-top: 10px;
 }
 /* CONTENT */
 #content {
@@ -453,8 +489,16 @@ html#slideshow {
 #content .container.article {
   padding: 20px 0px 30px 0px;
 }
+@media (max-width: 768px) {
+  #content .container.article {
+    font-size: 16px;
+  }
+}
 @media (max-width: 992px) {
   #content .container.article {
-    padding: 10px;
+    padding: 15px;
   }
+}
+#content .container.article p {
+  margin-bottom: 20px;
 }

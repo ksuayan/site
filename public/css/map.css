@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600);
+@import url(https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700);
 .thumbnail > img,
 .thumbnail a > img,
 .carousel-inner > .item > img,
@@ -86,6 +87,80 @@
 .panel-body:after,
 .modal-footer:after {
   clear: both;
+}
+html,
+html a {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+html {
+  background-color: #294860;
+}
+body {
+  font-family: "PT Serif", Georgia, serif;
+  font-size: 20px;
+  font-weight: 300;
+  background-color: transparent;
+  padding-bottom: 100px;
+}
+@media (max-width: 991px) {
+  body .container {
+    padding: 10px;
+  }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  color: #333;
+  margin: 0px;
+  padding: 0px;
+  line-height: 140%;
+}
+h1 mark,
+h2 mark,
+h3 mark,
+h4 mark,
+h5 mark,
+h6 mark {
+  padding: 0px;
+  margin: 0px;
+}
+h1 mark i,
+h2 mark i,
+h3 mark i,
+h4 mark i,
+h5 mark i,
+h6 mark i {
+  font-weight: 200;
+  font-style: normal;
+  color: #fff;
+  background-color: #999;
+  margin: 0px;
+  padding: 3px 6px;
+  letter-spacing: 3px;
+}
+th {
+  background-color: #efefef;
+}
+ul {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+ul li {
+  list-style-position: inside;
+}
+/* FORMS */
+textarea {
+  resize: vertical;
+}
+input.form-control,
+textarea.form-control {
+  font-size: 20px;
 }
 #map-widget {
   width: 100%;

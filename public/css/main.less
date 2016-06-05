@@ -1,76 +1,12 @@
 @import (reference) '../../bower_components/bootstrap/less/bootstrap';
 @import "global.less";
 
-html, html a {
-    -webkit-font-smoothing: antialiased;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
-}
-
-html {
-    background-color: #294860;
-}
-
-body {
-    font-family: @basefont;
-    font-size: @basefont-size;
-    font-weight: @font-weight-normal;
-    background-color: transparent;
-    padding-bottom: 100px;
-    @media (max-width: (@screen-sm-max)) {
-        .container {
-            padding: 10px;
-        }
-    }
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: @basefont;
-    font-weight: @font-weight-normal;
-    color: #333;
-    margin: 0px;
-    padding: 0px;
-    line-height: 120%;
-
-    mark {
-        padding: 0px;
-        margin: 0px;
-        i {
-            font-weight: @font-weight-light;
-            font-style: normal;
-            color: #fff;
-            background-color: #999;
-            margin: 0px;
-            padding: 3px 6px;
-            letter-spacing: 3px;
-        }
-    }
-}
-
-th {
-    background-color: #efefef;
-}
-
-ul {
-    margin-left: 0px;
-    padding-left: 0px;
-    li {
-        list-style-position: inside;
-    }
-}
-
-/* FORMS */
-textarea {
-    resize: vertical;
-}
-
-input.form-control, textarea.form-control {
-    font-size: @basefont-size;
-}
 
 .btn-file {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -85,6 +21,7 @@ input.form-control, textarea.form-control {
     cursor: inherit;
     display: block;
 }
+
 input[readonly] {
     background-color: white !important;
     cursor: text !important;
@@ -163,47 +100,6 @@ input[readonly] {
     }
 }
 
-.media {
-    padding: 20px;
-    background-color: #efefef;
-
-    h2 {
-        font-size: 24px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        a, a:hover {
-            text-decoration: none;
-        }
-    }
-    .vimeo {
-        margin-top: 20px;
-    }
-    .instagram {
-        display: block;
-        margin: 0px auto;
-        @media (max-width: (@screen-sm-max)) {
-            width: 100%;
-            height: 100%;
-        }
-    }
-}
-
-
-.when {
-    font-size: 16px;
-    color: #999;
-    margin-left: 10px;
-    margin-right: 5px;
-}
-
-.permalink, .permalink:hover {
-    clear: both;
-    display: block;
-    font-size: 16px;
-    text-decoration: none;
-    margin-top: 10px;
-}
-
 /* NAVIGATION */
 .navbar {
     border-radius: 0px;
@@ -215,19 +111,24 @@ input[readonly] {
 }
 
 .navbar-brand, .navbar-nav, .dropdown-menu {
-    font-size: @basefont-small;
+    font-size: @basefont-size-medium;
+    font-weight: @font-weight-normal;
+    font-family: @navfont;
 }
 
-
-
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-brand {
+    color: #ccc;
+    &:hover {
+        color: #fff;
+    }
+}
 
 #chart {
     margin: 40px auto 30px auto;
     width: 1002px;
     height: 802px;
 }
-
-
 
 .sidebar-nav {
     padding: 9px 0;
@@ -279,4 +180,5 @@ html#slideshow {
     max-height: none;
 }
 
+@import 'stream.less';
 @import 'content.less';
