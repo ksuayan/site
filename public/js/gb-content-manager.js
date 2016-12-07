@@ -27,10 +27,26 @@ gb.ui.ContentManager.include({
         this.content = $(selector);
         if (this.content.html()) {
             this.visible = true;
-            // this.fullscreen = new gb.ui.FullScreen();
+
+
+            // instantiate the stage
             this.stage = new gb.ui.Stage("stage");
-            this.timeline = new gb.ui.Timeline("tile-1");
-            $("#tile-0").html('<img src="/img/splash-02.svg"/>');
+
+
+            var splashTile = new gb.ui.Tile({id: "splash-tile", class: "tile"});
+            splashTile.setContent('<img src="/img/splash-02.svg"/>');
+            this.stage.addTile(splashTile);
+
+
+            // instantiate Timeline(Tile)
+            var timelineTile = new gb.ui.Tile({id: "timeline-tile", class: "tile"});
+            this.stage.addTile(timelineTile);
+            var timeline = new gb.ui.Timeline("timeline-tile");
+
+            this.stage.loadTileData();
+            this.stage.onResizeEndHandler();
+            this.show();
+
             $("#slideshow-button").click(function(){that.toggleSlideShow();});
             $("#play-button").click(function(){that.toggleStage();});
             $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
@@ -42,7 +58,6 @@ gb.ui.ContentManager.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        this.timeline.onResizeEndHandler();
         this.stage.onResizeEndHandler();
     },
 

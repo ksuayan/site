@@ -4,7 +4,7 @@ doctype html
 html(lang="en")
   head
     meta(charset="utf-8")
-    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    meta(name="viewport",content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     meta(name="author",content=config.author)
     if (content)
       +meta_description(content.description)
@@ -27,8 +27,6 @@ html(lang="en")
       -if (env==="production")
         script(src="http://cdn.suayan.com/dist/js/all-site.min.js")
       -else
-        script(src="/js/dist/extras-site.js")
-        script(src="/js/dist/corelib.js")
         include includes/dev-scripts
       script.
         gb.ui.mediaHost = "#{config.mediaHost}";

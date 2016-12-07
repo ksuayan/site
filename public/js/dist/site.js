@@ -1,3 +1,30 @@
+// -- http://jsfiddle.net/amustill/Bh276/1/
+Raphael.el.hoverInBounds = function(inFunc, outFunc) {
+    var inBounds = false;
+    // Mouseover function. Only execute if `inBounds` is false.
+    this.mouseover(function() {
+        if (!inBounds) {
+            inBounds = true;
+            inFunc.call(this);
+        }
+    });
+    // Mouseout function
+    this.mouseout(function(e) {
+        var x = e.offsetX || e.clientX,
+            y = e.offsetY || e.clientY;
+
+        // Return `false` if we're still inside the element's bounds
+        if (this.isPointInside(x, y)) {
+            return false;
+        }
+        inBounds = false;
+        outFunc.call(this);
+    });
+    return this;
+};
+
+
+
 /** @namespace */
 var gb = gb || {};
 
@@ -814,14 +841,12 @@ gb.ui.Tile = new gb.Class();
  */
 gb.ui.Tile.include({
     /**
-     * @param parent {string} jquery selector to append to.
      * @param elementAttributes {Object} map of html element attributes.
      * @instance
      */
-    init: function(parent, elementAttributes) {
+    init: function(elementAttributes) {
         "use strict";
-        this.jq = $("<div/>", elementAttributes)
-            .appendTo(parent);
+        this.jq = $("<div/>", elementAttributes);
     },
 
     /**
@@ -864,6 +889,10 @@ gb.ui.Tile.include({
      */
     activate: function() {
 
+    },
+
+    setContent: function(content) {
+      this.jq.append($(content));
     },
 
     /**
@@ -1275,6 +1304,7 @@ gb.ui.Timeline.include({
         });
 
         $.getJSON(this.ajaxURL, function(data) {
+            console.log("getting timeline data...");
             that.timelineData = data;
             that.onDataHandler();
         });
@@ -1629,33 +1659,42 @@ gb.ui.Stage.include({
     init: function(selector) {
         "use strict";
 
-        this.tiles = [];
-        this.tileOffsets = [];
-        this.howMany = 12;
         this.intervalMS = 15000;
         this.currentIndex = 0;
 
+        this.initTiles();
         if (selector) {
             var that = this;
             this.selector = selector;
+            // the core jQuery object
             this.jq = $("#"+selector);
             this.contentSelector = "#"+selector+"-content";
             this.content = $("<div id='"+selector+"-content'></div>");
-
             this.jq.append(this.content);
-            this.initTiles();
-            this.loadTileData();
 
-            this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
-                function(){that.rotate();});
-            this.touchSurface = new gb.ui.TouchSurface( this.content[0],
-                function(evt, dir, phase, swipetype, distance){
-                    that.onTouchEvent(evt, dir, phase, swipetype, distance);});
+            // this.loadTileData();
+            this.setupEventHandlers();
+            this.start();
 
-            $("#stage-next").on("click", function(){that.goToNext();});
-            $("#stage-prev").on("click", function(){that.goToPrevious();});
             console.log("init: Stage.");
         }
+    },
+
+    setupEventHandlers: function() {
+        var that = this;
+        // setup interval loop
+        this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
+            function(){
+                that.rotate();
+            });
+
+        // setup swipe handler
+        this.touchSurface = new gb.ui.TouchSurface( this.content[0],
+            function(evt, dir, phase, swipetype, distance){
+                that.onTouchEvent(evt, dir, phase, swipetype, distance);
+            });
+        $("#stage-next").on("click", function(){that.goToNext();});
+        $("#stage-prev").on("click", function(){that.goToPrevious();});
     },
 
     /**
@@ -1664,39 +1703,46 @@ gb.ui.Stage.include({
     initTiles: function() {
         this.tiles = [];
         this.tileOffsets = [];
-        var colorIndex = 0;
-        for (var i=0; i<this.howMany; i++) {
-            var tile = new gb.ui.Tile(this.contentSelector, {
-                "id": "tile-"+i,
-                "class" : "tile"
-            });
-            var el = tile.jq.get(0);
-            if (el) {
-                el.style.backgroundColor = this.COLORS[colorIndex];
-            }
-            this.tiles.push(tile);
-            if (colorIndex > this.COLORS.length - 2) {
-                colorIndex = 0;
-            } else {
-                colorIndex++;
-            }
-        }
-        this.resizeTiles();
     },
 
+
     loadTileData: function() {
-        var that = this;
+        var that = this, colorIndex = 0;
+
         $.get( "/api/tiles", function( data ) {
-            var current = 2;
             var template = JST["handlebars/tile.hbs"];
             for(var i = 0, n=data.length; i<n; i++) {
-                that.tiles[current].jq.html(template(data[i]));
-                current++;
+                var html = template(data[i]),
+                    tile = new gb.ui.Tile({
+                        "id": "tile-"+i,
+                        "class" : "tile"
+                    });
+                tile.setContent(html);
+                that.setTileColor(tile, colorIndex);
+                that.addTile(tile);
+                if (colorIndex > that.COLORS.length) {
+                    colorIndex = 0;
+                } else {
+                    colorIndex++;
+                }
             }
+
             setTimeout(function(){
                 that.start();
             }, that.intervalMS);
         });
+    },
+
+    setTileColor: function(tile, colorIndex) {
+        var el = tile.jq.get(0);
+        if (el) {
+            el.style.backgroundColor = this.COLORS[colorIndex];
+        }
+    },
+
+    addTile: function(tile) {
+        this.tiles.push(tile);
+        this.content.append(tile.jq);
     },
     /**
      * onTouchEvent handler
@@ -1862,7 +1908,6 @@ gb.ui.Stage.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        // this.hide();
         this.resizeTiles();
         this.show();
     }
@@ -1897,10 +1942,26 @@ gb.ui.ContentManager.include({
         this.content = $(selector);
         if (this.content.html()) {
             this.visible = true;
-            // this.fullscreen = new gb.ui.FullScreen();
+
+
+            // instantiate the stage
             this.stage = new gb.ui.Stage("stage");
-            this.timeline = new gb.ui.Timeline("tile-1");
-            $("#tile-0").html('<img src="/img/splash-02.svg"/>');
+
+
+            var splashTile = new gb.ui.Tile({id: "splash-tile", class: "tile"});
+            splashTile.setContent('<img src="/img/splash-02.svg"/>');
+            this.stage.addTile(splashTile);
+
+
+            // instantiate Timeline(Tile)
+            var timelineTile = new gb.ui.Tile({id: "timeline-tile", class: "tile"});
+            this.stage.addTile(timelineTile);
+
+            var timeline = new gb.ui.Timeline("timeline-tile");
+
+            this.stage.onResizeEndHandler();
+            this.show();
+
             $("#slideshow-button").click(function(){that.toggleSlideShow();});
             $("#play-button").click(function(){that.toggleStage();});
             $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
@@ -1912,7 +1973,6 @@ gb.ui.ContentManager.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        this.timeline.onResizeEndHandler();
         this.stage.onResizeEndHandler();
     },
 

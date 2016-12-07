@@ -14,14 +14,12 @@ gb.ui.Tile = new gb.Class();
  */
 gb.ui.Tile.include({
     /**
-     * @param parent {string} jquery selector to append to.
      * @param elementAttributes {Object} map of html element attributes.
      * @instance
      */
-    init: function(parent, elementAttributes) {
+    init: function(elementAttributes) {
         "use strict";
-        this.jq = $("<div/>", elementAttributes)
-            .appendTo(parent);
+        this.jq = $("<div/>", elementAttributes);
     },
 
     /**
@@ -64,6 +62,10 @@ gb.ui.Tile.include({
      */
     activate: function() {
 
+    },
+
+    setContent: function(content) {
+      this.jq.append($(content));
     },
 
     /**

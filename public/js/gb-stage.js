@@ -31,33 +31,37 @@ gb.ui.Stage.include({
     init: function(selector) {
         "use strict";
 
-        this.tiles = [];
-        this.tileOffsets = [];
-        this.howMany = 12;
         this.intervalMS = 15000;
         this.currentIndex = 0;
 
+        this.initTiles();
         if (selector) {
             var that = this;
             this.selector = selector;
+            // the core jQuery object
             this.jq = $("#"+selector);
             this.contentSelector = "#"+selector+"-content";
             this.content = $("<div id='"+selector+"-content'></div>");
-
             this.jq.append(this.content);
-            this.initTiles();
-            this.loadTileData();
-
-            this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
-                function(){that.rotate();});
-            this.touchSurface = new gb.ui.TouchSurface( this.content[0],
-                function(evt, dir, phase, swipetype, distance){
-                    that.onTouchEvent(evt, dir, phase, swipetype, distance);});
-
-            $("#stage-next").on("click", function(){that.goToNext();});
-            $("#stage-prev").on("click", function(){that.goToPrevious();});
-            console.log("init: Stage.");
+            this.setupEventHandlers();
         }
+    },
+
+    setupEventHandlers: function() {
+        var that = this;
+        // setup interval loop
+        this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
+            function(){
+                that.rotate();
+            });
+
+        // setup swipe handler
+        this.touchSurface = new gb.ui.TouchSurface( this.content[0],
+            function(evt, dir, phase, swipetype, distance){
+                that.onTouchEvent(evt, dir, phase, swipetype, distance);
+            });
+        $("#stage-next").on("click", function(){that.goToNext();});
+        $("#stage-prev").on("click", function(){that.goToPrevious();});
     },
 
     /**
@@ -66,39 +70,45 @@ gb.ui.Stage.include({
     initTiles: function() {
         this.tiles = [];
         this.tileOffsets = [];
-        var colorIndex = 0;
-        for (var i=0; i<this.howMany; i++) {
-            var tile = new gb.ui.Tile(this.contentSelector, {
-                "id": "tile-"+i,
-                "class" : "tile"
-            });
-            var el = tile.jq.get(0);
-            if (el) {
-                el.style.backgroundColor = this.COLORS[colorIndex];
-            }
-            this.tiles.push(tile);
-            if (colorIndex > this.COLORS.length - 2) {
-                colorIndex = 0;
-            } else {
-                colorIndex++;
-            }
-        }
-        this.resizeTiles();
     },
 
+
     loadTileData: function() {
-        var that = this;
+        var that = this, colorIndex = 0;
         $.get( "/api/tiles", function( data ) {
-            var current = 2;
             var template = JST["handlebars/tile.hbs"];
             for(var i = 0, n=data.length; i<n; i++) {
-                that.tiles[current].jq.html(template(data[i]));
-                current++;
+                console.log("load: ", i);
+                var html = template(data[i]),
+                    tile = new gb.ui.Tile({
+                        "id": "tile-"+i,
+                        "class" : "tile"
+                    });
+                tile.setContent(html);
+                that.setTileColor(tile, colorIndex);
+                that.addTile(tile);
+                if (colorIndex > that.COLORS.length) {
+                    colorIndex = 0;
+                } else {
+                    colorIndex++;
+                }
             }
             setTimeout(function(){
                 that.start();
             }, that.intervalMS);
         });
+    },
+
+    setTileColor: function(tile, colorIndex) {
+        var el = tile.jq.get(0);
+        if (el) {
+            el.style.backgroundColor = this.COLORS[colorIndex];
+        }
+    },
+
+    addTile: function(tile) {
+        this.tiles.push(tile);
+        this.content.append(tile.jq);
     },
     /**
      * onTouchEvent handler
@@ -124,7 +134,6 @@ gb.ui.Stage.include({
         if (phase !== "end") {
             return;
         }
-
         switch (dir) {
             case "left": this.goToNext();
                 break;
@@ -207,10 +216,10 @@ gb.ui.Stage.include({
      * @instance
      */
     goToNext: function() {
-        if (this.currentIndex < this.tiles.length - 2) {
+        if (this.currentIndex < this.tiles.length - 1) {
             this.currentIndex++;
         } else {
-            this.currentIndex = this.tiles.length - 1;
+            this.currentIndex = 0;
         }
         this.goTo(this.currentIndex);
     },
@@ -224,6 +233,7 @@ gb.ui.Stage.include({
     goTo: function(index) {
         var that = this;
 
+        console.log("i=", index);
         // fadeOut
         if (this.currentIndex) {
             this.tiles[this.currentIndex].jq.transition({opacity:0, queue:false}, 100, "ease");
@@ -264,7 +274,6 @@ gb.ui.Stage.include({
      * @instance
      */
     onResizeEndHandler: function() {
-        // this.hide();
         this.resizeTiles();
         this.show();
     }

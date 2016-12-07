@@ -43,6 +43,7 @@ module.exports = function(grunt) {
             },
             site: {
                 src: [
+                      'public/js/raphael-extensions.js',
                       'public/js/gb.js',
                       'public/js/gb-templates.js',
                       'public/js/gb-util.js',
