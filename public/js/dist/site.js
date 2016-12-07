@@ -1304,7 +1304,6 @@ gb.ui.Timeline.include({
         });
 
         $.getJSON(this.ajaxURL, function(data) {
-            console.log("getting timeline data...");
             that.timelineData = data;
             that.onDataHandler();
         });
@@ -1671,12 +1670,7 @@ gb.ui.Stage.include({
             this.contentSelector = "#"+selector+"-content";
             this.content = $("<div id='"+selector+"-content'></div>");
             this.jq.append(this.content);
-
-            // this.loadTileData();
             this.setupEventHandlers();
-            this.start();
-
-            console.log("init: Stage.");
         }
     },
 
@@ -1708,10 +1702,10 @@ gb.ui.Stage.include({
 
     loadTileData: function() {
         var that = this, colorIndex = 0;
-
         $.get( "/api/tiles", function( data ) {
             var template = JST["handlebars/tile.hbs"];
             for(var i = 0, n=data.length; i<n; i++) {
+                console.log("load: ", i);
                 var html = template(data[i]),
                     tile = new gb.ui.Tile({
                         "id": "tile-"+i,
@@ -1726,7 +1720,6 @@ gb.ui.Stage.include({
                     colorIndex++;
                 }
             }
-
             setTimeout(function(){
                 that.start();
             }, that.intervalMS);
@@ -1768,7 +1761,6 @@ gb.ui.Stage.include({
         if (phase !== "end") {
             return;
         }
-
         switch (dir) {
             case "left": this.goToNext();
                 break;
@@ -1851,10 +1843,10 @@ gb.ui.Stage.include({
      * @instance
      */
     goToNext: function() {
-        if (this.currentIndex < this.tiles.length - 2) {
+        if (this.currentIndex < this.tiles.length - 1) {
             this.currentIndex++;
         } else {
-            this.currentIndex = this.tiles.length - 1;
+            this.currentIndex = 0;
         }
         this.goTo(this.currentIndex);
     },
@@ -1868,6 +1860,7 @@ gb.ui.Stage.include({
     goTo: function(index) {
         var that = this;
 
+        console.log("i=", index);
         // fadeOut
         if (this.currentIndex) {
             this.tiles[this.currentIndex].jq.transition({opacity:0, queue:false}, 100, "ease");
@@ -1956,9 +1949,9 @@ gb.ui.ContentManager.include({
             // instantiate Timeline(Tile)
             var timelineTile = new gb.ui.Tile({id: "timeline-tile", class: "tile"});
             this.stage.addTile(timelineTile);
-
             var timeline = new gb.ui.Timeline("timeline-tile");
 
+            this.stage.loadTileData();
             this.stage.onResizeEndHandler();
             this.show();
 
