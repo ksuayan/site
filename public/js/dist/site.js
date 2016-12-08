@@ -1884,7 +1884,8 @@ gb.ui.ContentManager.include({
             this.stage = new gb.ui.Stage("stage", rotateInterval, waitTime);
 
             var splashTile = new gb.ui.Tile({id: "splash-tile", class: "tile"});
-            splashTile.setContent('<img src="http://cdn.suayan.com/dist/img/splash-02.svg"/>');
+            splashTile.setContent('<img src="http://cdn.suayan.com/dist/img/splash-04.svg"/>');
+
             this.stage.addTile(splashTile);
 
             // instantiate Timeline(Tile)
