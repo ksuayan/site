@@ -43,7 +43,6 @@ module.exports = function(grunt) {
             },
             site: {
                 src: [
-                      'public/js/raphael-extensions.js',
                       'public/js/gb.js',
                       'public/js/gb-templates.js',
                       'public/js/gb-util.js',
@@ -83,7 +82,10 @@ module.exports = function(grunt) {
             },
             core: {
                 files: {
-                    'public/js/dist/corelib.min.js': ['<%= bower_concat.all.dest %>']
+                    'public/js/dist/corelib.min.js': [
+                        '<%= bower_concat.all.dest %>',
+                        'public/js/raphael-extensions.js'
+                    ]
                 }
             }
         },
@@ -170,7 +172,6 @@ module.exports = function(grunt) {
         'concat:all'
     ]);
 
-
     grunt.registerTask('core', [
         'bower_concat',
         'uglify:core',
@@ -186,14 +187,14 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('default',[
-        'bower_concat',
-        'handlebars',
-        'jshint',
-        'cssmin',
-        'concat:extras',
-        'concat:site',
-        'uglify:core',
-        'uglify:site',
-        'concat:all'
+        'bower_concat', // all bower imported libraries in bower.json
+        'handlebars', // *.hbs -> *.js
+        'jshint', // sanity checks
+        'cssmin', // corelib.min.css, main.min.css
+        'concat:extras', // pre-minified vendor source
+        'concat:site', // gb-*.js
+        'uglify:core', // corelib.min.js
+        'uglify:site', // site.min.js
+        'concat:all' // all-site.min.js
     ]);
 };

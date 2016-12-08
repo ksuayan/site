@@ -17,40 +17,85 @@ gb.ui.ContentManager = new gb.Class();
 gb.ui.ContentManager.include({
 
     /**
+     * @memberOf gb.ui.Stage
+     * @static
+     */
+    COLORS: ["#333", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
+        "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
+        "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE",
+        "#FFF1CE", "#17607D"],
+
+    /**
      * @param selector
      * @instance
      */
     init: function(selector) {
         "use strict";
 
-        var that = this;
+        var that = this,
+            rotateInterval = 15000,
+            waitTime = 5000;
         this.content = $(selector);
         if (this.content.html()) {
             this.visible = true;
-
-
             // instantiate the stage
-            this.stage = new gb.ui.Stage("stage");
-
+            this.stage = new gb.ui.Stage("stage", rotateInterval, waitTime);
 
             var splashTile = new gb.ui.Tile({id: "splash-tile", class: "tile"});
-            splashTile.setContent('<img src="/img/splash-02.svg"/>');
+            splashTile.setContent('<img src="http://cdn.suayan.com/dist/img/splash-02.svg"/>');
             this.stage.addTile(splashTile);
-
 
             // instantiate Timeline(Tile)
             var timelineTile = new gb.ui.Tile({id: "timeline-tile", class: "tile"});
             this.stage.addTile(timelineTile);
             var timeline = new gb.ui.Timeline("timeline-tile");
-
-            this.stage.loadTileData();
-            this.stage.onResizeEndHandler();
-            this.show();
+            this.loadTileData(function(count){
+                console.log("Added " + count + " additional tiles from api call.");
+                that.stage.onResizeEndHandler();
+            });
 
             $("#slideshow-button").click(function(){that.toggleSlideShow();});
             $("#play-button").click(function(){that.toggleStage();});
             $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-            console.log("init: ContentManager");
+            console.log("init: ContentManager 2016.12.07");
+        }
+    },
+
+    /**
+     * Load tiles from /api/tiles call.
+     *
+     * @param onLoadComplete
+     */
+    loadTileData: function(onLoadComplete) {
+        var that = this, colorIndex = 0;
+        $.get( "/api/tiles", function( data ) {
+            var template = JST["handlebars/tile.hbs"];
+            for(var i = 0, n=data.length; i<n; i++) {
+                var html = template(data[i]),
+                    tile = new gb.ui.Tile({
+                        "id": "tile-"+i,
+                        "class" : "tile"
+                    });
+                tile.hide();
+                tile.setContent(html);
+                that.setTileColor(tile, colorIndex);
+                that.stage.addTile(tile);
+                if (colorIndex > that.COLORS.length) {
+                    colorIndex = 0;
+                } else {
+                    colorIndex++;
+                }
+            }
+            if (onLoadComplete && typeof onLoadComplete === 'function') {
+                onLoadComplete(data.length);
+            }
+        });
+    },
+
+    setTileColor: function(tile, colorIndex) {
+        var el = tile.jq.get(0);
+        if (el) {
+            el.style.backgroundColor = this.COLORS[colorIndex];
         }
     },
 

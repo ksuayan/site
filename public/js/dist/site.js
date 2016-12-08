@@ -1,30 +1,3 @@
-// -- http://jsfiddle.net/amustill/Bh276/1/
-Raphael.el.hoverInBounds = function(inFunc, outFunc) {
-    var inBounds = false;
-    // Mouseover function. Only execute if `inBounds` is false.
-    this.mouseover(function() {
-        if (!inBounds) {
-            inBounds = true;
-            inFunc.call(this);
-        }
-    });
-    // Mouseout function
-    this.mouseout(function(e) {
-        var x = e.offsetX || e.clientX,
-            y = e.offsetY || e.clientY;
-
-        // Return `false` if we're still inside the element's bounds
-        if (this.isPointInside(x, y)) {
-            return false;
-        }
-        inBounds = false;
-        outFunc.call(this);
-    });
-    return this;
-};
-
-
-
 /** @namespace */
 var gb = gb || {};
 
@@ -1643,27 +1616,17 @@ gb.ui.Stage = gb.Class(gb.ui.Tile);
 gb.ui.Stage.include({
 
     /**
-     * @memberOf gb.ui.Stage
-     * @static
-     */
-    COLORS: ["#333", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
-             "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
-             "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE",
-             "#FFF1CE", "#17607D"],
-
-    /**
      * @param selector
      * @instance
      */
-    init: function(selector) {
+    init: function(selector, intervalMS, waitTime) {
         "use strict";
+        var that = this;
 
-        this.intervalMS = 15000;
+        this.intervalMS = intervalMS; // rotation interval
         this.currentIndex = 0;
-
         this.initTiles();
         if (selector) {
-            var that = this;
             this.selector = selector;
             // the core jQuery object
             this.jq = $("#"+selector);
@@ -1671,17 +1634,24 @@ gb.ui.Stage.include({
             this.content = $("<div id='"+selector+"-content'></div>");
             this.jq.append(this.content);
             this.setupEventHandlers();
+
+            // setup interval loop
+            this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
+                function(){ that.rotate(); });
+
+            if (waitTime) {
+                setTimeout(function(){
+                    console.log("Stage wait:", waitTime);
+                    that.start();
+                }, waitTime);
+            } else {
+                that.start();
+            }
         }
     },
 
     setupEventHandlers: function() {
         var that = this;
-        // setup interval loop
-        this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
-            function(){
-                that.rotate();
-            });
-
         // setup swipe handler
         this.touchSurface = new gb.ui.TouchSurface( this.content[0],
             function(evt, dir, phase, swipetype, distance){
@@ -1697,40 +1667,6 @@ gb.ui.Stage.include({
     initTiles: function() {
         this.tiles = [];
         this.tileOffsets = [];
-    },
-
-
-    loadTileData: function() {
-        var that = this, colorIndex = 0;
-        $.get( "/api/tiles", function( data ) {
-            var template = JST["handlebars/tile.hbs"];
-            for(var i = 0, n=data.length; i<n; i++) {
-                console.log("load: ", i);
-                var html = template(data[i]),
-                    tile = new gb.ui.Tile({
-                        "id": "tile-"+i,
-                        "class" : "tile"
-                    });
-                tile.setContent(html);
-                that.setTileColor(tile, colorIndex);
-                that.addTile(tile);
-                if (colorIndex > that.COLORS.length) {
-                    colorIndex = 0;
-                } else {
-                    colorIndex++;
-                }
-            }
-            setTimeout(function(){
-                that.start();
-            }, that.intervalMS);
-        });
-    },
-
-    setTileColor: function(tile, colorIndex) {
-        var el = tile.jq.get(0);
-        if (el) {
-            el.style.backgroundColor = this.COLORS[colorIndex];
-        }
     },
 
     addTile: function(tile) {
@@ -1859,23 +1795,21 @@ gb.ui.Stage.include({
      */
     goTo: function(index) {
         var that = this;
-
-        console.log("i=", index);
         // fadeOut
         if (this.currentIndex) {
             this.tiles[this.currentIndex].jq.transition({opacity:0, queue:false}, 100, "ease");
         }
-
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset, queue:false}, 500, "ease", function(){
+        this.content.transition({x:xOffset, queue:false}, 200, "ease", function(){
             that.jq.trigger({
                 type: "goto-end",
                 slideIndex: index,
                 slideXOffset: xOffset
             });
-            that.tiles[that.currentIndex]
-                .jq.transition({opacity:1, queue:false}, 1000, "ease");
+            var currentTile = that.tiles[that.currentIndex].jq;
+            currentTile.show();
+            currentTile.transition({opacity:1, queue:false}, 300, "ease");
         });
     },
 
@@ -1925,40 +1859,85 @@ gb.ui.ContentManager = new gb.Class();
 gb.ui.ContentManager.include({
 
     /**
+     * @memberOf gb.ui.Stage
+     * @static
+     */
+    COLORS: ["#333", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
+        "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
+        "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE",
+        "#FFF1CE", "#17607D"],
+
+    /**
      * @param selector
      * @instance
      */
     init: function(selector) {
         "use strict";
 
-        var that = this;
+        var that = this,
+            rotateInterval = 15000,
+            waitTime = 5000;
         this.content = $(selector);
         if (this.content.html()) {
             this.visible = true;
-
-
             // instantiate the stage
-            this.stage = new gb.ui.Stage("stage");
-
+            this.stage = new gb.ui.Stage("stage", rotateInterval, waitTime);
 
             var splashTile = new gb.ui.Tile({id: "splash-tile", class: "tile"});
-            splashTile.setContent('<img src="/img/splash-02.svg"/>');
+            splashTile.setContent('<img src="http://cdn.suayan.com/dist/img/splash-02.svg"/>');
             this.stage.addTile(splashTile);
-
 
             // instantiate Timeline(Tile)
             var timelineTile = new gb.ui.Tile({id: "timeline-tile", class: "tile"});
             this.stage.addTile(timelineTile);
             var timeline = new gb.ui.Timeline("timeline-tile");
-
-            this.stage.loadTileData();
-            this.stage.onResizeEndHandler();
-            this.show();
+            this.loadTileData(function(count){
+                console.log("Added " + count + " additional tiles from api call.");
+                that.stage.onResizeEndHandler();
+            });
 
             $("#slideshow-button").click(function(){that.toggleSlideShow();});
             $("#play-button").click(function(){that.toggleStage();});
             $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-            console.log("init: ContentManager");
+            console.log("init: ContentManager 2016.12.07");
+        }
+    },
+
+    /**
+     * Load tiles from /api/tiles call.
+     *
+     * @param onLoadComplete
+     */
+    loadTileData: function(onLoadComplete) {
+        var that = this, colorIndex = 0;
+        $.get( "/api/tiles", function( data ) {
+            var template = JST["handlebars/tile.hbs"];
+            for(var i = 0, n=data.length; i<n; i++) {
+                var html = template(data[i]),
+                    tile = new gb.ui.Tile({
+                        "id": "tile-"+i,
+                        "class" : "tile"
+                    });
+                tile.hide();
+                tile.setContent(html);
+                that.setTileColor(tile, colorIndex);
+                that.stage.addTile(tile);
+                if (colorIndex > that.COLORS.length) {
+                    colorIndex = 0;
+                } else {
+                    colorIndex++;
+                }
+            }
+            if (onLoadComplete && typeof onLoadComplete === 'function') {
+                onLoadComplete(data.length);
+            }
+        });
+    },
+
+    setTileColor: function(tile, colorIndex) {
+        var el = tile.jq.get(0);
+        if (el) {
+            el.style.backgroundColor = this.COLORS[colorIndex];
         }
     },
 

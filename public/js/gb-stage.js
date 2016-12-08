@@ -16,27 +16,17 @@ gb.ui.Stage = gb.Class(gb.ui.Tile);
 gb.ui.Stage.include({
 
     /**
-     * @memberOf gb.ui.Stage
-     * @static
-     */
-    COLORS: ["#333", "#3E606F",  "#002A4A", "#FF9311", "#E33200",
-             "#002A4A", "#D1DBBD", "#91AA9D", "#3E606F", "#193441",
-             "#3C3658", "#3EC8B7", "#7CD0B4", "#B9D8B1", "#F7E0AE",
-             "#FFF1CE", "#17607D"],
-
-    /**
      * @param selector
      * @instance
      */
-    init: function(selector) {
+    init: function(selector, intervalMS, waitTime) {
         "use strict";
+        var that = this;
 
-        this.intervalMS = 15000;
+        this.intervalMS = intervalMS; // rotation interval
         this.currentIndex = 0;
-
         this.initTiles();
         if (selector) {
-            var that = this;
             this.selector = selector;
             // the core jQuery object
             this.jq = $("#"+selector);
@@ -44,17 +34,24 @@ gb.ui.Stage.include({
             this.content = $("<div id='"+selector+"-content'></div>");
             this.jq.append(this.content);
             this.setupEventHandlers();
+
+            // setup interval loop
+            this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
+                function(){ that.rotate(); });
+
+            if (waitTime) {
+                setTimeout(function(){
+                    console.log("Stage wait:", waitTime);
+                    that.start();
+                }, waitTime);
+            } else {
+                that.start();
+            }
         }
     },
 
     setupEventHandlers: function() {
         var that = this;
-        // setup interval loop
-        this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
-            function(){
-                that.rotate();
-            });
-
         // setup swipe handler
         this.touchSurface = new gb.ui.TouchSurface( this.content[0],
             function(evt, dir, phase, swipetype, distance){
@@ -70,40 +67,6 @@ gb.ui.Stage.include({
     initTiles: function() {
         this.tiles = [];
         this.tileOffsets = [];
-    },
-
-
-    loadTileData: function() {
-        var that = this, colorIndex = 0;
-        $.get( "/api/tiles", function( data ) {
-            var template = JST["handlebars/tile.hbs"];
-            for(var i = 0, n=data.length; i<n; i++) {
-                console.log("load: ", i);
-                var html = template(data[i]),
-                    tile = new gb.ui.Tile({
-                        "id": "tile-"+i,
-                        "class" : "tile"
-                    });
-                tile.setContent(html);
-                that.setTileColor(tile, colorIndex);
-                that.addTile(tile);
-                if (colorIndex > that.COLORS.length) {
-                    colorIndex = 0;
-                } else {
-                    colorIndex++;
-                }
-            }
-            setTimeout(function(){
-                that.start();
-            }, that.intervalMS);
-        });
-    },
-
-    setTileColor: function(tile, colorIndex) {
-        var el = tile.jq.get(0);
-        if (el) {
-            el.style.backgroundColor = this.COLORS[colorIndex];
-        }
     },
 
     addTile: function(tile) {
@@ -232,23 +195,21 @@ gb.ui.Stage.include({
      */
     goTo: function(index) {
         var that = this;
-
-        console.log("i=", index);
         // fadeOut
         if (this.currentIndex) {
             this.tiles[this.currentIndex].jq.transition({opacity:0, queue:false}, 100, "ease");
         }
-
         this.currentIndex = index;
         var xOffset = -1 * this.tileOffsets[index];
-        this.content.transition({x:xOffset, queue:false}, 500, "ease", function(){
+        this.content.transition({x:xOffset, queue:false}, 200, "ease", function(){
             that.jq.trigger({
                 type: "goto-end",
                 slideIndex: index,
                 slideXOffset: xOffset
             });
-            that.tiles[that.currentIndex]
-                .jq.transition({opacity:1, queue:false}, 1000, "ease");
+            var currentTile = that.tiles[that.currentIndex].jq;
+            currentTile.show();
+            currentTile.transition({opacity:1, queue:false}, 300, "ease");
         });
     },
 
