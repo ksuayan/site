@@ -182,15 +182,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.url); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\" target=\"_blank\" class=\"hidden-xs\">\n        <img src=\""
+    + "\" target=\"_blank\" class=\"hidden-xs\">\n        <img src=\"/img/ks-logo.svg\" data-src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.pictures)),stack1 == null || stack1 === false ? stack1 : stack1.low_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"instagram\"/>\n    </a>\n    <a href=\"";
+    + "\" class=\"instagram lazy\"/>\n    </a>\n    <a href=\"";
   if (stack2 = helpers.url) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = (depth0 && depth0.url); stack2 = typeof stack2 === functionType ? stack2.call(depth0, {hash:{},data:data}) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\" target=\"_blank\" class=\"visible-xs\">\n        <img src=\""
+    + "\" target=\"_blank\" class=\"visible-xs\">\n        <img src=\"/img/ks-logo.svg\" data-src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.pictures)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\" class=\"instagram\"/>\n    </a>\n    <div class=\"caption\">\n        <span class=\"label label-primary\">Instagram</span>\n        <span class=\"when\">";
+    + "\" class=\"instagram lazy\"/>\n    </a>\n    <div class=\"caption\">\n        <span class=\"label label-primary\">Instagram</span>\n        <span class=\"when\">";
   if (stack2 = helpers.ago) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = (depth0 && depth0.ago); stack2 = typeof stack2 === functionType ? stack2.call(depth0, {hash:{},data:data}) : stack2; }
   buffer += escapeExpression(stack2)
@@ -222,15 +222,15 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"media\">\n    <div class=\"caption\">\n        <span class=\"label label-primary\">Twitter</span>\n        <span class=\"when\">";
+  buffer += "<div class=\"media\">\n    <div class=\"caption twitter\">\n        <span class=\"label label-primary\">Twitter</span>\n        <span class=\"when\">";
   if (stack1 = helpers.ago) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.ago); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span>\n        <a href=\"";
+    + "</span>\n        <a href=\"http://twitter.com/";
   if (stack1 = helpers.user) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.user); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">@";
+    + "\" class=\"handle\">@";
   if (stack1 = helpers.user) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.user); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
@@ -699,6 +699,57 @@ gb.ui.TouchSurface.include({
     }
 });
 
+
+gb.Namespace(gb,"gb.ui.LazyImage");
+gb.ui.LazyImage = new gb.Class();
+
+gb.ui.LazyImage.include({
+
+    init: function(selector) {
+        "use strict";
+        var that = this;
+        var scrolledIntoView = function(elem) {
+            var docViewTop = $(window).scrollTop(),
+                docViewBottom = docViewTop + $(window).height(),
+                elemTop = $(elem).offset().top,
+                elemBottom = elemTop + $(elem).height(),
+                isVisible = ((elemTop < docViewBottom) && (elemTop > docViewTop));
+                // isVisible = ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+
+            console.log("scr elTop", elemTop, "elBottom: ", elemBottom,
+                "top", docViewTop, "bottom", docViewBottom);
+
+            return isVisible;
+        };
+        /*
+        var throttleScroll = function(evt){
+            that.images.trigger("scrollend");
+        };
+        $(window).scroll(gb.util.throttle(throttleScroll, 200));
+        */
+        this.images = $(selector);
+        this.images.on("scrollend", function(e){
+            var target = $(e.target),
+                src = target.attr("src"),
+                dataSrc = target.attr("data-src");
+            // when scrolled into view
+            // start loading the image.
+            if (scrolledIntoView(target) && dataSrc && (src !== dataSrc)) {
+                target.attr("src", dataSrc);
+                target.off("scrollend");
+                target.removeAttr("data-src");
+                console.log("scrollend", $(this).attr("src"));
+            }
+        });
+        $(window).scroll(function(){
+            var docViewTop = $(window).scrollTop(),
+                docViewBottom = docViewTop + $(window).height();
+            console.log("top, bottom", docViewTop, docViewBottom);
+            that.images.trigger("scrollend");
+        });
+        this.images.trigger("scrollend");
+    }
+});
 
 gb.Namespace(gb, "gb.ui.PreloadableImage");
 gb.ui.PreloadableImage = new gb.Class();
@@ -2163,6 +2214,8 @@ $(function(){
                         }
                         streamDiv.append(content);
                     }
+                    console.log("lazyImages...");
+                    var lazyImages = new gb.ui.LazyImage("img.lazy");
                     $window.trigger("resizeEnd");
                 }
             }

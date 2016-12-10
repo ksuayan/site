@@ -260,9 +260,12 @@ input[readonly] {
 .navbar-brand,
 .navbar-nav,
 .dropdown-menu {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 300;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}
+.navbar-brand {
+  font-weight: 600;
 }
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-brand {
@@ -319,7 +322,6 @@ html#slideshow {
 }
 #stream {
   background-color: #333333;
-  padding: 15px;
 }
 @media (min-width: 767px) {
   #stream {
@@ -332,34 +334,31 @@ html#slideshow {
   }
 }
 #stream .media {
-  width: 93%;
+  width: 100%;
   padding: 0px;
-  margin: 0px 0px 20px 15px;
   background-color: #fff;
+  margin: 2px 0px 0px 0px;
 }
 @media (min-width: 767px) {
   #stream .media {
-    margin: 0px 0px 15px 15px;
-    width: 320px;
+    margin: 0px 0px 2px 2px;
+    width: 24.5%;
     background-color: #efefef;
   }
 }
 #stream .media .instagram {
+  width: 100%;
   max-width: 100%;
   max-height: 100%;
 }
 #stream .media .caption {
-  padding: 15px;
+  padding: 25px 15px 20px 15px;
 }
 #stream .media .caption h2 {
-  font-size: 24px;
+  font-size: 18px;
+  line-height: 120%;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-@media (min-width: 767px) {
-  #stream .media .caption h2 {
-    font-size: 16px;
-  }
 }
 #stream .media .caption h2 a,
 #stream .media .caption h2 a:hover {
@@ -368,11 +367,29 @@ html#slideshow {
 #stream .media .caption .vimeo {
   margin-top: 20px;
 }
+#stream .media .caption.twitter {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media only screen and (max-device-width: 480px) {
+  #stream .media .caption.twitter {
+    top: auto;
+    transform: translateY(0%);
+  }
+}
+#stream .media a,
+#stream .media a:hover {
+  text-decoration: none;
+}
 .when {
   font-size: 16px;
   color: #999;
   margin-left: 10px;
   margin-right: 5px;
+}
+.handle {
+  font-size: 16px;
 }
 .permalink,
 .permalink:hover {
@@ -380,7 +397,6 @@ html#slideshow {
   display: block;
   font-size: 16px;
   text-decoration: none;
-  margin-top: 10px;
 }
 /* CONTENT */
 #content {

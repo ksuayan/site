@@ -48,6 +48,7 @@ module.exports = function(grunt) {
                       'public/js/gb-util.js',
                       'public/js/gb-ui.js',
                       'public/js/gb-touch-surface.js',
+                      'public/js/gb-lazy-image.js',
                       'public/js/gb-preloadable-image.js',
                       'public/js/gb-tile.js',
                       'public/js/gb-timeout-cycle.js',
@@ -56,8 +57,10 @@ module.exports = function(grunt) {
                       'public/js/gb-timeline.js',
                       'public/js/gb-fullscreen.js',
                       'public/js/gb-stage.js',
+
                       'public/js/gb-content-manager.js',
                       'public/js/gb-socket-client.js',
+
                       'public/js/main.js'],
                 dest: 'public/js/dist/<%= pkg.name %>.js'
             },
