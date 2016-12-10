@@ -339,7 +339,7 @@ html#slideshow {
   background-color: #fff;
   margin: 2px 0px 0px 0px;
 }
-@media (min-width: 767px) {
+@media only screen and (min-width: 767px) {
   #stream .media {
     margin: 0px 0px 2px 2px;
     width: 24.5%;
@@ -372,10 +372,10 @@ html#slideshow {
   top: 50%;
   transform: translateY(-50%);
 }
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 767px) {
   #stream .media .caption.twitter {
     top: auto;
-    transform: translateY(0%);
+    transform: none;
   }
 }
 #stream .media a,

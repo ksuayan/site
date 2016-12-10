@@ -17,7 +17,7 @@
         padding: 0px;
         background-color: #fff;
         margin: 2px 0px 0px 0px;
-        @media (min-width: (@screen-xs-max)) {
+        @media only screen and (min-width: (@screen-xs-max)) {
             margin: 0px 0px 2px 2px;
             width: 24.5%;
             background-color: #efefef;
@@ -42,14 +42,13 @@
                 margin-top: 20px;
             }
         }
-
         .caption.twitter {
             position: relative;
             top: 50%;
             transform: translateY(-50%);
-            @media @smartphones {
+            @media only screen and (max-device-width: @screen-xs-max) {
                 top: auto;
-                transform: translateY(0%);
+                transform: none;
             }
         }
         a, a:hover {
