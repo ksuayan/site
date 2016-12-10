@@ -182,13 +182,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = (depth0 && depth0.url); stack1 = typeof stack1 === functionType ? stack1.call(depth0, {hash:{},data:data}) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\" target=\"_blank\" class=\"hidden-xs\">\n        <img src=\"/img/ks-logo.svg\" data-src=\""
+    + "\" target=\"_blank\" class=\"hidden-xs\">\n        <img src=\"//cdn.suayan.com/img/ks-logo.svg\" data-src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.pictures)),stack1 == null || stack1 === false ? stack1 : stack1.low_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"instagram lazy\"/>\n    </a>\n    <a href=\"";
   if (stack2 = helpers.url) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = (depth0 && depth0.url); stack2 = typeof stack2 === functionType ? stack2.call(depth0, {hash:{},data:data}) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\" target=\"_blank\" class=\"visible-xs\">\n        <img src=\"/img/ks-logo.svg\" data-src=\""
+    + "\" target=\"_blank\" class=\"visible-xs\">\n        <img src=\"//cdn.suayan.com/img/ks-logo.svg\" data-src=\""
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = (depth0 && depth0.pictures)),stack1 == null || stack1 === false ? stack1 : stack1.standard_resolution)),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\" class=\"instagram lazy\"/>\n    </a>\n    <div class=\"caption\">\n        <span class=\"label label-primary\">Instagram</span>\n        <span class=\"when\">";
   if (stack2 = helpers.ago) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
