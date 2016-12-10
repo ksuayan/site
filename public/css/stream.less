@@ -2,9 +2,9 @@
 
 #stream {
     background-color: #333333;
+    padding: 0px;
 
-    @media (min-width: (@screen-xs-max)) {
-        padding: 10px;
+    @media only screen and (min-width: @screen-xs-max) {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -17,13 +17,19 @@
         padding: 0px;
         background-color: #fff;
         margin: 2px 0px 0px 0px;
-        @media only screen and (min-width: (@screen-xs-max)) {
+        @media only screen and (min-width: @screen-xs-max) {
             margin: 0px 0px 2px 2px;
             width: 24.5%;
-            background-color: #efefef;
         }
+        /*
+        @media only screen and (max-width: @screen-xs-max) and (orientation:landscape) {
+            background-color: #ff0000;
+            display: block;
+        }
+        */
         .instagram {
             width: 100%;
+            height: auto;
             max-width: 100%;
             max-height: 100%;
         }
@@ -40,15 +46,6 @@
             }
             .vimeo {
                 margin-top: 20px;
-            }
-        }
-        .caption.twitter {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            @media only screen and (max-device-width: @screen-xs-max) {
-                top: auto;
-                transform: none;
             }
         }
         a, a:hover {

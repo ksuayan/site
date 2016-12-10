@@ -235,7 +235,7 @@ input[readonly] {
     margin: 2px 0px 0px 0px;
   }
 }
-@media (min-width: 993px) {
+@media (min-width: 992px+1) {
   .row.multicol .mod,
   .row.multicol .mod:first-child {
     margin: 0px;
@@ -322,10 +322,10 @@ html#slideshow {
 }
 #stream {
   background-color: #333333;
+  padding: 0px;
 }
-@media (min-width: 767px) {
+@media only screen and (min-width: 767px) {
   #stream {
-    padding: 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -338,16 +338,22 @@ html#slideshow {
   padding: 0px;
   background-color: #fff;
   margin: 2px 0px 0px 0px;
+  /*
+        @media only screen and (max-width: @screen-xs-max) and (orientation:landscape) {
+            background-color: #ff0000;
+            display: block;
+        }
+        */
 }
 @media only screen and (min-width: 767px) {
   #stream .media {
     margin: 0px 0px 2px 2px;
     width: 24.5%;
-    background-color: #efefef;
   }
 }
 #stream .media .instagram {
   width: 100%;
+  height: auto;
   max-width: 100%;
   max-height: 100%;
 }
@@ -366,17 +372,6 @@ html#slideshow {
 }
 #stream .media .caption .vimeo {
   margin-top: 20px;
-}
-#stream .media .caption.twitter {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-@media only screen and (max-device-width: 767px) {
-  #stream .media .caption.twitter {
-    top: auto;
-    transform: none;
-  }
 }
 #stream .media a,
 #stream .media a:hover {
@@ -403,6 +398,9 @@ html#slideshow {
   background-color: #fff;
   margin-top: 0px;
   padding-top: 0px;
+}
+#content .row {
+  margin: 0px;
 }
 #content #stage-prev {
   top: 210px;
@@ -455,7 +453,6 @@ html#slideshow {
   height: 560px;
   position: relative;
   overflow: hidden;
-  margin-bottom: 20px;
   background-color: #212121;
 }
 #content #stage #stage-content {

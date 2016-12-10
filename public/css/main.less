@@ -42,7 +42,7 @@ input[readonly] {
 }
 
 // Small and Below
-@media (max-width: (@screen-sm-max)) {
+@media (max-width: @screen-sm-max) {
     .hero-unit {
         height: auto;
         padding-bottom: 10px;
@@ -75,7 +75,7 @@ input[readonly] {
 }
 
 // Large and Below
-@media (max-width: (@screen-md-min)) {
+@media (max-width: @screen-md-min) {
     .row.multicol {
         .mod, .mod:first-child {
             margin: 2px 0px 0px 0px;
@@ -84,7 +84,7 @@ input[readonly] {
 }
 
 // Medium Layouts and up.
-@media (min-width: (@screen-md-min+1)) {
+@media (min-width: @screen-md-min+1) {
     .row.multicol {
         .mod, .mod:first-child {
             margin: 0px;
