@@ -14,7 +14,7 @@ var http = require('http'),
     csv = require('./api-csv'),
     users = require('./users'),
     server = http.createServer(app),
-    chatServer = require('./chat-server');
+    chatServer = require('./system-ws-server');
 
 chatServer.listen(server);
 

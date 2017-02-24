@@ -2,7 +2,7 @@ var mongoClient = require('./mongo-client'),
     mongoose = mongoClient.mongoose,
     conf = require('./conf'),
     util = require('./apputil'),
-    chatServer = require('./chat-server');
+    chatServer = require('./system-ws-server');
 
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;

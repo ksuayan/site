@@ -235,10 +235,10 @@ gb.ui.MapDemo.include({
     queryMarkersNearPoint: function(ctr, dist) {
         var that = this;
         // console.log("/api/loc/near/"+ctr+"/"+dist);
-        $.ajax({
-            url: "/api/loc/near/"+ctr+"/"+dist
-        }).success(function(data){
-            that.onQueryResponse(that, data);
+        $.ajax("/api/loc/near/" + ctr + "/" + dist, {
+            success: function (data) {
+                that.onQueryResponse(that, data);
+            }
         });
     },
     /**
@@ -249,10 +249,10 @@ gb.ui.MapDemo.include({
     queryMarkersWithin: function(swLatLng, neLatLng) {
         var that = this;
         // console.log("/api/loc/within/"+swLatLng+"/"+neLatLng);
-        $.ajax({
-            url: "/api/loc/within/"+swLatLng+"/"+neLatLng
-        }).success(function(data){
-            that.onQueryResponse(that, data);
+        $.ajax("/api/loc/within/"+swLatLng+"/"+neLatLng, {
+            success: function (data) {
+                that.onQueryResponse(that, data);
+            }
         });
     },
     /**

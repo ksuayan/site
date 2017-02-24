@@ -1,0 +1,29 @@
+@import (reference) "global.less";
+
+/* NAVIGATION */
+.navbar {
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top {
+  margin: 0px;
+}
+
+.navbar-brand, .navbar-nav, .dropdown-menu {
+  font-size: 18px;
+  font-weight: @font-weight-normal;
+  font-family: @navfont;
+}
+
+.navbar-brand {
+  font-weight: @font-weight-bold;
+}
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-brand {
+  color: #ccc;
+  &:hover {
+    color: #fff;
+  }
+}

@@ -33,6 +33,18 @@
             backgrounds = [],// array of gb.ui.PreloadableImage();
             index = 0;
 
+        var resizeBackgound = function() {
+            var width = backgrounds[index].image.width;
+            var height = backgrounds[index].image.height;
+            imageAspect = width/height;
+            windowAspect = theWindow.width()/theWindow.height();
+            if (windowAspect > imageAspect) {
+                bkgImage.removeClass().addClass(settings.bgWidthClass);
+            } else {
+                bkgImage.removeClass().addClass(settings.bgHeightClass);
+            }
+        };
+
         var refreshImage = function() {
             if (index < settings.images.length - 1) {
                 index++;
@@ -46,18 +58,6 @@
             };
 
             bkgImage.transition({opacity:0},settings.fadeOutTime,"snap", onComplete);
-        };
-
-        var resizeBackgound = function() {
-            var width = backgrounds[index].image.width;
-            var height = backgrounds[index].image.height;
-            imageAspect = width/height;
-            windowAspect = theWindow.width()/theWindow.height();
-            if (windowAspect > imageAspect) {
-                bkgImage.removeClass().addClass(settings.bgWidthClass);
-            } else {
-                bkgImage.removeClass().addClass(settings.bgHeightClass);
-            }
         };
 
         var preloadBackgrounds = function() {

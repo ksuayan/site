@@ -1,0 +1,76 @@
+@media screen and (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 767px) {
+}
+#chat-window {
+  font-size: 16px;
+  font-weight: 300;
+  overflow-y: auto;
+}
+#chat-window #conversation .message-header {
+  color: #666;
+  font-size: 14px;
+  margin: 10px 3px 0px 0px;
+  padding: 0px;
+}
+#chat-window #conversation .message-header strong {
+  font-weight: 600;
+  color: #c9302c;
+}
+#chat-window #conversation .message-header .glyphicon {
+  margin: 0px 3px 0px 10px;
+}
+#chat-window #conversation .message {
+  font-size: 14px;
+  padding: 3px 10px;
+  margin: 0px 10px 0px 0px;
+  color: #999;
+  background-color: #202020;
+  border: 1px solid #33333;
+}
+#command {
+  margin-bottom: 10px;
+}
+#left {
+  font-weight: 300;
+  font-size: 14px;
+}
+#left p {
+  margin: 10px 0px 0px 0px;
+  padding: 0px;
+}
+#left p:first-child {
+  margin: 0px;
+}
+#left #system {
+  border: 1px solid #66666;
+  color: #fff;
+  background-color: #202020;
+  max-height: 100px;
+  overflow-y: auto;
+}
+#left #system .message {
+  display: block;
+  clear: both;
+  padding: 3px 15px 3px 15px;
+  margin: 0px 0px 1px 0px;
+  background-color: #000000;
+}
+.dim {
+  background-color: #000;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+}

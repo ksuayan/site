@@ -94,8 +94,7 @@
             }
             previousTerm = term;
             var url = "/multi/"+term;
-            $.ajax({
-                url: url,
+            $.ajax(url, {
                 type: 'GET',
                 dataType: 'json',
                 success: function(response,status,jqxhr) {

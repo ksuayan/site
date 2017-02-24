@@ -1,0 +1,65 @@
+@import (reference) "global.less";
+
+#chat-window {
+  font-size: 16px;
+  font-weight: 300;
+  overflow-y: auto;
+  #conversation {
+    .message-header {
+      color: #666;
+      font-size: 14px;
+      margin: 10px 3px 0px 0px;
+      padding: 0px;
+      strong {
+        font-weight: 600;
+        color: #c9302c;
+      }
+      .glyphicon {
+        margin: 0px 3px 0px 10px;
+      }
+    }
+    .message {
+      font-size: 14px;
+      padding: 3px 10px;
+      margin: 0px 10px 0px 0px;
+      color: #999;
+      background-color: #202020;
+      border: 1px solid #33333;
+    }
+  }
+}
+
+#command {
+  margin-bottom: 10px;
+}
+
+#left {
+  font-weight: 300;
+  font-size: 14px;
+  p {
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+  }
+  p:first-child {
+    margin: 0px;
+  }
+  #system {
+    border: 1px solid #66666;
+    color: #fff;
+    background-color: #202020;
+    max-height: 100px;
+    overflow-y: auto;
+    .message {
+      display: block;
+      clear: both;
+      padding: 3px 15px 3px 15px;
+      margin: 0px 0px 1px 0px;
+      background-color: #000000;
+    }
+  }
+}
+
+.dim {
+  background-color: #000;
+  font-family: @navfont;
+}

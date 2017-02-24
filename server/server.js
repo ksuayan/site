@@ -201,6 +201,10 @@ app.get('/members', function(req, res) {
     res.render(path, {user: req.user});
 });
 
+app.get('/members/messages', function(req,res) {
+    chatServer.getMessagesAPI(req,res);
+});
+
 /**
  * Load jade content files.
  */

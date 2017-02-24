@@ -49,8 +49,7 @@ gb.ws.SocketClient.include({
 
     onConnect: function() {
         var that = this;
-        $.ajax({
-            url: "/api/config",
+        $.ajax("/api/config", {
             dataType: "json",
             success: that.renderGrid
         });

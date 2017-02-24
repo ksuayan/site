@@ -393,10 +393,10 @@ gb.ui.MapNav.include({
     queryMarkersNearPoint: function(ctr, dist) {
         var that = this;
         // console.log("/api/loc/near/"+ctr+"/"+dist);
-        $.ajax({
-            url: "/api/loc/near/"+ctr+"/"+dist
-        }).success(function(data){
-            that.onQueryResponse(that, data);
+        $.ajax("/api/loc/near/"+ctr+"/"+dist, {
+            success: function(data){
+                that.onQueryResponse(that, data);
+            }
         });
     },
     /**

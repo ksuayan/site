@@ -171,11 +171,11 @@ gb.ui.DoctorsMap.include({
     queryMarkersNearPoint: function(ctr, dist) {
         var that = this;
         // console.log("/api/loc/near/"+ctr+"/"+dist);
-        $.ajax({
-            url: "/api/loc/near/"+ctr+"/"+dist
-        }).success(function(data){
+        $.ajax("/api/loc/near/" + ctr + "/" + dist, {
+            success: function (data) {
                 that.onQueryResponse(that, data);
-            });
+            }
+        });
     },
     /**
      * Query backend for locations within two points.
@@ -185,11 +185,11 @@ gb.ui.DoctorsMap.include({
     queryMarkersWithin: function(swLatLng, neLatLng) {
         var that = this;
         // console.log("/api/loc/within/"+swLatLng+"/"+neLatLng);
-        $.ajax({
-            url: "/api/loc/within/"+swLatLng+"/"+neLatLng
-        }).success(function(data){
+        $.ajax("/api/loc/within/" + swLatLng + "/" + neLatLng, {
+            success: function (data) {
                 that.onQueryResponse(that, data);
-            });
+            }
+        });
     },
     /**
      * Retrieve geolocation given a query string.

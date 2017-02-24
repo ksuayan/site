@@ -8,9 +8,9 @@ $(function(){
     if ($("#stream").length) {
 
         var streamDiv = $("#stream"),
-            instagramTemplate = JST["handlebars/stream-instagram.hbs"],
-            twitterTemplate = JST["handlebars/stream-twitter.hbs"],
-            vimeoTemplate = JST["handlebars/stream-vimeo.hbs"];
+            instagramTemplate = JST["handlebars/streamInstagram.hbs"],
+            twitterTemplate = JST["handlebars/streamTwitter.hbs"],
+            vimeoTemplate = JST["handlebars/streamVimeo.hbs"];
 
         $window.on("resizeEnd", function(){
             var vimeoWidth = streamDiv.width() - 40,
