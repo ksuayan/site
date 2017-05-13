@@ -29,7 +29,7 @@ input[readonly] {
 }
 
 .hero-unit {
-    padding: 0px;
+    padding: 0;
     background-color: rgba(255, 255, 255, 0.75);
     h1, p {
         margin: 15px;
@@ -38,7 +38,7 @@ input[readonly] {
 }
 
 .jumbotron {
-    margin: 0px 0px 20px 0px;
+    margin: 0 0 20px 0;
 }
 
 // Small and Below
@@ -55,11 +55,11 @@ input[readonly] {
 
 .row.multicol {
     .mod:first-child {
-        margin: 2px 0px 0px 0px;
+        margin: 2px 0 0 0;
     }
     .mod {
         padding: 5px 10px;
-        margin: 2px 0px 0px 2px;
+        margin: 2px 0 0 2px;
     }
     .trans {
         background-color: rgba(0, 0, 0, 0.85);
@@ -78,7 +78,7 @@ input[readonly] {
 @media (max-width: @screen-md-min) {
     .row.multicol {
         .mod, .mod:first-child {
-            margin: 2px 0px 0px 0px;
+            margin: 2px 0 0 0;
         }
     }
 }
@@ -87,7 +87,7 @@ input[readonly] {
 @media (min-width: @screen-md-min+1) {
     .row.multicol {
         .mod, .mod:first-child {
-            margin: 0px;
+            margin: 0;
             min-height: 500px;
             float: left;
         }
@@ -139,13 +139,13 @@ html#slideshow {
 
 #spinner {
     display: none;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0 10px 0;
 }
 
 // Background Image
 #background {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     position: fixed;
     bottom: -3px;
     left: 0;
@@ -167,7 +167,7 @@ html#slideshow {
 .footer {
     font-size: 16px;
     font-family: @navfont;
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0 20px 0;
     background-color: #202020;
     color: #999;
 }

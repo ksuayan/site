@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600);
-@import url(https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700);
 @media screen and (max-width: 767px) {
 }
 @media (min-width: 768px) {
@@ -20,18 +20,19 @@
 }
 html,
 html a {
-  -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 html {
-  background-color: #294860;
+  background-color: #333b45;
 }
 body {
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   width: 100%;
-  font-family: "PT Serif", Georgia, serif;
-  font-size: 20px;
+  font-family: "Droid Serif", Georgia, serif;
+  font-size: 16px;
   font-weight: 300;
+  line-height: 180%;
   background-color: transparent;
   padding-bottom: 100px;
 }
@@ -47,11 +48,10 @@ h4,
 h5,
 h6 {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-weight: 600;
+  font-weight: 300;
   color: #333;
-  margin: 0px;
-  padding: 20px 0px 10px 0px;
-  line-height: 120%;
+  margin: 0;
+  padding: 20px 0 10px 0;
 }
 h1 mark,
 h2 mark,
@@ -59,8 +59,8 @@ h3 mark,
 h4 mark,
 h5 mark,
 h6 mark {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 h1 mark i,
 h2 mark i,
@@ -72,29 +72,31 @@ h6 mark i {
   font-style: normal;
   color: #fff;
   background-color: #999;
-  margin: 0px;
+  margin: 0;
   padding: 3px 6px;
   letter-spacing: 3px;
 }
 th {
   background-color: #efefef;
 }
+/*
 ul {
-  margin-left: 0px;
-  padding-left: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+    li {
+        margin-left: 0px;
+        padding-left: 0px;
+        list-style-position: inside;
+    }
 }
-ul li {
-  margin-left: 0px;
-  padding-left: 0px;
-  list-style-position: inside;
-}
+*/
 /* FORMS */
 textarea {
   resize: vertical;
 }
 input.form-control,
 textarea.form-control {
-  font-size: 20px;
+  font-size: 16px;
 }
 .btn-file {
   position: relative;
@@ -120,7 +122,7 @@ input[readonly] {
   color: #333;
 }
 .hero-unit {
-  padding: 0px;
+  padding: 0;
   background-color: rgba(255, 255, 255, 0.75);
 }
 .hero-unit h1,
@@ -129,7 +131,7 @@ input[readonly] {
   line-height: 120%;
 }
 .jumbotron {
-  margin: 0px 0px 20px 0px;
+  margin: 0 0 20px 0;
 }
 @media (max-width: 991px) {
   .hero-unit {
@@ -141,11 +143,11 @@ input[readonly] {
   }
 }
 .row.multicol .mod:first-child {
-  margin: 2px 0px 0px 0px;
+  margin: 2px 0 0 0;
 }
 .row.multicol .mod {
   padding: 5px 10px;
-  margin: 2px 0px 0px 2px;
+  margin: 2px 0 0 2px;
 }
 .row.multicol .trans {
   background-color: rgba(0, 0, 0, 0.85);
@@ -164,13 +166,13 @@ input[readonly] {
 @media (max-width: 992px) {
   .row.multicol .mod,
   .row.multicol .mod:first-child {
-    margin: 2px 0px 0px 0px;
+    margin: 2px 0 0 0;
   }
 }
 @media (min-width: 992px+1) {
   .row.multicol .mod,
   .row.multicol .mod:first-child {
-    margin: 0px;
+    margin: 0;
     min-height: 500px;
     float: left;
   }
@@ -211,11 +213,11 @@ html#slideshow {
 }
 #spinner {
   display: none;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0 10px 0;
 }
 #background {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   position: fixed;
   bottom: -3px;
   left: 0;
@@ -234,7 +236,7 @@ html#slideshow {
 .footer {
   font-size: 16px;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0 20px 0;
   background-color: #202020;
   color: #999;
 }
@@ -340,11 +342,11 @@ html#slideshow {
 /* CONTENT */
 #content {
   background-color: #fff;
-  margin-top: 0px;
-  padding-top: 0px;
+  margin-top: 0;
+  padding-top: 0;
 }
 #content .row {
-  margin: 0px;
+  margin: 0;
 }
 #content #stage-prev {
   top: 210px;

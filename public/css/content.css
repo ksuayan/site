@@ -19,11 +19,11 @@
 /* CONTENT */
 #content {
   background-color: #fff;
-  margin-top: 0px;
-  padding-top: 0px;
+  margin-top: 0;
+  padding-top: 0;
 }
 #content .row {
-  margin: 0px;
+  margin: 0;
 }
 #content #stage-prev {
   top: 210px;
