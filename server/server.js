@@ -245,11 +245,7 @@ app.get("/page/*", function(req, res){
 });
 
 // HOME
-app.get('/',              view.fullScreen);
-
-// DEPRECATED
-// app.get('/text',          view.textList);
-// app.get('/edit',          view.pageEdit);
+app.get('/',              view.homeView);
 
 // TRACKS Demo
 app.get('/search',        itunes.searchTerm);

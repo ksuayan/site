@@ -25,31 +25,19 @@ ViewHandler.prototype.notfound = function(req, res) {
  * @param req
  * @param res
  */
-ViewHandler.prototype.fullScreen = function (req, res) {
-    var successHandler = function (content) {
+ViewHandler.prototype.homeView = function (req, res) {
+    var successHandler = function (stories) {
         res.render('content/home', {
-            content: content,
-            user: req.user
+            linkTitle: true,
+            stories: stories,
+            user: req.user,
+            fn: ViewHandler.fn
         });
     },
     errorHandler = function () {
         res.render('content/notfound');
     };
-    content.getPageByName("home-2017", successHandler, errorHandler);
-};
-
-ViewHandler.prototype.pageEdit = function (req, res) {
-    var locale = null;
-    if (req.params.locale) {
-        locale = req.params.locale;
-    }
-    content.getTextList(locale, function (content) {
-        res.render('content/db/pageEdit',
-            { content: content,
-              user: req.user,
-              fn: ViewHandler.fn
-            });
-    });
+    content.getPageList(successHandler, errorHandler);
 };
 
 /**
@@ -67,20 +55,18 @@ ViewHandler.prototype.content = function(req, res) {
  * @param res
  */
 ViewHandler.prototype.pageView = function (req, res) {
-
     var page = req.params.page,
         onError = function () {
             res.render('content/notfound');
         },
-        onSuccess = function (content) {
-            if (content) {
-                var pageObject = {
+        onSuccess = function (story) {
+            if (story) {
+                res.render('layouts/view', {
                     page: page,
-                    components: [], // turn off
-                    content: content,
-                    user: req.user
-                };
-                res.render('layouts/view', pageObject);
+                    story: story, // turn off
+                    user: req.user,
+                    fn: ViewHandler.fn
+                });
             } else {
                 onError();
             }
@@ -108,16 +94,6 @@ ViewHandler.prototype.createPage = function (req, res) {
         return res.render("test", err);
     };
     content.createPage(pageObj, onSuccess, onError);
-};
-
-ViewHandler.prototype.textList = function (req, res) {
-    var locale = null;
-    if (req.params.locale) {
-        locale = req.params.locale;
-    }
-    content.getTextList(locale, function (content) {
-        res.render('content/db/textList', {content: content, fn: ViewHandler.fn });
-    });
 };
 
 ViewHandler.prototype.listDocuments = function (req, res) {

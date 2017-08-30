@@ -165,8 +165,6 @@ DocumentDB.prototype.deleteText = function(id, onSuccess, onError) {
     });
 };
 
-
-
 DocumentDB.prototype.getPageList = function(onSuccess, onError) {
     var query = {};
     var that = this;
