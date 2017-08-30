@@ -7,15 +7,6 @@ var mongoClient = require('./mongo-client'),
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var Document = new Schema({
-    title       : {type: String, default: "Untitled"},
-    body        : {type: String, default: ""},
-    status      : {type: String, default: "new"},
-    locale      : {type: String, default: "en_US"},
-    contentType : {type: String, default: "text/html"},
-    date        : {type: Date,   default: Date.now}
-});
-
 var TextContent = new Schema({
     text        : {type: String, default: ""},
     name        : {type: String, default: ""},
@@ -31,7 +22,7 @@ var Page = new Schema({
     description : {type: String, default: ""},
     keywords    : {type: String, default: ""},
     body        : {type: String, default: ""},
-    content     : [{ type: Schema.Types.ObjectId, ref: 'text' }]
+    content     : []
 });
 
 var File = new  Schema({
@@ -182,7 +173,6 @@ DocumentDB.prototype.getPageList = function(onSuccess, onError) {
     this.PageModel
         .find(query)
         .sort("name")
-        .populate("content")
         .exec(function (err, pages) {
             if (err) {
                 return util.HandleError(err, onError);
@@ -297,7 +287,6 @@ DocumentDB.prototype.getPageText = function(page, onSuccess, onError) {
     var that = this;
     this.PageModel
         .findOne(query)
-        .populate("content")
         .exec(function (err, page) {
             if (err) {
                 return util.HandleError(err);

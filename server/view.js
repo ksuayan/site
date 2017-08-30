@@ -26,12 +26,16 @@ ViewHandler.prototype.notfound = function(req, res) {
  * @param res
  */
 ViewHandler.prototype.fullScreen = function (req, res) {
-    content.getPageText("home", function (content) {
-            res.render('content/home',{content: content,user: req.user});
-        },
-        function () {
-            res.render('content/notfound');
+    var successHandler = function (content) {
+        res.render('content/home', {
+            content: content,
+            user: req.user
         });
+    },
+    errorHandler = function () {
+        res.render('content/notfound');
+    };
+    content.getPageByName("home-2017", successHandler, errorHandler);
 };
 
 ViewHandler.prototype.pageEdit = function (req, res) {
@@ -65,16 +69,6 @@ ViewHandler.prototype.content = function(req, res) {
 ViewHandler.prototype.pageView = function (req, res) {
 
     var page = req.params.page,
-        components = [
-            {
-                "template": "alert_danger",
-                "message": "This is a danger alert."
-            },
-            {
-                "template": "alert_warning",
-                "message": "This is a warning alert."
-            }
-        ],
         onError = function () {
             res.render('content/notfound');
         },

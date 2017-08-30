@@ -5,9 +5,10 @@ block content
     .container.article
       .row
         .col-lg-8
-          h1!= content.title
-          != content.body
+          include ../includes/body
         .col-lg-4
-          for component in components
-            .col-sm-12
-              +#{component.template}(component)
+          - if (typeof(components) !== 'undefined') {
+            for component in components
+              .col-sm-12
+                +#{component.template}(component)
+          - }

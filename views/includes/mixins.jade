@@ -7,23 +7,28 @@ mixin mod(parId, c, textHead, textBody)
     p
       a(class="btn btn-default",href="#") More &raquo;
 
-
-mixin alert_warning(item)
+mixin alert_warning(obj)
   .alert.alert-warning.alert-dismissible.fade.in(role='alert')
     button.close(type='button', data-dismiss='alert', aria-label='Close')
       span(aria-hidden='true') ×
-    != item.message
+    != obj.content
 
-mixin alert_danger(item)
+mixin alert_danger(obj)
   .alert.alert-danger.alert-dismissible.fade.in(role='alert')
     button.close(type='button', data-dismiss='alert', aria-label='Close')
       span(aria-hidden='true') ×
-    != item.message
+    != obj.content
 
 mixin meta_description(desc)
   if (desc)
-    meta(name="description",content=desc)
+    meta(name="description", content=desc)
 
 mixin meta_keywords(keywords)
   if (keywords)
-    meta(name="keywords",content=keywords)
+    meta(name="keywords", content=keywords)
+
+// components
+
+mixin rich_text(obj)
+  if (obj.content)
+    != obj.content

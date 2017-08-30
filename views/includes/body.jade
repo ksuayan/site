@@ -1,0 +1,8 @@
+h1!= content.title
+!= content.body
+- if (typeof(content.content) !== 'undefined') {
+    for item in content.content
+      - if (item && typeof(item.type) !== 'undefined') {
+        +#{item.type}(item)
+      - }
+- }
