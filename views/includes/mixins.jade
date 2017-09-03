@@ -27,8 +27,9 @@ mixin meta_keywords(keywords)
   if (keywords)
     meta(name="keywords", content=keywords)
 
-// components
-
 mixin rich_text(obj)
   if (obj.content)
     != obj.content
+
+mixin youtube_video(obj)
+  iframe(width='600', height='400', src='https://www.youtube.com/embed/'+obj.id)

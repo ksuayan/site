@@ -246,6 +246,7 @@ app.get("/page/*", function(req, res){
 
 // HOME
 app.get('/',              view.homeView);
+app.get('/jade/*',        view.jade);
 
 // TRACKS Demo
 app.get('/search',        itunes.searchTerm);
