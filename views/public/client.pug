@@ -1,0 +1,8 @@
+include ../includes/mixins
+
+mixin exec(obj)
+  -if (obj && obj.type === "rich_text") {
+    | {{{obj.content}}}
+  -} else {
+    | +{{{obj.type}}}(obj)
+  -}

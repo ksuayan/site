@@ -2,48 +2,49 @@ angular.module('site.controllers', [])
 .controller('PageListController', ["$log", "$scope", "$state", "$window", "Page",
 
    function($log, $scope, $state, $window, Page) {
-       $log.debug("test...");
+       // $log.debug("test...");
        $scope.pages = Page.query();
+   }
 
-}]).controller('PageCreateController', function($scope, $state, $stateParams, Page) {
+]
+).controller('PageCreateController',
 
-    $scope.page = new Page();
+   function($scope, $state, $stateParams, Page) {
+        $scope.page = new Page();
 
-    $scope.addPage = function() {
-        $scope.page.$save(function() {
-            $state.go('listPages');
-        });
-    };
+        $scope.addPage = function() {
+            $scope.page.$save(function() {
+                $state.go('listPages');
+            });
+        };
+   }
 
-}).controller('PageViewController', ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
+).controller('PageViewController', ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
+
     function($log, $scope, $state, $stateParams, $modal, Page) {
-
         $scope.page = Page.get({ id: $stateParams.id });
-
         $scope.editPage = function() {
             $state.go('editPage');
         };
+    }
 
-
-
-
-}]).controller('PageEditController', ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
+]
+).controller('PageEditController', ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
     function($log, $scope, $state, $stateParams, $modal, Page) {
 
     $scope.page = Page.get({ id: $stateParams.id });
 
     $scope.updatePage = function() {
-        // Update the edited profile.
-        // Issue a PUT to /api/profile/:id
+        // Issue a PUT to /api/pages/:id
         $scope.page.$update(function() {
-            $state.go('listPages'); // on success go back to home i.e. movies state.
+            $state.go('listPages');
         });
     };
 
     $scope.deletePage = function(pageObj){
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: 'deleteModal.html',
+            templateUrl: '/jade/pages/delete-page',
             controller: 'DeleteModalController',
             resolve: {
                 page: function (){
@@ -62,54 +63,53 @@ angular.module('site.controllers', [])
         });
     };
 
-    /*
-    $scope.addIndustry = function($event) {
-        $event.stopPropagation();
-        $scope.user.profile.industries.push($("#industry").val());
-        $("#industry").val("");
+    $scope.addBanner = function(pageObj){
+        var modalInstance = $modal.open({
+            animation: false,
+            templateUrl: '/jade/pages/add-banner',
+            controller: 'AddBannerController',
+            resolve: {
+                page: function (){
+                    $scope.page = pageObj;
+                    return $scope.page;
+                }
+            }
+        });
+        modalInstance.result.then(function (page) {
+            $scope.page = page;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
     };
 
-    $scope.deleteIndustry = function($event, idx) {
-        $event.stopPropagation();
-        $scope.user.profile.industries.splice(idx,1);
+    $scope.addRichText = function(pageObj){
+        var modalInstance = $modal.open({
+            animation: false,
+            templateUrl: '/jade/pages/add-rich-text',
+            controller: 'AddRichTextController',
+            resolve: {
+                page: function (){
+                    $scope.page = pageObj;
+                    return $scope.page;
+                }
+            }
+        });
+        modalInstance.result.then(function (page) {
+            $scope.page = page;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
     };
-
-    $scope.addDegree = function($event) {
-        $event.stopPropagation();
-        var degreeName = $("#degreeName").val(),
-            degreeField = $("#degreeField").val(),
-            degreeSchool = $("#degreeSchool").val(),
-            degreeYear = $("#degreeYear").val();
-        if (degreeName && degreeField) {
-            var degree = {
-                degree: degreeName,
-                field: degreeField,
-                school: degreeSchool,
-                year: degreeYear
-            };
-            $scope.user.profile.degrees.push(degree);
-        }
-        $("#degreeName").val("");
-        $("#degreeField").val("");
-        $("#degreeSchool").val("");
-        $("#degreeYear").val("");
-    };
-
-    $scope.deleteDegree = function($event, idx) {
-        $event.stopPropagation();
-        $scope.user.profile.degrees.splice(idx,1);
-    };
-    */
 
     $scope.loadPage = function() {
-        // Issue a GET request to /api/profile/:id
-        // to get a profile to update
+        // Issue a GET request to /api/page/:id
         $scope.page = Page.get({ id: $stateParams.id });
     };
 
     $scope.loadPage();
 
-}]).controller('DeleteModalController', function ($scope, $modalInstance, page) {
+}]
+).controller('DeleteModalController', function ($scope, $modalInstance, page) {
 
     $scope.page = page;
 
@@ -120,4 +120,40 @@ angular.module('site.controllers', [])
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-});
+}
+).controller('AddBannerController', function ($scope, $modalInstance, page) {
+
+        $scope.page = page;
+
+        $scope.ok = function ($event) {
+            $scope.page.content.push({
+                "type": "alert_warning",
+                "content": "This is a test."
+            });
+            $scope.page.$update();
+            $modalInstance.close($scope.page);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    }
+
+).controller('AddRichTextController', function ($scope, $modalInstance, page) {
+
+        $scope.page = page;
+
+        $scope.ok = function ($event) {
+            $scope.page.content.push({
+                "type": "rich_text",
+                "content": $scope.rich_text
+            });
+            $scope.page.$update();
+            $modalInstance.close($scope.page);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    }
+)

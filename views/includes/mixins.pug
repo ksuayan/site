@@ -1,0 +1,32 @@
+mixin mod(parId, c, textHead, textBody)
+  div(class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 trans mod")
+    -var txthead = (c && c[textHead]) ? c[textHead] : ""
+    -var txtbody = (c && c[textBody]) ? c[textBody] : ""
+    h2!= txthead
+    p(id!=parId)!= txtbody
+    p
+      a(class="btn btn-default",href="#") More &raquo;
+
+mixin alert_warning(obj)
+  .alert.alert-warning.alert-dismissible.fade.in(role='alert')
+    button.close(type='button', data-dismiss='alert', aria-label='Close')
+      span(aria-hidden='true') ×
+    != obj.content
+
+mixin alert_danger(obj)
+  .alert.alert-danger.alert-dismissible.fade.in(role='alert')
+    button.close(type='button', data-dismiss='alert', aria-label='Close')
+      span(aria-hidden='true') ×
+    != obj.content
+
+mixin meta_description(desc)
+  if (desc)
+    meta(name="description", content=desc)
+
+mixin meta_keywords(keywords)
+  if (keywords)
+    meta(name="keywords", content=keywords)
+
+mixin rich_text(obj)
+  if (obj.content)
+    != obj.content

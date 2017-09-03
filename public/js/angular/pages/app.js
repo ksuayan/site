@@ -7,22 +7,22 @@ angular.module('site').config(["$stateProvider", "$sceProvider", "$logProvider",
     $stateProvider
     .state('addPage', {
         url: '/add',
-        templateUrl: '/templates/pages/page-add.html',
+        templateUrl: '/jade/pages/add-page',
         controller: 'PageCreateController'
     })
     .state('viewPage', {
         url: '/view/:id',
-        templateUrl: '/templates/pages/page-view.html',
+        templateUrl: '/jade/pages/page-view',
         controller: 'PageViewController'
     })
     .state('editPage', {
         url: '/edit/:id',
-        templateUrl: '/templates/pages/page-edit.html',
+        templateUrl: '/jade/pages/edit-page',
         controller: 'PageEditController'
     })
     .state('listPages', {
         url: '/list',
-        templateUrl: '/templates/pages/pages.html',
+        templateUrl: '/jade/pages/list-pages',
         controller: 'PageListController'
     });
 

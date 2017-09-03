@@ -17,6 +17,10 @@
     "express",
     "nodejs"
   ],
+  "scripts": {
+    "build": "webpack"
+  },
+  "license": "MIT",
   "main": "./server/server.js",
   "dependencies": {
     "bcrypt-nodejs": ">=0.0.3",
@@ -28,7 +32,6 @@
     "flickrapi": "^0.3.28",
     "gm": "^1.21.1",
     "instagram-node": "^0.5.8",
-    "jade": "1.11.0",
     "json2csv": "^2.12.0",
     "moment": "2.17.1",
     "mongodb": "2.2.20",
@@ -40,6 +43,9 @@
     "passport-linkedin": "1.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.2",
+    "pug": "^2.0.0-rc.3",
+    "pug-runtime": "^2.0.3",
+    "puglatizer": "^1.2.0",
     "request": "2.9.x",
     "socket.io": "^1.2.1",
     "twitter-node-client": "0.0.6",
@@ -55,6 +61,7 @@
     "grunt-contrib-qunit": "1.2.0",
     "grunt-contrib-uglify": "2.0.0",
     "grunt-contrib-watch": "1.0.0",
-    "grunt-jsdoc": "2.1.0"
+    "grunt-jsdoc": "2.1.0",
+    "webpack": "^3.5.5"
   }
 }

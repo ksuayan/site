@@ -1,0 +1,21 @@
+-if (story) {
+  -if (linkTitle) {
+    h1
+      a(href='/page/' + story.name)
+        != story.title
+  -} else {
+    h1!= story.title
+  -}
+  p!= fn.fromNow(story.dateCreated)
+  != story.body
+-}
+
+//- This portion provides the powerful
+//- Jade Mixin based templating capability.
+
+-if (story && typeof(story.content) !== 'undefined') {
+  for item in story.content
+    -if (item && typeof(item.type) !== 'undefined') {
+      +#{item.type}(item)
+    -}
+-}

@@ -1,0 +1,17 @@
+- if (stories && stories.length>0) {
+  for story in stories
+    -if (story) {
+      h1
+        a(href='/page/' + story.name)
+          != story.title
+      p!= fn.fromNow(story.dateCreated)
+      != story.body
+    -}
+
+  -if (story && typeof(story.content) !== 'undefined') {
+    for item in story.content
+      -if (item && typeof(item.type) !== 'undefined') {
+        +#{item.type}(item)
+      -}
+  -}
+- }

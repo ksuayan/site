@@ -97,7 +97,7 @@ var globalErrorHandler = function(err, req, res, next){
 };
 
 app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.locals({config: conf, env: process.env.NODE_ENV});
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -245,11 +245,8 @@ app.get("/page/*", function(req, res){
 });
 
 // HOME
-app.get('/',              view.fullScreen);
-
-// DEPRECATED
-// app.get('/text',          view.textList);
-// app.get('/edit',          view.pageEdit);
+app.get('/',              view.homeView);
+app.get('/jade/*',        view.jade);
 
 // TRACKS Demo
 app.get('/search',        itunes.searchTerm);

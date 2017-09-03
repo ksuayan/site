@@ -94,6 +94,18 @@ ViewHandler.prototype.pageView = function (req, res) {
     content.getPageByName(page, onSuccess, onError);
 };
 
+
+ViewHandler.prototype.jade = function (req, res) {
+    var pseudoPath = req.path.toString();
+    pseudoPath = pseudoPath.replace("/jade/","");
+
+    res.render(pseudoPath, {
+        user: req.user,
+        fn: ViewHandler.fn
+    });
+};
+
+
 ViewHandler.prototype.createPage = function (req, res) {
     var pageObj = {
         name: req.body.name,

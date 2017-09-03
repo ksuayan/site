@@ -1,0 +1,63 @@
+div(class="navbar navbar-inverse")
+  div(class="navbar-header")
+    button(class="navbar-toggle",data-toggle="collapse",data-target=".navbar-collapse")
+      span(class="icon-bar")
+      span(class="icon-bar")
+      span(class="icon-bar")
+    a(class="navbar-brand",href="/") Kyo Suayan
+  div(class="navbar-collapse collapse")
+    ul(class="nav navbar-nav")
+      li(class="dropdown")
+        a(href="#",class="dropdown-toggle",data-toggle="dropdown") Work
+          span(class="caret")
+        ul(class="dropdown-menu")
+          li
+            a(href="http://www.suayan.com/development/") Development
+          li
+            a(href="http://www.suayan.com/portfolio/") Design
+      li
+        a(href="http://blogs.suayan.com") Blog
+      li
+        a(href="/page/about") About
+      li(class="dropdown")
+        a(href="#",class="dropdown-toggle",data-toggle="dropdown") Contact
+          span(class="caret")
+        ul(class="dropdown-menu")
+          li
+            a(href="https://www.facebook.com/ksuayan") Facebook
+          li
+            a(href="https://www.linkedin.com/in/ksuayan") LinkedIn
+          li
+            a(href="https://www.twitter.com/ksuayan") Twitter
+          li
+            a(href="https://plus.google.com/+KyoSuayan") Google+
+          li
+            a(href="https://www.github.com/ksuayan") GitHub
+
+          li(class="divider")
+          li(class="dropdown-header",role="presentation") Imagery
+
+          li
+            a(href="http://visual.suayan.com") visual.suayan.com
+          li
+            a(href="http://www.flickr.com/ksuayan") Flickr
+          li
+            a(href="http://www.500px.com/ksuayan") 500px
+          li
+            a(href="https://ksuayan.tumblr.com") Tumblr
+          li
+            a(href="https://instagram.com/ksuayan") Instagram
+          li
+            a(href="https://www.pinterest.com/ksuayan/") Pinterest
+          li(class="divider")
+          li(class="dropdown-header",role="presentation") Audio Visual
+          li
+            a(href="https://www.soundcloud.com/ksuayan") SoundCloud
+          li
+            a(href="https://www.youtube.com/ksuayan") Youtube
+          li
+            a(href="https://www.vimeo.com/ksuayan") Vimeo
+      - if (user)
+      li
+        a(href="/logout") Logout
+

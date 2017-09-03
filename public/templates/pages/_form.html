@@ -12,6 +12,18 @@
 </div>
 <div class="form-group">
     <div class="col-sm-12">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="item in page.content">
+                <button type="button" class="btn btn-sm btn-danger"
+                        ng-click="deleteItem($event, $index)"><span class="glyphicon glyphicon-minus"></span></button>
+                {{item.type}}
+            </li>
+        </ul>
+
+        <a class="btn btn-default" ng-click="addBanner(page)">Add Banner</a>
+        <a class="btn btn-default" ng-click="addRichText(page)">Add RichText</a>
+    </div>
+    <div class="col-sm-12">
         <label for="body" class="control-label">Body</label>
         <textarea data-ng-model="page.body"
                   data-ck-editor class="form-control" id="body">
@@ -72,3 +84,32 @@
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
 </script>
+
+<script type="text/ng-template" id="addBanner.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Banner</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="addRichText.html">
+    <div class="modal-header">
+        <h3 class="modal-title">RichText</h3>
+    </div>
+    <div class="modal-body">
+        <label for="rich_text" class="control-label">Rich Text</label>
+        <textarea data-ng-model="rich_text"
+                  data-ck-editor class="form-control" id="rich_text">
+        </textarea>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+

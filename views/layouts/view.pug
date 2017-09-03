@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  #content
+    .container.article
+      .row
+        .col-lg-8
+          include ../includes/body
+        .col-lg-4
+          - if (typeof(components) !== 'undefined') {
+            for component in components
+              .col-sm-12
+                +#{component.template}(component)
+          - }
