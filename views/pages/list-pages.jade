@@ -1,13 +1,13 @@
 table.table
-    tr
-        td
-            h3 All Pages
-        td
-        td(align='right')
-            a.btn.btn-primary(ui-sref='addPage') New Page
-    tr(ng-repeat='page in pages')
-        td
-            a(href='/page/{{page.name}}', title='Published View', target='_blank') {{page.name}}
-        td {{page.title}}
-        td(align='right')
-            a.btn.btn-default(ui-sref="editPage({id:page._id})") Edit
+  tr
+    td
+      h3 All Pages
+    td
+    td(align='right')
+      a.btn.btn-primary(ui-sref='addPage') New Page
+  tr(ng-repeat='page in pages')
+    td
+      a(href='/page/{{page.name}}', title='Published View', target='_blank') {{page.name}}
+    td {{page.title}}
+    td(align='right')
+      a.btn.btn-default(ui-sref="editPage({id:page._id})") Edit

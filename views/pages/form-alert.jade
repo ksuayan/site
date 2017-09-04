@@ -1,0 +1,8 @@
+fieldset(id='Component Type')
+  span Alert Type: &nbsp;&nbsp;
+    input(type='radio', name='component_type', value='alert_warning')
+    |  Warning
+    | &nbsp;
+    input(type='radio', name='component_type', value='alert_danger')
+    |  Danger
+    input#text.form-control(type='text', ng-model='component.content')

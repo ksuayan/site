@@ -1,41 +1,24 @@
 .modal-header
-    h3.modal-title Component
+  h3.modal-title Component
 .modal-body
-    .input-group
-        .input-group-btn
-            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                | Type
-                span.caret
-            ul.dropdown-menu
-                li
-                    a(href='#') Image
-                li
-                    a(href='#') Youtube Video
-                li.divider(role='separator')
-                li
-                    a(href='#') Alert Message
-                li
-                    a(href='#') Danger Message
-        input.form-control(type='text', aria-label='...')
 
-    br
+  .btn-group(dropdown='')
+    button.btn.btn-default(type='button') Type
+    button.btn.btn-default.dropdown-toggle(type='button', dropdown-toggle='', on-toggle)
+      span.caret
+      span.sr-only Split button!
+    ul.dropdown-menu(role='menu')
+      li
+        a(ng-click='toggleDropdown("/jade/pages/form-image")') Image
+      li
+        a(ng-click='toggleDropdown("/jade/pages/form-youtube")') Youtube Video
+      li.divider
+      li
+        a(ng-click='toggleDropdown("/jade/pages/form-alert")') Alert
 
-    .btn-group.dropdown(uib-dropdown='', style='')
-        button#split-button.btn.btn-danger(type='button') Action
-        button.btn.btn-default.dropdown-toggle(type='button', uib-dropdown-toggle='', aria-haspopup='true', aria-expanded='false')
-            span.caret
-            span.sr-only Split button!
-        ul.dropdown-menu(uib-dropdown-menu='', role='menu', aria-labelledby='split-button')
-            li(role='menuitem')
-                a(href='#') Action
-            li(role='menuitem')
-                a(href='#') Another action
-            li(role='menuitem')
-                a(href='#') Something else here
-            li.divider
-            li(role='menuitem')
-                a(href='#') Separated link
+  div(ng-include="subform")
+
 
 .modal-footer
-    button.btn.btn-primary(ng-click='ok()') OK
-    button.btn.btn-warning(ng-click='cancel()') Cancel
+  button.btn.btn-primary(ng-click='ok()') OK
+  button.btn.btn-warning(ng-click='cancel()') Cancel

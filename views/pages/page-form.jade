@@ -1,55 +1,61 @@
-.form-group
-    .col-sm-12
-        label.control-label(for='name') Name
-        input#name.form-control(type='text', ng-model='page.name')
 
 .form-group
-    .col-sm-12
-        label.control-label(for='title') Title
-        input#title.form-control(type='text', ng-model='page.title')
+  .col-sm-12
+    label.control-label(for='name') Name
+    input#name.form-control(type='text', ng-model='page.name')
 
-#accordion.panel-group(role='tablist', aria-multiselectable='true')
-    .panel.panel-default
+.form-group
+  .col-sm-12
+    label.control-label(for='title') Title
+    input#title.form-control(type='text', ng-model='page.title')
+
+.form-group
+  .col-sm-12
+    label.control-label(for='body') Body
+    span(ng-bind-html="page.body | trusted")
+
+.form-group
+  .col-sm-12
+    #accordion.panel-group(role='tablist', aria-multiselectable='true')
+      .panel.panel-default
         #headingOne.panel-heading(role='tab')
-            h4.panel-title
-                a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
-                    | Description
+          h4.panel-title
+            a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
+              | Description
         #collapseOne.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingOne')
-            .panel-body
-                textarea#description.form-control(data-ng-model='page.description')
-    .panel.panel-default
+          .panel-body
+            textarea#description.form-control(data-ng-model='page.description')
+      .panel.panel-default
         #headingTwo.panel-heading(role='tab')
-            h4.panel-title
-                a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='true', aria-controls='collapseTwo')
-                    | Keywords
+          h4.panel-title
+            a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='true', aria-controls='collapseTwo')
+              | Keywords
         #collapseTwo.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingTwo')
-            .panel-body
-                textarea#keywords.form-control(data-ng-model='page.keywords')
+          .panel-body
+            textarea#keywords.form-control(data-ng-model='page.keywords')
 
 .form-group
-    .col-sm-12
-        a.btn.btn-default(ng-click='addComponent(page)')
-            span.glyphicon.glyphicon-plus
-            | &nbsp; Add Component
-        | &nbsp;
-        a.btn.btn-default(ng-click='addRichText(page)')
-            span.glyphicon.glyphicon-pencil
-            | &nbsp; Add Rich Text
-        br
-        ul.list-group
-            li.list-group-item(ng-repeat='item in page.content')
-                button.btn.btn-sm.btn-danger(type='button', ng-click='deleteItem($event, $index)')
-                    span.glyphicon.glyphicon-minus
-                .section(data-value='{{item}}')
-
-    .col-sm-12
-        label.control-label(for='body') Body
-        span(ng-bind-html="page.body | trusted")
+  .col-sm-12
+    a.btn.btn-default(ng-click='addComponent(page)')
+      span.glyphicon.glyphicon-plus
+      | &nbsp; Add Component
+    | &nbsp;
+    a.btn.btn-default(ng-click='addRichText(page)')
+      span.glyphicon.glyphicon-pencil
+      | &nbsp; Add Rich Text
 
 .form-group
-    .col-sm-12
-        a.btn.btn-default(ui-sref='listPages') Back to List
-        | &nbsp;
-        a.btn.btn-default(ng-click='deletePage(page)') Delete
-        | &nbsp;
-        input.btn.btn-primary(type='submit', value='Save')
+  ul.list-group
+    li.list-group-item(ng-repeat='item in page.content')
+      button.btn.btn-sm.btn-danger(type='button', ng-click='deleteItem($event, $index)')
+        span.glyphicon.glyphicon-minus
+      .section(data-value='{{item}}')
+
+
+.form-group
+  .col-sm-12
+    a.btn.btn-default(ui-sref='listPages') Back to List
+    | &nbsp;
+    a.btn.btn-default(ng-click='deletePage(page)') Delete
+    | &nbsp;
+    input.btn.btn-primary(type='submit', value='Save')

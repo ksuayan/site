@@ -7,18 +7,6 @@ mixin mod(parId, c, textHead, textBody)
     p
       a(class="btn btn-default",href="#") More &raquo;
 
-mixin alert_warning(obj)
-  .alert.alert-warning.alert-dismissible.fade.in(role='alert')
-    button.close(type='button', data-dismiss='alert', aria-label='Close')
-      span(aria-hidden='true') ×
-    != obj.content
-
-mixin alert_danger(obj)
-  .alert.alert-danger.alert-dismissible.fade.in(role='alert')
-    button.close(type='button', data-dismiss='alert', aria-label='Close')
-      span(aria-hidden='true') ×
-    != obj.content
-
 mixin meta_description(desc)
   if (desc)
     meta(name="description", content=desc)
@@ -32,4 +20,19 @@ mixin rich_text(obj)
     != obj.content
 
 mixin youtube_video(obj)
-  iframe(width='600', height='400', src='https://www.youtube.com/embed/'+obj.id)
+  iframe(width='800', height='450', src='https://www.youtube.com/embed/'+obj.id)
+
+mixin image(obj)
+  image(src=obj.image)
+
+mixin alert_warning(obj)
+  .alert.alert-warning.alert-dismissible.fade.in(role='alert')
+    button.close(type='button', data-dismiss='alert', aria-label='Close')
+      span(aria-hidden='true') ×
+    != obj.content
+
+mixin alert_danger(obj)
+  .alert.alert-danger.alert-dismissible.fade.in(role='alert')
+    button.close(type='button', data-dismiss='alert', aria-label='Close')
+      span(aria-hidden='true') ×
+    != obj.content

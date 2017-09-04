@@ -68,6 +68,7 @@ angular.module('site.controllers', [])
             animation: false,
             templateUrl: '/jade/pages/add-component',
             controller: 'AddComponentController',
+            size: "md",
             resolve: {
                 page: function (){
                     $scope.page = pageObj;
@@ -121,23 +122,49 @@ angular.module('site.controllers', [])
         $modalInstance.dismiss('cancel');
     };
 }
-).controller('AddComponentController', function ($scope, $modalInstance, page) {
+).controller('AddComponentController', function ($log, $scope, $modalInstance, page) {
 
-        $scope.page = page;
 
-        $scope.ok = function ($event) {
-            $scope.page.content.push({
-                "type": "alert_warning",
-                "content": "This is a test."
-            });
-            $scope.page.$update();
-            $modalInstance.close($scope.page);
-        };
+    $log.log("Passed in ", page);
+    $scope.page = page;
+    $scope.component = {};
 
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-    }
+    $scope.ok = function ($event) {
+        var fieldType = $("input[name=component_type]").attr("type");
+        if (fieldType==="radio") {
+            $scope.component.type = $("input[name=component_type]:checked").val();
+        } else {
+            $scope.component.type = $("input[name=component_type]").val();
+        }
+        $scope.page.content.push($scope.component);
+        $log.log("Adding:", $scope.component);
+        $scope.page.$update();
+        $modalInstance.close($scope.page);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+    $scope.status = {
+        isopen: false
+    };
+
+    $scope.toggled = function(open) {
+        $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.subform = "";
+
+    $scope.toggleDropdown = function(item) {
+        $log.log("Dropdown toggled...", item);
+        $scope.component = {};
+        $scope.subform = item;
+        $scope.status.isopen = !$scope.status.isopen;
+    };
+
+
+}
 
 ).controller('AddRichTextController', function ($scope, $modalInstance, page) {
 
@@ -156,4 +183,28 @@ angular.module('site.controllers', [])
             $modalInstance.dismiss('cancel');
         };
     }
-);
+
+).controller('ChooseComponentController', function ($scope, $log, page) {
+
+    $scope.page = page;
+
+    $scope.items = [
+        'The first choice!',
+        'And another choice for you.',
+        'but wait! A third!'
+    ];
+
+    $scope.status = {
+        isopen: false
+    };
+
+    $scope.toggled = function(open) {
+        $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.toggleDropdown = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.status.isopen = !$scope.status.isopen;
+    };
+});
