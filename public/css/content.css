@@ -125,7 +125,7 @@
   margin: 0px;
 }
 #content .container.article {
-  padding: 20px 0px 30px 0px;
+  padding: 20px 0px 50px 0px;
 }
 @media (max-width: 768px) {
   #content .container.article {
@@ -146,6 +146,6 @@
 #content .story h2 a:hover {
   text-decoration: none;
 }
-#content .story .story-image {
+#content .story-image {
   max-width: 100%;
 }
