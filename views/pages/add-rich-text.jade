@@ -1,7 +1,7 @@
 .modal-header
-  h3.modal-title RichText
+  h3.modal-title Add Rich Text
 .modal-body
-  textarea#rich_text.form-control(data-ng-model='rich_text', data-ck-editor='')
+  div(ng-include="subform")
 .modal-footer
   button.btn.btn-primary(ng-click='ok()') OK
   button.btn.btn-warning(ng-click='cancel()') Cancel

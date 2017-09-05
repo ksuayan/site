@@ -47,9 +47,11 @@
 .form-group
   ul.list-group
     li.list-group-item(ng-repeat='item in page.content')
-      button.btn.btn-sm.btn-danger(type='button', ng-click='deleteItem($event, $index)')
-        span.glyphicon.glyphicon-minus
-      .section(data-value='{{item}}')
+      button.btn.btn-sm.btn-default(type='button', ng-click='deleteComponent($event, $index)')
+        span.glyphicon.glyphicon-remove
+      a.btn.btn-sm.btn-default(type='button', ng-click='editComponent(page, $index)')
+        span.glyphicon.glyphicon-wrench
+      span.section(data-value='{{item}}') &nbsp; {{item.type}}
 
 
 .form-group

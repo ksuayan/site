@@ -462,3 +462,12 @@ html#slideshow {
 #content .container.article p {
   margin-bottom: 20px;
 }
+#content .story {
+  padding-top: 30px;
+}
+#content .story h2 a:hover {
+  text-decoration: none;
+}
+#content .story .story-image {
+  max-width: 100%;
+}

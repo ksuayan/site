@@ -23,16 +23,10 @@ mixin youtube_video(obj)
   iframe(width='800', height='450', src='https://www.youtube.com/embed/'+obj.id)
 
 mixin image(obj)
-  image(src=obj.image)
+  image(src=obj.image,class="story-image")
 
-mixin alert_warning(obj)
-  .alert.alert-warning.alert-dismissible.fade.in(role='alert')
-    button.close(type='button', data-dismiss='alert', aria-label='Close')
-      span(aria-hidden='true') ×
-    != obj.content
-
-mixin alert_danger(obj)
-  .alert.alert-danger.alert-dismissible.fade.in(role='alert')
+mixin alert(obj)
+  .alert.alert-dismissible(role='alert', class="alert-"+obj.subtype)
     button.close(type='button', data-dismiss='alert', aria-label='Close')
       span(aria-hidden='true') ×
     != obj.content

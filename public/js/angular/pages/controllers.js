@@ -2,12 +2,10 @@ angular.module('site.controllers', [])
 .controller('PageListController', ["$log", "$scope", "$state", "$window", "Page",
 
    function($log, $scope, $state, $window, Page) {
-       // $log.debug("test...");
        $scope.pages = Page.query();
    }
 
-]
-).controller('PageCreateController',
+]).controller('PageCreateController',
 
    function($scope, $state, $stateParams, Page) {
         $scope.page = new Page();
@@ -28,9 +26,9 @@ angular.module('site.controllers', [])
         };
     }
 
-]
-).controller('PageEditController', ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
-    function($log, $scope, $state, $stateParams, $modal, Page) {
+]).controller('PageEditController',
+    ["$log", "$scope", "$rootScope", "$state", "$stateParams", "$modal", "formEditorService", "Page",
+    function($log, $scope, $rootScope, $state, $stateParams, $modal, formEditorService, Page) {
 
     $scope.page = Page.get({ id: $stateParams.id });
 
@@ -66,7 +64,7 @@ angular.module('site.controllers', [])
     $scope.addComponent = function(pageObj){
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: '/jade/pages/add-component',
+            templateUrl: '/jade/pages/edit-component',
             controller: 'AddComponentController',
             size: "md",
             resolve: {
@@ -81,6 +79,34 @@ angular.module('site.controllers', [])
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
+    };
+
+    $scope.editComponent = function(pageObj, index) {
+
+        $rootScope.page = pageObj;
+        $rootScope.index = index;
+
+        var modalInstance = $modal.open({
+            templateUrl: '/jade/pages/edit-component',
+            controller: 'EditComponentController',
+            resolve: {
+                page: function (){
+                    $scope.page = pageObj;
+                    return $scope.page;
+                }
+            }
+        });
+        modalInstance.result.then(function (page) {
+            $scope.page = page;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    $scope.deleteComponent = function($event, idx) {
+        $event.stopPropagation();
+        $scope.page.content.splice(idx,1);
+        $scope.page.$update();
     };
 
     $scope.addRichText = function(pageObj){
@@ -109,8 +135,7 @@ angular.module('site.controllers', [])
 
     $scope.loadPage();
 
-}]
-).controller('DeleteModalController', function ($scope, $modalInstance, page) {
+}]).controller('DeleteModalController', function ($scope, $modalInstance, page) {
 
     $scope.page = page;
 
@@ -121,23 +146,21 @@ angular.module('site.controllers', [])
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-}
-).controller('AddComponentController', function ($log, $scope, $modalInstance, page) {
 
+}).controller('AddComponentController', function ($log, $scope, $modalInstance, page) {
 
-    $log.log("Passed in ", page);
     $scope.page = page;
     $scope.component = {};
 
     $scope.ok = function ($event) {
-        var fieldType = $("input[name=component_type]").attr("type");
-        if (fieldType==="radio") {
-            $scope.component.type = $("input[name=component_type]:checked").val();
-        } else {
-            $scope.component.type = $("input[name=component_type]").val();
+
+        $scope.component.type = $("input[name=component_type]").val();
+        var fieldSubType = $("input[name=component_subtype]").attr("type");
+        if (fieldSubType==="radio") {
+            $scope.component.subtype = $("input[name=component_subtype]:checked").val();
         }
+
         $scope.page.content.push($scope.component);
-        $log.log("Adding:", $scope.component);
         $scope.page.$update();
         $modalInstance.close($scope.page);
     };
@@ -150,10 +173,6 @@ angular.module('site.controllers', [])
         isopen: false
     };
 
-    $scope.toggled = function(open) {
-        $log.log('Dropdown is now: ', open);
-    };
-
     $scope.subform = "";
 
     $scope.toggleDropdown = function(item) {
@@ -163,18 +182,61 @@ angular.module('site.controllers', [])
         $scope.status.isopen = !$scope.status.isopen;
     };
 
+}).controller('EditComponentController',
+    ["$log", "$scope", "$rootScope", "$modalInstance", "formEditorService",
 
-}
+    function ($log, $scope, $rootScope, $modalInstance, formEditorService) {
 
-).controller('AddRichTextController', function ($scope, $modalInstance, page) {
+    // Pass the page and page.content[] index:
+    $log.log("Page, Index:", $rootScope.page, $rootScope.index);
+
+    $scope.page = $rootScope.page;
+    $scope.component = $rootScope.page.content[$rootScope.index];
+
+    var type = $scope.component.type;
+    $scope.subform = formEditorService.getEditor(type).form;
+
+    $log.log("Page: ", $scope.page);
+    $log.log("Component: ", $scope.component);
+
+    // This is the actual update handler
+    // for the targeted component.
+    $scope.ok = function ($event) {
+        $log.log("Updating:", $scope.component);
+        $scope.page.content[$rootScope.index] = $scope.component;
+        $scope.page.$update();
+        $modalInstance.close($scope.page);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+
+    $scope.status = {
+        isopen: false
+    };
+
+    // Should we allow type switching?
+    $scope.toggleDropdown = function(item) {
+        $log.log("Dropdown toggled...", item);
+        $scope.component = {};
+        $scope.subform = item;
+        $scope.status.isopen = !$scope.status.isopen;
+    };
+
+}]).controller('AddRichTextController', function ($scope, $modalInstance, $log, page, formEditorService) {
 
         $scope.page = page;
+        $scope.subform = formEditorService.getEditor("rich_text").form;
+        $scope.component = {
+            type: "rich_text"
+        };
 
         $scope.ok = function ($event) {
-            $scope.page.content.push({
-                "type": "rich_text",
-                "content": $scope.rich_text
-            });
+
+            $log.log("Adding Rich Text", $scope.component);
+
+            $scope.page.content.push($scope.component);
             $scope.page.$update();
             $modalInstance.close($scope.page);
         };
@@ -182,29 +244,5 @@ angular.module('site.controllers', [])
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-    }
 
-).controller('ChooseComponentController', function ($scope, $log, page) {
-
-    $scope.page = page;
-
-    $scope.items = [
-        'The first choice!',
-        'And another choice for you.',
-        'but wait! A third!'
-    ];
-
-    $scope.status = {
-        isopen: false
-    };
-
-    $scope.toggled = function(open) {
-        $log.log('Dropdown is now: ', open);
-    };
-
-    $scope.toggleDropdown = function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        $scope.status.isopen = !$scope.status.isopen;
-    };
 });
