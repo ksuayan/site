@@ -21,6 +21,7 @@
   background-color: #fff;
   margin-top: 0;
   padding-top: 0;
+  padding-bottom: 50px;
 }
 #content .row {
   margin: 0;
@@ -125,7 +126,7 @@
   margin: 0px;
 }
 #content .container.article {
-  padding: 20px 0px 50px 0px;
+  padding: 20px 0 0 0;
 }
 @media (max-width: 768px) {
   #content .container.article {

@@ -34,31 +34,32 @@ gb.ui.ContentManager.include({
 
         var that = this,
             rotateInterval = 15000,
-            waitTime = 5000;
+            waitTime = 15000;
         this.content = $(selector);
         if (this.content.html()) {
             this.visible = true;
-            // instantiate the stage
-            this.stage = new gb.ui.Stage("stage", rotateInterval, waitTime);
+            if ($("#stage").length>0) {
+                // instantiate the stage
+                this.stage = new gb.ui.Stage("stage", rotateInterval, waitTime);
 
-            var splashTile = new gb.ui.Tile({id: "splash-tile", class: "tile"});
-            splashTile.setContent('<img src="http://cdn.suayan.com/dist/img/splash-04.svg"/>');
-
-            this.stage.addTile(splashTile);
-
-            // instantiate Timeline(Tile)
-            var timelineTile = new gb.ui.Tile({id: "timeline-tile", class: "tile"});
-            this.stage.addTile(timelineTile);
-            var timeline = new gb.ui.Timeline("timeline-tile");
-            this.loadTileData(function(count){
-                console.log("Added " + count + " additional tiles from api call.");
-                that.stage.onResizeEndHandler();
-            });
-
-            $("#slideshow-button").click(function(){that.toggleSlideShow();});
-            $("#play-button").click(function(){that.toggleStage();});
-            $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-            console.log("init: ContentManager 2016.12.07");
+                var splashTile = new gb.ui.Tile({id: "splash-tile", class: "tile"});
+                splashTile.setContent('<img src="http://cdn.suayan.com/dist/img/splash-04.svg"/>');
+                this.stage.addTile(splashTile);
+                // instantiate Timeline(Tile)
+                var timelineTile = new gb.ui.Tile({id: "timeline-tile", class: "tile"});
+                this.stage.addTile(timelineTile);
+                var timeline = new gb.ui.Timeline("timeline-tile");
+                this.loadTileData(function(count){
+                    console.log("Added " + count + " additional tiles from api call.");
+                    that.stage.onResizeEndHandler();
+                });
+                $("#slideshow-button").click(function(){that.toggleSlideShow();});
+                $("#play-button").click(function(){that.toggleStage();});
+                $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
+                console.log("init: ContentManager. Stage found.");
+            } else {
+                console.log("ContentManager initialized.")
+            }
         }
     },
 

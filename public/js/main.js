@@ -40,7 +40,6 @@ $(function(){
                         }
                         streamDiv.append(content);
                     }
-                    console.log("lazyImages...");
                     var lazyImages = new gb.ui.LazyImage("img.lazy");
                     $window.trigger("resizeEnd");
                 }

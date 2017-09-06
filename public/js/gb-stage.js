@@ -30,22 +30,23 @@ gb.ui.Stage.include({
             this.selector = selector;
             // the core jQuery object
             this.jq = $("#"+selector);
-            this.contentSelector = "#"+selector+"-content";
-            this.content = $("<div id='"+selector+"-content'></div>");
-            this.jq.append(this.content);
-            this.setupEventHandlers();
+            if (this.jq.length>0) {
+                this.content = $("<div id='"+selector+"-content'></div>");
+                this.jq.append(this.content);
+                this.setupEventHandlers();
 
-            // setup interval loop
-            this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
-                function(){ that.rotate(); });
+                // setup interval loop
+                this.timeoutCycle = new gb.util.TimeOutCycle(this.intervalMS,
+                    function(){ that.rotate(); });
 
-            if (waitTime) {
-                setTimeout(function(){
-                    console.log("Stage wait:", waitTime);
+                if (waitTime) {
+                    setTimeout(function(){
+                        console.log("Stage wait:", waitTime);
+                        that.start();
+                    }, waitTime);
+                } else {
                     that.start();
-                }, waitTime);
-            } else {
-                that.start();
+                }
             }
         }
     },
