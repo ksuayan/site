@@ -11,28 +11,21 @@
 
 .form-group
   .col-sm-12
-    label.control-label(for='body') Body
-    span(ng-bind-html="page.body | trusted")
+    label.control-label(for='image') Image
+    input#image.form-control(type='text', ng-model='page.image')
 
 .form-group
   .col-sm-12
-    #accordion.panel-group(role='tablist', aria-multiselectable='true')
-      .panel.panel-default
-        #headingOne.panel-heading(role='tab')
-          h4.panel-title
-            a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
-              | Description
-        #collapseOne.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingOne')
-          .panel-body
-            textarea#description.form-control(data-ng-model='page.description')
-      .panel.panel-default
-        #headingTwo.panel-heading(role='tab')
-          h4.panel-title
-            a(role='button', data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='true', aria-controls='collapseTwo')
-              | Keywords
-        #collapseTwo.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingTwo')
-          .panel-body
-            textarea#keywords.form-control(data-ng-model='page.keywords')
+    label.control-label(for='body') Body
+    textarea#body.form-control(data-ng-model='page.body', data-ck-editor='')
+
+.form-group
+  .col-sm-12
+    .well
+      label.control-label(for='description') Description
+      textarea#description.form-control(data-ng-model='page.description')
+      label.control-label(for='keywords') Keywords
+      textarea#keywords.form-control(data-ng-model='page.keywords')
 
 .form-group
   .col-sm-12

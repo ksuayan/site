@@ -443,6 +443,7 @@ ApiHandler.prototype.createPage = function(req, res) {
     var pageObj = {
         name: req.body.name,
         title: req.body.title,
+        image: req.body.image,
         description: req.body.description,
         keywords: req.body.keywords,
         body: req.body.body,
@@ -463,6 +464,7 @@ ApiHandler.prototype.updatePage = function(req, res) {
         _id: req.params.id,
         name: req.body.name,
         title: req.body.title,
+        image: req.body.image,
         description: req.body.description,
         keywords: req.body.keywords,
         body: req.body.body,

@@ -19,6 +19,7 @@ var Page = new Schema({
     dateCreated : {type: Date,   default: Date.now},
     name        : {type: String, default: ""},
     title       : {type: String, default: ""},
+    image       : {type: String, default: ""},
     description : {type: String, default: ""},
     keywords    : {type: String, default: ""},
     body        : {type: String, default: ""},
@@ -241,6 +242,7 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
             if (found) {
                 found.name = pageObj.name;
                 found.title = pageObj.title;
+                found.image = pageObj.image;
                 found.description = pageObj.description;
                 found.keywords = pageObj.keywords;
                 found.body = pageObj.body;

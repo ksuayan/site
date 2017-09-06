@@ -6,10 +6,14 @@ html(lang="en")
     meta(charset="utf-8")
     meta(name="viewport",content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     meta(name="author",content=config.author)
-    if (content)
-      +meta_description(content.description)
-      +meta_keywords(content.keywords)
-      title=content.title ? content.title : "Kyo Suayan | Design + Development"
+    meta(name="generator",content="WildRice v0.6 beta")
+    block metadata
+      title="Kyo Suayan | Design + Development"
+      -var description = { name: "description", content: config.description };
+      +meta(description)
+      -var keywords = { name: "keywords", content: config.keywords };
+      +meta(keywords)
+
   body
     block header
       include includes/header

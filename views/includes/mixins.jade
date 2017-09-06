@@ -7,13 +7,17 @@ mixin mod(parId, c, textHead, textBody)
     p
       a(class="btn btn-default",href="#") More &raquo;
 
-mixin meta_description(desc)
-  if (desc)
-    meta(name="description", content=desc)
+mixin meta_og(obj)
+  if (obj && obj.property && obj.content)
+    meta(property=obj.property, content=obj.content)
 
-mixin meta_keywords(keywords)
-  if (keywords)
-    meta(name="keywords", content=keywords)
+mixin meta_twitter(obj)
+  if (obj && obj.property && obj.content)
+    meta(property=obj.property, content=obj.content)
+
+mixin meta(obj)
+  if (obj && obj.name && obj.content)
+    meta(name=obj.name, content=obj.content)
 
 mixin rich_text(obj)
   if (obj.content)

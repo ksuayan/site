@@ -37,7 +37,7 @@ var config = {
     name : 'kyo suayan',
     author : 'Kyo Suayan',
     description : 'Design + Development',
-    keywords : 'kyo, suayan, design, development, web',
+    keywords : 'kyo,suayan,web,design,development,css3,html5,javascript,aem,cq5,ecmascript',
     socialEnabled: true,
     caching: false,
     expires: 0,
