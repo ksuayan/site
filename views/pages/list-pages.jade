@@ -10,4 +10,6 @@ table.table
       a(href='/page/{{page.name}}', title='Published View', target='_blank') {{page.name}}
     td {{page.title}}
     td(align='right')
+      span.label(ng-class='{"label-success": (page.status=="published"),"label-warning": (page.status=="expired"),"label-default": (page.status=="draft")}') {{page.status}}
+      | &nbsp;&nbsp;
       a.btn.btn-default(ui-sref="editPage({id:page._id})") Edit

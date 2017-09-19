@@ -411,7 +411,7 @@ ApiHandler.prototype.getPageList = function(req, res) {
     var onError = function(err) {
         return res.send(util.defaultError);
     };
-    content.getPageList(onSuccess, onError);
+    content.getPageList({}, onSuccess, onError);
 };
 
 
@@ -443,6 +443,7 @@ ApiHandler.prototype.createPage = function(req, res) {
     var pageObj = {
         name: req.body.name,
         title: req.body.title,
+        status: req.body.status,
         image: req.body.image,
         description: req.body.description,
         keywords: req.body.keywords,
@@ -464,6 +465,7 @@ ApiHandler.prototype.updatePage = function(req, res) {
         _id: req.params.id,
         name: req.body.name,
         title: req.body.title,
+        status: req.body.status,
         image: req.body.image,
         description: req.body.description,
         keywords: req.body.keywords,

@@ -36,8 +36,9 @@ ViewHandler.prototype.homeView = function (req, res) {
     },
     errorHandler = function () {
         res.render('content/notfound');
-    };
-    content.getPageList(successHandler, errorHandler);
+    },
+    query = {"status":"published"};
+    content.getPageList(query, successHandler, errorHandler);
 };
 
 /**
@@ -89,6 +90,7 @@ ViewHandler.prototype.createPage = function (req, res) {
     var pageObj = {
         name: req.body.name,
         title: req.body.title,
+        status: req.body.status,
         description: req.body.description,
         keywords: req.body.keywords,
         body: req.body.body,

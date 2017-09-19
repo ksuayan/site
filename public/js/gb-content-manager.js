@@ -58,7 +58,7 @@ gb.ui.ContentManager.include({
                 $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
                 console.log("init: ContentManager. Stage found.");
             } else {
-                console.log("ContentManager initialized.")
+                console.log("ContentManager initialized.");
             }
         }
     },

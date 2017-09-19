@@ -39,6 +39,11 @@ angular.module('site.controllers', [])
         });
     };
 
+    $scope.updateStatus = function($event) {
+        $log.info("yo...", $scope.page.status);
+        $scope.page.$update();
+    };
+
     $scope.deletePage = function(pageObj){
         var modalInstance = $modal.open({
             animation: false,

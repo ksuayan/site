@@ -19,6 +19,7 @@ var Page = new Schema({
     dateCreated : {type: Date,   default: Date.now},
     name        : {type: String, default: ""},
     title       : {type: String, default: ""},
+    status      : {type: String, default: "draft"},
     image       : {type: String, default: ""},
     description : {type: String, default: ""},
     keywords    : {type: String, default: ""},
@@ -166,8 +167,7 @@ DocumentDB.prototype.deleteText = function(id, onSuccess, onError) {
     });
 };
 
-DocumentDB.prototype.getPageList = function(onSuccess, onError) {
-    var query = {};
+DocumentDB.prototype.getPageList = function(query, onSuccess, onError) {
     var that = this;
     this.PageModel
         .find(query)
@@ -243,6 +243,7 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
                 found.name = pageObj.name;
                 found.title = pageObj.title;
                 found.image = pageObj.image;
+                found.status = pageObj.status;
                 found.description = pageObj.description;
                 found.keywords = pageObj.keywords;
                 found.body = pageObj.body;

@@ -11,6 +11,14 @@
 
 .form-group
   .col-sm-12
+    label.control-label Status &nbsp;
+      .btn-group
+        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
+        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
+        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'expired'") expired
+
+.form-group
+  .col-sm-12
     label.control-label(for='image') Image
     input#image.form-control(type='text', ng-model='page.image')
 
