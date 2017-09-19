@@ -12,10 +12,14 @@
 .form-group
   .col-sm-12
     label.control-label Status &nbsp;
-      .btn-group
-        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
-        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
-        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'expired'") expired
+    .btn-group
+      label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
+      label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
+      label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'expired'") expired
+    | &nbsp;&nbsp;
+    a.btn.btn-danger(ng-click='deletePage(page)') Delete
+    | &nbsp;&nbsp;
+    a.btn.btn-info(href='/page/{{page.name}}', target='_blank') Preview &raquo;
 
 .form-group
   .col-sm-12
@@ -57,8 +61,6 @@
 
 .form-group
   .col-sm-12
-    a.btn.btn-default(ui-sref='listPages') Back to List
-    | &nbsp;
-    a.btn.btn-default(ng-click='deletePage(page)') Delete
+    a.btn.btn-default(ui-sref='listPages') &laquo;&nbsp; Back to List
     | &nbsp;
     input.btn.btn-primary(type='submit', value='Save')
