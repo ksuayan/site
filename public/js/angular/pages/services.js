@@ -14,11 +14,6 @@ angular.module('site.services', [])
             form: "/jade/pages/form-rich-text"
         },
         {
-            type: "alert",
-            name: "Alert",
-            form: "/jade/pages/form-alert"
-        },
-        {
             type: "image",
             name: "Image",
             form: "/jade/pages/form-image"
@@ -27,6 +22,11 @@ angular.module('site.services', [])
             type: "youtube_video",
             name: "Youtube Video",
             form: "/jade/pages/form-youtube"
+        },
+        {
+            type: "alert",
+            name: "Alert",
+            form: "/jade/pages/form-alert"
         }
     ],
     getEditors = function() {

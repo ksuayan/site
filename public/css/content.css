@@ -141,6 +141,9 @@
 #content .container.article p {
   margin-bottom: 20px;
 }
+#content .stories {
+  padding-bottom: 50px;
+}
 #content .story {
   padding-top: 30px;
 }

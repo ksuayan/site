@@ -15,7 +15,7 @@
     .btn-group
       label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
       label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
-      label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'expired'") expired
+      label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'archived'") archived
     | &nbsp;&nbsp;
     a.btn.btn-danger(ng-click='deletePage(page)') Delete
     | &nbsp;&nbsp;
@@ -29,15 +29,15 @@
 .form-group
   .col-sm-12
     label.control-label(for='body') Body
-    textarea#body.form-control(data-ng-model='page.body', data-ck-editor='')
+    .excerpt(ng-bind-html="page.body|trusted")
+
 
 .form-group
   .col-sm-12
-    .well
-      label.control-label(for='description') Description
-      textarea#description.form-control(data-ng-model='page.description')
-      label.control-label(for='keywords') Keywords
-      textarea#keywords.form-control(data-ng-model='page.keywords')
+    label.control-label(for='description') Description
+    textarea#description.form-control(data-ng-model='page.description')
+    label.control-label(for='keywords') Keywords
+    textarea#keywords.form-control(data-ng-model='page.keywords')
 
 .form-group
   .col-sm-12
@@ -54,9 +54,11 @@
     li.list-group-item(ng-repeat='item in page.content')
       button.btn.btn-sm.btn-default(type='button', ng-click='deleteComponent($event, $index)')
         span.glyphicon.glyphicon-remove
+      | &nbsp;&nbsp;
       a.btn.btn-sm.btn-default(type='button', ng-click='editComponent(page, $index)')
         span.glyphicon.glyphicon-wrench
       span.section(data-value='{{item}}') &nbsp; {{item.type}}
+      .rich_text(ng-bind-html="item.content|trusted")
 
 
 .form-group

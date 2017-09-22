@@ -1,22 +1,15 @@
 .modal-header
-  h3.modal-title Component
+  h3.modal-title Component &nbsp;&nbsp;
+    .btn-group(dropdown='')
+      button.btn.btn-default(type='button') {{componentName||'Choose'}}
+      button.btn.btn-default.dropdown-toggle(type='button', dropdown-toggle='', on-toggle)
+        span.caret
+        span.sr-only Split button!
+      ul.dropdown-menu(role='menu')
+        li(ng-repeat="item in menuItems")
+          a(ng-click='toggleDropdown(item)') {{item.name}}
 
 .modal-body
-
-  .btn-group(dropdown='')
-    button.btn.btn-default(type='button') Type
-    button.btn.btn-default.dropdown-toggle(type='button', dropdown-toggle='', on-toggle)
-      span.caret
-      span.sr-only Split button!
-    ul.dropdown-menu(role='menu')
-      li
-        a(ng-click='toggleDropdown("/jade/pages/form-image")') Image
-      li
-        a(ng-click='toggleDropdown("/jade/pages/form-youtube")') Youtube Video
-      li.divider
-      li
-        a(ng-click='toggleDropdown("/jade/pages/form-alert")') Alert
-
   div(ng-include="subform")
 
 .modal-footer

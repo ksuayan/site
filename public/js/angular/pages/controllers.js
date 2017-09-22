@@ -152,19 +152,18 @@ angular.module('site.controllers', [])
         $modalInstance.dismiss('cancel');
     };
 
-}).controller('AddComponentController', function ($log, $scope, $modalInstance, page) {
+}).controller('AddComponentController', function ($log, $scope, $modalInstance, page, formEditorService) {
 
     $scope.page = page;
     $scope.component = {};
+    $scope.menuItems = formEditorService.getEditors();
 
     $scope.ok = function ($event) {
-
         $scope.component.type = $("input[name=component_type]").val();
         var fieldSubType = $("input[name=component_subtype]").attr("type");
         if (fieldSubType==="radio") {
             $scope.component.subtype = $("input[name=component_subtype]:checked").val();
         }
-
         $scope.page.content.push($scope.component);
         $scope.page.$update();
         $modalInstance.close($scope.page);
@@ -178,12 +177,12 @@ angular.module('site.controllers', [])
         isopen: false
     };
 
-    $scope.subform = "";
+    $scope.subform = "/jade/pages/edit-component-default";
 
     $scope.toggleDropdown = function(item) {
-        $log.log("Dropdown toggled...", item);
         $scope.component = {};
-        $scope.subform = item;
+        $scope.subform = item.form;
+        $scope.componentName = item.name;
         $scope.status.isopen = !$scope.status.isopen;
     };
 
@@ -200,6 +199,8 @@ angular.module('site.controllers', [])
 
     var type = $scope.component.type;
     $scope.subform = formEditorService.getEditor(type).form;
+    $scope.componentName = formEditorService.getEditor(type).name;
+    $scope.menuItems = formEditorService.getEditors();
 
     $log.log("Page: ", $scope.page);
     $log.log("Component: ", $scope.component);
@@ -225,7 +226,8 @@ angular.module('site.controllers', [])
     $scope.toggleDropdown = function(item) {
         $log.log("Dropdown toggled...", item);
         $scope.component = {};
-        $scope.subform = item;
+        $scope.subform = item.form;
+        $scope.componentName = item.name;
         $scope.status.isopen = !$scope.status.isopen;
     };
 
@@ -238,9 +240,7 @@ angular.module('site.controllers', [])
         };
 
         $scope.ok = function ($event) {
-
             $log.log("Adding Rich Text", $scope.component);
-
             $scope.page.content.push($scope.component);
             $scope.page.$update();
             $modalInstance.close($scope.page);
@@ -249,5 +249,4 @@ angular.module('site.controllers', [])
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-
 });
