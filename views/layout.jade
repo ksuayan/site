@@ -29,7 +29,7 @@ html(lang="en")
         link(rel="stylesheet",href="/css/main.css")
     block scripts
       -if (env==="production")
-        script(src="http://cdn.suayan.com/dist/js/all-site.min.js")
+        script(src="http://cdn.suayan.com/dist/js/all-site.min.js",async)
       -else
         include includes/dev-scripts
       script.

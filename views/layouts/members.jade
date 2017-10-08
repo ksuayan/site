@@ -11,6 +11,6 @@ block append scripts
   script.
     var socketHost = "#{config.socketHost}",
         username = "#{user.username}";
-  script(type="text/javascript", src="/js/sandbox.js")
-  script(type="text/javascript", src="/socket.io/socket.io.js")
-  script(type="text/javascript", src="/js/gb-chat-client.js")
+  script(type="text/javascript",src="/js/sandbox.js",async)
+  script(type="text/javascript",src="/socket.io/socket.io.js",async)
+  script(type="text/javascript",src="/js/gb-chat-client.js",async)
