@@ -157,13 +157,18 @@ angular.module('site.controllers', [])
     $scope.page = page;
     $scope.component = {};
     $scope.menuItems = formEditorService.getEditors();
+    $scope.subform = "/jade/pages/edit-component-default";
 
     $scope.ok = function ($event) {
+
+        /*
         $scope.component.type = $("input[name=component_type]").val();
         var fieldSubType = $("input[name=component_subtype]").attr("type");
         if (fieldSubType==="radio") {
             $scope.component.subtype = $("input[name=component_subtype]:checked").val();
         }
+        */
+
         $scope.page.content.push($scope.component);
         $scope.page.$update();
         $modalInstance.close($scope.page);
@@ -177,13 +182,15 @@ angular.module('site.controllers', [])
         isopen: false
     };
 
-    $scope.subform = "/jade/pages/edit-component-default";
-
     $scope.toggleDropdown = function(item) {
         $scope.component = {};
+        $scope.component.type = item.type;
         $scope.subform = item.form;
         $scope.componentName = item.name;
         $scope.status.isopen = !$scope.status.isopen;
+
+        $log.info("item:",item);
+        $log.info("scope:",$scope.component);
     };
 
 }).controller('EditComponentController',

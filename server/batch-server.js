@@ -62,7 +62,7 @@ app.get("/page/*", function(req, res){
 });
 
 // HOME
-app.get('/', view.fullScreen);
+app.get('/', view.homeView);
 
 
 app.get('/geo', function(req, res){ res.render("content/geo"); });

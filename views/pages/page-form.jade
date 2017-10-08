@@ -1,53 +1,51 @@
+.form-group
+  a.btn.btn-default(ui-sref='listPages') &laquo; Back to List
+  | &nbsp;
+  a.btn.btn-danger(ng-click='deletePage(page)') Delete
+  | &nbsp;
+  input.btn.btn-primary(type='submit', value='Save')
+  | &nbsp;
+  a.btn.btn-info(href='/page/{{page.name}}', target='_blank') Preview &raquo;
 
 .form-group
-  .col-sm-12
-    label.control-label(for='name') Name
-    input#name.form-control(type='text', ng-model='page.name')
+  label.control-label(for='title') Title
+  input#title.form-control(type='text', ng-model='page.title')
 
 .form-group
-  .col-sm-12
-    label.control-label(for='title') Title
-    input#title.form-control(type='text', ng-model='page.title')
+  label.control-label(for='name') Name
+  input#name.form-control(type='text', ng-model='page.name')
 
 .form-group
-  .col-sm-12
-    label.control-label Status &nbsp;
-    .btn-group
-      label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
-      label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
-      label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'archived'") archived
-    | &nbsp;&nbsp;
-    a.btn.btn-danger(ng-click='deletePage(page)') Delete
-    | &nbsp;&nbsp;
-    a.btn.btn-info(href='/page/{{page.name}}', target='_blank') Preview &raquo;
+  label.control-label Status &nbsp;
+  .btn-group
+    label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
+    label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
+    label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'archived'") archived
 
 .form-group
-  .col-sm-12
-    label.control-label(for='image') Image
-    input#image.form-control(type='text', ng-model='page.image')
+  label.control-label(for='image') Image
+  input#image.form-control(type='text', ng-model='page.image')
 
 .form-group
-  .col-sm-12
-    label.control-label(for='body') Body
-    .excerpt(ng-bind-html="page.body|trusted")
-
-
-.form-group
-  .col-sm-12
-    label.control-label(for='description') Description
-    textarea#description.form-control(data-ng-model='page.description')
-    label.control-label(for='keywords') Keywords
-    textarea#keywords.form-control(data-ng-model='page.keywords')
+  label.control-label(for='body') Body &nbsp;
+  a.btn.btn-default(type='button', ng-click='editBody(page)')
+    span.glyphicon.glyphicon-pencil
+  .excerpt(ng-bind-html="page.body|trusted")
 
 .form-group
-  .col-sm-12
-    a.btn.btn-default(ng-click='addComponent(page)')
-      span.glyphicon.glyphicon-plus
-      | &nbsp; Add Component
-    | &nbsp;
-    a.btn.btn-default(ng-click='addRichText(page)')
-      span.glyphicon.glyphicon-pencil
-      | &nbsp; Add Rich Text
+  label.control-label(for='description') Description
+  textarea#description.form-control(data-ng-model='page.description')
+  label.control-label(for='keywords') Keywords
+  textarea#keywords.form-control(data-ng-model='page.keywords')
+
+.form-group
+  a.btn.btn-default(ng-click='addComponent(page)')
+    span.glyphicon.glyphicon-plus
+    | &nbsp; Add Component
+  | &nbsp;
+  a.btn.btn-default(ng-click='addRichText(page)')
+    span.glyphicon.glyphicon-pencil
+    | &nbsp; Add Rich Text
 
 .form-group
   ul.list-group
@@ -60,9 +58,3 @@
       span.section(data-value='{{item}}') &nbsp; {{item.type}}
       .rich_text(ng-bind-html="item.content|trusted")
 
-
-.form-group
-  .col-sm-12
-    a.btn.btn-default(ui-sref='listPages') &laquo;&nbsp; Back to List
-    | &nbsp;
-    input.btn.btn-primary(type='submit', value='Save')

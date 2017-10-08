@@ -32,7 +32,7 @@ var config = {
     host : host,
     port : port,
 
-    mongoURL : "mongodb://localhost/site",
+    mongoURL : "mongodb://"+(process.env.DB_1_PORT_27017_TCP_ADDR ||'localhost')+"/site",
     defaultLocale : "en_US",
     name : 'kyo suayan',
     author : 'Kyo Suayan',
