@@ -66,6 +66,26 @@ angular.module('site.controllers', [])
         });
     };
 
+    $scope.editExcerpt = function(pageObj) {
+        var modalInstance = $modal.open({
+            animation: false,
+            templateUrl: '/jade/pages/edit-excerpt',
+            controller: 'EditExcerptController',
+            resolve: {
+                page: function (){
+                    $scope.page = pageObj;
+                    return $scope.page;
+                }
+            }
+        });
+        modalInstance.result.then(function (page) {
+            $scope.page = page;
+        }, function () {
+            $log.info('Excerpt:'+$scope.page.excerpt);
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
     $scope.addComponent = function(pageObj){
         var modalInstance = $modal.open({
             animation: false,
@@ -87,10 +107,8 @@ angular.module('site.controllers', [])
     };
 
     $scope.editComponent = function(pageObj, index) {
-
         $rootScope.page = pageObj;
         $rootScope.index = index;
-
         var modalInstance = $modal.open({
             templateUrl: '/jade/pages/edit-component',
             controller: 'EditComponentController',
@@ -160,15 +178,6 @@ angular.module('site.controllers', [])
     $scope.subform = "/jade/pages/edit-component-default";
 
     $scope.ok = function ($event) {
-
-        /*
-        $scope.component.type = $("input[name=component_type]").val();
-        var fieldSubType = $("input[name=component_subtype]").attr("type");
-        if (fieldSubType==="radio") {
-            $scope.component.subtype = $("input[name=component_subtype]:checked").val();
-        }
-        */
-
         $scope.page.content.push($scope.component);
         $scope.page.$update();
         $modalInstance.close($scope.page);
@@ -238,22 +247,34 @@ angular.module('site.controllers', [])
         $scope.status.isopen = !$scope.status.isopen;
     };
 
-}]).controller('AddRichTextController', function ($scope, $modalInstance, $log, page, formEditorService) {
+}]).controller('EditExcerptController', function ($log, $scope, $modalInstance, page) {
 
-        $scope.page = page;
-        $scope.subform = formEditorService.getEditor("rich_text").form;
-        $scope.component = {
-            type: "rich_text"
-        };
+    $scope.page = page;
+    $scope.ok = function ($event) {
+        $log.log("Editing Page Excerpt", $scope.page);
+        $scope.page.$update();
+        $modalInstance.close($scope.page);
+    };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 
-        $scope.ok = function ($event) {
-            $log.log("Adding Rich Text", $scope.component);
-            $scope.page.content.push($scope.component);
-            $scope.page.$update();
-            $modalInstance.close($scope.page);
-        };
+}).controller('AddRichTextController', function ($scope, $modalInstance, $log, page, formEditorService) {
 
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
+    $scope.page = page;
+    $scope.subform = formEditorService.getEditor("rich_text").form;
+    $scope.component = {
+        type: "rich_text"
+    };
+
+    $scope.ok = function ($event) {
+        $log.log("Adding Rich Text", $scope.component);
+        $scope.page.content.push($scope.component);
+        $scope.page.$update();
+        $modalInstance.close($scope.page);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });

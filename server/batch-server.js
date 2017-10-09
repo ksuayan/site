@@ -68,25 +68,21 @@ app.get('/', view.homeView);
 app.get('/geo', function(req, res){ res.render("content/geo"); });
 app.post('/api/csv', csv.saveJsonToCSV);
 
-app.get('/auth/instagram', api.instagramAuthorize);
+app.get('/auth/instagram',          api.instagramAuthorize);
 app.get('/auth/instagram/callback', api.instagramHandleAuth);
-app.get('/api/instagram', api.instagramSelfFeed);
-
+app.get('/api/instagram',           api.instagramSelfFeed);
 
 // API
-app.get('/api/twitter/import', api.importTwitterFeed);
-app.get('/api/vimeo/import', api.importVimeoFeed);
+app.get('/api/twitter/import',   api.importTwitterFeed);
+app.get('/api/vimeo/import',     api.importVimeoFeed);
 app.get('/api/instagram/import', api.importInstagram);
 
-app.get('/api/timeline',    api.getTimeline);
-app.get('/api/tiles',       api.getTileList);
+app.get('/api/timeline',      api.getTimeline);
+app.get('/api/tiles',         api.getTileList);
 
-app.get('/api/twitter',      api.twitter);
-app.get('/api/vimeo/:count', api.vimeo);
+app.get('/api/twitter',       api.twitter);
+app.get('/api/vimeo/:count',  api.vimeo);
 app.get('/api/flickr/:count', api.flickr);
-
-app.get('/api/page/text/:page', api.getPageText);
-app.get('/api/page/text', api.getPageText);
 
 app.get('/api/page',        api.getPageList);
 app.post('/api/page',       api.createPage);
@@ -94,14 +90,6 @@ app.get('/api/page/:id',    api.getPageById);
 app.put('/api/page/:id',    api.updatePage);
 app.delete('/api/page/:id', api.deletePage);
 
-app.get('/api/text',        api.getTextList);
-app.post('/api/text',       api.createText);
-app.get('/api/text/:id',    api.getTextById);
-app.put('/api/text/:id',    api.updateText);
-app.delete('/api/text/:id', api.deleteText);
-
-app.get('/api/doc',         api.getDocument);
-app.get('/api/doc/:id',     api.getDocument);
 app.post('/api/doc/:id',    api.saveDocument);
 
 app.get('/api/loc',         api.getLocations);

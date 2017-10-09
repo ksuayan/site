@@ -27,10 +27,10 @@
   input#image.form-control(type='text', ng-model='page.image')
 
 .form-group
-  label.control-label(for='body') Body &nbsp;
-  a.btn.btn-default(type='button', ng-click='editBody(page)')
+  label.control-label(for='body') Excerpt &nbsp;
+  a.btn.btn-default(type='button', ng-click='editExcerpt(page)')
     span.glyphicon.glyphicon-pencil
-  .excerpt(ng-bind-html="page.body|trusted")
+  .excerpt(ng-bind-html="page.excerpt|trusted")
 
 .form-group
   label.control-label(for='description') Description

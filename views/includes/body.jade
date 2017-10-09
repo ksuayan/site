@@ -7,9 +7,9 @@
     h1!= story.title
   -}
 
-  p!= fn.fromNow(story.dateCreated)
+  p!= fn.fromNow(story.dateUpdated||story.dateCreated)
 
-  != story.body
+  != story.excerpt
 -}
 
 //- This portion provides the powerful

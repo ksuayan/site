@@ -1,5 +1,7 @@
 - if (stories && stories.length>0) {
   for story in stories
-    .story
-      include body
+    - if (story && story.excerpt) {
+      .story
+        include excerpt
+    - }
 - }

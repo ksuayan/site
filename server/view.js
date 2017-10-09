@@ -38,7 +38,7 @@ ViewHandler.prototype.homeView = function (req, res) {
         res.render('content/notfound');
     },
     query = {"status":"published"};
-    content.getPageList(query, successHandler, errorHandler);
+    content.getPageList(query, "-dateUpdated", successHandler, errorHandler);
 };
 
 /**

@@ -322,6 +322,11 @@ ApiHandler.prototype.flickr = function(request, response) {
     }
 };
 
+/**
+ * Used by the Stage/Carousel.
+ * @param req
+ * @param res
+ */
 ApiHandler.prototype.getTileList = function(req, res) {
     var onSuccess = function(tiles) {
         return res.send(tiles);
@@ -332,6 +337,11 @@ ApiHandler.prototype.getTileList = function(req, res) {
     content.getTileList(onSuccess, onError);
 };
 
+/**
+ * Used by the Timeline component.
+ * @param req
+ * @param res
+ */
 ApiHandler.prototype.getTimeline = function(req, res) {
     var onSuccess = function(timeline) {
         return res.send(timeline);
@@ -342,67 +352,11 @@ ApiHandler.prototype.getTimeline = function(req, res) {
     timeline.getJobs(onSuccess, onError);
 };
 
-ApiHandler.prototype.getTextList = function(req, res) {
-    var onSuccess = function(contentMap) {
-        return res.send(contentMap);
-    };
-    var onError = function(err) {
-        return res.send(util.defaultError);
-    };
-    content.getTextList(null, onSuccess, onError);
-};
-
-ApiHandler.prototype.getTextById = function(req, res) {
-    var onSuccess = function(textObj) {
-        return res.send(textObj);
-    };
-    var onError = function(err) {
-        return res.send(util.defaultError);
-    };
-    content.getTextById(req.params.id, onSuccess, onError);
-};
-
-ApiHandler.prototype.updateText = function(req, res) {
-    var onSuccess = function(textObj) {
-        return res.send(textObj);
-    };
-    var onError = function(err) {
-        return res.send(err);
-    };
-    var textObj = {
-        _id: req.params.id,
-        name: req.body.name,
-        text: req.body.text,
-        locale: req.body.locale
-    };
-    content.updateText(textObj, onSuccess, onError);
-};
-
-ApiHandler.prototype.createText = function(req, res) {
-    var onSuccess = function(textObj) {
-        return res.send(textObj);
-    };
-    var onError = function(err) {
-        return res.send(err);
-    };
-    var textObj = {
-        name: req.body.name,
-        text: req.body.text,
-        locale: req.body.locale || conf.defaultLocale
-    };
-    content.createText(textObj, onSuccess, onError);
-};
-
-ApiHandler.prototype.deleteText = function(req, res) {
-    var onSuccess = function(textObj) {
-        return res.send(textObj);
-    };
-    var onError = function(err) {
-        return res.send(err);
-    };
-    content.deleteText(req.params.id, onSuccess, onError);
-};
-
+/**
+ * Site Pages API.
+ * @param req
+ * @param res
+ */
 
 ApiHandler.prototype.getPageList = function(req, res) {
     var onSuccess = function(pages) {
@@ -411,19 +365,7 @@ ApiHandler.prototype.getPageList = function(req, res) {
     var onError = function(err) {
         return res.send(util.defaultError);
     };
-    content.getPageList({}, onSuccess, onError);
-};
-
-
-ApiHandler.prototype.getPageText = function(req, res) {
-    var onSuccess = function(contentMap) {
-        res.send(contentMap);
-    };
-    var onError = function(err) {
-        return res.send(util.defaultError);
-    };
-    var page = (req.params.page) ? req.params.page : "home";
-    content.getPageText(page, onSuccess, onError);
+    content.getPageList({}, "name", onSuccess, onError);
 };
 
 ApiHandler.prototype.getPageById = function(req, res) {
@@ -447,7 +389,7 @@ ApiHandler.prototype.createPage = function(req, res) {
         image: req.body.image,
         description: req.body.description,
         keywords: req.body.keywords,
-        body: req.body.body,
+        excerpt: req.body.excerpt,
         content: req.body.content
     };
     content.createPage(pageObj, onSuccess, onError);
@@ -460,7 +402,6 @@ ApiHandler.prototype.updatePage = function(req, res) {
     var onError = function(err) {
         return res.send(err);
     };
-
     var pageObj = {
         _id: req.params.id,
         name: req.body.name,
@@ -469,10 +410,9 @@ ApiHandler.prototype.updatePage = function(req, res) {
         image: req.body.image,
         description: req.body.description,
         keywords: req.body.keywords,
-        body: req.body.body,
+        excerpt: req.body.excerpt,
         content: req.body.content
     };
-
     content.updatePage(pageObj, onSuccess, onError);
 };
 
@@ -484,26 +424,6 @@ ApiHandler.prototype.deletePage = function(req, res) {
         return res.send(err);
     };
     content.deletePage(req.params.id, onSuccess, onError);
-};
-
-//
-//
-//
-
-ApiHandler.prototype.getDocument = function(request, response) {
-    var result = {status:"error"};
-    var query = {};
-    if (typeof request.params.id !== 'undefined') {
-        query = { _id: request.params.id };
-    }
-    content.TextModel.find(query, function(err, docs) {
-        if (err) {
-            console.log(err);
-        } else {
-            result = {status : "ok", result : docs };
-        }
-        response.send(result);
-    });
 };
 
 ApiHandler.prototype.saveDocument = function(request, response) {
