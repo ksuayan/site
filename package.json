@@ -1,7 +1,7 @@
 {
   "name": "site",
   "description": "Node JS Template Site",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "node": "7.3.0",
     "npm": "5.4.2"
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git://github.com/ksuayan/site.git"
   },
-  "author": "Kyo Suayan <ksuayan@gmail.com> (https://github.com/ksuayan/)",
+  "author": "Kyo Suayan <tech@globalbin.com> (https://github.com/ksuayan/)",
   "keywords": [
     "mongoose",
     "express",
@@ -38,12 +38,12 @@
     "mongodb": "2.2.20",
     "mongoose": "4.0",
     "multer": "^1.0.3",
-    "passport": "^0.3.2",
+    "passport": "0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "1.0.0",
     "passport-linkedin": "1.0.0",
-    "passport-local": "^1.0.0",
-    "passport-twitter": "^1.0.2",
+    "passport-local": "1.0.0",
+    "passport-twitter": "1.0.4",
     "request": "2.9.x",
     "socket.io": "^1.2.1",
     "twitter-node-client": "0.0.6",

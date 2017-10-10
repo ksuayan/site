@@ -1,0 +1,12 @@
+node_modules
+bower_components
+data
+bloop
+neo4j
+phantom
+uploads
+downloads
+doc
+loader
+.tmp
+.env

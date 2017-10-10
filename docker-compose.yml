@@ -1,0 +1,45 @@
+version: '2'
+services:
+  db:
+    image: mongo:3.4
+    restart: always
+    ports:
+     - "27017:27017"
+    volumes_from:
+     - db-data
+  db-data:
+    image: mongo:3.4
+    volumes:
+      - /data/db
+      - /var/lib/mongodb
+      - /var/log/mongodb
+    entrypoint: /bin/true
+  db-loader:
+    build: ./loader/mongodb
+    links:
+     - db-data
+  web:
+    restart: always
+    build: .
+    container_name: site
+    ports:
+     - "9000:9000"
+     - "5858:5858"
+     - "8080:8080"
+     - "35729:35729"
+    environment:
+     - NODE_ENV=development
+     - DB_1_PORT_27017_TCP_ADDR=db
+    depends_on:
+     - db
+    volumes_from:
+     - web-data
+  web-data:
+    build: .
+    entrypoint: /bin/true
+    volumes:
+     - ./:/opt/site
+     - /opt/site/node_modules
+     - /opt/site/public
+     - /opt/site/server
+     - /opt/site/views

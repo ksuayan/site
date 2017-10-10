@@ -73,7 +73,7 @@ ApiHandler.prototype.getStream = function(request, response) {
         onSuccess = function (data) {
             response.send({"status":"ok","data": data});
         };
-    content.getDocumentList(streamCollection, {}, 64, onSuccess, onError);
+    content.getDocumentList(streamCollection, {}, 21, onSuccess, onError);
 };
 
 ApiHandler.prototype.instagramAuthorize = function(request, response) {
