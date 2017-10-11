@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600);
-@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700);
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i');
 @media screen and (max-width: 767px) {
 }
 @media (min-width: 768px) {
@@ -29,10 +29,11 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   width: 100%;
-  font-family: "Droid Serif", Georgia, serif;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 180%;
+  font-family: "Crimson Text", Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: -0.5px;
   background-color: transparent;
   padding-bottom: 100px;
 }
@@ -48,7 +49,7 @@ h4,
 h5,
 h6 {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   color: #333;
   margin: 0;
 }
@@ -78,24 +79,46 @@ h6 mark i {
 th {
   background-color: #efefef;
 }
-/*
-ul {
-    margin-left: 0px;
-    padding-left: 0px;
-    li {
-        margin-left: 0px;
-        padding-left: 0px;
-        list-style-position: inside;
-    }
-}
-*/
 /* FORMS */
 textarea {
   resize: vertical;
 }
 input.form-control,
 textarea.form-control {
-  font-size: 16px;
+  font-size: 22px;
+}
+blockquote {
+  font-size: 30px;
+  line-height: 130%;
+  padding: 20px 20px 20px 30px;
+  border-left-color: #efefef;
+  border-left-style: solid;
+  border-left-width: 5px;
+  background-color: #f7f7f7;
+}
+ul,
+ol {
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 10px;
+  display: table;
+}
+li {
+  margin-left: 20px;
+  padding-left: 0;
+  line-height: 120%;
+}
+ul li {
+  list-style: none;
+}
+ul li::before {
+  content: "\e080";
+  font-family: 'Glyphicons Halflings';
+  font-size: 12px;
+  float: left;
+  margin-top: 2px;
+  margin-left: -17px;
+  color: #666;
 }
 #map-widget {
   width: 100%;

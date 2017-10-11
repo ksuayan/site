@@ -2,7 +2,7 @@
 
 #stream {
     background-color: #beccd2;
-    padding: 0px;
+    padding: 0;
     margin-top: 25px;
     margin-bottom: 25px;
 
@@ -16,19 +16,13 @@
 
     .media {
         width: 100%;
-        padding: 0px;
+        padding: 0;
         background-color: #fff;
-        margin: 2px 0px 0px 0px;
+        margin: 2px 0 0 0;
         @media only screen and (min-width: @screen-xs-max) {
-            margin: 0px 0px 2px 2px;
+            margin: 0 0 2px 2px;
             width: 33%;
         }
-        /*
-        @media only screen and (max-width: @screen-xs-max) and (orientation:landscape) {
-            background-color: #ff0000;
-            display: block;
-        }
-        */
         .instagram {
             width: 100%;
             height: auto;
@@ -54,13 +48,13 @@
             text-decoration: none;
         }
     }
-}
-
-.when {
-    font-size: 16px;
-    color: #999;
-    margin-left: 10px;
-    margin-right: 5px;
+    .when {
+        font-size: @basefont-size-small;
+    }
+    .label {
+        font-family: @basefont;
+        font-size: @basefont-size-small;
+    }
 }
 
 .handle {

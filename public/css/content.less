@@ -55,7 +55,6 @@
         height: 560px;
         position: relative;
         overflow: hidden;
-
         background-color: #212121;
         #stage-content {
             position: absolute;
@@ -63,6 +62,8 @@
                 display: block;
                 position: absolute;
                 opacity: 1;
+                font-size: @textfont-size-normal;
+                line-height: 120%;
                 h2, h3, p, li {
                     color: #fff;
                     margin: 0px;
@@ -80,11 +81,6 @@
                     padding: 0px 70px 30px 70px;
                     line-height: 110%;
                 }
-                p {
-                    @media (max-width: @screen-sm-max) {
-                        font-size: 16px;
-                    }
-                }
             }
         }
         @media (max-width: @screen-sm-max) {
@@ -97,19 +93,19 @@
 
     #screen {
         .well p {
-            margin: 0px;
+            margin: 0;
         }
     }
     .container.article {
         padding: 20px 0 0 0;
-        @media (max-width: @screen-sm-min) {
-            font-size: 18px;
-        }
         @media (max-width: @screen-md-min) {
             padding: 18px;
         }
         p {
-            margin-bottom: 20px;
+            margin: 0;
+        }
+        p + p {
+            margin-top: 20px;
         }
     }
     .stories {
@@ -126,5 +122,6 @@
     .story-image {
         max-width: 100%;
     }
+
 }
 

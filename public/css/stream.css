@@ -18,7 +18,7 @@
 }
 #stream {
   background-color: #beccd2;
-  padding: 0px;
+  padding: 0;
   margin-top: 25px;
   margin-bottom: 25px;
 }
@@ -33,19 +33,13 @@
 }
 #stream .media {
   width: 100%;
-  padding: 0px;
+  padding: 0;
   background-color: #fff;
-  margin: 2px 0px 0px 0px;
-  /*
-        @media only screen and (max-width: @screen-xs-max) and (orientation:landscape) {
-            background-color: #ff0000;
-            display: block;
-        }
-        */
+  margin: 2px 0 0 0;
 }
 @media only screen and (min-width: 767px) {
   #stream .media {
-    margin: 0px 0px 2px 2px;
+    margin: 0 0 2px 2px;
     width: 33%;
   }
 }
@@ -75,11 +69,12 @@
 #stream .media a:hover {
   text-decoration: none;
 }
-.when {
+#stream .when {
   font-size: 16px;
-  color: #999;
-  margin-left: 10px;
-  margin-right: 5px;
+}
+#stream .label {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 .handle {
   font-size: 16px;

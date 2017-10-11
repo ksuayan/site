@@ -1,5 +1,5 @@
 h2
   a(href='/page/' + story.name)
     != story.title
-p!= fn.fromNow(story.dateUpdated||story.dateCreated)
+p.when!= fn.fromNow(story.dateUpdated||story.dateCreated)
 != story.excerpt
