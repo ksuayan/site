@@ -1,30 +1,50 @@
-@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600');
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i');
+// @import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600|Libre+Baskerville:400,400i,700');
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Crimson+Text:400,400i,600,600i');
 @import (reference) '../../bower_components/bootstrap/less/bootstrap';
 
+// ----------------------------------------
+// basefont -- is used for application UI elements
 @basefont: "Source Sans Pro", Helvetica, Arial, sans-serif;
 @basefont-size-small: 16px;
 @basefont-size-normal: 22px;
 @basefont-size-medium: 30px;
 
+@basefont-weight-light: 300;
+@basefont-weight-regular: 400;
+@basefont-weight-semibold: 600;
+
+@basefont-line-height: 140%;
+
+// ----------------------------------------
+// textfont -- is usef for long text bodies
 @textfont: "Crimson Text", Georgia, serif;
-@textfont-size-small: 16px;
+@textfont-size-small: 12px;
 @textfont-size-normal: 22px;
 @textfont-size-medium: 30px;
 
+@textfont-weight-regular: 400;
+@textfont-weight-semibold: 600;
+
+@textfont-line-height: 140%;
+
+// ----------------------------------------
+// navfont -- us used for sitewide navigation
 @navfont: "Source Sans Pro", Helvetica, Arial, sans-serif;
 
-@font-weight-light: 200;
-@font-weight-normal: 400;
-@font-weight-bold: 600;
+
+// Color Variables
 
 @color-dark-gray: #333;
 @color-medium-gray: #666;
 @color-light-gray: #999;
 @color-faded-gray: #dddddd;
 
+
+// Spacing/grid
 @vertical-gutter: 20px;
 @standard-padding: 20px;
+
+
 
 html, html a {
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
@@ -35,14 +55,16 @@ html {
 }
 
 body {
+    font-family: @textfont;
+    font-size: @textfont-size-normal;
+    font-weight: @textfont-weight-regular;
+    line-height: @textfont-line-height;
+    letter-spacing: -0.5px;
+
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     width: 100%;
-    font-family: @textfont;
-    font-size: @basefont-size-normal;
-    font-weight: @font-weight-normal;
-    line-height: 160%;
-    letter-spacing: -0.5px;
+
     background-color: transparent;
     padding-bottom: 100px;
     @media (max-width: (@screen-sm-max)) {
@@ -54,14 +76,16 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: @basefont;
-    font-weight: @font-weight-normal;
+    font-weight: @basefont-weight-regular;
+    line-height: @basefont-line-height;
+
     color: #333;
     margin: 0;
     mark {
         padding: 0;
         margin: 0;
         i {
-            font-weight: @font-weight-light;
+            font-weight: @basefont-weight-light;
             font-style: normal;
             color: #fff;
             background-color: #999;
@@ -82,12 +106,16 @@ textarea {
 }
 
 input.form-control, textarea.form-control {
+    font-family: @basefont;
     font-size: @basefont-size-normal;
 }
 
 blockquote {
-    font-size: @basefont-size-medium;
-    line-height: 130%;
+    font-family: @textfont;
+    font-size: @textfont-size-medium;
+    font-weight: @textfont-weight-regular;
+    font-style: italic;
+    line-height: 140%;
     padding: 20px 20px 20px 30px;
     border-left-color: #efefef;
     border-left-style: solid;

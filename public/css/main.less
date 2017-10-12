@@ -1,6 +1,5 @@
-@import (reference) '../../bower_components/bootstrap/less/bootstrap';
+@import (reference) "../../bower_components/bootstrap/less/bootstrap";
 @import "global.less";
-
 
 .btn-file {
     position: relative;
@@ -40,67 +39,6 @@ input[readonly] {
 .jumbotron {
     margin: 0 0 20px 0;
 }
-
-// Small and Below
-@media (max-width: @screen-sm-max) {
-    .hero-unit {
-        height: auto;
-        padding-bottom: 10px;
-    }
-
-    .jumbotron {
-        padding: 5px 10px 5px 10px;
-    }
-}
-
-.row.multicol {
-    .mod:first-child {
-        margin: 2px 0 0 0;
-    }
-    .mod {
-        padding: 5px 10px;
-        margin: 2px 0 0 2px;
-    }
-    .trans {
-        background-color: rgba(0, 0, 0, 0.85);
-        padding-bottom: 20px;
-        h2, p, ul {
-            margin: 5px;
-            color: #fff;
-        }
-        p, ul {
-            padding-bottom: 10px;
-        }
-    }
-}
-
-// Large and Below
-@media (max-width: @screen-md-min) {
-    .row.multicol {
-        .mod, .mod:first-child {
-            margin: 2px 0 0 0;
-        }
-    }
-}
-
-// Medium Layouts and up.
-@media (min-width: @screen-md-min+1) {
-    .row.multicol {
-        .mod, .mod:first-child {
-            margin: 0;
-            min-height: 500px;
-            float: left;
-        }
-        .mod {
-            width: 33%;
-        }
-        .mod:first-child {
-            width: 34%;
-        }
-    }
-}
-
-
 
 #chart {
     margin: 40px auto 30px auto;

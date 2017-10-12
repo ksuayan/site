@@ -84,6 +84,7 @@ module.exports = function(grunt) {
                 files: {
                     'public/js/dist/corelib.min.js': [
                         '<%= bower_concat.all.dest %>',
+                        'public/js/videojs/video.js',
                         'public/js/raphael-extensions.js'
                     ]
                 }
@@ -95,7 +96,10 @@ module.exports = function(grunt) {
                     banner: '/*! corelib.min.css 1.0.0 | @ksuayan */'
                 },
                 files: {
-                    'public/css/dist/corelib.min.css': ['<%= bower_concat.all.cssDest %>']
+                    'public/css/dist/corelib.min.css': [
+                      '<%= bower_concat.all.cssDest %>',
+                      'public/js/videojs/video-js.css'
+                    ]
                 }
             },
             main: {

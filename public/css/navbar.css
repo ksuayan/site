@@ -1,22 +1,13 @@
 @media screen and (max-width: 767px) {
-}
-@media (min-width: 768px) {
-}
-@media (min-width: 768px) {
-}
-@media (max-width: 767px) {
-}
-@media (min-width: 768px) {
-}
-@media (min-width: 768px) {
-}
-@media (min-width: 768px) {
-}
-@media (max-width: 767px) {
-}
-@media (max-width: 767px) {
-}
-/* NAVIGATION */
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (max-width: 767px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (max-width: 767px) {
+}@media (max-width: 767px) {
+}/* NAVIGATION */
 .navbar {
   border-radius: 0px;
   margin-bottom: 0px;
@@ -27,11 +18,13 @@
 .navbar-brand,
 .navbar-nav,
 .dropdown-menu {
-  font-size: 18px;
-  font-weight: 400;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 .navbar-brand {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 16px;
   font-weight: 600;
 }
 .navbar-inverse .navbar-nav > li > a,

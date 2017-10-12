@@ -1,22 +1,53 @@
-@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600');
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i');
 @media screen and (max-width: 767px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (max-width: 767px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (max-width: 767px) {
+}@media (max-width: 767px) {
+}@font-face {
+  font-family: 'Crimson Text';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Crimson Text Italic'), local('CrimsonText-Italic'), url(http://fonts.gstatic.com/s/crimsontext/v8/a5QZnvmn5amyNI-t2BMkWCtfYakCkPqOMDce0h_3gD8.ttf) format('truetype');
 }
-@media (min-width: 768px) {
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Crimson Text SemiBold Italic'), local('CrimsonText-SemiBoldItalic'), url(http://fonts.gstatic.com/s/crimsontext/v8/4j4TR-EfnvCt43InYpUNDDolfeppZzFSKvLyJNPKLMk.ttf) format('truetype');
 }
-@media (min-width: 768px) {
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Crimson Text Regular'), local('CrimsonText-Regular'), url(http://fonts.gstatic.com/s/crimsontext/v8/3IFMwfRa07i-auYR-B-zNYnF5uFdDttMLvmWuJdhhgs.ttf) format('truetype');
 }
-@media (max-width: 767px) {
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Crimson Text SemiBold'), local('CrimsonText-SemiBold'), url(http://fonts.gstatic.com/s/crimsontext/v8/rEy5tGc5HdXy56Xvd4f3I1FZMcfX2SbzQ69I7OWmkGo.ttf) format('truetype');
 }
-@media (min-width: 768px) {
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGMw1o1eFRj7wYC6JbISqOjY.ttf) format('truetype');
 }
-@media (min-width: 768px) {
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/ODelI1aHBYDBqgeIAH2zlNzbP97U9sKh0jjxbPbfOKg.ttf) format('truetype');
 }
-@media (min-width: 768px) {
-}
-@media (max-width: 767px) {
-}
-@media (max-width: 767px) {
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGNNE-IuDiR70wI4zXaKqWCM.ttf) format('truetype');
 }
 html,
 html a {
@@ -26,14 +57,14 @@ html {
   background-color: #333b45;
 }
 body {
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  width: 100%;
   font-family: "Crimson Text", Georgia, serif;
   font-size: 22px;
   font-weight: 400;
-  line-height: 160%;
+  line-height: 140%;
   letter-spacing: -0.5px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
   background-color: transparent;
   padding-bottom: 100px;
 }
@@ -50,6 +81,7 @@ h5,
 h6 {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-weight: 400;
+  line-height: 140%;
   color: #333;
   margin: 0;
 }
@@ -68,7 +100,7 @@ h3 mark i,
 h4 mark i,
 h5 mark i,
 h6 mark i {
-  font-weight: 200;
+  font-weight: 300;
   font-style: normal;
   color: #fff;
   background-color: #999;
@@ -85,11 +117,15 @@ textarea {
 }
 input.form-control,
 textarea.form-control {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 22px;
 }
 blockquote {
+  font-family: "Crimson Text", Georgia, serif;
   font-size: 30px;
-  line-height: 130%;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 140%;
   padding: 20px 20px 20px 30px;
   border-left-color: #efefef;
   border-left-style: solid;
@@ -134,56 +170,6 @@ input[readonly] {
 }
 .jumbotron {
   margin: 0 0 20px 0;
-}
-@media (max-width: 991px) {
-  .hero-unit {
-    height: auto;
-    padding-bottom: 10px;
-  }
-  .jumbotron {
-    padding: 5px 10px 5px 10px;
-  }
-}
-.row.multicol .mod:first-child {
-  margin: 2px 0 0 0;
-}
-.row.multicol .mod {
-  padding: 5px 10px;
-  margin: 2px 0 0 2px;
-}
-.row.multicol .trans {
-  background-color: rgba(0, 0, 0, 0.85);
-  padding-bottom: 20px;
-}
-.row.multicol .trans h2,
-.row.multicol .trans p,
-.row.multicol .trans ul {
-  margin: 5px;
-  color: #fff;
-}
-.row.multicol .trans p,
-.row.multicol .trans ul {
-  padding-bottom: 10px;
-}
-@media (max-width: 992px) {
-  .row.multicol .mod,
-  .row.multicol .mod:first-child {
-    margin: 2px 0 0 0;
-  }
-}
-@media (min-width: 992px+1) {
-  .row.multicol .mod,
-  .row.multicol .mod:first-child {
-    margin: 0;
-    min-height: 500px;
-    float: left;
-  }
-  .row.multicol .mod {
-    width: 33%;
-  }
-  .row.multicol .mod:first-child {
-    width: 34%;
-  }
 }
 #chart {
   margin: 40px auto 30px auto;
@@ -256,11 +242,13 @@ html#slideshow {
 .navbar-brand,
 .navbar-nav,
 .dropdown-menu {
-  font-size: 18px;
-  font-weight: 400;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 .navbar-brand {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 16px;
   font-weight: 600;
 }
 .navbar-inverse .navbar-nav > li > a,
