@@ -26,3 +26,9 @@ block content
       .row
         .col-sm-12
           include ../includes/body
+
+block append css
+  link(href="/js/videojs/video-js.min.css",rel="stylesheet")
+
+block append scripts
+  script(src="/js/videojs/video.min.js")

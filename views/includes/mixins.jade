@@ -27,6 +27,10 @@ mixin youtube_video(obj)
   .video-container
     iframe(src='https://www.youtube.com/embed/'+obj.id)
 
+mixin vimeo_video(obj)
+  .video-container
+    iframe(src="https://player.vimeo.com/video/"+obj.id,webkitallowfullscreen,mozallowfullscreen,allowfullscreen)
+
 mixin image(obj)
   image(src=obj.image,class="story-image")
 
@@ -35,3 +39,10 @@ mixin alert(obj)
     button.close(type='button', data-dismiss='alert', aria-label='Close')
       span(aria-hidden='true') ×
     != obj.content
+
+mixin audio_player(obj)
+  .media.audio-player
+    .media-left
+      audio(src=obj.url,poster=(obj.cover||config.defaultImage),class="album-cover video-js vjs-default-skin",controls="controls",preload="auto",data-setup='{}')
+    .media-body
+      h4.media-heading!=obj.title

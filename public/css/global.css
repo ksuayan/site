@@ -1,55 +1,24 @@
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 200;
-  src: local('Source Sans Pro ExtraLight'), local('SourceSansPro-ExtraLight'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGEMbjGELOEJD5J8DUmxkO-A.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGMw1o1eFRj7wYC6JbISqOjY.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 600;
-  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGNNE-IuDiR70wI4zXaKqWCM.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Crimson Text';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Crimson Text Italic'), local('CrimsonText-Italic'), url(https://fonts.gstatic.com/s/crimsontext/v8/a5QZnvmn5amyNI-t2BMkWCtfYakCkPqOMDce0h_3gD8.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Crimson Text';
-  font-style: italic;
-  font-weight: 600;
-  src: local('Crimson Text SemiBold Italic'), local('CrimsonText-SemiBoldItalic'), url(https://fonts.gstatic.com/s/crimsontext/v8/4j4TR-EfnvCt43InYpUNDDolfeppZzFSKvLyJNPKLMk.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Crimson Text';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Crimson Text Regular'), local('CrimsonText-Regular'), url(https://fonts.gstatic.com/s/crimsontext/v8/3IFMwfRa07i-auYR-B-zNYnF5uFdDttMLvmWuJdhhgs.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Crimson Text';
-  font-style: normal;
-  font-weight: 600;
-  src: local('Crimson Text SemiBold'), local('CrimsonText-SemiBold'), url(https://fonts.gstatic.com/s/crimsontext/v8/rEy5tGc5HdXy56Xvd4f3I1FZMcfX2SbzQ69I7OWmkGo.ttf) format('truetype');
-}
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i');
 @media screen and (max-width: 767px) {
-}@media (min-width: 768px) {
-}@media (min-width: 768px) {
-}@media (max-width: 767px) {
-}@media (min-width: 768px) {
-}@media (min-width: 768px) {
-}@media (min-width: 768px) {
-}@media (max-width: 767px) {
-}@media (max-width: 767px) {
-}html,
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 767px) {
+}
+html,
 html a {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
@@ -127,4 +96,7 @@ blockquote {
   border-left-width: 5px;
   background-color: #f7f7f7;
   margin: 20px 0 20px 0;
+}
+iframe {
+  border: 0;
 }

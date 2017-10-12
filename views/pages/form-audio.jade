@@ -1,0 +1,7 @@
+label.control-label(for='audio_url') Audio URL
+input#audio_url.form-control(type='text',ng-model='component.url')
+label.control-label(for='audio_title') Title
+input#audio_title.form-control(type='text',ng-model='component.title')
+label.control-label(for='audio_image') Cover Image
+input#audio_cover.form-control(type='text',ng-model='component.cover')
+input(type='hidden', name='component_type',value='audio_player')

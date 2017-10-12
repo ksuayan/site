@@ -38,8 +38,10 @@ var config = {
     author : 'Kyo Suayan',
     description : 'Design + Development',
     keywords : 'kyo,suayan,web,design,development,css3,html5,javascript,aem,cq5,ecmascript',
+    defaultImage: hosts.media+"/dist/img/ks-logo.svg",
     socialEnabled: true,
     caching: false,
+    touchOnUpdate: false,
     expires: 0,
 
     facebook: {

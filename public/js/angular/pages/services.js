@@ -24,6 +24,16 @@ angular.module('site.services', [])
             form: "/jade/pages/form-youtube"
         },
         {
+            type: "vimeo_video",
+            name: "Vimeo Video",
+            form: "/jade/pages/form-vimeo"
+        },
+        {
+            type: "audio_player",
+            name: "Audio Player",
+            form: "/jade/pages/form-audio"
+        },
+        {
             type: "alert",
             name: "Alert",
             form: "/jade/pages/form-alert"

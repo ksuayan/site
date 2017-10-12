@@ -138,7 +138,9 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
                 found.keywords = pageObj.keywords;
                 found.excerpt = pageObj.excerpt;
                 found.content = pageObj.content;
-                found.dateUpdated = Date.now();
+                if (conf.touchOnUpdate) {
+                    found.dateUpdated = Date.now();
+                }
                 found.save(function(err){
                     if (err) {
                         return util.HandleError(err);
@@ -428,6 +430,29 @@ DocumentDB.prototype.getDocumentList = function(collectionName, query, limit, on
         }
         if (typeof onSuccess === 'function') {
             onSuccess(docs);
+        }
+    });
+};
+
+DocumentDB.prototype.createDocument = function(collectionName, docObj, onSuccess, onError) {
+    var collection = mongoClient.db.collection(collectionName),
+        query = {
+            type: docObj.type,
+            sourceId: docObj.sourceId
+        },
+        sort = {
+            dateCreated: 1
+        },
+        options = {
+            new:true,
+            upsert:true
+        };
+    collection.findAndModify(query, sort, docObj, options, function(err, foundDoc) {
+        if (err) {
+            return util.HandleError(err, onError);
+        }
+        if (typeof onSuccess === 'function') {
+            onSuccess(foundDoc);
         }
     });
 };
