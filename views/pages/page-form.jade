@@ -48,13 +48,12 @@
     | &nbsp; Add Rich Text
 
 .form-group
-  ul.list-group
-    li.list-group-item(ng-repeat='item in page.content')
-      button.btn.btn-sm.btn-default(type='button', ng-click='deleteComponent($event, $index)')
-        span.glyphicon.glyphicon-remove
-      | &nbsp;&nbsp;
-      a.btn.btn-sm.btn-default(type='button', ng-click='editComponent(page, $index)')
-        span.glyphicon.glyphicon-wrench
-      span.section(data-value='{{item}}') &nbsp; {{item.type}}
-      .rich_text(ng-bind-html="item.content|trusted")
+  .editor-section(ng-repeat='item in page.content')
+    button.btn.btn-sm.btn-default(type='button', ng-click='deleteComponent($event, $index)')
+      span.glyphicon.glyphicon-remove
+    | &nbsp;&nbsp;
+    a.btn.btn-sm.btn-default(type='button', ng-click='editComponent(page, $index)')
+      span.glyphicon.glyphicon-wrench
+    span.section(data-value='{{item}}') &nbsp; {{item.type}}
+    .rich_text(ng-bind-html="item.content|trusted")
 

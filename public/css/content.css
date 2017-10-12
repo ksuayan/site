@@ -1,22 +1,13 @@
 @media screen and (max-width: 767px) {
-}
-@media (min-width: 768px) {
-}
-@media (min-width: 768px) {
-}
-@media (max-width: 767px) {
-}
-@media (min-width: 768px) {
-}
-@media (min-width: 768px) {
-}
-@media (min-width: 768px) {
-}
-@media (max-width: 767px) {
-}
-@media (max-width: 767px) {
-}
-/* CONTENT */
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (max-width: 767px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (max-width: 767px) {
+}@media (max-width: 767px) {
+}/* CONTENT */
 #content {
   background-color: #fff;
   margin-top: 0;
@@ -148,27 +139,6 @@
 #content .story-image {
   max-width: 100%;
 }
-#content ul,
-#content ol {
-  margin-left: 0;
-  padding-left: 0;
-  margin-bottom: 10px;
-  display: table;
-}
-#content li {
-  margin-left: 20px;
-  padding-left: 0;
-  line-height: 120%;
-}
 #content ul li {
-  list-style: none;
-}
-#content ul li::before {
-  content: "\e080";
-  font-family: 'Glyphicons Halflings';
-  font-size: 12px;
-  float: left;
-  margin-top: 2px;
-  margin-left: -17px;
-  color: #666;
+  list-style: disc;
 }
