@@ -1,22 +1,53 @@
-@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600');
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i');
 @media screen and (max-width: 767px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (max-width: 767px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (min-width: 768px) {
+}@media (max-width: 767px) {
+}@media (max-width: 767px) {
+}@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Source Sans Pro ExtraLight'), local('SourceSansPro-ExtraLight'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGEMbjGELOEJD5J8DUmxkO-A.ttf) format('truetype');
 }
-@media (min-width: 768px) {
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGMw1o1eFRj7wYC6JbISqOjY.ttf) format('truetype');
 }
-@media (min-width: 768px) {
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(http://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGNNE-IuDiR70wI4zXaKqWCM.ttf) format('truetype');
 }
-@media (max-width: 767px) {
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Crimson Text Italic'), local('CrimsonText-Italic'), url(https://fonts.gstatic.com/s/crimsontext/v8/a5QZnvmn5amyNI-t2BMkWCtfYakCkPqOMDce0h_3gD8.ttf) format('truetype');
 }
-@media (min-width: 768px) {
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Crimson Text SemiBold Italic'), local('CrimsonText-SemiBoldItalic'), url(https://fonts.gstatic.com/s/crimsontext/v8/4j4TR-EfnvCt43InYpUNDDolfeppZzFSKvLyJNPKLMk.ttf) format('truetype');
 }
-@media (min-width: 768px) {
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Crimson Text Regular'), local('CrimsonText-Regular'), url(https://fonts.gstatic.com/s/crimsontext/v8/3IFMwfRa07i-auYR-B-zNYnF5uFdDttMLvmWuJdhhgs.ttf) format('truetype');
 }
-@media (min-width: 768px) {
-}
-@media (max-width: 767px) {
-}
-@media (max-width: 767px) {
+@font-face {
+  font-family: 'Crimson Text';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Crimson Text SemiBold'), local('CrimsonText-SemiBold'), url(https://fonts.gstatic.com/s/crimsontext/v8/rEy5tGc5HdXy56Xvd4f3I1FZMcfX2SbzQ69I7OWmkGo.ttf) format('truetype');
 }
 html,
 html a {
@@ -95,6 +126,7 @@ blockquote {
   border-left-style: solid;
   border-left-width: 5px;
   background-color: #f7f7f7;
+  margin: 20px 0 20px 0;
 }
 .btn-file {
   position: relative;
@@ -167,7 +199,7 @@ input[readonly] {
     margin: 2px 0 0 0;
   }
 }
-@media (min-width: 992px+1) {
+@media (min-width: 993px) {
   .row.multicol .mod,
   .row.multicol .mod:first-child {
     margin: 0;
@@ -469,34 +501,26 @@ html#slideshow {
 #content .story-image {
   max-width: 100%;
 }
-#content ul,
-#content ol {
-  margin-left: 0;
-  padding-left: 0;
-  margin-bottom: 10px;
-  display: table;
-}
-#content li {
-  margin-left: 20px;
-  padding-left: 0;
-  line-height: 120%;
-}
 #content ul li {
-  list-style: none;
+  list-style: disc;
 }
-#content ul li::before {
-  content: "\e080";
-  font-family: 'Glyphicons Halflings';
-  font-size: 12px;
-  float: left;
-  margin-top: 2px;
-  margin-left: -17px;
-  color: #666;
-}
-.edit-section {
+.editor-form {
   margin-top: 30px;
 }
+.editor-form .btn,
+.editor-form .control-label,
+.editor-form .form-control,
+.editor-form .label {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+.editor-section {
+  border: 1px solid #dddddd;
+  padding: 20px;
+  margin-bottom: 20px;
+}
 .video-container {
+  margin-top: 20px;
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 30px;

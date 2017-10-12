@@ -1,21 +1,17 @@
 @import (reference) "global.less";
 
-.edit-section {
+.editor-form {
   margin-top: 30px;
+
+  .btn, .control-label, .form-control, .label {
+    font-family: @navfont;
+    font-weight: @font-weight-bold;
+  }
 }
 
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
-  overflow: hidden;
+.editor-section {
+    border: 1px solid @color-faded-gray;
+    padding: @standard-padding;
+    margin-bottom: @vertical-gutter;
 }
 
-.video-container iframe, .video-container object, .video-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
