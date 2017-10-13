@@ -7,6 +7,9 @@ block metadata
   +meta(keywords)
   if (story.title)
     title=story.title
+  if (config.facebook.clientId)
+    -var og_app_id = { property: "fb:app_id", content:config.facebook.clientId};
+    +meta_og(og_app_id)
   -var og_site = { property: "og:site_name", content:"Kyo Suayan | Design + Development"};
   +meta_og(og_site)
   -var og_title = { property: "og:title", content:(story.title||"Kyo Suayan | Design + Development")};
