@@ -1,0 +1,14 @@
+.form-group
+  a.btn.btn-default(ui-sref='listPages') &laquo; Back to List
+  | &nbsp;
+  input.btn.btn-primary(type='submit', value='Create')
+  | &nbsp;
+  a.btn.btn-info(href='/page/{{page.name}}', target='_blank') Preview &raquo;
+
+.form-group
+  label.control-label(for='title') Title
+  input#title.form-control(type='text', ng-model='page.title')
+
+.form-group
+  label.control-label(for='name') Name
+  input#name.form-control(type='text', ng-model='page.name')

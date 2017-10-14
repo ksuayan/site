@@ -40,7 +40,7 @@ angular.module('site.controllers', [])
     };
 
     $scope.updateStatus = function($event) {
-        $log.info("yo...", $scope.page.status);
+        // $log.info("yo...", $scope.page.status);
         $scope.page.$update();
     };
 

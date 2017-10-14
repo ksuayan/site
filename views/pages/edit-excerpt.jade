@@ -2,7 +2,7 @@
   h3.modal-title Excerpt &nbsp;&nbsp;
 
 .modal-body
-  textarea#excerpt.form-control(data-ng-model='page.excerpt', data-ck-editor='')
+  .editor-rte.form-control(data-ng-model='page.excerpt', text-angular)
 
 .modal-footer
   button.btn.btn-primary(ng-click='ok()') OK
