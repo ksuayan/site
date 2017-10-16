@@ -448,6 +448,10 @@ html#slideshow {
   padding: 20px;
   margin-bottom: 20px;
 }
+.editor-rte {
+  display: block;
+  height: 100%;
+}
 .video-container {
   clear: both;
   margin-top: 20px;

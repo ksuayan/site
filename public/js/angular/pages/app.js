@@ -1,5 +1,11 @@
 var site = angular.module('site',
-    ['ui.router', 'ui.bootstrap', 'ngSanitize', 'ngResource', 'site.controllers', 'site.services']);
+    ['ui.router',
+     'ui.bootstrap',
+     'ngSanitize',
+     'ngResource',
+     'textAngular',
+     'site.controllers',
+     'site.services']);
 
 angular.module('site').config(["$stateProvider", "$sceProvider", "$logProvider",
     function($stateProvider, $sceProvider, $logProvider) {

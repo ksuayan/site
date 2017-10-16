@@ -7,16 +7,35 @@ module.exports = function(grunt) {
         //  Concatenate external JS and CSS libraries into
         //  corelib.js and corelib.css.
 
+        clean: ["public/dist","public/build"],
+        copy: {
+            main: {
+                expand: true,
+                cwd: 'public/fonts/',
+                src:  '**',
+                dest: 'public/dist/fonts/'
+            }
+        },
         bower_concat: {
             all: {
-                dest:    'public/js/dist/corelib.js',
-                cssDest: 'public/css/dist/corelib.css',
+                dest: {
+                    js:  'public/build/_bower.js',
+                    css: 'public/build/_bower.css'
+                },
+                mainFiles: {
+                    "font-awesome": [
+                        "css/font-awesome.css"
+                    ],
+                    "bootstrap": [
+                        "dist/css/bootstrap.css",
+                        "dist/js/bootstrap.js"
+                    ]
+                },
                 bowerOptions: {
                     relative: false
                 }
             }
         },
-
         // Precompile external Handlebar Templates.
         handlebars: {
             compile: {
@@ -39,7 +58,7 @@ module.exports = function(grunt) {
                 src: [
                     'public/js/handlebars/handlebars.runtime.min.js'
                 ],
-                dest: 'public/js/dist/extras-<%= pkg.name %>.js'
+                dest: 'public/build/extras-<%= pkg.name %>.js'
             },
             site: {
                 src: [
@@ -59,15 +78,15 @@ module.exports = function(grunt) {
                       'public/js/gb-stage.js',
                       'public/js/gb-content-manager.js',
                       'public/js/main.js'],
-                dest: 'public/js/dist/<%= pkg.name %>.js'
+                dest: 'public/build/<%= pkg.name %>.js'
             },
             all: {
                 src: [
                     '<%= concat.extras.dest %>',
-                    'public/js/dist/corelib.min.js',
-                    'public/js/dist/<%= pkg.name %>.min.js'
+                    'public/dist/js/corelib.min.js',
+                    'public/dist/js/<%= pkg.name %>.min.js'
                 ],
-                dest: 'public/js/dist/all-<%= pkg.name %>.min.js'
+                dest: 'public/dist/js/all-<%= pkg.name %>.min.js'
             }
         },
         uglify: {
@@ -77,13 +96,13 @@ module.exports = function(grunt) {
             },
             site: {
                 files: {
-                    'public/js/dist/<%= pkg.name %>.min.js': ['<%= concat.site.dest %>']
+                    'public/dist/js/<%= pkg.name %>.min.js': ['<%= concat.site.dest %>']
                 }
             },
             core: {
                 files: {
-                    'public/js/dist/corelib.min.js': [
-                        '<%= bower_concat.all.dest %>',
+                    'public/dist/js/corelib.min.js': [
+                        '<%= bower_concat.all.dest.js %>',
                         'public/js/videojs/video.js',
                         'public/js/raphael-extensions.js'
                     ]
@@ -91,23 +110,23 @@ module.exports = function(grunt) {
             }
         },
         cssmin: {
-            dist: {
+            core: {
                 options: {
                     banner: '/*! corelib.min.css 1.0.0 | @ksuayan */'
                 },
                 files: {
-                    'public/css/dist/corelib.min.css': [
-                      '<%= bower_concat.all.cssDest %>',
+                    'public/dist/css/corelib.min.css': [
+                      '<%= bower_concat.all.dest.css %>',
                       'public/js/videojs/video-js.css'
                     ]
                 }
             },
-            main: {
+            site: {
                 options: {
-                    banner: '/*! main.min.css 1.0.0 | @ksuayan */'
+                    banner: '/*! site.min.css 1.0.0 | @ksuayan */'
                 },
                 files: {
-                    'public/css/dist/main.min.css': [
+                    'public/dist/css/main.min.css': [
                         'public/css/main.css'
                     ]
                 }
@@ -142,10 +161,6 @@ module.exports = function(grunt) {
                 laxbreak: true
             }
         },
-        watch: {
-            files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'qunit']
-        },
         jsdoc: {
             dist : {
                 src: ['<%= concat.dist.src %>', 'src/*.js', 'test/*.js'],
@@ -156,17 +171,16 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-bower-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-jsdoc');
 
-    grunt.registerTask('test',    ['jshint', 'qunit']);
     grunt.registerTask('jsdoc',   ['jsdoc']);
 
     grunt.registerTask('hb',[
@@ -179,26 +193,31 @@ module.exports = function(grunt) {
     grunt.registerTask('core', [
         'bower_concat',
         'uglify:core',
-        'cssmin:dist',
-        'concat:all'
+        'cssmin:core'
     ]);
 
     grunt.registerTask('site',[
         'handlebars',
         'jshint',
         'concat:site',
-        'uglify:site'
+        'uglify:site',
+        'cssmin:site'
     ]);
 
     grunt.registerTask('default',[
+        'clean',
+        'copy',
         'bower_concat', // all bower imported libraries in bower.json
+                        // (supposedly!)
         'handlebars', // *.hbs -> *.js
         'jshint', // sanity checks
-        'cssmin', // corelib.min.css, main.min.css
-        'concat:extras', // pre-minified vendor source
-        'concat:site', // gb-*.js
-        'uglify:core', // corelib.min.js
-        'uglify:site', // site.min.js
-        'concat:all' // all-site.min.js
+
+        'cssmin:core',   // -> public/dist/css/corelib.min.css'
+        'cssmin:site',    // -> public/dist/css/main.min.css
+        'concat:extras', // -> public/build/extras-site.js
+        'concat:site',   // -> public/build/site.js
+        'uglify:core',   // -> public/dist/js/corelib.min.js
+        'uglify:site',   // -> public/dist/js/site.min.js
+        'concat:all'     // -> public/dist/js/all-site.min.js
     ]);
 };
