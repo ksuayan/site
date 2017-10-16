@@ -25,7 +25,7 @@ html {
   background-color: #333b45;
 }
 body {
-  font-family: "Crimson Text", Georgia, serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 22px;
   font-weight: 400;
   line-height: 140%;
@@ -367,8 +367,13 @@ html#slideshow {
   display: block;
   position: absolute;
   opacity: 1;
-  font-size: 22px;
+  font-size: 16px;
   line-height: 120%;
+}
+@media (min-width: 992px) {
+  #content #stage #stage-content .tile {
+    font-size: 22px;
+  }
 }
 #content #stage #stage-content .tile h2,
 #content #stage #stage-content .tile h3,
@@ -377,6 +382,12 @@ html#slideshow {
   color: #fff;
   margin: 0px;
   padding: 0px 70px 0 70px;
+}
+#content #stage #stage-content .tile p {
+  margin-bottom: 10px;
+}
+#content #stage #stage-content .tile li {
+  list-style-position: inside;
 }
 #content #stage #stage-content .tile .indent {
   padding: 10px 70px 0 70px;
@@ -389,6 +400,9 @@ html#slideshow {
 #content #stage #stage-content .tile h3 {
   padding: 0px 70px 30px 70px;
   line-height: 110%;
+}
+#content #stage #stage-content .tile .description {
+  font-weight: 600;
 }
 @media (max-width: 991px) {
   #content #stage {
@@ -405,6 +419,8 @@ html#slideshow {
 }
 #content .container.article {
   padding: 20px 0 0 0;
+  font-family: "Crimson Text", Georgia, serif;
+  font-size: 24px;
 }
 @media (max-width: 992px) {
   #content .container.article {
@@ -414,24 +430,43 @@ html#slideshow {
 #content .container.article p {
   margin: 0;
 }
-#content .container.article p + p {
+#content .container.article p + p,
+#content .container.article .video-container + p {
   margin-top: 20px;
 }
 #content .stories {
+  padding-top: 30px;
   padding-bottom: 50px;
 }
 #content .story {
-  padding-top: 30px;
+  padding-top: 10px;
+  font-family: "Crimson Text", Georgia, serif;
+  font-size: 24px;
 }
 #content .story h2 a:hover {
   text-decoration: none;
 }
 #content .story-image {
-  margin: 20px 0 20px 0;
+  margin: 30px 0 20px 0;
   max-width: 100%;
 }
 #content ul li {
   list-style: disc;
+}
+.story h1,
+.article h1,
+.story h2,
+.article h2,
+.story h3,
+.article h3,
+.story h4,
+.article h4,
+.story h5,
+.article h5,
+.story h6,
+.article h6 {
+  line-height: 120%;
+  margin-top: 10px;
 }
 .editor-form {
   margin-top: 30px;
@@ -448,9 +483,18 @@ html#slideshow {
   padding: 20px;
   margin-bottom: 20px;
 }
+.modal .modal-dialog {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
 .editor-rte {
   display: block;
   height: 100%;
+}
+.editor-rte .ta-editor.form-control {
+  font-family: "Crimson Text", Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
 }
 .video-container {
   clear: both;

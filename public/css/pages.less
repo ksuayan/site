@@ -2,7 +2,6 @@
 
 .editor-form {
   margin-top: 30px;
-
   .btn, .control-label, .form-control, .label {
     font-family: @basefont;
     font-weight: @basefont-weight-semibold;
@@ -15,8 +14,18 @@
   margin-bottom: @vertical-gutter;
 }
 
+.modal .modal-dialog {
+  font-family: @basefont;
+  font-weight: @basefont-weight-semibold;
+}
+
 .editor-rte {
   display: block;
   height: 100%;
+  .ta-editor.form-control {
+    font-family: @textfont;
+    font-size: @textfont-size-normal;
+    font-weight: @textfont-weight-regular;
+  }
 }
 

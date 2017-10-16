@@ -19,7 +19,7 @@
 // textfont -- is usef for long text bodies
 @textfont: "Crimson Text", Georgia, serif;
 @textfont-size-small: 12px;
-@textfont-size-normal: 22px;
+@textfont-size-normal: 24px;
 @textfont-size-medium: 30px;
 
 @textfont-weight-regular: 400;
@@ -55,10 +55,11 @@ html {
 }
 
 body {
-    font-family: @textfont;
-    font-size: @textfont-size-normal;
-    font-weight: @textfont-weight-regular;
-    line-height: @textfont-line-height;
+    font-family: @basefont;
+    font-size:   @basefont-size-normal;
+    font-weight: @basefont-weight-regular;
+    line-height: @basefont-line-height;
+
     letter-spacing: -0.5px;
 
     -webkit-font-smoothing: antialiased;

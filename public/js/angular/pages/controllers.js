@@ -71,6 +71,7 @@ angular.module('site.controllers', [])
             animation: false,
             templateUrl: '/jade/pages/edit-excerpt',
             controller: 'EditExcerptController',
+            size: "lg",
             resolve: {
                 page: function (){
                     $scope.page = pageObj;
@@ -91,7 +92,7 @@ angular.module('site.controllers', [])
             animation: false,
             templateUrl: '/jade/pages/edit-component',
             controller: 'AddComponentController',
-            size: "md",
+            size: "lg",
             resolve: {
                 page: function (){
                     $scope.page = pageObj;
@@ -112,6 +113,7 @@ angular.module('site.controllers', [])
         var modalInstance = $modal.open({
             templateUrl: '/jade/pages/edit-component',
             controller: 'EditComponentController',
+            size: "lg",
             resolve: {
                 page: function (){
                     $scope.page = pageObj;

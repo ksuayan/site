@@ -60,12 +60,21 @@
                 display: block;
                 position: absolute;
                 opacity: 1;
-                font-size: @textfont-size-normal;
+                font-size: @basefont-size-small;
+                @media (min-width: @screen-md-min) {
+                    font-size: @basefont-size-normal;
+                }
                 line-height: 120%;
                 h2, h3, p, li {
                     color: #fff;
                     margin: 0px;
                     padding: 0px 70px 0 70px;
+                }
+                p {
+                    margin-bottom: 10px;
+                }
+                li {
+                    list-style-position: inside;
                 }
                 .indent {
                     padding: 10px 70px 0 70px;
@@ -78,6 +87,9 @@
                 h3 {
                     padding: 0px 70px 30px 70px;
                     line-height: 110%;
+                }
+                .description {
+                    font-weight: @basefont-weight-semibold;
                 }
             }
         }
@@ -95,29 +107,36 @@
     }
     .container.article {
         padding: 20px 0 0 0;
+        font-family: @textfont;
+        font-size: @textfont-size-normal;
+
         @media (max-width: @screen-md-min) {
             padding: 18px;
         }
         p {
             margin: 0;
         }
-        p + p {
+        p + p, .video-container + p {
             margin-top: @vertical-gutter;
         }
+
     }
     .stories {
+        padding-top: 30px;
         padding-bottom: 50px;
     }
     .story {
-        padding-top: 30px;
+        padding-top: 10px;
         h2 a {
             &:hover {
                 text-decoration: none;
             }
         }
+        font-family: @textfont;
+        font-size: @textfont-size-normal;
     }
     .story-image {
-        margin: 20px 0 20px 0;
+        margin: 30px 0 20px 0;
         max-width: 100%;
     }
     // List Styles for Content Only.
@@ -126,3 +145,9 @@
     }
 }
 
+.story, .article {
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 120%;
+        margin-top: 10px;
+    }
+}

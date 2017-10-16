@@ -31,7 +31,16 @@
   padding: 20px;
   margin-bottom: 20px;
 }
+.modal .modal-dialog {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
 .editor-rte {
   display: block;
   height: 100%;
+}
+.editor-rte .ta-editor.form-control {
+  font-family: "Crimson Text", Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
 }
