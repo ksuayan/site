@@ -139,6 +139,7 @@ angular.module('site.controllers', [])
             animation: false,
             templateUrl: '/jade/pages/add-rich-text',
             controller: 'AddRichTextController',
+            size: "lg",
             resolve: {
                 page: function (){
                     $scope.page = pageObj;
