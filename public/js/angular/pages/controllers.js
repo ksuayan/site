@@ -1,24 +1,29 @@
-angular.module('site.controllers', [])
-.controller('PageListController', ["$log", "$scope", "$state", "$window", "Page",
 
+
+
+angular.module('site.controllers', [])
+.controller('PageListController',
+
+   ["$log", "$scope", "$state", "$window", "Page",
    function($log, $scope, $state, $window, Page) {
        $scope.pages = Page.query();
    }
 
 ]).controller('PageCreateController',
 
-   function($scope, $state, $stateParams, Page) {
-        $scope.page = new Page();
 
+   function($log, $scope, $state, $stateParams, Page) {
+        $scope.page = new Page();
         $scope.addPage = function() {
-            $scope.page.$save(function() {
-                $state.go('listPages');
+            $scope.page.$save(function(obj) {
+                $state.go('editPage', {id:obj._id});
             });
         };
    }
 
-).controller('PageViewController', ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
+).controller('PageViewController',
 
+    ["$log", "$scope", "$state", "$stateParams", "$modal", "Page",
     function($log, $scope, $state, $stateParams, $modal, Page) {
         $scope.page = Page.get({ id: $stateParams.id });
         $scope.editPage = function() {
@@ -27,10 +32,15 @@ angular.module('site.controllers', [])
     }
 
 ]).controller('PageEditController',
+
     ["$log", "$scope", "$rootScope", "$state", "$stateParams", "$modal", "formEditorService", "Page",
     function($log, $scope, $rootScope, $state, $stateParams, $modal, formEditorService, Page) {
 
     $scope.page = Page.get({ id: $stateParams.id });
+
+    $scope.getComponentName = function(key) {
+        return formEditorService.getEditor(key).name;
+    };
 
     $scope.updatePage = function() {
         // Issue a PUT to /api/pages/:id
@@ -40,7 +50,6 @@ angular.module('site.controllers', [])
     };
 
     $scope.updateStatus = function($event) {
-        // $log.info("yo...", $scope.page.status);
         $scope.page.$update();
     };
 
@@ -83,11 +92,12 @@ angular.module('site.controllers', [])
             $scope.page = page;
         }, function () {
             $log.info('Excerpt:'+$scope.page.excerpt);
-            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
-    $scope.addComponent = function(pageObj){
+    $scope.addComponent = function(pageObj, index){
+        $rootScope.page = pageObj;
+        $rootScope.index = index;
         var modalInstance = $modal.open({
             animation: false,
             templateUrl: '/jade/pages/edit-component',
@@ -103,7 +113,6 @@ angular.module('site.controllers', [])
         modalInstance.result.then(function (page) {
             $scope.page = page;
         }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
@@ -124,7 +133,6 @@ angular.module('site.controllers', [])
         modalInstance.result.then(function (page) {
             $scope.page = page;
         }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
@@ -134,7 +142,9 @@ angular.module('site.controllers', [])
         $scope.page.$update();
     };
 
-    $scope.addRichText = function(pageObj){
+    $scope.addRichText = function(pageObj, index){
+        $rootScope.page = pageObj;
+        $rootScope.index = index;
         var modalInstance = $modal.open({
             animation: false,
             templateUrl: '/jade/pages/add-rich-text',
@@ -161,19 +171,20 @@ angular.module('site.controllers', [])
 
     $scope.loadPage();
 
-}]).controller('DeleteModalController', function ($scope, $modalInstance, page) {
+}]).controller('DeleteModalController',
 
+    function ($scope, $modalInstance, page) {
     $scope.page = page;
-
     $scope.ok = function () {
         $modalInstance.close($scope.page);
     };
-
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
 
-}).controller('AddComponentController', function ($log, $scope, $modalInstance, page, formEditorService) {
+}).controller('AddComponentController',
+
+    function ($log, $scope, $rootScope, $modalInstance, page, formEditorService) {
 
     $scope.page = page;
     $scope.component = {};
@@ -181,8 +192,7 @@ angular.module('site.controllers', [])
     $scope.subform = "/jade/pages/edit-component-default";
 
     $scope.ok = function ($event) {
-        $scope.page.content.push($scope.component);
-        $scope.page.$update();
+        formEditorService.insertComponent($scope.page, "content", $rootScope.index, $scope.component);
         $modalInstance.close($scope.page);
     };
 
@@ -200,18 +210,12 @@ angular.module('site.controllers', [])
         $scope.subform = item.form;
         $scope.componentName = item.name;
         $scope.status.isopen = !$scope.status.isopen;
-
-        $log.info("item:",item);
-        $log.info("scope:",$scope.component);
     };
 
 }).controller('EditComponentController',
+
     ["$log", "$scope", "$rootScope", "$modalInstance", "formEditorService",
-
     function ($log, $scope, $rootScope, $modalInstance, formEditorService) {
-
-    // Pass the page and page.content[] index:
-    $log.log("Page, Index:", $rootScope.page, $rootScope.index);
 
     $scope.page = $rootScope.page;
     $scope.component = $rootScope.page.content[$rootScope.index];
@@ -221,15 +225,10 @@ angular.module('site.controllers', [])
     $scope.componentName = formEditorService.getEditor(type).name;
     $scope.menuItems = formEditorService.getEditors();
 
-    $log.log("Page: ", $scope.page);
-    $log.log("Component: ", $scope.component);
-
     // This is the actual update handler
     // for the targeted component.
     $scope.ok = function ($event) {
-        $log.log("Updating:", $scope.component);
-        $scope.page.content[$rootScope.index] = $scope.component;
-        $scope.page.$update();
+        formEditorService.updateComponent($scope.page,"content",$rootScope.index,$scope.component);
         $modalInstance.close($scope.page);
     };
 
@@ -243,18 +242,18 @@ angular.module('site.controllers', [])
 
     // Should we allow type switching?
     $scope.toggleDropdown = function(item) {
-        $log.log("Dropdown toggled...", item);
         $scope.component = {};
         $scope.subform = item.form;
         $scope.componentName = item.name;
         $scope.status.isopen = !$scope.status.isopen;
     };
 
-}]).controller('EditExcerptController', function ($log, $scope, $modalInstance, page) {
+}]).controller('EditExcerptController',
+
+    function ($log, $scope, $modalInstance, page) {
 
     $scope.page = page;
     $scope.ok = function ($event) {
-        $log.log("Editing Page Excerpt", $scope.page);
         $scope.page.$update();
         $modalInstance.close($scope.page);
     };
@@ -262,18 +261,16 @@ angular.module('site.controllers', [])
         $modalInstance.dismiss('cancel');
     };
 
-}).controller('AddRichTextController', function ($scope, $modalInstance, $log, page, formEditorService) {
+}).controller('AddRichTextController',
+
+    function ($scope, $rootScope, $modalInstance, $log, page, formEditorService) {
 
     $scope.page = page;
     $scope.subform = formEditorService.getEditor("rich_text").form;
-    $scope.component = {
-        type: "rich_text"
-    };
+    $scope.component = { type: "rich_text" };
 
     $scope.ok = function ($event) {
-        $log.log("Adding Rich Text", $scope.component);
-        $scope.page.content.push($scope.component);
-        $scope.page.$update();
+        formEditorService.insertComponent($scope.page, "content", $rootScope.index, $scope.component);
         $modalInstance.close($scope.page);
     };
 

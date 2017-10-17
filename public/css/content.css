@@ -150,7 +150,8 @@
   margin: 0;
 }
 #content .container.article p + p,
-#content .container.article .video-container + p {
+#content .container.article .video-container + p,
+#content .container.article .alert {
   margin-top: 20px;
 }
 #content .stories {

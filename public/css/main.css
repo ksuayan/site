@@ -431,7 +431,8 @@ html#slideshow {
   margin: 0;
 }
 #content .container.article p + p,
-#content .container.article .video-container + p {
+#content .container.article .video-container + p,
+#content .container.article .alert {
   margin-top: 20px;
 }
 #content .stories {
@@ -488,13 +489,19 @@ html#slideshow {
   font-weight: 600;
 }
 .editor-rte {
+  border: none;
   display: block;
   height: 100%;
+}
+.editor-rte .btn-group {
+  margin: 5px 0;
 }
 .editor-rte .ta-editor.form-control {
   font-family: "Crimson Text", Georgia, serif;
   font-size: 24px;
   font-weight: 400;
+  max-height: 500px;
+  margin-top: 5px;
 }
 .video-container {
   clear: both;

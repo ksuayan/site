@@ -47,13 +47,22 @@
     span.glyphicon.glyphicon-pencil
     | &nbsp; Add Rich Text
 
-.form-group
-  .editor-section(ng-repeat='item in page.content')
+.form-group(ng-repeat='item in page.content')
+  .editor-section
     button.btn.btn-sm.btn-default(type='button', ng-click='deleteComponent($event, $index)')
       span.glyphicon.glyphicon-remove
     | &nbsp;&nbsp;
     a.btn.btn-sm.btn-default(type='button', ng-click='editComponent(page, $index)')
       span.glyphicon.glyphicon-wrench
-    span.section(data-value='{{item}}') &nbsp; {{item.type}}
+    | &nbsp;
+    span.section &nbsp; {{$index}} {{getComponentName(item.type)}}
     .rich_text(ng-bind-html="item.content|trusted")
+
+  a.btn.btn-default(ng-click='addComponent(page, $index)')
+    span.glyphicon.glyphicon-plus
+    | &nbsp; Add Component
+  | &nbsp;
+  a.btn.btn-default(ng-click='addRichText(page, $index)')
+    span.glyphicon.glyphicon-pencil
+    | &nbsp; Add Rich Text
 

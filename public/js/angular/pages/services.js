@@ -57,10 +57,36 @@ angular.module('site.services', [])
             keys.push(editors[i].type);
         }
         return keys;
+    },
+    /**
+     * Insert a component under a page's container at index location.
+     *
+     * @param page
+     * @param container
+     * @param index
+     * @param component
+     */
+    insertComponent = function(page, container, index, component) {
+        if (page && page[container] && page[container].length) {
+            page[container].splice(index+1, 0, component);
+        } else {
+            page[container] = [component];
+        }
+        page.$update();
+    },
+    updateComponent = function(page, container, index, component){
+        if (page && page[container] && page[container][index]) {
+            page[container][index] = component;
+            page.$update();
+        } else {
+            throw("invalidUpdate:"+container+":"+index);
+        }
     };
     return {
         getEditors: getEditors,
         getEditor: getEditor,
-        getKeys: getKeys
+        getKeys: getKeys,
+        insertComponent: insertComponent,
+        updateComponent: updateComponent
     };
 });

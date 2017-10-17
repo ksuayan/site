@@ -13,8 +13,11 @@
 //- Jade Mixin based templating capability.
 
 -if (story && typeof(story.content) !== 'undefined') {
-  for item in story.content
-    -if (item && typeof(item.type) !== 'undefined') {
-      +#{item.type}(item)
+  for component in story.content
+
+    // component.type identifies the jade mixin to invoke.
+    // pass in the whole component for rendering
+    -if (component && typeof(component.type) !== 'undefined') {
+      +#{component.type}(component)
     -}
 -}
