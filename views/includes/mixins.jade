@@ -66,6 +66,9 @@ mixin fb_comments(pageUrl, num)
     .fb-comments(data-href=pageUrl, data-width="100%", data-numposts=num)
   - }
 
-mixin fb_share_button(pageUrl)
+mixin fb_share(pageUrl)
   .fb-share-button(data-href='!{pageUrl}', data-layout='button_count', data-size='large', data-mobile-iframe='true')
     a.fb-xfbml-parse-ignore(target='_blank', href='https://www.facebook.com/sharer/sharer.php?u=!{pageUrl}&src=sdkpreparse') Share
+
+mixin fb_like(pageUrl)
+  .fb-like(data-href='!{pageUrl}', data-layout='button_count', data-action='like', data-size='large', data-show-faces='true', data-share='true')
