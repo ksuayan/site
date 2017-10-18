@@ -46,3 +46,26 @@ mixin audio_player(obj)
       audio(src=obj.url,poster=(obj.cover||config.defaultImage),class="album-cover video-js vjs-default-skin",controls="controls",preload="auto",data-setup='{}')
     .media-body
       h4.media-heading!=obj.title
+
+mixin fb_api(appId)
+  - if (appId) {
+    #fb-root
+    script.
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=!{appId}";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  - }
+
+mixin fb_comments(pageUrl, num)
+  - if (pageUrl) {
+    .fb-comments(data-href=pageUrl, data-width="100%", data-numposts=num)
+  - }
+
+mixin fb_share_button(pageUrl)
+  .fb-share-button(data-href='!{pageUrl}', data-layout='button_count', data-size='large', data-mobile-iframe='true')
+    a.fb-xfbml-parse-ignore(target='_blank', href='https://www.facebook.com/sharer/sharer.php?u=!{pageUrl}&src=sdkpreparse') Share
