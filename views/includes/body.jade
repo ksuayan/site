@@ -15,8 +15,8 @@
 -if (story && typeof(story.content) !== 'undefined') {
   for component in story.content
 
-    // component.type identifies the jade mixin to invoke.
-    // pass in the whole component for rendering
+    //- component.type identifies the jade mixin to invoke.
+    //- pass in the whole component for rendering
     -if (component && typeof(component.type) !== 'undefined') {
       +#{component.type}(component)
     -}

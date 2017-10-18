@@ -18,7 +18,8 @@ block metadata
   +meta_og(og_desc)
   -var og_type = { property: "og:type", content: "article"};
   +meta_og(og_type)
-  -var og_url = { property: "og:url", content: "http://node.suayan.com/page/"+page};
+  -var currentUrl = config.host+"/page/"+page;
+  -var og_url = { property: "og:url", content: currentUrl};
   +meta_og(og_url)
   -var og_image = { property: "og:image", content: story.image};
   +meta_og(og_image)
@@ -29,3 +30,10 @@ block content
       .row
         .col-sm-12
           include ../includes/body
+    .container
+      .row
+        -var currentUrl = config.host+"/page/"+page;
+        .col-sm-12
+          +fb_comments(currentUrl,'10')
+        .col-sm-12
+          +fb_share_button(currentUrl)
