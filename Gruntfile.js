@@ -32,7 +32,9 @@ module.exports = function(grunt) {
                     ]
                 },
                 bowerOptions: {
-                    relative: false
+                    separator: ';\n',
+                    relative: false,
+                    stripBanners: true
                 }
             }
         },
@@ -54,11 +56,12 @@ module.exports = function(grunt) {
             options: {
                 separator: '\n\n'
             },
+            // minified already
             extras: {
                 src: [
                     'public/js/handlebars/handlebars.runtime.min.js'
                 ],
-                dest: 'public/build/extras-<%= pkg.name %>.js'
+                dest: 'public/dist/js/extras-<%= pkg.name %>.min.js'
             },
             site: {
                 src: [
@@ -213,7 +216,7 @@ module.exports = function(grunt) {
         'jshint', // sanity checks
 
         'cssmin:core',   // -> public/dist/css/corelib.min.css'
-        'cssmin:site',    // -> public/dist/css/main.min.css
+        'cssmin:site',   // -> public/dist/css/main.min.css
         'concat:extras', // -> public/build/extras-site.js
         'concat:site',   // -> public/build/site.js
         'uglify:core',   // -> public/dist/js/corelib.min.js
