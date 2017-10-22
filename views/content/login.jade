@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   #content
-    .container.article
+    .container.aux-area
       .row
         .col-xs-12.col-sm-4
           form(action='/login', method='post')
@@ -17,13 +17,19 @@ block content
               button(type='submit', class="btn btn-info") Login
               | &nbsp;
               a(href='/signup', class="btn btn-default") Signup
+              br
+              br
+              if (!user)
+                p
+                  a(class="btn btn-default",href="/auth/facebook") Sign In via Facebook
+                p
+                  a(class="btn btn-default",href="/auth/google") Sign In via Google
+                p
+                  a(class="btn btn-default",href="/auth/twitter") Sign In via Twitter
+                p
+                  a(class="btn btn-default",href="/auth/linkedin") Sign In via LinkedIn
         .col-xs-12.col-sm-8
-          if (!user)
-            .well
-              a(class="btn btn-default",href="/auth/facebook") Sign In via Facebook
-              br
-              a(class="btn btn-default",href="/auth/google") Sign In via Google
-              br
-              a(class="btn btn-default",href="/auth/twitter") Sign In via Twitter
-              br
-              a(class="btn btn-default",href="/auth/linkedin") Sign In via LinkedIn
+          h1 Hello!
+          p.
+            You've found our login page. You can create a standalone account and
+            sign up or you can attach one of our supported social network logins.

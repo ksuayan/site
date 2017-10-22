@@ -1,13 +1,22 @@
 @media screen and (max-width: 767px) {
-}@media (min-width: 768px) {
-}@media (min-width: 768px) {
-}@media (max-width: 767px) {
-}@media (min-width: 768px) {
-}@media (min-width: 768px) {
-}@media (min-width: 768px) {
-}@media (max-width: 767px) {
-}@media (max-width: 767px) {
-}/* CONTENT */
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 767px) {
+}
+/* CONTENT */
 #content {
   background-color: #fff;
   margin-top: 0;
@@ -178,4 +187,7 @@
 .article h6 {
   line-height: 120%;
   margin-top: 10px;
+}
+.aux-area {
+  padding-top: 30px;
 }

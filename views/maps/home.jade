@@ -2,7 +2,7 @@
   h1 Locations
   p A Geolocations Collection
 
-table.table
+table.table.editor-form
   tr(ng-repeat='loc in locations')
     td
        a(href='/location/{{loc._id}}', target='_blank') {{loc.name}}
