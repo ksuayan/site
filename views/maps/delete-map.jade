@@ -1,0 +1,8 @@
+.modal-header
+  h3.modal-title Delete this map?
+  p All associated locations will be deleted.
+.modal-body
+  h2 {{map.name}}
+.modal-footer
+  button.btn.btn-primary(ng-click='ok()') OK
+  button.btn.btn-warning(ng-click='cancel()') Cancel

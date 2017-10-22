@@ -1,0 +1,16 @@
+.jumbotron
+  h1 Maps
+  p Create new maps here.
+
+table.table
+  tr
+    td
+    td(align='right')
+      a.btn.btn-primary(ui-sref='addMap') New Map
+  tr(ng-repeat='map in maps')
+    td
+      a(href='/map/{{map._id}}', target='_blank') {{map.name}}
+      br
+      span(ng-bind-html='map.description | trusted')
+    td(align='right')
+      a.btn.btn-primary(ui-sref='editMap({id:map._id})') Edit

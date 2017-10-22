@@ -21,6 +21,7 @@ var Location = new Schema({
     },
     styleHash   : {type: String, default: ""},
     map         : {type: String, default: ""},
+    owner       : {type: String, default: ""},
     date        : {type: Date,  default: Date.now}
 });
 
@@ -64,7 +65,6 @@ LocationDB.prototype.getLocationById = function(id, onSuccess, onError) {
     });
 };
 
-
 LocationDB.prototype.updateLocation = function(locationObj, onSuccess, onError) {
     this.LocationModel
     .findById(locationObj._id)
@@ -79,7 +79,13 @@ LocationDB.prototype.updateLocation = function(locationObj, onSuccess, onError) 
             found.url = locationObj.url;
             found.loc = locationObj.loc;
             found.styleHash = locationObj.styleHash;
-
+            found.owner = locationObj.owner;
+            if (locationObj.map) {
+                found.map = locationObj.map;
+            }
+            if (locationObj.owner) {
+                found.owner = locationObj.owner;
+            }
             found.save(function(err){
                 if (err) {
                     return util.HandleError(err, onError);
@@ -136,13 +142,19 @@ LocationDB.prototype.deleteLocation = function(id, onSuccess, onError) {
     });
 };
 
+LocationDB.prototype.deleteLocationsByQuery = function(query, onSuccess, onError) {
+    this.LocationModel
+        .find(query)
+        .remove()
+        .exec();
+};
+
 LocationDB.prototype.saveLocation = function(doc) {
     var instance = new this.model(doc);
     instance.save();
 };
 
-LocationDB.prototype.getLocations = function(onSuccess, onError) {
-    var query = {};
+LocationDB.prototype.getLocations = function(query, onSuccess, onError) {
     this.LocationModel
         .find(query)
         .sort("_id")
@@ -173,11 +185,9 @@ LocationDB.prototype.getLocationsNearPoint = function(latLng, maxDistance, onSuc
         .find(query)
         .exec(function (err, locations) {
             if (err) {
-                console.log("Error:", err);
                 return util.HandleError(err, onError);
             }
             if (typeof onSuccess ==='function') {
-                // console.log("found: ", locations.length);
                 onSuccess(locations);
             }
         });
@@ -205,11 +215,9 @@ LocationDB.prototype.getLocationsWithin = function(swLatLng, neLatLng, onSuccess
         .find(query)
         .exec(function (err, locations) {
             if (err) {
-                console.log("Error:", err);
                 return util.HandleError(err, onError);
             }
             if (typeof onSuccess ==='function') {
-                // console.log("found: ", locations.length);
                 onSuccess(locations);
             }
         });
@@ -298,6 +306,7 @@ LocationDB.prototype.updateMapDocument = function(mapObj, onSuccess, onError) {
 };
 
 LocationDB.prototype.deleteMapDocument = function(id, onSuccess, onError) {
+    var that = this;
     this.MapDocumentModel
         .findById(id)
         .exec(function(err, mapObj){
@@ -305,6 +314,10 @@ LocationDB.prototype.deleteMapDocument = function(id, onSuccess, onError) {
                 return util.HandleError(err, onError);
             }
             if (mapObj){
+                // delete locations with mapObj.id
+                if (id) {
+                    that.deleteLocationsByQuery({map:id});
+                }
                 mapObj.remove(function(deleteError){
                     if (deleteError) {
                         return util.HandleError(deleteError, onError);

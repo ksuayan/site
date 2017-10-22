@@ -446,7 +446,14 @@ ApiHandler.prototype.getLocations = function(req, res) {
     var onError = function(err) {
         return res.send(util.defaultError);
     };
-    locations.getLocations(onSuccess, onError);
+    var query = {};
+    if (req.user && req.user._id) {
+        console.log(">>user ", req.user._id);
+        query.owner = req.user._id;
+    } else {
+        query = {id: -1};
+    }
+    locations.getLocations(query, onSuccess, onError);
 };
 
 ApiHandler.prototype.getLocationById = function(req, res) {
@@ -499,8 +506,12 @@ ApiHandler.prototype.updateLocation = function(req, res) {
         address: req.body.address,
         url: req.body.url,
         loc: req.body.loc,
-        styleHash: req.body.styleHash
+        styleHash: req.body.styleHash,
+        map: req.body.map
     };
+    if (req.user && req.user._id) {
+        locationObj.owner = req.user._id;
+    }
     locations.updateLocation(locationObj, onSuccess, onError);
 };
 
@@ -520,8 +531,12 @@ ApiHandler.prototype.createLocation = function(req, res) {
             coordinates: req.body.loc.coordinates,
             type: "Point"
         },
-        styleHash: req.body.styleHash
+        styleHash: req.body.styleHash,
+        map: req.body.map
     };
+    if (req.user && req.user._id) {
+        locationObj.owner = req.user._id;
+    }
     locations.createLocation(locationObj, onSuccess, onError);
 };
 
@@ -566,6 +581,22 @@ ApiHandler.prototype.getMapDocuments = function(req, res) {
     locations.getMapDocuments(query, onSuccess, onError);
 };
 
+ApiHandler.prototype.getMapLocationsByUser = function(req, res) {
+    var onSuccess = function(maps) {
+        return res.send(maps);
+    }, onError = function(err) {
+        return res.send(util.defaultError);
+    };
+
+    var query = {
+        map: req.params.map
+    };
+    if (req.params.user) {
+        query.owner = req.params.user;
+    };
+    locations.getLocations(query, onSuccess, onError);
+};
+
 ApiHandler.prototype.getMapDocumentById = function(req, res) {
     var onSuccess = function(mapObj) {
         return res.send(mapObj);
@@ -587,7 +618,6 @@ ApiHandler.prototype.updateMapDocument = function(req, res) {
         center: req.body.center,
         zoom: req.body.zoom
     };
-    console.log("mapObj", mapObj);
     locations.updateMapDocument(mapObj, onSuccess, onError);
 };
 

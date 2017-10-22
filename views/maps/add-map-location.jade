@@ -1,0 +1,11 @@
+.modal-header
+  h3.modal-title Add Location &nbsp;&nbsp;
+  .form-group(data-ng-show='location.loc.coordinates[0]')
+    p
+      | latitude: &nbsp;
+      span(data-ng-bind='location.loc.coordinates[1]')
+      br
+      | longitude: &nbsp;
+      span(data-ng-bind='location.loc.coordinates[0]')
+
+include map-location-form

@@ -286,6 +286,9 @@ app.get('/api/map/:id',     api.getMapDocumentById);
 app.put('/api/map/:id',     api.updateMapDocument);
 app.delete('/api/map/:id',  api.deleteMapDocument);
 
+app.get('/api/map-locations/:map',       api.getMapLocationsByUser);
+app.get('/api/map-locations/:map/:user', api.getMapLocationsByUser);
+
 app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
