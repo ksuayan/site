@@ -448,7 +448,6 @@ ApiHandler.prototype.getLocations = function(req, res) {
     };
     var query = {};
     if (req.user && req.user._id) {
-        console.log(">>user ", req.user._id);
         query.owner = req.user._id;
     } else {
         query = {id: -1};
