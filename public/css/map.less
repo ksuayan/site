@@ -3,14 +3,14 @@
 
 #map-widget {
     width: 100%;
-    height: 500px;
+    height: 600px;
     padding: 0px;
     display: block;
-    @media (max-width: @screen-sm-max) {
-        height: 300px;
-    }
     @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
         height: 400px;
+    }
+    @media (max-width: @screen-sm-max) {
+      height: 300px;
     }
 }
 
@@ -22,11 +22,11 @@
   h3 {
     font-size: 15px;
   }
-  @media (max-width: @screen-sm-max) {
-    height: 275px;
-  }
   @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
     height: 400px;
+  }
+  @media (max-width: @screen-sm-max) {
+    height: 275px;
   }
   // InfoWindow
   .info {

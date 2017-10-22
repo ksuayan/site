@@ -234,6 +234,20 @@ app.get('/map-doctors', function(req, res) {
     res.render("content/map-doctors");
 });
 
+app.get('/map/:id', function(req, res) {
+    res.render("layouts/map", {
+        page: null,
+        map: req.params.id,
+        story: {
+            description: "Map Location",
+            keywords: "maps, location, coordinates"
+        },
+        user: null,
+        fn: view.fn
+    });
+});
+
+
 /**
  * Published view. Publicly viewable.
  */

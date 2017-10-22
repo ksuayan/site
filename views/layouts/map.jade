@@ -1,0 +1,19 @@
+extends view
+
+block append css
+  link(rel="stylesheet",href="/css/map.css")
+
+block content
+  #content
+    #map-widget
+    .container.article
+      .row
+        .col-lg-12
+
+block append scripts
+  script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U")
+  script(src="/js/angular/note/map-styles.js")
+  script(src="/js/angular/note/map-view.js")
+  script.
+    var mapId = "#{map}",
+        mapWidget = new gb.ui.MapView(window, "map-widget", mapId);
