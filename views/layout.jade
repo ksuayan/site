@@ -6,21 +6,24 @@ html(lang="en")
     meta(charset="utf-8")
     meta(name="viewport",content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     meta(name="author",content=config.author)
-    meta(name="generator",content="WildRice v0.6 beta")
+    meta(name="generator",content=config.version)
     block metadata
-      title="Kyo Suayan | Design + Development"
-      -var description = { name: "description", content: config.description };
+      title=config.title
+      -var description = { name: "description", content:config.description };
       +meta(description)
-      -var keywords = { name: "keywords", content: config.keywords };
+      -var keywords = { name: "keywords", content:config.keywords };
       +meta(keywords)
-
   body
     +fb_api(config.facebook.clientId)
+
     block header
       include includes/header
+
     block content
+
     block footer
       include includes/footer
+
     block css
       -if (env==="production")
         link(rel="stylesheet",href="http://cdn.suayan.com/dist/css/corelib.min.css")
@@ -28,6 +31,7 @@ html(lang="en")
       -else
         link(rel="stylesheet",href="/dist/css/corelib.min.css")
         link(rel="stylesheet",href="/css/main.css")
+
     block scripts
       -if (env==="production")
         script(src="http://cdn.suayan.com/dist/js/all-site.min.js")
@@ -35,4 +39,6 @@ html(lang="en")
         include includes/dev-scripts
       script.
         gb.ui.mediaHost = "#{config.mediaHost}";
+
+    // gtm everywhere
     include includes/gtm

@@ -2,9 +2,17 @@ var content = require('./content-db'),
     moment = require('moment');
 
 var ViewHandler = function () {
-    console.log("Initialized WebView handler");
-};
-
+        console.log("Initialized WebView handler");
+    },
+    CONTENT_NOTFOUND = "content/notfound",
+    CONTENT_HOME ="content/home",
+    LAYOUT_VIEW = "layouts/view";
+/**
+ * JADE template extension points.
+ * Static functions.
+ *
+ * @type {{fromNow: ViewHandler.fn.fromNow}}
+ */
 ViewHandler.fn = {
     fromNow: function (value) {
         return moment(value).fromNow();
@@ -17,17 +25,19 @@ ViewHandler.fn = {
  * @param res
  */
 ViewHandler.prototype.notfound = function(req, res) {
-    res.render('content/notfound');
+    res.render(CONTENT_NOTFOUND);
 };
 
 /**
- * Home Page loader.
+ * Home Page loader. Retrieve only 'published' articles
+ * and sort descending by date updated.
+ *
  * @param req
  * @param res
  */
 ViewHandler.prototype.homeView = function (req, res) {
     var successHandler = function (stories) {
-        res.render('content/home', {
+        res.render(CONTENT_HOME, {
             linkTitle: true,
             stories: stories,
             user: req.user,
@@ -35,7 +45,7 @@ ViewHandler.prototype.homeView = function (req, res) {
         });
     },
     errorHandler = function () {
-        res.render('content/notfound');
+        res.render(CONTENT_NOTFOUND);
     },
     query = {"status":"published"};
     content.getPageList(query, "-dateUpdated", successHandler, errorHandler);
@@ -49,32 +59,37 @@ ViewHandler.prototype.homeView = function (req, res) {
 ViewHandler.prototype.content = function(req, res) {
     res.render('content/'+req.params.page, {user: req.user});
 };
+
 /**
  * Pull content node from MongoDB by page name.
+ * If the story has a layout declared, render that.
  *
  * @param req
  * @param res
  */
 ViewHandler.prototype.pageView = function (req, res) {
     var page = req.params.page,
-        onError = function () {
-            res.render('content/notfound');
-        },
+        view = LAYOUT_VIEW,
         onSuccess = function (story) {
             if (story) {
-                res.render('layouts/view', {
-                    page: page,
-                    story: story, // turn off
-                    user: req.user,
-                    fn: ViewHandler.fn
+                if (story.layout) {
+                    view = "layouts/"+story.layout;
+                }
+                res.render(view, {
+                    page:  page,
+                    story: story,
+                    user:  req.user,
+                    fn:    ViewHandler.fn
                 });
             } else {
                 onError();
             }
+        },
+        onError = function () {
+            res.render(CONTENT_NOTFOUND);
         };
     content.getPageByName(page, onSuccess, onError);
 };
-
 
 ViewHandler.prototype.jade = function (req, res) {
     var pseudoPath = req.path.toString();
@@ -84,29 +99,6 @@ ViewHandler.prototype.jade = function (req, res) {
         user: req.user,
         fn: ViewHandler.fn
     });
-};
-
-ViewHandler.prototype.createPage = function (req, res) {
-    var pageObj = {
-        name: req.body.name,
-        title: req.body.title,
-        status: req.body.status,
-        description: req.body.description,
-        keywords: req.body.keywords,
-        body: req.body.body,
-        content: req.body.textId
-    };
-    var onSuccess = function (content) {
-        return res.render("content/db/pageEdit",
-            { content: content,
-              fn: ViewHandler.fn,
-              user: req.user
-            });
-    };
-    var onError = function (err) {
-        return res.render("test", err);
-    };
-    content.createPage(pageObj, onSuccess, onError);
 };
 
 ViewHandler.prototype.listDocuments = function (req, res) {
@@ -130,8 +122,8 @@ ViewHandler.prototype.processFileUploads = function (req, res) {
         return res.render("content/upload-success", {
           okFiles: okFiles
         });
-    };
-    var onError = function (err) {
+    },
+    onError = function (err) {
         return res.render("errors", err);
     };
     content.processFileUploads(req.files, onSuccess, onError);

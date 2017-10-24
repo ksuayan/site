@@ -383,6 +383,7 @@ ApiHandler.prototype.createPage = function(req, res) {
         return res.send(err);
     };
     var pageObj = {
+        layout: req.body.layout,
         name: req.body.name,
         title: req.body.title,
         status: req.body.status,
@@ -404,6 +405,7 @@ ApiHandler.prototype.updatePage = function(req, res) {
     };
     var pageObj = {
         _id: req.params.id,
+        layout: req.body.layout,
         name: req.body.name,
         title: req.body.title,
         status: req.body.status,

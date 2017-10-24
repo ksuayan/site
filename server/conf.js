@@ -32,16 +32,19 @@ var config = {
     host : host,
     port : port,
 
-    mongoURL : "mongodb://"+(process.env.DB_1_PORT_27017_TCP_ADDR ||'localhost')+"/site",
+    version:        "WildRice v0.6 beta",
+    mongoURL :      "mongodb://"+(process.env.DB_1_PORT_27017_TCP_ADDR ||'localhost')+"/site",
     defaultLocale : "en_US",
-    name : 'kyo suayan',
-    author : 'Kyo Suayan',
-    description : 'Design + Development',
-    keywords : 'kyo,suayan,web,design,development,css3,html5,javascript,aem,cq5,ecmascript',
-    defaultImage: hosts.media+"/dist/img/ks-logo.svg",
+    name :          "kyo suayan",
+    author :        "Kyo Suayan",
+    title:          'Kyo Suayan | Design + Development',
+    description :   'Design + Development',
+    keywords :      'kyo,suayan,web,design,development,css3,html5,javascript,aem,cq5,ecmascript',
+    defaultImage:   hosts.media+"/dist/img/ks-logo.svg",
+
     socialEnabled: true,
-    caching: false,
-    touchOnUpdate: false,
+    caching:       false,
+    touchOnUpdate: true,
     expires: 0,
 
     facebook: {

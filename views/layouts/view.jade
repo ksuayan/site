@@ -1,18 +1,18 @@
 extends ../layout
 
 block metadata
-  -var description = { name: "description", content: story.description };
+  -var description = { name: "description", content: (story.description||config.description) };
   +meta(description)
-  -var keywords = { name: "keywords", content: story.keywords };
+  -var keywords = { name: "keywords", content: (story.keywords||config.keywords) };
   +meta(keywords)
   if (story.title)
     title=story.title
   if (config.facebook.clientId)
     -var og_app_id = { property: "fb:app_id", content:config.facebook.clientId};
     +meta_og(og_app_id)
-  -var og_site = { property: "og:site_name", content:"Kyo Suayan | Design + Development"};
+  -var og_site = { property: "og:site_name", content:config.title};
   +meta_og(og_site)
-  -var og_title = { property: "og:title", content:(story.title||"Kyo Suayan | Design + Development")};
+  -var og_title = { property: "og:title", content:(story.title||config.title)};
   +meta_og(og_title)
   -var og_desc = { property: "og:description", content: (story.description||config.description)};
   +meta_og(og_desc)
@@ -29,12 +29,6 @@ block content
     .container.article
       .row
         .col-sm-12
+          include ../includes/title
           include ../includes/body
-    .container
-      .row
-        -var currentUrl = config.host+"/page/"+page;
-        .col-sm-12
-          +fb_comments(currentUrl,'10')
-      .row
-        .col-sm-12
-          +fb_like(currentUrl)
+    include ../includes/fb-comments

@@ -160,9 +160,7 @@ if (conf.socialEnabled) {
 
     app.get('/auth/linkedin',
         passport.authenticate('linkedin'),
-        function(req, res){
-            // not called
-        });
+        function(req, res){});
 
     app.get('/auth/linkedin/callback',
         passport.authenticate('linkedin', { failureRedirect: '/login' }),
@@ -196,7 +194,7 @@ app.all("*", function (req, res, next) {
 app.get('/members', function(req, res) {
     var path = 'content/signup';
     if (req.user && req.user.status === 'complete') {
-        path = 'layouts/members';
+        path = 'content/members';
     }
     res.render(path, {user: req.user});
 });
@@ -218,7 +216,7 @@ app.get('/members/:page', function(req, res) {
 
 app.post('/members', users.SaveProfile);
 
-app.post('/upload', upload.array('files'), view.processFileUploads);
+app.post('/members/upload', upload.array('files'), view.processFileUploads);
 
 app.get('/signup', function(req,res){
     req.logout();
@@ -246,7 +244,6 @@ app.get('/map/:id', function(req, res) {
         fn: view.fn
     });
 });
-
 
 /**
  * Published view. Publicly viewable.

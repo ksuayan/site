@@ -10,6 +10,7 @@ var Schema = mongoose.Schema,
 var Page = new Schema({
     dateCreated : {type: Date,   default: Date.now},
     dateUpdated : {type: Date,   default: Date.now},
+    layout      : {type: String, default: "view"},
     name        : {type: String, default: ""},
     title       : {type: String, default: ""},
     status      : {type: String, default: "draft"},
@@ -141,6 +142,12 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
                 if (conf.touchOnUpdate) {
                     found.dateUpdated = Date.now();
                 }
+                // these fields only need to be modifed
+                // when defined
+                if (pageObj.layout) {
+                    found.layout = pageObj.layout;
+                }
+
                 found.save(function(err){
                     if (err) {
                         return util.HandleError(err);

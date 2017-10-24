@@ -1,20 +1,7 @@
--if (story) {
-  -if (linkTitle) {
-    h2
-      a(href='/page/' + story.name)
-        != story.title
-  -} else {
-    h1!= story.title
-  -}
-  p.when!= fn.fromNow(story.dateUpdated||story.dateCreated)
--}
-
 //- This portion provides the powerful
 //- Jade Mixin based templating capability.
-
 -if (story && typeof(story.content) !== 'undefined') {
   for component in story.content
-
     //- component.type identifies the jade mixin to invoke.
     //- pass in the whole component for rendering
     -if (component && typeof(component.type) !== 'undefined') {
