@@ -1,8 +1,5 @@
 extends ../layout
 
-block append css
-  link(rel="stylesheet",href="/css/map.css")
-
 block content
   #content
     #map-canvas
@@ -49,6 +46,7 @@ block content
         .col-md-7
           div(data-ng-app="app")
             #screen(ui-view="")
+
 block append scripts
   script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U&sensor=false")
   script(src="/js/map-navigate.js")
