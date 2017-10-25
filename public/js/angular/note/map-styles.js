@@ -199,37 +199,37 @@ gb.ui.MapConfig.screens = [
 
 gb.ui.MapConfig.mapMarkers = [
     {
-        url: gb.ui.MapConfig.mapPath + "pin14.png", // red
+        url: gb.ui.MapConfig.mapPath + "map-pin-red.svg", // red
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin4.png", // green
+        url: gb.ui.MapConfig.mapPath + "map-pin-yellowgreen.svg", // yellowgreen
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin10.png", // blue
+        url: gb.ui.MapConfig.mapPath + "map-pin-blue.svg", // blue
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin9.png", // orange
+        url: gb.ui.MapConfig.mapPath + "map-pin-orange.svg", // orange
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin6.png", // yello-green
+        url: gb.ui.MapConfig.mapPath + "map-pin-yellow.svg", // yellow
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
     },
     {
-        url: gb.ui.MapConfig.mapPath + "pin15.png", // sky blue
+        url: gb.ui.MapConfig.mapPath + "map-pin-skyblue.svg", // sky blue
         size: new google.maps.Size(25, 45),
         origin: new google.maps.Point(0,0),
         anchor: new google.maps.Point(13, 45)
