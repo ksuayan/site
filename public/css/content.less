@@ -110,14 +110,15 @@
         font-family: @textfont;
         font-size: @textfont-size-normal;
         @media (max-width: @screen-md-min) {
-            padding: 18px 18px 50px 18px;
+            padding: 10px 10px 50px 10px;
         }
         p {
             margin: 0;
         }
-        p + p, .video-container + p, .alert {
+        p+p, .video-container+p, .alert, p+.map-widget {
             margin-top: @vertical-gutter;
         }
+
     }
     .stories {
         padding-top: 30px;
