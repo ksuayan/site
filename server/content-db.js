@@ -11,14 +11,15 @@ var Page = new Schema({
     dateCreated : {type: Date,   default: Date.now},
     dateUpdated : {type: Date,   default: Date.now},
     layout      : {type: String, default: "view"},
-    name        : {type: String, default: ""},
-    title       : {type: String, default: ""},
+    name        : {type: String, default: "_nameless_", index: {unique: true}},
+    title       : {type: String, default: "Untitled", required: true},
     status      : {type: String, default: "draft"},
-    image       : {type: String, default: ""},
+    image       : {type: String, default: conf.defaultBanner},
     description : {type: String, default: ""},
     keywords    : {type: String, default: ""},
     excerpt     : {type: String, default: ""},
-    content     : []
+    content     : [],
+    section     : Object
 });
 
 var File = new  Schema({
