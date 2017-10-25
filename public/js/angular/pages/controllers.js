@@ -12,8 +12,18 @@ angular.module('site.controllers', [])
 ]).controller('PageCreateController',
 
 
-   function($log, $scope, $state, $stateParams, Page) {
+   function($log, $scope, $state, $stateParams, formEditorService, Page) {
         $scope.page = new Page();
+        $scope.layoutOptions = formEditorService.getLayouts();
+        $scope.status = {isopen: false};
+
+        $scope.toggleLayoutDropdown = function(item) {
+           $scope.page.layout = item.type;
+           $scope.layoutName = item.name;
+           $scope.status.isopen = !$scope.status.isopen;
+           $scope.page.$update();
+        };
+
         $scope.addPage = function() {
             $scope.page.$save(function(obj) {
                 $state.go('editPage', {id:obj._id});
@@ -36,7 +46,8 @@ angular.module('site.controllers', [])
     ["$log", "$scope", "$rootScope", "$state", "$stateParams", "$modal", "formEditorService", "Page",
     function($log, $scope, $rootScope, $state, $stateParams, $modal, formEditorService, Page) {
 
-    $scope.page = Page.get({ id: $stateParams.id });
+    $scope.layoutOptions = formEditorService.getLayouts();
+    $scope.status = {isopen: false};
 
     $scope.getComponentName = function(key) {
         return formEditorService.getEditor(key).name;
@@ -50,6 +61,13 @@ angular.module('site.controllers', [])
     };
 
     $scope.updateStatus = function($event) {
+        $scope.page.$update();
+    };
+
+    $scope.toggleLayoutDropdown = function(item) {
+        $scope.page.layout = item.type;
+        $scope.layoutName = item.name;
+        $scope.status.isopen = !$scope.status.isopen;
         $scope.page.$update();
     };
 
@@ -166,7 +184,9 @@ angular.module('site.controllers', [])
 
     $scope.loadPage = function() {
         // Issue a GET request to /api/page/:id
-        $scope.page = Page.get({ id: $stateParams.id });
+        $scope.page = Page.get({ id: $stateParams.id }, function(page){
+            $scope.layoutName = formEditorService.getLayout(page.layout).name;
+        });
     };
 
     $scope.loadPage();

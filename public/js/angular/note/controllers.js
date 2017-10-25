@@ -50,7 +50,7 @@ angular.module('app.controllers', [])
 }).controller('MapAddController', function($scope, $state, $stateParams, $log, StateService, MapService, MapDocument) {
 
     $scope.map = new MapDocument();
-    $scope.mapWidget = new gb.ui.MapEdit(window, "map-widget", gb.ui.MapConfig.mapOptions, MapService);
+    $scope.mapWidget = new gb.ui.MapEdit(window, "map-container", gb.ui.MapConfig.mapOptions, MapService);
     $scope.addLocation = function() {
         $scope.mapWidget.getGeoLocation();
     };
@@ -157,7 +157,7 @@ angular.module('app.controllers', [])
     // instantiate a mapWidget.
     $scope.loadMap = function(param) {
         $scope.map = MapDocument.get({ id: param.id }, function(mapObj){
-            $scope.mapWidget = new gb.ui.MapEdit(window, "map-widget", mapObj, MapService);
+            $scope.mapWidget = new gb.ui.MapEdit(window, "map-container", mapObj, MapService);
         });
     };
 

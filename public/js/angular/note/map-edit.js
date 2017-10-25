@@ -32,7 +32,6 @@ gb.ui.MapEdit.include({
         this.map.setOptions({styles: gb.ui.MapConfig.mapStyles2});
 
         var onSuccess = function(data){
-            console.log("response", data);
             that.onQueryResponse(that, data);
         },
 
@@ -212,7 +211,6 @@ gb.ui.MapEdit.include({
     addLocation: function(location) {
         var id = location._id;
         if (!this.locations[id]) {
-            console.log("loc:", location);
             var coords = location.loc.coordinates,
                 style = (location.styleHash) ? location.styleHash : "none",
                 mapMarkerStyle = gb.ui.MapConfig.mapMarkerStyles[style];
@@ -234,7 +232,6 @@ gb.ui.MapEdit.include({
             $("#filter-form input:checked").each(function(){
                 selected.push($(this).val());
             });
-            // console.log("selected", selected);
             that.enabledList = selected;
             that.filterLocationsByStyle();
         };
@@ -244,12 +241,9 @@ gb.ui.MapEdit.include({
                 name = key.replace("-",""),
                 layerName = gb.ui.MapConfig.mapLayerNames[key],
                 label = $("<label for='filter-"+name+"'>"+layerName+"</label>");
-
             jq.attr("id", "filter-"+name)
                 .attr("value", key)
                 .prop('checked', true);
-
-            console.log(key, layerName);
             filterForm.append(jq).append(label);
         }
         $("#notes").append(filterForm);

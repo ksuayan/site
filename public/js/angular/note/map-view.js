@@ -17,7 +17,6 @@ gb.ui.MapView.include({
                     }
                 });
             };
-
         $.ajax({
             dataType: "json",
             url: "/api/map/"+mapId,
@@ -34,7 +33,6 @@ gb.ui.MapView.include({
                 onMapDetails(mapId);
             }
         });
-
     },
 
     /**
@@ -54,7 +52,7 @@ gb.ui.MapView.include({
      * @returns {google.maps.InfoWindow}
      */
     createInfoWindow: function(name, desc) {
-        var contentString = '<div class="info"><p>'+name+'</p>'+desc+'</div>';
+        var contentString = '<div class="info"><strong>'+name+'</strong></div>';
         return new google.maps.InfoWindow({
             content: contentString
         });
@@ -80,15 +78,18 @@ gb.ui.MapView.include({
             }),
             infoWindow = this.createInfoWindow(name, desc);
 
-        google.maps.event.addListener(marker, 'click', function() {
-            that.map.panTo(latLng);
+        google.maps.event.addListener(marker, 'mouseover', function() {
             infoWindow.open(that.map, marker);
         });
-        /*
+
         google.maps.event.addListener(marker, 'mouseout', function() {
             infoWindow.close();
         });
-        */
+
+        google.maps.event.addListener(marker, 'click', function() {
+            that.map.panTo(latLng);
+        });
+
         return marker;
     },
     /**
@@ -144,3 +145,23 @@ google.maps.LatLng.prototype.distanceFrom = function(latlng) {
         d = R * c;
     return Math.round(d);
 };
+
+/**
+ * Initialize multiple instances on page.
+ * Look for all .map-widget divs,
+ * read their data-map-id and invoke backend call from widget.
+ */
+$(function(){
+    if ($(".map-widget").length>0) {
+        var mapWidget = {},
+            mapDivs = $(".map-widget");
+        mapDivs.each(function(idx, el){
+            var jq = $(el),
+                id = jq.attr("id"),
+                mapId = jq.attr("data-map-id");
+            mapWidget[id] = new gb.ui.MapView(window, id, mapId);
+        });
+    }
+});
+
+

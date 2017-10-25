@@ -32,3 +32,10 @@ block content
           include ../includes/title
           include ../includes/body
     include ../includes/fb-comments
+
+block prepend scripts
+    script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U")
+
+block append scripts
+    script(src="/js/angular/note/map-styles.js")
+    script(src="/js/angular/note/map-view.js")

@@ -47,6 +47,9 @@ mixin audio_player(obj)
     .media-body
       h4.media-heading!=obj.title
 
+mixin map(obj)
+  div(id=obj.divId,class="map-widget",data-map-id=obj.mapId)
+
 mixin fb_api(appId)
   - if (appId) {
     #fb-root
