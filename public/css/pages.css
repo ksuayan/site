@@ -16,6 +16,9 @@
 }
 @media (max-width: 767px) {
 }
+#content ul.dropdown-menu li {
+  list-style: none;
+}
 .editor-form {
   margin-top: 30px;
 }

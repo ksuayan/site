@@ -418,13 +418,13 @@ html#slideshow {
   margin: 0;
 }
 #content .container.article {
-  padding: 20px 0 0 0;
+  padding: 20px 0 50px 0;
   font-family: "Crimson Text", Georgia, serif;
   font-size: 24px;
 }
 @media (max-width: 992px) {
   #content .container.article {
-    padding: 18px;
+    padding: 18px 18px 50px 18px;
   }
 }
 #content .container.article p {
@@ -471,6 +471,9 @@ html#slideshow {
 }
 .aux-area {
   padding-top: 30px;
+}
+#content ul.dropdown-menu li {
+  list-style: none;
 }
 .editor-form {
   margin-top: 30px;
@@ -543,4 +546,119 @@ html#slideshow {
 .album-cover.video-js .vjs-big-play-button {
   width: 45px;
   height: 45px;
+}
+.map-widget,
+.map-container {
+  width: 100%;
+  height: 600px;
+  padding: 0px;
+  display: block;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .map-widget,
+  .map-container {
+    height: 400px;
+  }
+}
+@media (max-width: 991px) {
+  .map-widget,
+  .map-container {
+    height: 300px;
+  }
+}
+#map-canvas {
+  width: 100%;
+  height: 500px;
+  padding: 0px;
+  display: block;
+}
+#map-canvas h3 {
+  font-size: 15px;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  #map-canvas {
+    height: 400px;
+  }
+}
+@media (max-width: 991px) {
+  #map-canvas {
+    height: 275px;
+  }
+}
+#map-canvas .info {
+  margin: 3px;
+}
+#map-canvas .info p {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 600;
+}
+#map-canvas.tall {
+  height: 700px;
+}
+#lat,
+#lng {
+  font-weight: 600;
+  font-size: 14px;
+}
+#geocode {
+  background-color: #fff;
+  margin: 0px;
+  padding: 0px 0px 10px 0px;
+}
+#geocode .form-group {
+  margin: 15px;
+}
+#notes {
+  margin-bottom: 20px;
+}
+#notes h2 {
+  font-size: 18px;
+  font-weight: 400;
+}
+#notes p {
+  font-size: 15px;
+  font-weight: 300;
+}
+#notes #filter-form label {
+  padding: 0px 20px 0px 7px;
+}
+#info {
+  font-size: 14px;
+}
+#info img.adp-marker {
+  margin: 5px;
+}
+#info .adp {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+}
+#info .adp table {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+}
+#info .adp .adp-text {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px;
+}
+#info .adp .adp-summary {
+  font-size: 18px;
+  background-color: #fafaa7;
+  padding: 15px;
+}
+#info .adp .adp-legal {
+  font-size: 10px;
+}
+@media (max-width: 991px) {
+  #filter-form input[type=checkbox] {
+    clear: both;
+    display: block;
+    width: 20px;
+    float: left;
+  }
+  #filter-form label {
+    display: block;
+    float: left;
+    font-size: 14px;
+    height: 20px;
+  }
 }

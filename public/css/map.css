@@ -104,19 +104,22 @@ blockquote {
 iframe {
   border: 0;
 }
-#map-widget {
+.map-widget,
+.map-container {
   width: 100%;
   height: 600px;
   padding: 0px;
   display: block;
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  #map-widget {
+  .map-widget,
+  .map-container {
     height: 400px;
   }
 }
 @media (max-width: 991px) {
-  #map-widget {
+  .map-widget,
+  .map-container {
     height: 300px;
   }
 }
