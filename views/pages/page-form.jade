@@ -8,12 +8,15 @@
   a.btn.btn-info(href='/page/{{page.name}}', target='_blank') Preview &raquo;
 
 .form-group
-  label.control-label(for='title') Title
-  input#title.form-control(type='text', ng-model='page.title')
-
-.form-group
-  label.control-label(for='name') Name
-  input#name.form-control(type='text', ng-model='page.name')
+  label.control-label Layout &nbsp;
+  .btn-group(dropdown='')
+    button.btn.btn-default(type='button') {{layoutName||'Choose Layout'}}
+    button.btn.btn-default.dropdown-toggle(type='button', dropdown-toggle='', on-toggle)
+      span.caret
+      span.sr-only Split button!
+    ul.dropdown-menu(role='menu')
+      li(ng-repeat="item in layoutOptions")
+        a(ng-click='toggleLayoutDropdown(item)') {{item.name}}
 
 .form-group
   label.control-label Status &nbsp;
@@ -21,6 +24,16 @@
     label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
     label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
     label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'archived'") archived
+
+hr
+
+.form-group
+  label.control-label(for='title') Title
+  input#title.form-control(type='text', ng-model='page.title')
+
+.form-group
+  label.control-label(for='name') Name
+  input#name.form-control(type='text', ng-model='page.name')
 
 .form-group
   label.control-label(for='image') Image

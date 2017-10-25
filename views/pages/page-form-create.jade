@@ -4,6 +4,18 @@
   input.btn.btn-primary(type='submit', value='Create')
 
 .form-group
+  label.control-label Layout
+  br
+  .btn-group(dropdown='')
+    button.btn.btn-default(type='button') {{layoutName||'Choose Layout'}}
+    button.btn.btn-default.dropdown-toggle(type='button', dropdown-toggle='', on-toggle)
+      span.caret
+      span.sr-only Split button!
+    ul.dropdown-menu(role='menu')
+      li(ng-repeat="item in layoutOptions")
+        a(ng-click='toggleLayoutDropdown(item)') {{item.name}}
+
+.form-group
   label.control-label(for='title') Title
   input#title.form-control(type='text', ng-model='page.title')
 
