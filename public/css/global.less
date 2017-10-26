@@ -18,7 +18,7 @@
 // ----------------------------------------
 // textfont -- is usef for long text bodies
 @textfont: "Crimson Text", Georgia, serif;
-@textfont-size-small: 12px;
+@textfont-size-small: 16px;
 @textfont-size-normal: 24px;
 @textfont-size-medium: 30px;
 
@@ -38,7 +38,10 @@
 @color-medium-gray: #666;
 @color-light-gray: #999;
 @color-faded-gray: #dddddd;
+@color-faint-gray: #eeeeee;
+@color-search-term: #428bca;
 
+@color-placeholder: #eee;
 
 // Spacing/grid
 @aux-gutter: 30px;
@@ -128,4 +131,22 @@ blockquote {
 
 iframe {
     border: 0;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    @color-placeholder;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    @color-placeholder;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    @color-placeholder;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    @color-placeholder;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color:    @color-placeholder;
 }

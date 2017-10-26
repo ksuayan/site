@@ -60,18 +60,20 @@ var DocumentDB = function(){
     console.log("Initialized DocumentDB.");
 };
 
-DocumentDB.prototype.getPageList = function(query, sort, onSuccess, onError) {
-    this.PageModel
-        .find(query)
-        .sort(sort)
-        .exec(function (err, pages) {
-            if (err) {
-                return util.HandleError(err, onError);
-            }
-            if (typeof onSuccess ==='function') {
-                onSuccess(pages);
-            }
-        });
+DocumentDB.prototype.getPageList = function(query, sort, onSuccess, onError, projection) {
+    var handler = function (err, pages) {
+        if (err) {
+            return util.HandleError(err, onError);
+        }
+        if (typeof onSuccess ==='function') {
+            onSuccess(pages);
+        }
+    };
+    if (arguments.length==5) {
+        this.PageModel.find(query, projection).sort(sort).exec(handler);
+    } else if (arguments.length==4) {
+        this.PageModel.find(query).sort(sort).exec(handler);
+    }
 };
 
 DocumentDB.prototype.getPageById = function(id, onSuccess, onError) {
@@ -182,7 +184,6 @@ DocumentDB.prototype.deletePage = function(id, onSuccess, onError) {
             }
         });
 };
-
 
 DocumentDB.prototype.getDocuments = function(id, callback) {
     var query = {};

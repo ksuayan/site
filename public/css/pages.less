@@ -4,11 +4,39 @@
   list-style: none;
 }
 
+#search-term {
+  color: @color-search-term;
+  border: 8px solid @color-faint-gray;
+  padding: 10px 15px;
+  width: 100%;
+  font-family: @basefont;
+  font-size: @basefont-size-normal;
+  font-weight: @basefont-weight-semibold;
+  &:focus {
+    box-shadow: inset 0 0 5px @color-medium-gray;
+    outline-style: none;
+  }
+}
+
+.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.table.editor-form {
+  font-family: @textfont;
+  font-size: @textfont-size-normal;
+}
+
 .editor-form {
   margin-top: 30px;
   .btn, .control-label, .form-control, .label {
     font-family: @basefont;
     font-weight: @basefont-weight-semibold;
+  }
+  .label {
+    font-size: @basefont-size-small;
   }
 }
 

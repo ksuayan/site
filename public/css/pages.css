@@ -19,6 +19,28 @@
 #content ul.dropdown-menu li {
   list-style: none;
 }
+#search-term {
+  color: #428bca;
+  border: 8px solid #eeeeee;
+  padding: 10px 15px;
+  width: 100%;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+}
+#search-term:focus {
+  box-shadow: inset 0 0 5px #666;
+  outline-style: none;
+}
+.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.table.editor-form {
+  font-family: "Crimson Text", Georgia, serif;
+  font-size: 24px;
+}
 .editor-form {
   margin-top: 30px;
 }
@@ -28,6 +50,9 @@
 .editor-form .label {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-weight: 600;
+}
+.editor-form .label {
+  font-size: 16px;
 }
 .editor-section {
   border: 1px solid #dddddd;

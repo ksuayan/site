@@ -428,6 +428,19 @@ ApiHandler.prototype.deletePage = function(req, res) {
     content.deletePage(req.params.id, onSuccess, onError);
 };
 
+ApiHandler.prototype.getPageBySearchTerm = function(req, res) {
+    var onSuccess = function(results) {
+        res.send(results);
+    },
+    onError = function(err) {
+        return res.send(err);
+    },
+    query = {$text: {$search: req.params.term}},
+    sort = {score: {$meta: "textScore" }},
+    projection = {score: {$meta: "textScore" }};
+    content.getPageList(query, sort, onSuccess, onError, projection);
+};
+
 ApiHandler.prototype.saveDocument = function(request, response) {
     var doc = {
         title : request.body.title,

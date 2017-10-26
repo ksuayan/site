@@ -2,18 +2,56 @@
   h1 Pages
   p A Simple CMS in Angular.js
 
+input(id="search-term",placeholder="search terms",ng-model='query',ng-keyup='handleKeypress($event)')
+
 table.table.editor-form
   tr
-    td
-      h3 All Pages
-    td
+    td(colspan=2)
+      .form-group
+        button.btn.btn-default(ng-click="orderProp='-dateCreated'")
+          span.glyphicon.glyphicon-chevron-down
+          | &nbsp; Created
+        | &nbsp;
+        button.btn.btn-default(ng-click="orderProp='dateCreated'")
+          span.glyphicon.glyphicon-chevron-up
+        | &nbsp; &nbsp;
+
+        button.btn.btn-default(ng-click="orderProp='-dateUpdated'")
+          span.glyphicon.glyphicon-chevron-down
+          | &nbsp; Updated
+        | &nbsp;
+        button.btn.btn-default(ng-click="orderProp='dateUpdated'")
+          span.glyphicon.glyphicon-chevron-up
+        | &nbsp; &nbsp;
+
+        button.btn.btn-default(ng-click="orderProp='name'") by Name
+        | &nbsp; &nbsp;
+
+        button.btn.btn-default(ng-click="orderProp='status'") by Status
+        | &nbsp; &nbsp;
+
+        button.btn.btn-default(ng-click="orderProp='title'") by Title
+
     td(align='right')
-      a.btn.btn-primary(ui-sref='addPage') New Page
-  tr(ng-repeat='page in pages')
+        a.btn.btn-primary(ui-sref='addPage') New Page
+
+  tr
+    td
+      p name, status ({{pages.length}})
+    td
+      p title
+    td
+      p action
+
+  tr(ng-repeat='page in pages | orderBy: orderProp')
     td
       a(href='/page/{{page.name}}', title='Published View', target='_blank') {{page.name}}
-    td {{page.title}}
-    td(align='right',width="200")
+      br
       span.label(ng-class='{"label-success": (page.status=="published"),"label-warning": (page.status=="archived"),"label-default": (page.status=="draft")}') {{page.status}}
-      | &nbsp;&nbsp;
+      | &nbsp;
+      span.when {{page.dtUpdated}}
+
+    td {{page.title}}
+
+    td(align='right')
       a.btn.btn-default(ui-sref="editPage({id:page._id})") Edit

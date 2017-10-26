@@ -1,12 +1,39 @@
-
-
-
 angular.module('site.controllers', [])
 .controller('PageListController',
+   ["$log", "$scope", "$state", "$window", "$http", "utilService", "Page",
+   function($log, $scope, $state, $window, $http, utilService, Page) {
 
-   ["$log", "$scope", "$state", "$window", "Page",
-   function($log, $scope, $state, $window, Page) {
-       $scope.pages = Page.query();
+       var computeDates = function(list) {
+          return list.map(function(x){
+              x["dtUpdated"] = moment(x["dateUpdated"]||x["dateCreated"]).fromNow();
+
+              console.log(x["dtUpdated"]);
+
+              return x;
+          });
+       }, onDataReady = function(data) {
+           $scope.pages = computeDates(data.data);
+       },
+       onErrorHandler = function(err) {
+       };
+
+       var list = Page.query(function(){
+           $scope.pages = computeDates(list);
+       });
+
+       $scope.orderProp = '-dateCreated';
+       $scope.handleKeypress = function(evt) {
+           if ($scope.query.length>2) {
+               $http({
+                   method: 'GET',
+                   url: '/api/page-search/'+$scope.query
+               }).then(onDataReady, onErrorHandler);
+           } else {
+               var list = Page.query(function(){
+                   $scope.pages = computeDates(list);
+               });
+           }
+       };
    }
 
 ]).controller('PageCreateController',

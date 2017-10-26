@@ -143,7 +143,7 @@
 }
 @media (max-width: 992px) {
   #content .container.article {
-    padding: 18px 18px 50px 18px;
+    padding: 10px 10px 50px 10px;
   }
 }
 #content .container.article p {
@@ -151,7 +151,8 @@
 }
 #content .container.article p + p,
 #content .container.article .video-container + p,
-#content .container.article .alert {
+#content .container.article .alert,
+#content .container.article p + .map-widget {
   margin-top: 20px;
 }
 #content .stories {

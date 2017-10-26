@@ -275,11 +275,13 @@ app.get('/api/twitter',       api.twitter);
 app.get('/api/vimeo/:count',  api.vimeo);
 app.get('/api/flickr/:count', api.flickr);
 
-app.get('/api/page',        api.getPageList);
-app.post('/api/page',       api.createPage);
-app.get('/api/page/:id',    api.getPageById);
-app.put('/api/page/:id',    api.updatePage);
-app.delete('/api/page/:id', api.deletePage);
+app.get('/api/page',               api.getPageList);
+app.post('/api/page',              api.createPage);
+app.get('/api/page/:id',           api.getPageById);
+app.put('/api/page/:id',           api.updatePage);
+app.delete('/api/page/:id',        api.deletePage);
+app.get('/api/page-search/:term',  api.getPageBySearchTerm);
+
 
 app.post('/api/doc/:id',    api.saveDocument);
 

@@ -6,6 +6,18 @@ angular.module('site.services', [])
         }
     });
 })
+.service("utilService", function(){
+    var fromNow = function(list, source, dest) {
+        return list.map(function(x){
+            x[dest] = moment(x[source]).fromNow();
+            return x;
+        });
+    };
+
+    return {
+        fromNow: fromNow
+    };
+})
 .service("formEditorService", function(){
     var editors = [
         {
