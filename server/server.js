@@ -50,7 +50,6 @@ if (conf.socialEnabled) {
             });
         }
     ));
-
     passport.use(new GoogleStrategy({
             clientID: conf.google.clientID,
             clientSecret: conf.google.clientSecret,
@@ -62,7 +61,6 @@ if (conf.socialEnabled) {
             });
         }
     ));
-
     passport.use(new TwitterStrategy({
             consumerKey: conf.twitter.consumerKey,
             consumerSecret: conf.twitter.consumerSecret,
@@ -74,7 +72,6 @@ if (conf.socialEnabled) {
             });
         }
     ));
-
     passport.use(new LinkedInStrategy({
             consumerKey: conf.linkedin.consumerKey,
             consumerSecret: conf.linkedin.consumerSecret,
@@ -126,53 +123,44 @@ app.post('/login',
 if (conf.socialEnabled) {
     app.get('/auth/facebook', passport.authenticate('facebook',
         {scope: ['public_profile', 'email']}));
-
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/members',
             failureRedirect: '/login'
         })
     );
-
     app.get('/auth/google',
         passport.authenticate('google', {
             scope: ['https://www.googleapis.com/auth/userinfo.profile',
                 'https://www.googleapis.com/auth/userinfo.email']}),
         function(req, res){
         });
-
     app.get('/auth/google/callback',
         passport.authenticate('google', { failureRedirect: '/login' }),
         function(req, res) {
             res.redirect('/members');
         });
-
     app.get('/auth/twitter',
         passport.authenticate('twitter'),
         function(req, res){
         });
-
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', { failureRedirect: '/login' }),
         function(req, res) {
             res.redirect('/members');
         });
-
     app.get('/auth/linkedin',
         passport.authenticate('linkedin'),
         function(req, res){});
-
     app.get('/auth/linkedin/callback',
         passport.authenticate('linkedin', { failureRedirect: '/login' }),
         function(req, res) {
             res.redirect('/members');
         });
-
     app.get('/auth/instagram', api.instagramAuthorize);
     app.get('/auth/instagram/callback', api.instagramHandleAuth);
     app.get('/api/instagram', api.instagramSelfFeed);
 }
-
 
 app.all("*", function (req, res, next) {
     if (conf.caching) {
@@ -273,7 +261,10 @@ app.get('/api/tiles',       api.getTileList);
 
 app.get('/api/twitter',       api.twitter);
 app.get('/api/vimeo/:count',  api.vimeo);
-app.get('/api/flickr/:count', api.flickr);
+
+if (conf.flickrEnabled) {
+    app.get('/api/flickr/:count', api.flickr);
+}
 
 app.get('/api/page',               api.getPageList);
 app.post('/api/page',              api.createPage);
@@ -282,16 +273,16 @@ app.put('/api/page/:id',           api.updatePage);
 app.delete('/api/page/:id',        api.deletePage);
 app.get('/api/page-search/:term',  api.getPageBySearchTerm);
 
-
 app.post('/api/doc/:id',    api.saveDocument);
 
 app.get('/api/loc',         api.getLocations);
 app.get('/api/loc/:id',     api.getLocationById);
-app.get('/api/loc/near/:point/:maxDistance', api.getLocationsNearPoint);
-app.get('/api/loc/within/:swLatLng/:neLatLng', api.getLocationsWithin);
 app.post('/api/loc',        api.createLocation);
 app.put('/api/loc/:id',     api.updateLocation);
 app.delete('/api/loc/:id',  api.deleteLocation);
+
+app.get('/api/loc/near/:point/:maxDistance', api.getLocationsNearPoint);
+app.get('/api/loc/within/:swLatLng/:neLatLng', api.getLocationsWithin);
 
 app.get('/api/map',         api.getMapDocuments);
 app.post('/api/map',        api.createMapDocument);

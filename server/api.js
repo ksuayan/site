@@ -31,7 +31,7 @@ var getMinAttributeValue = function(key, list) {
 };
 
 var ApiHandler = function() {
-    if (conf.socialEnabled) {
+    if (conf.flickrEnabled) {
         try {
             Flickr.authenticate(conf.flickr, function(error, flickr) {
                 flickrClient = flickr;
@@ -39,7 +39,8 @@ var ApiHandler = function() {
         } catch (err) {
             console.log("Error Flickr init: ", err);
         }
-
+    }
+    if (conf.socialEnabled) {
         try {
             twitterClient = new Twitter(conf.twitter);
         } catch (err) {
@@ -62,7 +63,7 @@ var ApiHandler = function() {
         }
 
     }
-    console.log("Initialized API handler");
+    console.log("Initialized API handler.");
 };
 
 ApiHandler.prototype.getStream = function(request, response) {
@@ -302,25 +303,27 @@ ApiHandler.prototype.vimeo = function(request, response) {
     }
 };
 
-ApiHandler.prototype.flickr = function(request, response) {
-    var count = (request.params.count && request.params.count < 200) ? request.params.count : 50;
-    var onResponse = function(err, result) {
-        if (err) {
-            response.send({"error": err});
-        } else {
-            response.send({"status": "ok", "data": result});
+if (conf.flickrEnabled) {
+    ApiHandler.prototype.flickr = function(request, response) {
+        var count = (request.params.count && request.params.count < 200) ? request.params.count : 50;
+        var onResponse = function(err, result) {
+            if (err) {
+                response.send({"error": err});
+            } else {
+                response.send({"status": "ok", "data": result});
+            }
+        };
+        if (flickrClient) {
+            flickrClient.people.getPhotos({
+                api_key: conf.flickr.api_key,
+                user_id: "ksuayan",
+                page: 1,
+                per_page: 500,
+                authenticated: true
+            }, onResponse);
         }
     };
-    if (flickrClient) {
-        flickrClient.people.getPhotos({
-            api_key: conf.flickr.api_key,
-            user_id: "ksuayan",
-            page: 1,
-            per_page: 500,
-            authenticated: true
-        }, onResponse);
-    }
-};
+}
 
 /**
  * Used by the Stage/Carousel.

@@ -44,6 +44,7 @@ var config = {
     defaultBanner:  hosts.media+"/images/image-001.jpg",
 
     socialEnabled: true,
+    flickrEnabled: false,
     caching:       false,
     touchOnUpdate: true,
     expires: 0,
