@@ -46,5 +46,22 @@ ul(class="nav navbar-nav")
       li
         a(href="https://www.vimeo.com/ksuayan") Vimeo
   if (user)
+    li(class="dropdown")
+      a(href="#",class="dropdown-toggle",data-toggle="dropdown") Workspace
+        span(class="caret")
+      ul(class="dropdown-menu")
+        li
+          a(href="/members/angular-pages") Pages
+        li
+          a(href="/members/note#/maps") Maps
+        li
+          a(href="/members/note#/home") Locations
+        li
+          a(href="/members/chat") Chat
+        li
+          a(href="/members/angular-demo#/home") Tracks
+        li(class="divider")
+        li
+          a(href="/members") Other Demos
     li
       a(href="/logout") Logout

@@ -2,11 +2,11 @@ extends ../layout
 
 block content
   #content
-    .container.article
-      .jumbotron
-        h1 Track List
-        p An AngularJS Demo
     .container(ng-app="MainApp")
+      .row
+        .col-sm-12
+          h1 Track List
+          p An AngularJS Demo
       .row.track-search
         div(ng-view="")
 

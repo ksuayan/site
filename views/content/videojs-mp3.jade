@@ -4,39 +4,26 @@ block append css
   link(href="/css/video.css",rel="stylesheet")
   link(href="/js/videojs/video-js.min.css",rel="stylesheet")
 
-block append scripts
-  script(src="/js/videojs/video.min.js")
-
-block footer
-
 block content
   #content
     .container.article
       .row
         .col-lg-6
-
           h1 Pisay90 MixTapes
-
           .media
             .media-left
-              audio(src="http://stream.suayan.com.s3.amazonaws.com/audio/Pisay90_2015_Closure-Mix.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-blue-inverse.png",controls="controls",preload="auto",data-setup='{}')
+              audio(src="http://cdn.suayan.com/audio/pisay90/Pisay90_2015_Closure-Mix.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-blue-inverse.png",controls="controls",preload="auto",data-setup='{}')
             .media-body
               h4.media-heading 2015: Pisay90, Closure Mix
 
           .media
             .media-left
-              audio(src="http://stream.suayan.com.s3.amazonaws.com/audio/Pisay90_2010_Uptempo.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-gray-inverse.png",controls="controls",preload="auto",data-setup='{}')
-            .media-body
-              h4.media-heading 2010: A Pisay90 Odyssey, Uptempo Mix
-
-          .media
-            .media-left
-              audio(src="http://stream.suayan.com.s3.amazonaws.com/audio/Pisay90_2010_Chill.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-gray-inverse.png",controls="controls",preload="auto",data-setup='{}')
+              audio(src="http://cdn.suayan.com/audio/pisay90/Pisay90_2010_Chill.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-gray-inverse.png",controls="controls",preload="auto",data-setup='{}')
             .media-body
               h4.media-heading 2010: A Pisay90 Odyssey, Chill Mix
 
           .media
             .media-left
-              audio(src="http://stream.suayan.com.s3.amazonaws.com/audio/By_Request.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-gray-inverse.png",controls="controls",preload="auto",data-setup='{}')
+              audio(src="http://cdn.suayan.com/audio/pisay90/Pisay90_By_Request.mp3", class="album-cover video-js vjs-default-skin",poster=config.mediaHost+"/images/pisay90/badge-gray-inverse.png",controls="controls",preload="auto",data-setup='{}')
             .media-body
               h4.media-heading 2010: A Pisay90 Odyssey, By Request

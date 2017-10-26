@@ -19,11 +19,11 @@ mainApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/home', {
-                templateUrl: '/templates/tracklist.html',
+                templateUrl: '/jade/ng/tracklist',
                 controller: 'TrackListController'
             }).
             when('/home/:term', {
-                templateUrl: '/templates/trackdetails.html',
+                templateUrl: '/jade/ng/trackdetails',
                 controller: 'TrackListController'
             }).
             otherwise({
@@ -48,7 +48,6 @@ function($scope, Track){
             $scope.list = [];
         }
     };
-
     $scope.handleKeypress = function(evt) {
         if ($scope.query.length>3) {
             Track.query({term: $scope.query}, onDataReady);

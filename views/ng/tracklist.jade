@@ -1,0 +1,64 @@
+.col-md-3
+  // Sidebar content
+  .well.well-sm
+    | Search:
+    br
+    input(style="width:100%", ng-model='query', ng-keyup='handleKeypress($event)')
+  .well.well-sm
+    | Sort By:
+    br
+    label
+      input(type='radio', ng-model='orderProp', value='Name')
+      | &nbsp; Name
+    br
+    label
+      input(type='radio', ng-model='orderProp', value='Artist')
+      | &nbsp; Artist
+    br
+    label
+      input(type='radio', ng-model='orderProp', value='Album')
+      | &nbsp; Album
+    br
+    label
+      input(type='radio', ng-model='orderProp', value='Genre')
+      | &nbsp; Genre
+  .well.well-sm
+    | Show:
+    br
+    label
+      input(type='radio', ng-model='count', value='10')
+      |  &nbsp; 10
+    br
+    label
+      input(type='radio', ng-model='count', value='20')
+      |  &nbsp; 20
+    br
+    label
+      input(type='radio', ng-model='count', value='50')
+      |  &nbsp; 50
+    br
+    label
+      input(type='radio', ng-model='count', value='100')
+      |  &nbsp; 100
+.col-md-9
+
+  // Body content
+  .well.wells-mall(ng-show='query.length')
+    h3(ng-show='query.length && list.length')
+      | You searched for: &nbsp;
+      mark
+        i {{query}}
+      | &nbsp; &nbsp;
+      span.badge {{list.length}}
+    h3(ng-hide='list.length') No matches.
+  ul.list-group
+    li.list-group-item(ng-repeat='item in list | limitTo: count | orderBy:orderProp')
+      strong
+        span.glyphicon.glyphicon-music
+        | &nbsp; {{item.Name}}
+      br
+      p.list-group-item-text
+        | Album: {{item.Album}}
+        br
+        | {{item.Artist}}
+      span.label.label-default {{item.Genre}}
