@@ -13,8 +13,12 @@ html(lang="en")
       +meta(description)
       -var keywords = { name: "keywords", content:config.keywords };
       +meta(keywords)
+    +gtm_head(config.gtmContainerId)
+
+
   body
     +fb_api(config.facebook.clientId)
+    +gtm_body(config.gtmContainerId)
 
     block header
       include includes/header
@@ -41,6 +45,3 @@ html(lang="en")
         gb.ui.mediaHost = "#{config.mediaHost}";
 
     block last
-
-    // gtm everywhere
-    include includes/gtm
