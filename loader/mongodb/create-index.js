@@ -16,5 +16,20 @@ db.pages.createIndex({
     excerpt:          "text"
 });
 
+db.stream.createIndex({
+    body:         "text",
+    title:        "text",
+    description:  "text",
+    "tags.name":  "text"
+});
+
+db.trackdbs.createIndex({
+    Name:   "text",
+    Artist: "text",
+    Album:  "text",
+    Genre:  "text",
+    Year:   "text"
+});
+
 // QUERY:
 // db.pages.find({$text: {$search: "patio"}});
