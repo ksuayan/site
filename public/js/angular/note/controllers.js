@@ -5,15 +5,30 @@ angular.module('app.controllers', [])
     $scope.location = Location.get({ id: $stateParams.id });
     $scope.gotoState = StateService.gotoState;
 
-}).controller('LocationEditController', function($scope, $state, $stateParams, StateService, Location) {
+}).controller('LocationEditController', function($scope, $state, $stateParams, $log, StateService, Location) {
 
     $scope.updateLocation = function() {
         $scope.location.$update(function() {
-            $state.go('home');
+            $state.go('locations');
         });
     };
-    $scope.loadLocation = function() {
-        $scope.location = Location.get({ id: $stateParams.id });
+    $scope.loadLocation = function(param) {
+
+        $log.info("param:", param);
+
+        $scope.location = Location.get({ id: param.id }, function(locationObj){
+            $scope.location = locationObj;
+
+            $log.info("location:", locationObj);
+            $log.info("gb namespace:", gb);
+
+            $scope.mapWidget = new gb.ui.LocationView(window, "map-container", locationObj);
+        });
+    };
+    $scope.deleteLocation = function() {
+        $scope.location.$delete(function() {
+            $state.go('locations');
+        });
     };
     $scope.gotoState = StateService.gotoState;
     $scope.loadLocation($stateParams);
@@ -31,11 +46,6 @@ angular.module('app.controllers', [])
     };
     $scope.gotoState = StateService.gotoState;
 
-
-}).controller('HomeController', function($scope, $state, $stateParams, StateService, Location) {
-
-    $scope.locations = Location.query();
-    $scope.gotoState = StateService.gotoState;
 
 }).controller('LocationListController', function($scope, $state, $stateParams, StateService, Location) {
 
@@ -84,7 +94,7 @@ angular.module('app.controllers', [])
     $scope.deleteMap = function(mapObj) {
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: '/jade/maps/delete-map',
+            templateUrl: '/jade/maps/delete-map-modal',
             controller: 'DeleteMapModalController',
             resolve: {
                 map: function (){
@@ -109,8 +119,8 @@ angular.module('app.controllers', [])
         $scope.location = location;
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: '/jade/maps/add-map-location',
-            controller: 'AddMapLocationModalController',
+            templateUrl: '/jade/maps/add-location-modal',
+            controller: 'AddLocationModalController',
             size: 'lg',
             resolve: {
                 location: function (){
@@ -131,8 +141,8 @@ angular.module('app.controllers', [])
     $scope.editMapLocation = function(id) {
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: '/jade/maps/edit-map-location',
-            controller: 'EditMapLocationModalController',
+            templateUrl: '/jade/maps/edit-location-modal',
+            controller: 'EditLocationModalController',
             size: 'lg',
             resolve: {
                 location: function (){
@@ -180,7 +190,7 @@ angular.module('app.controllers', [])
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-}).controller('AddMapLocationModalController',
+}).controller('AddLocationModalController',
     function ($scope, $log, $modalInstance, location) {
         $scope.location = location;
         $scope.ok = function () {
@@ -189,7 +199,7 @@ angular.module('app.controllers', [])
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-}).controller('EditMapLocationModalController',
+}).controller('EditLocationModalController',
     function ($scope, $log, $modalInstance, location) {
         $scope.location = location;
         $scope.ok = function () {

@@ -10,10 +10,20 @@ var app = angular.module('app', [
 
 angular.module('app').config(["$stateProvider", "$sceProvider",
     function($stateProvider, $sceProvider) {
-        $stateProvider.state('home', {
-            url: '/home',
-            templateUrl: '/jade/maps/home',
-            controller: 'HomeController'
+        $stateProvider.state('locations', {
+            url: '/locations',
+            templateUrl: '/jade/maps/locations',
+            controller: 'LocationListController'
+        })
+        .state('addLocation', {
+            url: '/addLocation',
+            templateUrl: '/jade/maps/add-location',
+            controller: 'LocationAddController'
+        })
+        .state('editLocation', {
+            url: '/editLocation/:id',
+            templateUrl: '/jade/maps/edit-location',
+            controller: 'LocationEditController'
         })
         .state('maps', {
             url: '/maps',
@@ -29,11 +39,6 @@ angular.module('app').config(["$stateProvider", "$sceProvider",
             url: '/editMap/:id',
             templateUrl: '/jade/maps/edit-map',
             controller: 'MapEditController'
-        })
-        .state('editMapLocation', {
-            url: '/editMapLocation/:id',
-            templateUrl: '/jade/maps/edit-map-location',
-            controller: 'EditMapLocationModalController'
         });
 
     }
