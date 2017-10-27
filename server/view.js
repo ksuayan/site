@@ -114,7 +114,11 @@ ViewHandler.prototype.mapView = function (req, res) {
                     fn: ViewHandler.fn,
                     id: id,
                     map: map,
-                    pagePath: "/map/"+id
+                    pagePath: "/map/"+id,
+                    story: {
+                        title: "suayan.com | Map | " + map.name
+                    }
+
                 });
             } else {
                 onError();
@@ -134,7 +138,10 @@ ViewHandler.prototype.locationView = function (req, res) {
                     fn: ViewHandler.fn,
                     id: id,
                     mapObj: location,
-                    pagePath: "/location/"+id
+                    pagePath: "/location/"+id,
+                    story: {
+                        title: "suayan.com | Location | " + location.name
+                    }
                 });
             } else {
                 onError();
