@@ -1,27 +1,35 @@
 extends ../layout
-
+j
 block metadata
-  -var description = { name: "description", content: (story.description||config.description) };
-  +meta(description)
-  -var keywords = { name: "keywords", content: (story.keywords||config.keywords) };
-  +meta(keywords)
-  if (story.title)
-    title=story.title
+  -var description = (story && story.description) ? story.description : config.description;
+  -var keywords = (story && story.keywords) ? story.keywords : config.keywords;
+  -var title = (story && story.title) ? story.title : config.title;
+  -var image = (story && story.image) ? story.image : config.defaultBanner;
+  -var descriptionObj = { name: "description", content: description };
+  +meta(descriptionObj)
+  -var keywordsObj = { name: "keywords", content: keywords };
+  +meta(keywordsObj)
+
+  title=title
+
   if (config.facebook.clientId)
-    -var og_app_id = { property: "fb:app_id", content:config.facebook.clientId};
+    -var og_app_id = { property: "fb:app_id", content:config.facebook.clientId };
     +meta_og(og_app_id)
-  -var og_site = { property: "og:site_name", content:config.title};
+  -var og_site = { property: "og:site_name", content:config.title };
   +meta_og(og_site)
-  -var og_title = { property: "og:title", content:(story.title||config.title)};
+  -var og_title = { property: "og:title", content:title };
   +meta_og(og_title)
-  -var og_desc = { property: "og:description", content: (story.description||config.description)};
+  -var og_desc = { property: "og:description", content:description };
   +meta_og(og_desc)
-  -var og_type = { property: "og:type", content: "article"};
+  -var og_type = { property: "og:type", content:"article" };
   +meta_og(og_type)
-  -var currentUrl = config.host+"/page/"+page;
-  -var og_url = { property: "og:url", content: currentUrl};
-  +meta_og(og_url)
-  -var og_image = { property: "og:image", content: story.image};
+
+  - if (pagePath) {
+    -var og_url = { property: "og:url", content:config.host+pagePath };
+    +meta_og(og_url)
+  - }
+
+  -var og_image = { property: "og:image", content:image };
   +meta_og(og_image)
 
 block content
@@ -39,3 +47,4 @@ block prepend scripts
 block append scripts
     script(src="/js/angular/note/map-styles.js")
     script(src="/js/angular/note/map-view.js")
+    script(src="/js/angular/note/location-edit.js")

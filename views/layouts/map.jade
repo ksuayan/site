@@ -5,8 +5,19 @@ block content
     #map-container.map-container
     .container.article
       .row
-        .col-lg-12
+        .col-sm-8
+          h1!= map.name
+
+          - if (map.date) {
+            p.when!= fn.fromNow(map.date)
+          - }
+
+          - if (map.description) {
+            .description!= map.description
+          - }
+        .col-sm-4
+          p Location Details:
 
 block append last
   script.
-      var map = new gb.ui.MapView(window, "map-container", "#{map}");
+      var map = new gb.ui.MapView(window, "map-container", "#{id}");

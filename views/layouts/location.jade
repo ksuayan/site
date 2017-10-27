@@ -1,0 +1,33 @@
+extends view
+
+block content
+  #content
+    #map-container.map-container
+    .container.article
+      .row
+        .col-sm-8
+          h1!= mapObj.name
+          - if (mapObj.date) {
+            p.when!= fn.fromNow(mapObj.date)
+          - }
+
+          p!= mapObj.address
+
+          .description!= mapObj.description
+
+          - if (mapObj.url) {
+            a(href=mapObj.url,target="_blank") !{mapObj.url}
+          - }
+
+        .col-sm-4
+          - if (mapObj.map) {
+            p
+              a(href="/map/"+mapObj.map) &raquo; Related Map
+          - }
+
+
+
+block append last
+  script.
+      var mapObj = !{JSON.stringify(mapObj)};
+      var map = new gb.ui.LocationView(window, "map-container", mapObj);

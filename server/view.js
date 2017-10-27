@@ -1,4 +1,5 @@
 var content = require('./content-db'),
+    locations = require('./locations-db'),
     moment = require('moment');
 
 var ViewHandler = function () {
@@ -6,7 +7,9 @@ var ViewHandler = function () {
     },
     CONTENT_NOTFOUND = "content/notfound",
     CONTENT_HOME ="content/home",
-    LAYOUT_VIEW = "layouts/view";
+    LAYOUT_VIEW = "layouts/view",
+    LAYOUT_MAP = "layouts/map",
+    LAYOUT_LOCATION = "layouts/location";
 /**
  * JADE template extension points.
  * Static functions.
@@ -77,6 +80,7 @@ ViewHandler.prototype.pageView = function (req, res) {
                 }
                 res.render(view, {
                     page:  page,
+                    pagePath: "/page/"+page,
                     story: story,
                     user:  req.user,
                     fn:    ViewHandler.fn
@@ -100,6 +104,48 @@ ViewHandler.prototype.jade = function (req, res) {
         fn: ViewHandler.fn
     });
 };
+
+ViewHandler.prototype.mapView = function (req, res) {
+    var id = req.params.id,
+        view = LAYOUT_MAP,
+        onSuccess = function (map) {
+            if (map) {
+                res.render(view, {
+                    fn: ViewHandler.fn,
+                    id: id,
+                    map: map,
+                    pagePath: "/map/"+id
+                });
+            } else {
+                onError();
+            }
+        },
+        onError = function () {
+            res.render(CONTENT_NOTFOUND);
+        };
+    locations.getMapDocumentById(id, onSuccess, onError);
+};
+
+ViewHandler.prototype.locationView = function (req, res) {
+    var id = req.params.id,
+        onSuccess = function (location) {
+            if (location) {
+                res.render(LAYOUT_LOCATION, {
+                    fn: ViewHandler.fn,
+                    id: id,
+                    mapObj: location,
+                    pagePath: "/location/"+id
+                });
+            } else {
+                onError();
+            }
+        },
+        onError = function () {
+            res.render(CONTENT_NOTFOUND);
+        };
+    locations.getLocationById(id, onSuccess, onError);
+};
+
 
 ViewHandler.prototype.listDocuments = function (req, res) {
     content.getDocuments(req.params.id, function (result) {

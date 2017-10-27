@@ -221,16 +221,11 @@ app.get('/map-doctors', function(req, res) {
 });
 
 app.get('/map/:id', function(req, res) {
-    res.render("layouts/map", {
-        page: null,
-        map: req.params.id,
-        story: {
-            description: "Map Location",
-            keywords: "maps, location, coordinates"
-        },
-        user: null,
-        fn: view.fn
-    });
+    return view.mapView(req, res);
+});
+
+app.get('/location/:id', function(req, res) {
+    return view.locationView(req, res);
 });
 
 /**
@@ -262,10 +257,6 @@ app.get('/api/tiles',       api.getTileList);
 app.get('/api/twitter',       api.twitter);
 app.get('/api/vimeo/:count',  api.vimeo);
 
-if (conf.flickrEnabled) {
-    app.get('/api/flickr/:count', api.flickr);
-}
-
 app.get('/api/page',               api.getPageList);
 app.post('/api/page',              api.createPage);
 app.get('/api/page/:id',           api.getPageById);
@@ -292,6 +283,10 @@ app.delete('/api/map/:id',  api.deleteMapDocument);
 
 app.get('/api/map-locations/:map',       api.getMapLocationsByUser);
 app.get('/api/map-locations/:map/:user', api.getMapLocationsByUser);
+
+if (conf.flickrEnabled) {
+    app.get('/api/flickr/:count', api.flickr);
+}
 
 app.get('/logout', function(req, res){
     req.logout();

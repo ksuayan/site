@@ -253,3 +253,26 @@ gb.ui.MapConfig.mapLayerNames = {
     "-2a77fa60": "Specialty",
     "none": "None"
 };
+
+
+google.maps.visualRefresh = true;
+
+/**
+ * Prototype extension for computing distance
+ * between two points in meters.
+ * @param latlng
+ * @returns {number}
+ */
+google.maps.LatLng.prototype.distanceFrom = function(latlng) {
+    var lat = [this.lat(), latlng.lat()],
+        lng = [this.lng(), latlng.lng()],
+        R = 6378137,
+        dLat = (lat[1]-lat[0]) * Math.PI / 180,
+        dLng = (lng[1]-lng[0]) * Math.PI / 180,
+        a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat[0] * Math.PI / 180 ) * Math.cos(lat[1] * Math.PI / 180 ) *
+            Math.sin(dLng/2) * Math.sin(dLng/2),
+        c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)),
+        d = R * c;
+    return Math.round(d);
+};

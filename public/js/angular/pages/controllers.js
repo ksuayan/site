@@ -6,21 +6,17 @@ angular.module('site.controllers', [])
        var computeDates = function(list) {
           return list.map(function(x){
               x["dtUpdated"] = moment(x["dateUpdated"]||x["dateCreated"]).fromNow();
-
-              console.log(x["dtUpdated"]);
-
               return x;
           });
-       }, onDataReady = function(data) {
+       },
+       onDataReady = function(data) {
            $scope.pages = computeDates(data.data);
        },
        onErrorHandler = function(err) {
-       };
-
-       var list = Page.query(function(){
+       },
+       list = Page.query(function(){
            $scope.pages = computeDates(list);
        });
-
        $scope.orderProp = '-dateCreated';
        $scope.handleKeypress = function(evt) {
            if ($scope.query.length>2) {
@@ -37,7 +33,6 @@ angular.module('site.controllers', [])
    }
 
 ]).controller('PageCreateController',
-
 
    function($log, $scope, $state, $stateParams, formEditorService, Page) {
         $scope.page = new Page();
