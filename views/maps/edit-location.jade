@@ -1,0 +1,15 @@
+h3 Edit Location
+form.editor-form(role='form')
+  #map-container.map-container
+  br
+
+  .form-group
+    a.btn.btn-default(ui-sref='maps') &laquo; Map List
+    | &nbsp;
+    a.btn.btn-default(ui-sref='locations') &laquo; Locations
+    | &nbsp;
+    a.btn.btn-danger(ng-click='deleteLocation(location)') Delete
+    | &nbsp;
+    a.btn.btn-primary(ng-click='updateLocation(locatuib)') Update
+
+  include edit-location-form

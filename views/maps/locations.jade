@@ -8,4 +8,4 @@ table.table.editor-form
        a(href='/location/{{loc._id}}', target='_blank') {{loc.name}}
     td {{loc.address}}
     td(align='right')
-       a.btn.btn-default Edit
+      .btn.btn-default(ui-sref="editLocation({id:loc._id})") Edit

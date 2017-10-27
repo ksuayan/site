@@ -1,0 +1,30 @@
+.form-group
+  label.control-label(for='name') Name
+  input#name.form-control(type='text', data-ng-model='location.name', placeholder='Name of this location.')
+.form-group
+  label.control-label(for='address') Address
+  input#address.form-control(type='text', data-ng-model='location.address', placeholder='Enter the address here.')
+.form-group
+  .radio
+    label
+      input(type='radio', name='styleHash', value='1939180', ng-model='location.styleHash')
+      | Shops & Markets &nbsp;
+    label
+      input(type='radio', name='styleHash', value='53ca3a80', ng-model='location.styleHash')
+      | Food &nbsp;
+    label
+      input(type='radio', name='styleHash', value='-662d500', ng-model='location.styleHash')
+      | Art & Museums &nbsp;
+    label
+      input(type='radio', name='styleHash', value='3a98100', ng-model='location.styleHash')
+      | Landmarks &nbsp;
+    label
+      input(type='radio', name='styleHash', value='-2a77fa60', ng-model='location.styleHash')
+      | Specialty &nbsp;
+.form-group
+  label.control-label(for='url') URL
+  input#url.form-control(type='text', data-ng-model='location.url', placeholder='http://')
+
+.form-group
+  label.control-label(for='desc') Description
+  #desc.editor-rte.form-control(text-angular, data-ng-model='location.description', placeholder='Describe this location')

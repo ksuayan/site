@@ -8,4 +8,9 @@
       | longitude: &nbsp;
       span(data-ng-bind='location.loc.coordinates[0]')
 
-include map-location-form
+.modal-body
+  include edit-location-form
+
+.modal-footer
+  button.btn.btn-primary(ng-click='ok()') OK
+  button.btn.btn-warning(ng-click='cancel()') Cancel
