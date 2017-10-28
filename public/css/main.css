@@ -557,6 +557,16 @@ html#slideshow {
   max-height: 500px;
   margin-top: 5px;
 }
+.background-fullsize {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+}
 .video-container {
   clear: both;
   margin-top: 20px;
@@ -565,10 +575,12 @@ html#slideshow {
   padding-top: 30px;
   height: 0;
   overflow: hidden;
+  background-color: #eeeeee;
 }
 .video-container iframe,
 .video-container object,
-.video-container embed {
+.video-container embed,
+.video-container .video-js {
   position: absolute;
   top: 0;
   left: 0;

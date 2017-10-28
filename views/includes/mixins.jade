@@ -31,6 +31,11 @@ mixin vimeo_video(obj)
   .video-container
     iframe(src="https://player.vimeo.com/video/"+obj.id,webkitallowfullscreen,mozallowfullscreen,allowfullscreen)
 
+mixin mp4_video(obj)
+  .video-container
+    video(id="mp4-player",poster=obj.image,loop="loop",controls="controls",preload="auto",class="video-js vjs-default-skin vjs-big-play-centered")
+      source(src=obj.url, type="video/mp4")
+
 mixin image(obj)
   image(src=obj.image,class="story-image")
 

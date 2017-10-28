@@ -41,6 +41,11 @@ angular.module('site.services', [])
             form: "/jade/pages/form-vimeo"
         },
         {
+            type: "mp4_video",
+            name: "MP4 Stream",
+            form: "/jade/pages/form-mp4"
+        },
+        {
             type: "audio_player",
             name: "Audio Player",
             form: "/jade/pages/form-audio"
