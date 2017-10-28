@@ -41,7 +41,7 @@ var config = {
     description :   'Design + Development',
     keywords :      'kyo,suayan,web,design,development,css3,html5,javascript,aem,cq5,ecmascript',
     defaultImage:   hosts.media+"/dist/img/ks-logo.svg",
-    defaultBanner:  hosts.media+"/images/image-001.jpg",
+    defaultBanner:  hosts.media+"/images/bay-bridge.jpg",
     gtmContainerId: 'GTM-T9K2TJX',
 
     socialEnabled: true,
