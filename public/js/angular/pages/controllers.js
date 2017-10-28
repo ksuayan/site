@@ -200,7 +200,6 @@ angular.module('site.controllers', [])
         modalInstance.result.then(function (page) {
             $scope.page = page;
         }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 

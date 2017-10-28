@@ -5,7 +5,7 @@ angular.module('app.controllers', [])
     $scope.location = Location.get({ id: $stateParams.id });
     $scope.gotoState = StateService.gotoState;
 
-}).controller('LocationEditController', function($scope, $state, $stateParams, $log, StateService, Location) {
+}).controller('LocationEditController', function($scope, $state, $stateParams, $log, StateService, MapService, Location) {
 
     $scope.updateLocation = function() {
         $scope.location.$update(function() {
@@ -13,16 +13,9 @@ angular.module('app.controllers', [])
         });
     };
     $scope.loadLocation = function(param) {
-
-        $log.info("param:", param);
-
         $scope.location = Location.get({ id: param.id }, function(locationObj){
             $scope.location = locationObj;
-
-            $log.info("location:", locationObj);
-            $log.info("gb namespace:", gb);
-
-            $scope.mapWidget = new gb.ui.LocationView(window, "map-container", locationObj);
+            $scope.mapWidget = new gb.ui.LocationEdit(window, "map-container", locationObj, MapService);
         });
     };
     $scope.deleteLocation = function() {
@@ -30,21 +23,26 @@ angular.module('app.controllers', [])
             $state.go('locations');
         });
     };
-    $scope.gotoState = StateService.gotoState;
     $scope.loadLocation($stateParams);
 
-}).controller('LocationAddController', function($scope, $state, $stateParams, StateService, MapService, Location) {
+}).controller('LocationAddController', function($scope, $log, $state, $stateParams, StateService, MapService, Location) {
 
     $scope.location = new Location();
-    $scope.createLocation = function() {
+
+    $scope.mapWidget = new gb.ui.LocationEdit(window, "map-container", null, MapService);
+
+    $scope.addLocation = function() {
         $scope.location.$save(function() {
-            $state.go('home');
+            $state.go('locations');
         });
     };
+
+
     $scope.updateLocationInfo = function(locationObj) {
-        MapService.updateLocationInfo($scope.location, locationObj);
+        $log.info("locationObj", $scope.location, locationObj);
+        return MapService.updateLocationInfo($scope.location, locationObj);
     };
-    $scope.gotoState = StateService.gotoState;
+
 
 
 }).controller('LocationListController', function($scope, $state, $stateParams, StateService, Location) {

@@ -1,0 +1,14 @@
+.form-group
+  a.btn.btn-default(ui-sref='maps') &laquo; Map List
+  | &nbsp;
+  a.btn.btn-default(ui-sref='locations') &laquo; Locations
+  | &nbsp;
+  input.btn.btn-primary(type='submit', value='Save Map')
+
+.form-group
+  label.control-label(for='name') Map Name
+  input#name.form-control(type='text', data-ng-model='map.name', placeholder='Give this map a name.')
+
+.form-group
+  label.control-label(for='description') Description
+  #description.editor-rte.form-control(data-ng-model='map.description', placeholder='Tell a story about this map.',text-angular)

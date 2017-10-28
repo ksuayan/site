@@ -1,15 +1,12 @@
-h3 Edit Location
+h3 Create A New Location
 form.editor-form(role='form')
   #map-container.map-container
   br
-
   .form-group
     a.btn.btn-default(ui-sref='maps') &laquo; Map List
     | &nbsp;
     a.btn.btn-default(ui-sref='locations') &laquo; Locations
     | &nbsp;
-    a.btn.btn-danger(ng-click='deleteLocation(location)') Delete
-    | &nbsp;
-    a.btn.btn-primary(ng-click='updateLocation(location)') Update
+    a.btn.btn-primary(ng-click='addLocation()') Save Location
 
   include edit-location-form

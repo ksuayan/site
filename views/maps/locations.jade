@@ -3,6 +3,11 @@
   p A Geolocations Collection
 
 table.table.editor-form
+  tr
+    td
+    td
+    td(align='right')
+      a.btn.btn-primary(ui-sref='addLocation') New Location
   tr(ng-repeat='loc in locations')
     td
        a(href='/location/{{loc._id}}', target='_blank') {{loc.name}}
