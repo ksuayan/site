@@ -96,8 +96,8 @@ angular.module('site.controllers', [])
     $scope.deletePage = function(pageObj){
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: '/jade/pages/delete-page',
-            controller: 'DeleteModalController',
+            templateUrl: '/jade/pages/delete-page-modal',
+            controller: 'DeletePageModalController',
             resolve: {
                 page: function (){
                     $scope.page = pageObj;
@@ -111,14 +111,13 @@ angular.module('site.controllers', [])
                 $state.go('listPages');
             });
         }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
     $scope.editExcerpt = function(pageObj) {
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: '/jade/pages/edit-excerpt',
+            templateUrl: '/jade/pages/edit-excerpt-modal',
             controller: 'EditExcerptController',
             size: "lg",
             resolve: {
@@ -131,7 +130,6 @@ angular.module('site.controllers', [])
         modalInstance.result.then(function (page) {
             $scope.page = page;
         }, function () {
-            $log.info('Excerpt:'+$scope.page.excerpt);
         });
     };
 
@@ -140,7 +138,7 @@ angular.module('site.controllers', [])
         $rootScope.index = index;
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: '/jade/pages/edit-component',
+            templateUrl: '/jade/pages/edit-component-modal',
             controller: 'AddComponentController',
             size: "lg",
             resolve: {
@@ -160,7 +158,7 @@ angular.module('site.controllers', [])
         $rootScope.page = pageObj;
         $rootScope.index = index;
         var modalInstance = $modal.open({
-            templateUrl: '/jade/pages/edit-component',
+            templateUrl: '/jade/pages/edit-component-modal',
             controller: 'EditComponentController',
             size: "lg",
             resolve: {
@@ -187,7 +185,7 @@ angular.module('site.controllers', [])
         $rootScope.index = index;
         var modalInstance = $modal.open({
             animation: false,
-            templateUrl: '/jade/pages/add-rich-text',
+            templateUrl: '/jade/pages/add-rich-text-modal',
             controller: 'AddRichTextController',
             size: "lg",
             resolve: {
@@ -212,7 +210,7 @@ angular.module('site.controllers', [])
 
     $scope.loadPage();
 
-}]).controller('DeleteModalController',
+}]).controller('DeletePageModalController',
 
     function ($scope, $modalInstance, page) {
     $scope.page = page;
