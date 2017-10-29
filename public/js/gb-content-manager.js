@@ -34,17 +34,31 @@ gb.ui.ContentManager.include({
 
         var that = this,
             rotateInterval = 15000,
-            waitTime = 15000;
+            waitTime = 15000,
+            stageDiv = $("#stage");
         this.content = $(selector);
+
         if (this.content.html()) {
             this.visible = true;
-            if ($("#stage").length>0) {
+
+            /**
+             * Instantiate Stage only for medium screen sizes and up.
+             *
+             */
+            if (stageDiv.length>0 && gb.ui.screenWidth>gb.ui.ScreenSizes["md"]) {
                 // instantiate the stage
                 this.stage = new gb.ui.Stage("stage", rotateInterval, waitTime);
 
                 var splashTile = new gb.ui.Tile({id: "splash-tile", class: "tile"});
                 splashTile.setContent('<img src="http://cdn.suayan.com/dist/img/splash-04.svg"/>');
                 this.stage.addTile(splashTile);
+                stageDiv.transit({
+                    opacity: 1,
+                    'background-color': '#212121',
+                    easing: 'in',
+                    duration: 500
+                });
+
                 // instantiate Timeline(Tile)
                 var timelineTile = new gb.ui.Tile({id: "timeline-tile", class: "tile"});
                 this.stage.addTile(timelineTile);
@@ -56,10 +70,11 @@ gb.ui.ContentManager.include({
                 $("#slideshow-button").click(function(){that.toggleSlideShow();});
                 $("#play-button").click(function(){that.toggleStage();});
                 $(window).on("resizeEnd", function(){that.onResizeEndHandler();});
-                console.log("init: ContentManager. Stage found.");
+                console.log("Stage found and instantiated.");
             } else {
-                console.log("ContentManager initialized.");
+                console.log("Skipped gb.ui.Stage.");
             }
+            console.log("ContentManager initialized.");
         }
     },
 

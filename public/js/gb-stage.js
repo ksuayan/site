@@ -41,7 +41,6 @@ gb.ui.Stage.include({
 
                 if (waitTime) {
                     setTimeout(function(){
-                        console.log("Stage wait:", waitTime);
                         that.start();
                     }, waitTime);
                 } else {

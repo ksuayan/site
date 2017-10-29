@@ -1,7 +1,9 @@
 $(function(){
     "use strict";
-    var contentManager = new gb.ui.ContentManager("#content"),
-        $window = $(window);
+
+    gb.ui.onResizeHandler();
+    var $window = $(window),
+        contentManager = new gb.ui.ContentManager("#content");
 
     $window.resize(gb.util.throttle(gb.ui.onResizeHandler, 300));
 

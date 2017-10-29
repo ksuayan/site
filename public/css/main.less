@@ -2,121 +2,122 @@
 @import "global.less";
 
 .btn-file {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    background: red;
-    cursor: inherit;
-    display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
 }
 
 input[readonly] {
-    background-color: white !important;
-    cursor: text !important;
-    color: #333;
+  background-color: white !important;
+  cursor: text !important;
+  color: #333;
 }
 
 .hero-unit {
-    padding: 0;
-    background-color: rgba(255, 255, 255, 0.75);
-    h1, p {
-        margin: 15px;
-        line-height: 120%;
-    }
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  h1, p {
+    margin: 15px;
+    line-height: 120%;
+  }
 }
 
 .jumbotron {
-    margin: 0 0 20px 0;
+  margin: 0 0 20px 0;
 }
 
 #chart {
-    margin: 40px auto 30px auto;
-    width: 1002px;
-    height: 802px;
+  margin: 40px auto 30px auto;
+  width: 1002px;
+  height: 802px;
 }
 
 #hchart {
-    margin: 40px auto 30px auto;
-    width: 1002px;
-    height: 522px;
+  margin: 40px auto 30px auto;
+  width: 1002px;
+  height: 522px;
 }
 
 .sidebar-nav {
-    padding: 9px 0;
+  padding: 9px 0;
 }
 
 .clear {
-    clear: both;
+  clear: both;
 }
 
 .textListWindow {
-    margin-top: 20px;
-    overflow: auto;
-    height: 300px;
+  margin-top: 20px;
+  overflow: auto;
+  height: 300px;
 }
 
 .edit-background {
-    padding: 15px;
-    background-color: #efefef;
+  padding: 15px;
+  background-color: #efefef;
 }
 
 html#slideshow {
-    background-color: #000;
+  background-color: #000;
 }
 
 #spinner {
-    display: none;
-    margin: 10px 0 10px 0;
+  display: none;
+  margin: 10px 0 10px 0;
 }
 
 // Background Image
 #background {
-    padding: 0;
-    margin: 0;
-    position: fixed;
-    bottom: -3px;
-    left: 0;
-    z-index: -1;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  bottom: -3px;
+  left: 0;
+  z-index: -1;
 }
 
 .bgheight {
-    height: 100%;
-    width: auto;
-    max-width: none;
+  height: 100%;
+  width: auto;
+  max-width: none;
 }
 
 .bgwidth {
-    width: 100%;
-    height: auto;
-    max-height: none;
+  width: 100%;
+  height: auto;
+  max-height: none;
 }
 
 .footer {
-    font-size: 16px;
-    font-family: @navfont;
-    padding: 20px 0 20px 0;
-    background-color: #202020;
-    color: #999;
+  font-size: 16px;
+  font-family: @navfont;
+  padding: 20px 0 20px 0;
+  background-color: #202020;
+  color: #999;
 }
 
 .when {
-    color: @color-light-gray;
+  color: @color-light-gray;
 }
 
 @import 'navbar.less';
 @import 'stream.less';
 @import 'content.less';
+@import 'stage.less';
 @import 'pages.less';
 @import 'components.less';
 @import 'map.less';

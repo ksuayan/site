@@ -4,54 +4,49 @@
 
 input(id="search-term",placeholder="search terms",ng-model='query',ng-keyup='handleKeypress($event)')
 
-table.table.editor-form
-  tr
-    td(colspan=2)
-      .form-group
-        button.btn.btn-default(ng-click="orderProp='-dateCreated'")
-          span.glyphicon.glyphicon-chevron-down
-          | &nbsp; Created
+.table-responsive
+  table.table.editor-form
+    tr
+      td(colspan=2)
+        .form-group
+          button.btn.btn-default(ng-click="orderProp='-dateCreated'")
+            span.glyphicon.glyphicon-chevron-down
+            | &nbsp; Created
+          button.btn.btn-default(ng-click="orderProp='dateCreated'")
+            span.glyphicon.glyphicon-chevron-up
+
+          button.btn.btn-default(ng-click="orderProp='-dateUpdated'")
+            span.glyphicon.glyphicon-chevron-down
+            | &nbsp; Updated
+          button.btn.btn-default(ng-click="orderProp='dateUpdated'")
+            span.glyphicon.glyphicon-chevron-up
+
+          button.btn.btn-default(ng-click="orderProp='name'") by Name
+
+          button.btn.btn-default(ng-click="orderProp='status'") by Status
+
+          button.btn.btn-default(ng-click="orderProp='title'") by Title
+
+      td(align='right')
+          a.btn.btn-primary(ui-sref='addPage') New Page
+
+    tr
+      td
+        p name, status ({{pages.length}})
+      td
+        p title
+      td
+        p action
+
+    tr(ng-repeat='page in pages | orderBy: orderProp')
+      td
+        a(href='/page/{{page.name}}', title='Published View', target='_blank') {{page.name}}
+        br
+        span.label(ng-class='{"label-success": (page.status=="published"),"label-warning": (page.status=="archived"),"label-default": (page.status=="draft")}') {{page.status}}
         | &nbsp;
-        button.btn.btn-default(ng-click="orderProp='dateCreated'")
-          span.glyphicon.glyphicon-chevron-up
-        | &nbsp; &nbsp;
+        span.when {{page.dtUpdated}}
 
-        button.btn.btn-default(ng-click="orderProp='-dateUpdated'")
-          span.glyphicon.glyphicon-chevron-down
-          | &nbsp; Updated
-        | &nbsp;
-        button.btn.btn-default(ng-click="orderProp='dateUpdated'")
-          span.glyphicon.glyphicon-chevron-up
-        | &nbsp; &nbsp;
+      td {{page.title}}
 
-        button.btn.btn-default(ng-click="orderProp='name'") by Name
-        | &nbsp; &nbsp;
-
-        button.btn.btn-default(ng-click="orderProp='status'") by Status
-        | &nbsp; &nbsp;
-
-        button.btn.btn-default(ng-click="orderProp='title'") by Title
-
-    td(align='right')
-        a.btn.btn-primary(ui-sref='addPage') New Page
-
-  tr
-    td
-      p name, status ({{pages.length}})
-    td
-      p title
-    td
-      p action
-
-  tr(ng-repeat='page in pages | orderBy: orderProp')
-    td
-      a(href='/page/{{page.name}}', title='Published View', target='_blank') {{page.name}}
-      br
-      span.label(ng-class='{"label-success": (page.status=="published"),"label-warning": (page.status=="archived"),"label-default": (page.status=="draft")}') {{page.status}}
-      | &nbsp;
-      span.when {{page.dtUpdated}}
-
-    td {{page.title}}
-
-    td(align='right')
-      a.btn.btn-default(ui-sref="editPage({id:page._id})") Edit
+      td(align='right')
+        a.btn.btn-default(ui-sref="editPage({id:page._id})") Edit

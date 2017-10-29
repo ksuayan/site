@@ -28,7 +28,7 @@ body {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 22px;
   font-weight: 400;
-  line-height: 140%;
+  line-height: 120%;
   letter-spacing: -0.5px;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -49,7 +49,7 @@ h5,
 h6 {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  line-height: 140%;
+  line-height: 120%;
   color: #333;
   margin: 0;
 }
@@ -325,116 +325,15 @@ html#slideshow {
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 50px;
+  /*
+  .stories {
+    padding-top: 30px;
+    padding-bottom: 50px;
+  }
+  */
 }
 #content .row {
   margin: 0;
-}
-#content #stage-prev {
-  top: 210px;
-  left: 10px;
-}
-#content #stage-next {
-  top: 210px;
-  right: 10px;
-}
-#content #play-button {
-  bottom: 10px;
-  right: 10px;
-}
-@media (max-width: 991px) {
-  #content #stage-prev,
-  #content #stage-next {
-    top: 150px;
-  }
-}
-#content #stage-prev,
-#content #stage-next,
-#content #play-button {
-  display: block;
-  position: absolute;
-  padding: 7px 10px;
-  width: 50px;
-  height: 50px;
-  color: rgba(255, 255, 255, 0.3);
-  background-color: rgba(0, 0, 0, 0.05);
-  z-index: 100;
-  font-size: 30px;
-}
-#content #stage-prev a,
-#content #stage-next a,
-#content #play-button a,
-#content #stage-prev a:visited,
-#content #stage-next a:visited,
-#content #play-button a:visited {
-  text-decoration: none;
-  z-index: 90;
-}
-#content #stage-prev:hover,
-#content #stage-next:hover,
-#content #play-button:hover {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-#content #stage {
-  width: 100%;
-  height: 560px;
-  position: relative;
-  overflow: hidden;
-  background-color: #212121;
-}
-#content #stage #stage-content {
-  position: absolute;
-}
-#content #stage #stage-content .tile {
-  display: block;
-  position: absolute;
-  opacity: 1;
-  font-size: 16px;
-  line-height: 120%;
-}
-@media (min-width: 992px) {
-  #content #stage #stage-content .tile {
-    font-size: 22px;
-  }
-}
-#content #stage #stage-content .tile h2,
-#content #stage #stage-content .tile h3,
-#content #stage #stage-content .tile p,
-#content #stage #stage-content .tile li {
-  color: #fff;
-  margin: 0px;
-  padding: 0px 70px 0 70px;
-}
-#content #stage #stage-content .tile p {
-  margin-bottom: 10px;
-}
-#content #stage #stage-content .tile li {
-  list-style-position: inside;
-}
-#content #stage #stage-content .tile .indent {
-  padding: 10px 70px 0 70px;
-}
-#content #stage #stage-content .tile h2 {
-  padding: 30px 70px 10px 70px;
-  font-size: 36px;
-  line-height: 110%;
-}
-#content #stage #stage-content .tile h3 {
-  padding: 0px 70px 30px 70px;
-  line-height: 110%;
-}
-#content #stage #stage-content .tile .description {
-  font-weight: 600;
-}
-@media (max-width: 991px) {
-  #content #stage {
-    height: 400px;
-  }
-}
-@media (max-width: 767px) {
-  #content #stage {
-    display: none;
-  }
 }
 #content #screen .well p {
   margin: 0;
@@ -442,7 +341,7 @@ html#slideshow {
 #content .container.article {
   padding: 20px 0 50px 0;
   font-family: "Crimson Text", Georgia, serif;
-  font-size: 24px;
+  font-size: 20px;
 }
 @media (max-width: 992px) {
   #content .container.article {
@@ -458,14 +357,10 @@ html#slideshow {
 #content .container.article p + .map-widget {
   margin-top: 20px;
 }
-#content .stories {
-  padding-top: 30px;
-  padding-bottom: 50px;
-}
 #content .story {
   padding-top: 10px;
   font-family: "Crimson Text", Georgia, serif;
-  font-size: 24px;
+  font-size: 20px;
 }
 #content .story h2 a:hover {
   text-decoration: none;
@@ -491,9 +386,118 @@ html#slideshow {
 .article h6 {
   line-height: 120%;
   margin-top: 10px;
+  font-size: 24px;
 }
 .aux-area {
   padding-top: 30px;
+}
+#stage-prev {
+  top: 210px;
+  left: 10px;
+}
+#stage-next {
+  top: 210px;
+  right: 10px;
+}
+#play-button {
+  bottom: 10px;
+  right: 10px;
+}
+@media (max-width: 991px) {
+  #stage-prev,
+  #stage-next {
+    top: 150px;
+  }
+}
+#stage-prev,
+#stage-next,
+#play-button {
+  display: block;
+  position: absolute;
+  padding: 7px 10px;
+  width: 50px;
+  height: 50px;
+  color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  font-size: 30px;
+}
+#stage-prev a,
+#stage-next a,
+#play-button a,
+#stage-prev a:visited,
+#stage-next a:visited,
+#play-button a:visited {
+  text-decoration: none;
+  z-index: 90;
+}
+#stage-prev:hover,
+#stage-next:hover,
+#play-button:hover {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+#stage {
+  width: 100%;
+  height: 560px;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  opacity: 0.1;
+}
+#stage #stage-content {
+  position: absolute;
+}
+#stage #stage-content .tile {
+  display: block;
+  position: absolute;
+  opacity: 1;
+  font-size: 16px;
+  line-height: 120%;
+}
+@media (min-width: 992px) {
+  #stage #stage-content .tile {
+    font-size: 22px;
+  }
+}
+#stage #stage-content .tile h2,
+#stage #stage-content .tile h3,
+#stage #stage-content .tile p,
+#stage #stage-content .tile li {
+  color: #fff;
+  margin: 0px;
+  padding: 0px 70px 0 70px;
+}
+#stage #stage-content .tile p {
+  margin-bottom: 10px;
+}
+#stage #stage-content .tile li {
+  list-style-position: inside;
+}
+#stage #stage-content .tile .indent {
+  padding: 10px 70px 0 70px;
+}
+#stage #stage-content .tile h2 {
+  padding: 30px 70px 10px 70px;
+  font-size: 36px;
+  line-height: 110%;
+}
+#stage #stage-content .tile h3 {
+  padding: 0px 70px 30px 70px;
+  line-height: 110%;
+}
+#stage #stage-content .tile .description {
+  font-weight: 600;
+}
+@media (max-width: 991px) {
+  #stage {
+    height: 400px;
+  }
+}
+@media (max-width: 767px) {
+  #stage {
+    display: none;
+  }
 }
 #content ul.dropdown-menu li {
   list-style: none;
@@ -518,7 +522,7 @@ html#slideshow {
 }
 .table.editor-form {
   font-family: "Crimson Text", Georgia, serif;
-  font-size: 24px;
+  font-size: 20px;
 }
 .editor-form {
   margin-top: 30px;
@@ -552,7 +556,7 @@ html#slideshow {
 }
 .editor-rte .ta-editor.form-control {
   font-family: "Crimson Text", Georgia, serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   max-height: 500px;
   margin-top: 5px;
