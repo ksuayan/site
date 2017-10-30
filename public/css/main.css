@@ -555,11 +555,6 @@ html#slideshow {
   max-height: 500px;
   margin-top: 5px;
 }
-.rich-text {
-  width: 100%;
-  clear: both;
-  display: block;
-}
 .background-fullsize {
   position: fixed;
   right: 0;
@@ -569,6 +564,11 @@ html#slideshow {
   width: auto;
   height: auto;
   z-index: -100;
+}
+.rich-text {
+  width: 100%;
+  clear: both;
+  display: block;
 }
 .video-container {
   clear: both;
