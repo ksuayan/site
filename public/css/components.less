@@ -38,19 +38,41 @@
   font-weight: @basefont-weight-semibold;
   color: @color-medium-gray;
   float: left;
-  width: 320px;
+  width: 220px;
+  height: 250px;
   margin-bottom: 10px;
   .media-heading {
+    width: 200px;
+    padding-right: 10px;
     font-family: @basefont;
     font-weight: @basefont-weight-semibold;
+    font-size: @basefont-size-small;
   }
 }
 
 .album-cover.video-js {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   .vjs-big-play-button {
     width: 45px;
     height: 45px;
   }
+}
+
+.download-link {
+  display: inline-block;
+  margin-top: @vertical-gutter;
+  .fa {
+    font-size: 140%;
+    margin: 5px 0;
+  }
+}
+
+.media-caption {
+  vertical-align: text-top;
+  display: inline-block;
+  padding: 13px 0 0 10px;
+  color: @color-medium-gray;
+  font-family: @basefont;
+  font-size: @textfont-size-small;
 }

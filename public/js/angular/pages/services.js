@@ -56,6 +56,11 @@ angular.module('site.services', [])
             form: "/jade/pages/form-map"
         },
         {
+            type: "pdf_link",
+            name: "PDF Link",
+            form: "/jade/pages/form-pdf-link"
+        },
+        {
             type: "alert",
             name: "Alert",
             form: "/jade/pages/form-alert"

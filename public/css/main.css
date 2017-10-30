@@ -325,12 +325,6 @@ html#slideshow {
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 50px;
-  /*
-  .stories {
-    padding-top: 30px;
-    padding-bottom: 50px;
-  }
-  */
 }
 #content .row {
   margin: 0;
@@ -371,6 +365,13 @@ html#slideshow {
 }
 #content ul li {
   list-style: disc;
+}
+#content .btn,
+#content .control-label,
+#content .form-control,
+#content .label {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 400;
 }
 .story h1,
 .article h1,
@@ -527,13 +528,6 @@ html#slideshow {
 .editor-form {
   margin-top: 30px;
 }
-.editor-form .btn,
-.editor-form .control-label,
-.editor-form .form-control,
-.editor-form .label {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-weight: 600;
-}
 .editor-form .label {
   font-size: 16px;
 }
@@ -560,6 +554,11 @@ html#slideshow {
   font-weight: 400;
   max-height: 500px;
   margin-top: 5px;
+}
+.rich-text {
+  width: 100%;
+  clear: both;
+  display: block;
 }
 .background-fullsize {
   position: fixed;
@@ -596,20 +595,40 @@ html#slideshow {
   font-weight: 600;
   color: #666;
   float: left;
-  width: 320px;
+  width: 220px;
+  height: 250px;
   margin-bottom: 10px;
 }
 .audio-player .media-heading {
+  width: 200px;
+  padding-right: 10px;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-weight: 600;
+  font-size: 16px;
 }
 .album-cover.video-js {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
 }
 .album-cover.video-js .vjs-big-play-button {
   width: 45px;
   height: 45px;
+}
+.download-link {
+  display: inline-block;
+  margin-top: 20px;
+}
+.download-link .fa {
+  font-size: 140%;
+  margin: 5px 0;
+}
+.media-caption {
+  vertical-align: text-top;
+  display: inline-block;
+  padding: 13px 0 0 10px;
+  color: #666;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 .map-widget,
 .map-container {

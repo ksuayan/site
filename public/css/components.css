@@ -51,18 +51,38 @@
   font-weight: 600;
   color: #666;
   float: left;
-  width: 320px;
+  width: 220px;
+  height: 250px;
   margin-bottom: 10px;
 }
 .audio-player .media-heading {
+  width: 200px;
+  padding-right: 10px;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-weight: 600;
+  font-size: 16px;
 }
 .album-cover.video-js {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
 }
 .album-cover.video-js .vjs-big-play-button {
   width: 45px;
   height: 45px;
+}
+.download-link {
+  display: inline-block;
+  margin-top: 20px;
+}
+.download-link .fa {
+  font-size: 140%;
+  margin: 5px 0;
+}
+.media-caption {
+  vertical-align: text-top;
+  display: inline-block;
+  padding: 13px 0 0 10px;
+  color: #666;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }

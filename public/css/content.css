@@ -22,12 +22,6 @@
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 50px;
-  /*
-  .stories {
-    padding-top: 30px;
-    padding-bottom: 50px;
-  }
-  */
 }
 #content .row {
   margin: 0;
@@ -68,6 +62,13 @@
 }
 #content ul li {
   list-style: disc;
+}
+#content .btn,
+#content .control-label,
+#content .form-control,
+#content .label {
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 400;
 }
 .story h1,
 .article h1,

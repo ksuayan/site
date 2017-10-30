@@ -20,8 +20,9 @@ mixin meta(obj)
     meta(name=obj.name, content=obj.content)
 
 mixin rich_text(obj)
-  if (obj.content)
-    != obj.content
+  - if (obj.content) {
+    .rich-text!= obj.content
+  - }
 
 mixin youtube_video(obj)
   .video-container
@@ -38,6 +39,16 @@ mixin mp4_video(obj)
 
 mixin image(obj)
   image(src=obj.image,class="story-image")
+
+mixin pdf_link(obj)
+  a(href=obj.url, class="download-link btn btn-primary", role="button",target="_blank")
+    i(class="fa fa-file-pdf-o",aria-hidden="true")
+    | &nbsp; &nbsp;
+    != obj.content
+  - if (obj.caption) {
+    p.media-caption!= obj.caption
+  - }
+  br
 
 mixin alert(obj)
   .alert.alert-dismissible(role='alert', class="alert-"+obj.subtype)
