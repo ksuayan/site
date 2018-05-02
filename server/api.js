@@ -115,7 +115,7 @@ ApiHandler.prototype.importInstagram = function(req, res) {
 
     var totalDocs = 0,
         query = { count:20 },
-        onError = function (err, res, body) {
+        onError = function (err, res) {
             res.send({"error": err});
         },
         onSuccess = function (igData) {
@@ -145,7 +145,7 @@ ApiHandler.prototype.importInstagram = function(req, res) {
     var getInstagramData = function() {
         Instagram.user_self_media_recent(query, function(err, medias, pagination, remaining, limit) {
             if (err) {
-                onError(err);
+                onError(err, res);
             } else {
                 if (pagination.next_max_id) {
                     query.max_id = pagination.next_max_id;

@@ -82,7 +82,7 @@ app.get('/api/tiles',         api.getTileList);
 
 app.get('/api/twitter',       api.twitter);
 app.get('/api/vimeo/:count',  api.vimeo);
-app.get('/api/flickr/:count', api.flickr);
+// app.get('/api/flickr/:count', api.flickr);
 
 app.get('/api/page',        api.getPageList);
 app.post('/api/page',       api.createPage);
