@@ -59,7 +59,8 @@ module.exports = function(grunt) {
             // minified already
             extras: {
                 src: [
-                    'public/js/handlebars/handlebars.runtime.min.js'
+                    'public/js/handlebars/handlebars.runtime.min.js',
+                    'public/js/prism/prism.js'
                 ],
                 dest: 'public/dist/js/extras-<%= pkg.name %>.min.js'
             },
@@ -120,7 +121,8 @@ module.exports = function(grunt) {
                 files: {
                     'public/dist/css/corelib.min.css': [
                       '<%= bower_concat.all.dest.css %>',
-                      'public/js/videojs/video-js.css'
+                      'public/js/videojs/video-js.css',
+                      'public/js/prism/prism.css'
                     ]
                 }
             },

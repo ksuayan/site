@@ -1,0 +1,6 @@
+.form-group
+  input(type='hidden', name='component_type', value='source_code')
+  label.control-label(for='lang') Language
+  input#lang.form-control(type='text', ng-model='component.lang')
+  label.control-label(for='source_code') Source Code
+  textarea#source_code.form-control(data-ng-model='component.content')

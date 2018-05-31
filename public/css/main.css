@@ -221,6 +221,9 @@ html#slideshow {
 .when {
   color: #999;
 }
+pre.source-code {
+  font-size: 16px;
+}
 /* NAVIGATION */
 .navbar {
   border-radius: 0px;

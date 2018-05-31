@@ -24,6 +24,12 @@ mixin rich_text(obj)
     .rich-text!= obj.content
   - }
 
+mixin source_code(obj)
+  - if (obj.content) {
+    pre.line-numbers.source-code
+      code(class='lang-'+obj.lang)!{obj.content}
+  - }
+
 mixin youtube_video(obj)
   .video-container
     iframe(src='https://www.youtube.com/embed/'+obj.id)

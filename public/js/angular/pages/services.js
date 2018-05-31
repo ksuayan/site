@@ -26,6 +26,11 @@ angular.module('site.services', [])
             form: "/jade/pages/form-rich-text"
         },
         {
+            type: "source_code",
+            name: "Source Code",
+            form: "/jade/pages/form-source-code"
+        },
+        {
             type: "image",
             name: "Image",
             form: "/jade/pages/form-image"
