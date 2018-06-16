@@ -10,21 +10,11 @@
   .row {
     margin: 0;
   }
-
-  a {
-    &:hover {
-      color: @color-hover;
-      background-color: @color-hover-background;
-      text-decoration: none;
-    }
-  }
-
   #screen {
     .well p {
       margin: 0;
     }
   }
-
   .container.article {
     padding: 20px 0 50px 0;
     font-family: @textfont;
@@ -54,8 +44,6 @@
   }
   ul li {
     list-style: disc;
-    list-style-position: outside;
-    margin-left: -20px;
   }
   .btn, .control-label, .form-control, .label {
     font-family: @basefont;
@@ -68,6 +56,11 @@
     font-size: @basefont-size-medium;
     line-height: @basefont-line-height;
     margin: 10px 0 5px 0;
+    a {
+      &:hover {
+        .green-hover;
+      }
+    }
   }
 }
 

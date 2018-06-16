@@ -133,6 +133,11 @@ iframe {
   /* Microsoft Edge */
   color: #eee;
 }
+.green-hover {
+  color: #649c1a;
+  background-color: #f7fcec;
+  text-decoration: none;
+}
 .btn-file {
   position: relative;
   overflow: hidden;
@@ -340,11 +345,6 @@ pre.source-code {
 #content .row {
   margin: 0;
 }
-#content a:hover {
-  color: #649c1a;
-  background-color: #f7fcec;
-  text-decoration: none;
-}
 #content #screen .well p {
   margin: 0;
 }
@@ -381,8 +381,6 @@ pre.source-code {
 }
 #content ul li {
   list-style: disc;
-  list-style-position: outside;
-  margin-left: -20px;
 }
 #content .btn,
 #content .control-label,
@@ -406,6 +404,22 @@ pre.source-code {
   font-size: 24px;
   line-height: 120%;
   margin: 10px 0 5px 0;
+}
+.story h1 a:hover,
+.article h1 a:hover,
+.story h2 a:hover,
+.article h2 a:hover,
+.story h3 a:hover,
+.article h3 a:hover,
+.story h4 a:hover,
+.article h4 a:hover,
+.story h5 a:hover,
+.article h5 a:hover,
+.story h6 a:hover,
+.article h6 a:hover {
+  color: #649c1a;
+  background-color: #f7fcec;
+  text-decoration: none;
 }
 .aux-area {
   padding-top: 30px;
@@ -588,6 +602,11 @@ pre.source-code {
   clear: both;
   display: block;
   margin-top: 20px;
+}
+.rich-text a:hover {
+  color: #649c1a;
+  background-color: #f7fcec;
+  text-decoration: none;
 }
 .video-container {
   clear: both;
