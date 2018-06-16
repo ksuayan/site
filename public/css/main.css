@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Crimson+Text:400,400i,600,600i');
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Libre+Baskerville:400,400i,700');
 @media screen and (max-width: 767px) {
 }
 @media (min-width: 768px) {
@@ -26,7 +26,7 @@ html {
 }
 body {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 120%;
   letter-spacing: -0.5px;
@@ -76,6 +76,13 @@ h6 mark i {
   padding: 3px 6px;
   letter-spacing: 3px;
 }
+p,
+li,
+blockquote {
+  color: #666;
+  line-height: 170%;
+  font-kerning: normal;
+}
 th {
   background-color: #efefef;
 }
@@ -86,18 +93,18 @@ textarea {
 input.form-control,
 textarea.form-control {
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-size: 22px;
+  font-size: 18px;
 }
 blockquote {
-  font-family: "Crimson Text", Georgia, serif;
-  font-size: 30px;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 24px;
   font-weight: 400;
   font-style: italic;
-  line-height: 140%;
+  line-height: 170%;
   padding: 20px 20px 20px 30px;
   border-left-color: #efefef;
   border-left-style: solid;
-  border-left-width: 5px;
+  border-left-width: 20px;
   background-color: #f7f7f7;
   margin: 20px 0 20px 0;
 }
@@ -220,6 +227,7 @@ html#slideshow {
 }
 .when {
   color: #999;
+  font-size: 16px;
 }
 pre.source-code {
   font-size: 16px;
@@ -332,13 +340,18 @@ pre.source-code {
 #content .row {
   margin: 0;
 }
+#content a:hover {
+  color: #649c1a;
+  background-color: #f7fcec;
+  text-decoration: none;
+}
 #content #screen .well p {
   margin: 0;
 }
 #content .container.article {
   padding: 20px 0 50px 0;
-  font-family: "Crimson Text", Georgia, serif;
-  font-size: 20px;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 18px;
 }
 @media (max-width: 992px) {
   #content .container.article {
@@ -356,18 +369,20 @@ pre.source-code {
 }
 #content .story {
   padding-top: 10px;
-  font-family: "Crimson Text", Georgia, serif;
-  font-size: 20px;
-}
-#content .story h2 a:hover {
-  text-decoration: none;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 18px;
 }
 #content .story-image {
-  margin: 30px 0 20px 0;
+  margin: 20px 0 0 0;
   max-width: 100%;
+}
+#content ul {
+  margin: 10px 0 10px 0;
 }
 #content ul li {
   list-style: disc;
+  list-style-position: outside;
+  margin-left: -20px;
 }
 #content .btn,
 #content .control-label,
@@ -388,9 +403,9 @@ pre.source-code {
 .article h5,
 .story h6,
 .article h6 {
-  line-height: 120%;
-  margin-top: 10px;
   font-size: 24px;
+  line-height: 120%;
+  margin: 10px 0 5px 0;
 }
 .aux-area {
   padding-top: 30px;
@@ -461,7 +476,7 @@ pre.source-code {
 }
 @media (min-width: 992px) {
   #stage #stage-content .tile {
-    font-size: 22px;
+    font-size: 18px;
   }
 }
 #stage #stage-content .tile h2,
@@ -512,7 +527,7 @@ pre.source-code {
   padding: 10px 15px;
   width: 100%;
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
 }
 #search-term:focus {
@@ -525,8 +540,8 @@ pre.source-code {
   border-radius: 0;
 }
 .table.editor-form {
-  font-family: "Crimson Text", Georgia, serif;
-  font-size: 20px;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 18px;
 }
 .editor-form {
   margin-top: 30px;
@@ -552,8 +567,8 @@ pre.source-code {
   margin: 5px 0;
 }
 .editor-rte .ta-editor.form-control {
-  font-family: "Crimson Text", Georgia, serif;
-  font-size: 20px;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 18px;
   font-weight: 400;
   max-height: 500px;
   margin-top: 5px;
@@ -572,6 +587,7 @@ pre.source-code {
   width: 100%;
   clear: both;
   display: block;
+  margin-top: 20px;
 }
 .video-container {
   clear: both;
@@ -749,3 +765,4 @@ pre.source-code {
     height: 20px;
   }
 }
+/*# sourceMappingURL=./main.css.map */

@@ -27,26 +27,33 @@ mixin rich_text(obj)
 mixin source_code(obj)
   - if (obj.content) {
     pre.line-numbers.source-code
-      code(class='lang-'+obj.lang)!{obj.content}
+      code(class='lang-'+obj.lang) !{obj.content}
   - }
 
 mixin youtube_video(obj)
+  - if (obj.id) {
   .video-container
     iframe(src='https://www.youtube.com/embed/'+obj.id)
+  - }
 
 mixin vimeo_video(obj)
+  - if (obj.id) {
   .video-container
     iframe(src="https://player.vimeo.com/video/"+obj.id,webkitallowfullscreen,mozallowfullscreen,allowfullscreen)
+  - }
 
 mixin mp4_video(obj)
+  - if (obj.url) {
   .video-container
     video(id="mp4-player",poster=obj.image,loop="loop",controls="controls",preload="auto",class="video-js vjs-default-skin vjs-big-play-centered")
       source(src=obj.url, type="video/mp4")
+  - }
 
 mixin image(obj)
   image(src=obj.image,class="story-image")
 
 mixin pdf_link(obj)
+  - if (obj.content) {
   a(href=obj.url, class="download-link btn btn-primary", role="button",target="_blank")
     i(class="fa fa-file-pdf-o",aria-hidden="true")
     | &nbsp; &nbsp;
@@ -55,23 +62,30 @@ mixin pdf_link(obj)
     p.media-caption!= obj.caption
   - }
   br
+  - }
 
 mixin alert(obj)
+  - if (obj.content) {
   .alert.alert-dismissible(role='alert', class="alert-"+obj.subtype)
     button.close(type='button', data-dismiss='alert', aria-label='Close')
       span(aria-hidden='true') ×
     != obj.content
+  - }
 
 mixin audio_player(obj)
+  - if (obj.url) {
   .media.audio-player
     .media-left
       audio(src=obj.url,poster=(obj.cover||config.defaultImage),class="album-cover video-js vjs-default-skin",controls="controls",preload="auto",data-setup='{}')
     .media-body
       h4.media-heading!=obj.title
+  - }    
 
 mixin map(obj)
+  - if (obj.mapId) {
   div(id=obj.divId,class="map-widget",data-map-id=obj.mapId)
-
+  - }
+  
 mixin fb_api(appId)
   - if (appId) {
     #fb-root

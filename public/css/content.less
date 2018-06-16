@@ -11,6 +11,14 @@
     margin: 0;
   }
 
+  a {
+    &:hover {
+      color: @color-hover;
+      background-color: @color-hover-background;
+      text-decoration: none;
+    }
+  }
+
   #screen {
     .well p {
       margin: 0;
@@ -33,35 +41,33 @@
   }
   .story {
     padding-top: 10px;
-    h2 a {
-      &:hover {
-        text-decoration: none;
-      }
-    }
     font-family: @textfont;
     font-size: @textfont-size-normal;
   }
   .story-image {
-    margin: 30px 0 20px 0;
+    margin: 20px 0 0 0;
     max-width: 100%;
   }
   // List Styles for Content Only.
+  ul {
+    margin: 10px 0 10px 0;
+  }
   ul li {
     list-style: disc;
+    list-style-position: outside;
+    margin-left: -20px;
   }
-
   .btn, .control-label, .form-control, .label {
     font-family: @basefont;
     font-weight: @basefont-weight-regular;
   }
-
 }
 
 .story, .article {
   h1, h2, h3, h4, h5, h6 {
-    line-height: @basefont-line-height;
-    margin-top: 10px;
     font-size: @basefont-size-medium;
+    line-height: @basefont-line-height;
+    margin: 10px 0 5px 0;
   }
 }
 

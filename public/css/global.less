@@ -1,12 +1,11 @@
-// @import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,600|Libre+Baskerville:400,400i,700');
-@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Crimson+Text:400,400i,600,600i');
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Libre+Baskerville:400,400i,700');
 @import (reference) '../../bower_components/bootstrap/less/bootstrap';
 
 // ----------------------------------------
 // basefont -- is used for application UI elements
 @basefont: "Source Sans Pro", Helvetica, Arial, sans-serif;
 @basefont-size-small: 16px;
-@basefont-size-normal: 22px;
+@basefont-size-normal: 18px;
 @basefont-size-medium: 24px;
 
 @basefont-weight-light: 300;
@@ -16,16 +15,17 @@
 @basefont-line-height: 120%;
 
 // ----------------------------------------
-// textfont -- is usef for long text bodies
-@textfont: "Crimson Text", Georgia, serif;
+// textfont -- is used for long text bodies
+// @textfont: "Crimson Text", Georgia, serif;
+@textfont: "Libre Baskerville", Georgia, serif;
 @textfont-size-small: 16px;
-@textfont-size-normal: 20px;
-@textfont-size-medium: 30px;
+@textfont-size-normal: 18px;
+@textfont-size-medium: 24px;
 
 @textfont-weight-regular: 400;
-@textfont-weight-semibold: 600;
+@textfont-weight-semibold: 700;
 
-@textfont-line-height: 140%;
+@textfont-line-height: 170%;
 
 // ----------------------------------------
 // navfont -- us used for sitewide navigation
@@ -40,7 +40,8 @@
 @color-faded-gray: #dddddd;
 @color-faint-gray: #eeeeee;
 @color-search-term: #428bca;
-
+@color-hover: #649c1a; // #589b00
+@color-hover-background: #f7fcec;
 @color-placeholder: #eee;
 
 // Spacing/grid
@@ -101,6 +102,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+p, li, blockquote {
+    color: @color-medium-gray;
+    line-height: @textfont-line-height;
+    font-kerning: normal;
+}
+
 th {
     background-color: #efefef;
 }
@@ -120,11 +127,11 @@ blockquote {
     font-size: @textfont-size-medium;
     font-weight: @textfont-weight-regular;
     font-style: italic;
-    line-height: 140%;
+    line-height: @textfont-line-height;
     padding: 20px 20px 20px 30px;
     border-left-color: #efefef;
     border-left-style: solid;
-    border-left-width: 5px;
+    border-left-width: 20px;
     background-color: #f7f7f7;
     margin: @vertical-gutter 0 @vertical-gutter 0;
 }
