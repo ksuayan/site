@@ -3,8 +3,8 @@
   "description": "Node JS Template Site",
   "version": "0.2.0",
   "engines": {
-    "node": "7.3.0",
-    "npm": "5.4.2"
+    "node": "10.1.0",
+    "npm": "6.1.0"
   },
   "homepage": "https://github.com/ksuayan/site/",
   "repository": {
