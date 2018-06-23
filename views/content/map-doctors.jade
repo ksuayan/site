@@ -1,44 +1,44 @@
 extends ../layout
 
 block content
-  #content
-    #map-canvas.tall
-    .container
-      .row
-        #panel
-          form(id="geocode",class="form-inline",role="form")
-            .col-md-12
-              .form-group
-                input(id="address",type="textbox",class="form-control",placeholder="Address")
-                | &nbsp;
-                button(class="btn btn-default", id="go")
-                  span.glyphicon.glyphicon-globe
-                  | &nbsp; Locate
-                | &nbsp;
+  #map-canvas.tall
+  .container
+    .row
+      #panel
+        form(id="geocode",class="form-inline",role="form")
+          .col-md-12
+            .form-group
+              input(id="address",type="textbox",class="form-control",placeholder="Address")
+              | &nbsp;
+              button(class="btn btn-default", id="go")
+                span.glyphicon.glyphicon-globe
+                | &nbsp; Locate
+              | &nbsp;
 
-              .form-group
-                input#lat.form-control(type=text,placeholder="latitude")
-                input#lng.form-control(type=text,placeholder="longitude")
+            .form-group
+              input#lat.form-control(type=text,placeholder="latitude")
+              input#lng.form-control(type=text,placeholder="longitude")
 
-              .form-group
-                span within
-                | &nbsp;
-                select#radius.form-control(name="radius")
-                  option(value=5)   5.0 mi
-                  option(value=10) 10.0 mi
-                  option(value=25) 25.0 mi
-                  option(value=50) 50.0 mi
-                | &nbsp;
-                span radius
-                | &nbsp;
-                button(class="btn", id="find")
-                  span.glyphicon.glyphicon-search
-                  | &nbsp; Find Doctors
-                | &nbsp;
+            .form-group
+              span within
+              | &nbsp;
+              select#radius.form-control(name="radius")
+                option(value=5)   5.0 mi
+                option(value=10) 10.0 mi
+                option(value=25) 25.0 mi
+                option(value=50) 50.0 mi
+              | &nbsp;
+              span radius
+              | &nbsp;
+              button(class="btn", id="find")
+                span.glyphicon.glyphicon-search
+                | &nbsp; Find Doctors
+              | &nbsp;
 
-      .row
-        .col-lg-12
-          #message.well.well-sm
+    .row
+      .col-lg-12
+        #message.well.well-sm
+
 block append scripts
   script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U")
   script(src="/js/gb-ui-mapconfig.js")

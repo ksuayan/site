@@ -1,31 +1,30 @@
 extends ../layout
 
 block append css
-    link(rel="stylesheet",href="/css/chat.css")
+  link(rel="stylesheet",href="/css/chat.css")
 
 block append scripts
-    script.
-        var socketHost = "#{config.socketHost}",
-            username = "#{user.username}";
-    script(type="text/javascript", src="/socket.io/socket.io.js")
-    script(type="text/javascript", src="/js/gb-chat-client.js")
+  script.
+    var socketHost = "#{config.socketHost}",
+        username = "#{user.username}";
+  script(type="text/javascript", src="/socket.io/socket.io.js")
+  script(type="text/javascript", src="/js/gb-chat-client.js")
 
 block content
-    // ul#console.list-group
-    .container.dim
-        .row
-            #left(class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12")
-                p online users
-                #users
-                p system
-                #system
+  .container.dim
+    .row
+      #left(class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12")
+        p online users
+        #users
+        p system
+        #system
 
-            div(class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12")
-                p messages
-                #command
-                    .input-group
-                        input#data.form-control(type="text",placeholder="message")
-                        span.input-group-btn
-                            button#datasend(type="button",class="btn btn-primary") Send
-                #chat-window
-                    #conversation
+      div(class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12")
+        p messages
+        #command
+          .input-group
+            input#data.form-control(type="text",placeholder="message")
+            span.input-group-btn
+              button#datasend(type="button",class="btn btn-primary") Send
+        #chat-window
+          #conversation

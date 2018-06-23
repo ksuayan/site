@@ -1,17 +1,16 @@
 extends view
 
 block content
-  #content
-    .container.article
-      .row
-        .col-sm-12
-          include ../includes/title
-      .row
-        .col-sm-4
-          include ../includes/body
-        .col-sm-4
-          p This is a sidebar column.
-        .col-sm-4
-          p This is a sidebar column.
+  .container.article
+    .row
+      .col-sm-12
+        include ../includes/title
+    .row
+      .col-sm-4
+        include ../includes/body
+      .col-sm-4
+        p This is a sidebar column.
+      .col-sm-4
+        p This is a sidebar column.
 
-    include ../includes/fb-comments
+  include ../includes/fb-comments

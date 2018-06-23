@@ -1,18 +1,17 @@
 extends ../layout
 
 block content
-  #content
-    #stage
-      a(href="#", id="stage-prev")
-        span.glyphicon.glyphicon-chevron-left
-      a(href="#", id="stage-next")
-        span.glyphicon.glyphicon-chevron-right
-      a(href="#", id="play-button")
-        span.glyphicon.glyphicon-pause
-    .container
-      .row.stories
-        .col-xs-12
-          include ../includes/stories
+  #stage
+    a(href="#", id="stage-prev")
+      span.glyphicon.glyphicon-chevron-left
+    a(href="#", id="stage-next")
+      span.glyphicon.glyphicon-chevron-right
+    a(href="#", id="play-button")
+      span.glyphicon.glyphicon-pause
+  .container
+    .row.stories
+      .col-xs-12
+        include ../includes/stories
   .container
     .row
       #stream.col-lg-12

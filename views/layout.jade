@@ -15,7 +15,6 @@ html(lang="en")
       +meta(keywords)
     +gtm_head(config.gtmContainerId)
 
-
   body
     +fb_api(config.facebook.clientId)
     +gtm_body(config.gtmContainerId)
@@ -23,7 +22,8 @@ html(lang="en")
     block header
       include includes/header
 
-    block content
+    #content
+      block content
 
     block footer
       include includes/footer

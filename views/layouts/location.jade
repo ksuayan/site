@@ -1,31 +1,30 @@
 extends view
 
 block content
-  #content
-    #map-container.map-container
-    .container.article
-      .row
-        .col-sm-8
-          h1!= mapObj.name
-          - if (mapObj.date) {
-            p.when!= fn.fromNow(mapObj.date)
-          - }
+  #map-container.map-container
+  .container.article
+    .row
+      .col-sm-8
+        h1!= mapObj.name
+        - if (mapObj.date) {
+          p.when!= fn.fromNow(mapObj.date)
+        - }
 
-          p!= mapObj.address
+        p!= mapObj.address
 
-          .description!= mapObj.description
+        .description!= mapObj.description
 
-          - if (mapObj.url) {
-            a(href=mapObj.url,target="_blank") !{mapObj.url}
-          - }
+        - if (mapObj.url) {
+          a(href=mapObj.url,target="_blank") !{mapObj.url}
+        - }
 
-        .col-sm-4
-          - if (mapObj.map) {
-            p
-              a(href="/map/"+mapObj.map) &raquo; Related Map
-          - }
+      .col-sm-4
+        - if (mapObj.map) {
+          p
+            a(href="/map/"+mapObj.map) &raquo; Related Map
+        - }
 
-    include ../includes/fb-comments
+  include ../includes/fb-comments
 
 block append last
   script.

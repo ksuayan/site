@@ -32,15 +32,20 @@ block metadata
   -var og_image = { property: "og:image", content:image };
   +meta_og(og_image)
 
-block content
-  #content
-    .container.article
-      .row
-        .col-sm-12
-          include ../includes/title
-          include ../includes/body
+block append header
+  .masthead
+    .masthead-bkg(style='background-image: url("'+image+'");')
+    .masthead-gradient
+    .masthead-title
+      include ../includes/title
 
-    include ../includes/fb-comments
+      
+block content
+  .container.article
+    .row
+      .col-sm-12
+        include ../includes/body
+  include ../includes/fb-comments
 
 block prepend scripts
     script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U")

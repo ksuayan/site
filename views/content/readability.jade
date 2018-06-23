@@ -2,19 +2,18 @@ extends ../layout
 
 
 block content
-  #content
-    .container.article
-      .row
-        .col-xs-12.col-md-8
-          h1 Flesch-Kincaid Readability Analysis
-          form(role="form")
-            p Score:
-              | &nbsp;
-              span#fscore 0.0
-            p Grade Level:
-              | &nbsp;
-              span#fgrade 0.0
-            textarea#specimen.form-control(width="100%",cols="80",rows="15")
+  .container.article
+    .row
+      .col-xs-12.col-md-8
+        h1 Flesch-Kincaid Readability Analysis
+        form(role="form")
+          p Score:
+            | &nbsp;
+            span#fscore 0.0
+          p Grade Level:
+            | &nbsp;
+            span#fgrade 0.0
+          textarea#specimen.form-control(width="100%",cols="80",rows="15")
 
 
 block append scripts

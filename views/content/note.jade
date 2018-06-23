@@ -1,11 +1,10 @@
 extends ../layout
 
 block content
-  #content
-    .container.article
-      .row
-        .col-lg-12
-          #screen(data-ng-app="app",ui-view="")
+  .container.article
+    .row
+      .col-lg-12
+        #screen(data-ng-app="app",ui-view="")
 
 block append scripts
   script(src="//maps.googleapis.com/maps/api/js?key=AIzaSyBrgK46nY9WqGUPRy3S0MFGNMlbEojkN4U")

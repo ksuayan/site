@@ -1,70 +1,77 @@
-ul(class="nav navbar-nav")
-  li(class="dropdown")
-    a(href="#",class="dropdown-toggle",data-toggle="dropdown") Work
-      span(class="caret")
-    ul(class="dropdown-menu")
-      li
-        a(href="/page/about") About Me
-      li
-        a(href="/page/design-and-development-experience") Design &amp; Development
-      li
-        a(href="https://drive.google.com/file/d/0BzzZXU8Srxv0TGhmVC1kNEdPOVk/view?usp=sharing") PDF Resume
-      li
-        a(href="/page/artistCV") Artist CV
-
-  li(class="dropdown")
-    a(href="#",class="dropdown-toggle",data-toggle="dropdown") Contact
-      span(class="caret")
-    ul(class="dropdown-menu")
-      li
-        a(href="https://www.facebook.com/ksuayan") Facebook
-      li
-        a(href="https://www.linkedin.com/in/ksuayan") LinkedIn
-      li
-        a(href="https://www.twitter.com/ksuayan") Twitter
-      li
-        a(href="https://plus.google.com/+KyoSuayan") Google+
-      li
-        a(href="https://www.github.com/ksuayan") GitHub
-      li(class="divider")
-      li(class="dropdown-header",role="presentation") Imagery
-      li
-        a(href="http://visual.suayan.com") visual.suayan.com
-      li
-        a(href="http://www.flickr.com/ksuayan") Flickr
-      li
-        a(href="http://www.500px.com/ksuayan") 500px
-      li
-        a(href="https://ksuayan.tumblr.com") Tumblr
-      li
-        a(href="https://instagram.com/ksuayan") Instagram
-      li
-        a(href="https://www.pinterest.com/ksuayan/") Pinterest
-      li(class="divider")
-      li(class="dropdown-header",role="presentation") Audio Visual
-      li
-        a(href="https://www.soundcloud.com/ksuayan") SoundCloud
-      li
-        a(href="https://www.youtube.com/ksuayan") Youtube
-      li
-        a(href="https://www.vimeo.com/ksuayan") Vimeo
-  if (user)
-    li(class="dropdown")
-      a(href="#",class="dropdown-toggle",data-toggle="dropdown") Workspace
-        span(class="caret")
-      ul(class="dropdown-menu")
+.navbar.navbar-inverse
+  .navbar-header
+    button.navbar-toggle(data-toggle="collapse",data-target=".navbar-collapse")
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand(href="/") Kyo Suayan
+  .navbar-collapse.collapse
+    ul(class="nav navbar-nav")
+      li(class="dropdown")
+        a(href="#",class="dropdown-toggle",data-toggle="dropdown") Work
+          span(class="caret")
+        ul(class="dropdown-menu")
+          li
+            a(href="/page/about") About Me
+          li
+            a(href="/page/design-and-development-experience") Design &amp; Development
+          li
+            a(href="https://drive.google.com/file/d/0BzzZXU8Srxv0TGhmVC1kNEdPOVk/view?usp=sharing") PDF Resume
+          li
+            a(href="/page/artistCV") Artist CV
+      li(class="dropdown")
+        a(href="#",class="dropdown-toggle",data-toggle="dropdown") Contact
+          span(class="caret")
+        ul(class="dropdown-menu")
+          li
+            a(href="https://www.facebook.com/ksuayan") Facebook
+          li
+            a(href="https://www.linkedin.com/in/ksuayan") LinkedIn
+          li
+            a(href="https://www.twitter.com/ksuayan") Twitter
+          li
+            a(href="https://plus.google.com/+KyoSuayan") Google+
+          li
+            a(href="https://www.github.com/ksuayan") GitHub
+          li(class="divider")
+          li(class="dropdown-header",role="presentation") Imagery
+          li
+            a(href="http://visual.suayan.com") visual.suayan.com
+          li
+            a(href="http://www.flickr.com/ksuayan") Flickr
+          li
+            a(href="http://www.500px.com/ksuayan") 500px
+          li
+            a(href="https://ksuayan.tumblr.com") Tumblr
+          li
+            a(href="https://instagram.com/ksuayan") Instagram
+          li
+            a(href="https://www.pinterest.com/ksuayan/") Pinterest
+          li(class="divider")
+          li(class="dropdown-header",role="presentation") Audio Visual
+          li
+            a(href="https://www.soundcloud.com/ksuayan") SoundCloud
+          li
+            a(href="https://www.youtube.com/ksuayan") Youtube
+          li
+            a(href="https://www.vimeo.com/ksuayan") Vimeo
+      if (user)
+        li(class="dropdown")
+          a(href="#",class="dropdown-toggle",data-toggle="dropdown") Workspace
+            span(class="caret")
+          ul(class="dropdown-menu")
+            li
+              a(href="/members/angular-pages") Pages
+            li
+              a(href="/members/note#/maps") Maps
+            li
+              a(href="/members/note#/locations") Locations
+            li
+              a(href="/members/chat") Chat
+            li
+              a(href="/members/angular-demo#/home") Tracks
+            li(class="divider")
+            li
+              a(href="/members") Other Demos
         li
-          a(href="/members/angular-pages") Pages
-        li
-          a(href="/members/note#/maps") Maps
-        li
-          a(href="/members/note#/locations") Locations
-        li
-          a(href="/members/chat") Chat
-        li
-          a(href="/members/angular-demo#/home") Tracks
-        li(class="divider")
-        li
-          a(href="/members") Other Demos
-    li
-      a(href="/logout") Logout
+          a(href="/logout") Logout

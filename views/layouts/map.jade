@@ -1,24 +1,23 @@
 extends view
 
 block content
-  #content
-    #map-container.map-container
-    .container.article
-      .row
-        .col-sm-8
-          h1!= map.name
+  #map-container.map-container
+  .container.article
+    .row
+      .col-sm-8
+        h1!= map.name
 
-          - if (map.date) {
-            p.when!= fn.fromNow(map.date)
-          - }
+        - if (map.date) {
+          p.when!= fn.fromNow(map.date)
+        - }
 
-          - if (map.description) {
-            .description!= map.description
-          - }
-        .col-sm-4
-          #location-details
+        - if (map.description) {
+          .description!= map.description
+        - }
+      .col-sm-4
+        #location-details
 
-    include ../includes/fb-comments
+  include ../includes/fb-comments
 
 block append last
   script.

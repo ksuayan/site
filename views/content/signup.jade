@@ -1,37 +1,36 @@
 extends ../layout
 
 block content
-  #content
-    if (user)
-      .container
-        .row
-          .col-xs-12
-            form#sign-up(role="form", method="POST")
-              h1= "You're just a few steps away, " + user.displayName + "."
-              p Just fill up the form below.
-              include ../includes/errors
-              .well
-                p.lead Profile
-                .form-group
-                  label(for="firstName",class="control-label") First Name
-                  input#firstName(name="firstName", type="text", class="form-control", value=user.firstName)
-                  label(for="lastName",class="control-label") Last Name
-                  input#lastName(name="lastName", type="text", class="form-control", value=user.lastName)
-                .form-group
-                  label(for="email",class="control-label") Email address
-                  input(name="email",type="email", class="form-control", value=user.email)
-                  p.help-block Will be used for resetting your password.
-                .form-group
-                  label(for="username",class="control-label") Username
-                  input(name="username",type="text", class="form-control", value=user.username, maxlength="20")
-                .form-group
-                  label(for="password",class="control-label") Password
-                  input(name="password",type="password", class="form-control", maxlength="20")
-                .form-group
-                  label(for="password2",class="control-label") Verify Password
-                  input(name="password2",type="password", class="form-control", maxlength="20")
-                button(class="btn btn-info",type="submit") Save Profile
-    else
+  if (user)
+    .container
+      .row
+        .col-xs-12
+          form#sign-up(role="form", method="POST")
+            h1= "You're just a few steps away, " + user.displayName + "."
+            p Just fill up the form below.
+            include ../includes/errors
+            .well
+              p.lead Profile
+              .form-group
+                label(for="firstName",class="control-label") First Name
+                input#firstName(name="firstName", type="text", class="form-control", value=user.firstName)
+                label(for="lastName",class="control-label") Last Name
+                input#lastName(name="lastName", type="text", class="form-control", value=user.lastName)
+              .form-group
+                label(for="email",class="control-label") Email address
+                input(name="email",type="email", class="form-control", value=user.email)
+                p.help-block Will be used for resetting your password.
+              .form-group
+                label(for="username",class="control-label") Username
+                input(name="username",type="text", class="form-control", value=user.username, maxlength="20")
+              .form-group
+                label(for="password",class="control-label") Password
+                input(name="password",type="password", class="form-control", maxlength="20")
+              .form-group
+                label(for="password2",class="control-label") Verify Password
+                input(name="password2",type="password", class="form-control", maxlength="20")
+              button(class="btn btn-info",type="submit") Save Profile
+  else
       .container
         .row
           .col-xs-12

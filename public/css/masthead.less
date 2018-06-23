@@ -1,0 +1,51 @@
+@import (reference) "global.less";
+
+@masthead-height: 200px;
+@background-z-depth: -100;
+@navbar-height: 50px;
+
+.masthead {
+  display: flex;
+  height: @masthead-height;
+  margin: 0;
+  padding: 10px;  
+}
+
+.masthead-bkg {
+  position: absolute;
+  right: 0;
+  bottom: @masthead-height;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: @background-z-depth;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: cover;
+}
+
+.masthead-gradient {
+  position: absolute;
+  right: 0;
+  top: @navbar-height + 3px;
+  width: 100%;  
+  height: @masthead-height;
+  z-index: @background-z-depth + 10;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0+60,0.65+82,0.65+99 */
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 75%,  rgba(0,0,0,0.5) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.5) 75%,rgba(0,0,0,0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.5) 75%,rgba(0,0,0,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+}
+
+.masthead-title {
+  align-self: flex-end;
+  z-index: @background-z-depth + 20;
+  h1, p {
+    margin-left: @vertical-gutter;
+    color: @color-white;  
+    text-shadow: 0 0 8px black;
+  }
+}

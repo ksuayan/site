@@ -1,22 +1,21 @@
 extends ../layout
 
 block content
-  #content
-    #map-canvas
-    .container
-      .row
-        .col-lg-12
-          include ../includes/map-toolbar
-        .col-lg-12
-          #notes.collapse
-      .row
-        .col-lg-12
-          #message.well.well-sm
-      .row
-        .col-sm-7
-          #screen(data-ng-app="app",ui-view="")
-        .col-sm-5
-          #info
+  #map-canvas
+  .container
+    .row
+      .col-lg-12
+        include ../includes/map-toolbar
+      .col-lg-12
+        #notes.collapse
+    .row
+      .col-lg-12
+        #message.well.well-sm
+    .row
+      .col-sm-7
+        #screen(data-ng-app="app",ui-view="")
+      .col-sm-5
+        #info
 
 block append scripts
   script(src="/js/ckeditor/ckeditor.js")
