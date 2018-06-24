@@ -1,11 +1,9 @@
 extends ../layout
 block content
   .container
-    .row
-      .col-xs-12
-        h1 Your files were uploaded.
-        ul.list-group
-          - each file in okFiles
-            li.list-group-item= file.originalname
-              | &nbsp;
-              span.badge= file.size
+    h1 Your files were uploaded.
+    ul.list-group
+      - each file in okFiles
+        li.list-group-item= file.originalname
+          | &nbsp;
+          span.badge= file.size

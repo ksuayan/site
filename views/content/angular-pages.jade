@@ -1,9 +1,7 @@
 extends ../layout
 block content
   .container.article(data-ng-app="site")
-    .row
-      .col-sm-12
-        div(ui-view="")
+    div(ui-view="")
 
 block append scripts
   script(src="/js/angular/pages/app.js")
