@@ -18,38 +18,55 @@
       li(ng-repeat="item in layoutOptions")
         a(ng-click='toggleLayoutDropdown(item)') {{item.name}}
 
-.form-group
-  label.control-label Status &nbsp;
-  .btn-group
-    label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
-    label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
-    label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'archived'") archived
+.row.editor-metadata
+  .col-sm-6
+    .form-group
+      label.control-label(for='title') Title
+      input#title.form-control(type='text', ng-model='page.title')
+    .form-group
+      label.control-label(for='name') Page Name
+      .input-group
+        span.input-group-addon.control-label!= config.host + '/page/'
+        input#name.form-control(type='text', ng-model='page.name')
+    br    
+    .form-group
+      label.control-label Status &nbsp;
+      .btn-group
+        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'draft'") draft
+        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'published'") published
+        label.btn.btn-primary(ng-model='page.status', ng-change='updateStatus()', btn-radio="'archived'") archived
 
-hr
+  .col-sm-6
+    .form-group
+      label.control-label(for='description') Description
+      textarea#description.form-control(data-ng-model='page.description')
+      br
+      label.control-label(for='keywords') Keywords
+      textarea#keywords.form-control(data-ng-model='page.keywords')
 
-.form-group
-  label.control-label(for='title') Title
-  input#title.form-control(type='text', ng-model='page.title')
+.row.editor-metadata
+  .col-sm-6
+    .form-group
+      label.control-label(for='image') Masthead Image
+      .input-group
+        span.input-group-addon
+          input(type='radio',ng-model='page.mastheadStyle',value='image')
+        input#image.form-control(type='text', ng-model='page.image', ng-disabled='(page.mastheadStyle!="image")')
+  .col-sm-6
+    .form-group
+      label.control-label(for='mastheadColor') Masthead Color
+      .input-group
+        span.input-group-addon
+          input(type='radio',ng-model='page.mastheadStyle',value='color')
+        input#mastheadColor.form-control(type='text', ng-model='page.mastheadColor', ng-disabled='(page.mastheadStyle!="color")')
 
-.form-group
-  label.control-label(for='name') Name
-  input#name.form-control(type='text', ng-model='page.name')
-
-.form-group
-  label.control-label(for='image') Image
-  input#image.form-control(type='text', ng-model='page.image')
-
-.form-group
-  label.control-label(for='body') Excerpt &nbsp;
-  a.btn.btn-default(type='button', ng-click='editExcerpt(page)')
-    span.glyphicon.glyphicon-pencil
-  .excerpt(ng-bind-html="page.excerpt|trusted")
-
-.form-group
-  label.control-label(for='description') Description
-  textarea#description.form-control(data-ng-model='page.description')
-  label.control-label(for='keywords') Keywords
-  textarea#keywords.form-control(data-ng-model='page.keywords')
+.row.editor-metadata
+  .col-sm-12
+    .form-group
+      label.control-label(for='body') Excerpt &nbsp;
+      a.btn.btn-default(type='button', ng-click='editExcerpt(page)')
+        span.glyphicon.glyphicon-pencil
+      .excerpt(ng-bind-html="page.excerpt|trusted")
 
 .form-group
   a.btn.btn-default(ng-click='addComponent(page)')

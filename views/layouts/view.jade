@@ -33,8 +33,9 @@ block metadata
   +meta_og(og_image)
 
 block append header
+  -var background=(story && story.mastheadStyle == 'image') ? 'background-image: url("'+image+'");' : 'background-color: '+story.mastheadColor+';';
   .masthead
-    .masthead-bkg(style='background-image: url("'+image+'");')
+    .masthead-bkg(style=background)
     .masthead-gradient
     .masthead-title
       include ../includes/title

@@ -8,18 +8,20 @@ var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
 var Page = new Schema({
-    dateCreated : {type: Date,   default: Date.now},
-    dateUpdated : {type: Date,   default: Date.now},
-    layout      : {type: String, default: "view"},
-    name        : {type: String, default: "_nameless_", index: {unique: true}},
-    title       : {type: String, default: "Untitled", required: true},
-    status      : {type: String, default: "draft"},
-    image       : {type: String, default: conf.defaultBanner},
-    description : {type: String, default: ""},
-    keywords    : {type: String, default: ""},
-    excerpt     : {type: String, default: ""},
-    content     : [],
-    section     : Object
+    dateCreated  : {type: Date,   default: Date.now},
+    dateUpdated  : {type: Date,   default: Date.now},
+    layout       : {type: String, default: "view"},
+    name         : {type: String, default: "_nameless_", index: {unique: true}},
+    title        : {type: String, default: "Untitled", required: true},
+    status       : {type: String, default: "draft"},
+    image        : {type: String, default: conf.defaultBanner},
+    mastheadColor: {type: String, default: conf.defaultMastheadColor},
+    mastheadStyle: {type: String, default: conf.defaultMastheadStyle},
+    description  : {type: String, default: ""},
+    keywords     : {type: String, default: ""},
+    excerpt      : {type: String, default: ""},
+    content      : [],
+    section      : Object
 });
 
 var File = new  Schema({
@@ -137,6 +139,8 @@ DocumentDB.prototype.updatePage = function(pageObj, onSuccess, onError) {
                 found.name = pageObj.name;
                 found.title = pageObj.title;
                 found.image = pageObj.image;
+                found.mastheadColor = pageObj.mastheadColor;
+                found.mastheadStyle = pageObj.mastheadStyle;
                 found.status = pageObj.status;
                 found.description = pageObj.description;
                 found.keywords = pageObj.keywords;

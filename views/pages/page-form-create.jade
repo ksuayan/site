@@ -20,5 +20,7 @@
   input#title.form-control(type='text', ng-model='page.title')
 
 .form-group
-  label.control-label(for='name') Name
-  input#name.form-control(type='text', ng-model='page.name')
+  label.control-label(for='name') Page Name
+  .input-group
+    span.input-group-addon.control-label!= config.host + '/page/'
+    input#name.form-control(type='text', ng-model='page.name')

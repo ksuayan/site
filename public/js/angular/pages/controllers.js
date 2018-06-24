@@ -78,7 +78,7 @@ angular.module('site.controllers', [])
     $scope.updatePage = function() {
         // Issue a PUT to /api/pages/:id
         $scope.page.$update(function() {
-            $state.go('listPages');
+            // $state.go('listPages');
         });
     };
 
