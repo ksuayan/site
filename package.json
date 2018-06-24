@@ -34,7 +34,7 @@
     "instagram-node": "^0.5.8",
     "jade": "1.11.0",
     "json2csv": "^2.12.0",
-    "moment": "2.17.1",
+    "moment": "2.22.2",
     "mongodb": "2.2.20",
     "mongoose": "4.0",
     "multer": "^1.0.3",
