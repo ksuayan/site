@@ -690,6 +690,11 @@ body {
   background-color: #f7fcec;
   text-decoration: none;
 }
+.rich-text a:hover {
+  color: #649c1a;
+  background-color: #f7fcec;
+  text-decoration: none;
+}
 .video-container {
   clear: both;
   margin-top: 20px;
