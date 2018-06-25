@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Libre+Baskerville:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans:300,400,600|IBM+Plex+Serif:400,400i,700');
 @media screen and (max-width: 767px) {
 }
 @media (min-width: 768px) {
@@ -25,7 +25,7 @@ html {
   background-color: #333b45;
 }
 body {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 120%;
@@ -48,7 +48,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 120%;
   color: #333;
@@ -93,11 +93,11 @@ textarea {
 }
 input.form-control,
 textarea.form-control {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 18px;
 }
 blockquote {
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: "IBM Plex Serif", Georgia, serif;
   font-size: 24px;
   font-weight: 400;
   font-style: italic;
@@ -226,7 +226,7 @@ html#slideshow {
 }
 .footer {
   font-size: 16px;
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   padding: 20px 0 20px 0;
   background-color: #202020;
   color: #999;
@@ -243,7 +243,11 @@ html#slideshow {
   border-radius: 0;
 }
 pre.source-code {
+  font-family: "IBM Plex Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   font-size: 16px;
+}
+pre.source-code code {
+  font-family: "IBM Plex Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 }
 body {
   padding-top: 50px;
@@ -259,12 +263,12 @@ body {
 .navbar-brand,
 .navbar-nav,
 .dropdown-menu {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
 }
 .navbar-brand {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
 }
@@ -400,7 +404,7 @@ body {
   font-size: 16px;
 }
 #stream .label {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
 .handle {
@@ -428,7 +432,7 @@ body {
 }
 #content .container.article {
   padding: 20px 0 50px 0;
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: "IBM Plex Serif", Georgia, serif;
   font-size: 18px;
 }
 @media (max-width: 992px) {
@@ -447,7 +451,7 @@ body {
 }
 #content .story {
   padding-top: 10px;
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: "IBM Plex Serif", Georgia, serif;
   font-size: 18px;
 }
 #content .story-image {
@@ -464,7 +468,7 @@ body {
 #content .control-label,
 #content .form-control,
 #content .label {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
 .story h1,
@@ -618,7 +622,7 @@ body {
   border: 8px solid #f3f3f3;
   padding: 10px 15px;
   width: 100%;
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 600;
 }
@@ -627,7 +631,7 @@ body {
   outline-style: none;
 }
 .table.editor-form {
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: "IBM Plex Serif", Georgia, serif;
   font-size: 18px;
 }
 .editor-form {
@@ -642,7 +646,7 @@ body {
   margin-bottom: 20px;
 }
 .modal .modal-dialog {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-weight: 600;
 }
 .editor-rte {
@@ -654,7 +658,7 @@ body {
   margin: 5px 0;
 }
 .editor-rte .ta-editor.form-control {
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: "IBM Plex Serif", Georgia, serif;
   font-size: 18px;
   font-weight: 400;
   max-height: 500px;
@@ -690,11 +694,6 @@ body {
   background-color: #f7fcec;
   text-decoration: none;
 }
-.rich-text a:hover {
-  color: #649c1a;
-  background-color: #f7fcec;
-  text-decoration: none;
-}
 .video-container {
   clear: both;
   margin-top: 20px;
@@ -716,7 +715,7 @@ body {
   height: 100%;
 }
 .audio-player {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-weight: 600;
   color: #666;
   float: left;
@@ -727,7 +726,7 @@ body {
 .audio-player .media-heading {
   width: 200px;
   padding-right: 10px;
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 16px;
 }
@@ -752,7 +751,7 @@ body {
   display: inline-block;
   padding: 13px 0 0 10px;
   color: #666;
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
 }
 .map-widget,
@@ -839,10 +838,10 @@ body {
   margin: 5px;
 }
 #info .adp {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif !important;
 }
 #info .adp table {
-  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+  font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif !important;
 }
 #info .adp .adp-text {
   font-size: 16px;

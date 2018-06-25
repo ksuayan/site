@@ -1394,9 +1394,9 @@ gb.ui.Timeline.include({
     },
 
     drawHeader: function(dataPoint) {
-        var headerStyle = {"fill":"#fff","font-size":"32pt","text-anchor":"start","font-family":"Source Sans Pro"};
-        var subheadStyle = {"fill":"#fff","font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
-        var subhead2Style = {"fill":"#fff","font-size":"16pt","text-anchor":"start","font-family":"Source Sans Pro"};
+        var headerStyle = {"fill":"#fff","font-size":"32pt","text-anchor":"start","font-family":"IBM Plex Sans"};
+        var subheadStyle = {"fill":"#fff","font-size":"16pt","text-anchor":"start","font-family":"IBM Plex Sans"};
+        var subhead2Style = {"fill":"#fff","font-size":"16pt","text-anchor":"start","font-family":"IBM Plex Sans"};
         if (this.title) {
             this.title.remove();
         }
@@ -1418,7 +1418,7 @@ gb.ui.Timeline.include({
 
 
     drawTicks: function() {
-        var dateStyle = { "fill":"#fff","font-size":"10pt","font-family":"Source Sans Pro"};
+        var dateStyle = { "fill":"#fff","font-size":"10pt","font-family":"IBM Plex Sans"};
         var startDate = new Date(this.dataPoints[0].startDate);
         var startYear = startDate.getUTCFullYear();
         var endDate = new Date(this.dataPoints[this.dataPoints.length - 1].endDate);
@@ -1433,8 +1433,8 @@ gb.ui.Timeline.include({
 
 
     drawDate: function(timestamp) {
-        var monthStyle = { "opacity": 0, "fill" : "#fff", "font-size": "16pt", "font-family" : "Source Sans Pro" };
-        var yearStyle = { "opacity": 0, "fill" : "#fff", "font-size": "12pt", "font-family" : "Source Sans Pro" };
+        var monthStyle = { "opacity": 0, "fill" : "#fff", "font-size": "16pt", "font-family" : "IBM Plex Sans" };
+        var yearStyle = { "opacity": 0, "fill" : "#fff", "font-size": "12pt", "font-family" : "IBM Plex Sans" };
         var dateXPos = Math.floor(this.margin + ((timestamp - this.xMin) * this.xScale));
         var date = new Date(timestamp);
         var monthStr = this.MONTHS[date.getUTCMonth()];
