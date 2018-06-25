@@ -24,7 +24,7 @@ personal sandbox for fullstack JavaScript based development.
 ## Heroku Notes
 
 - edit `.buildpacks`
-- To install ImageMagick on Cedar-14:
+- To install ImageMagick on Cedar-16:
 https://github.com/ello/heroku-buildpack-imagemagick-cedar-14
 
 
