@@ -1,4 +1,5 @@
 .App {
+  font-family: 'IBM Plex Sans', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .App-logo {
@@ -19,4 +20,10 @@
 .App-intro {
   padding: 20px;
   font-size: large;
+}
+
+.search-bar {
+  width: 600px;
+  padding: 10px;
+  font-size: 18px;
 }
