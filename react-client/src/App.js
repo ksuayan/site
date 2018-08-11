@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import SearchResults from "./containers/SearchResults";
 import "./App.css";
 
 class App extends Component {
 
   state = { 
     term: '',
-    pages: [] 
+    result: [] 
   };
 
   constructor(props) {
@@ -20,7 +21,7 @@ class App extends Component {
       .then(data => {
         this.setState({
           term: '',
-          pages: data.result
+          result: data.result
         })
       });
   }
@@ -37,7 +38,7 @@ class App extends Component {
       .then(data => {
         this.setState({
           term: this.termInput.value,
-          pages: data.result 
+          result: data.result 
         })
       });
   }
@@ -57,13 +58,8 @@ class App extends Component {
               />
           </form>
           
-          {this.state.pages.map(
-            entry => <p key={entry._id}>
-              {entry.Name}<br/> 
-              {entry.Artist}<br/> 
-              {entry.Album}
-              </p>
-          )}
+        <SearchResults results={this.state.result}/>
+
         </div>
       </div>
     );

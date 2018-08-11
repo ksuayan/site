@@ -8,6 +8,13 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import store from './store';
 
+const saveState = () => localStorage['app-store'] = JSON.stringify(store.getState());
+
+store.subscribe(saveState);
+
+window.React = React;
+window.store = store;
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
