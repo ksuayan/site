@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import SearchItem from './SearchItem';
+import PaperSearchItem from './PaperSearchItem';
 
 class SearchResults extends Component {
   render() {
     return (
         <div className={this.props.className} onClick={this.props.onClick}>
           {this.props.results.map(
-            entry => <SearchItem key={entry._id}
+            entry => <PaperSearchItem key={entry._id}
               name={entry.Name}
               artist={entry.Artist}
               album={entry.Album}

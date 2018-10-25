@@ -3,32 +3,39 @@
  */
 
 export const C = {
-  GET_TRACKS: 'GET_TRACKS',
-  UPDATE_TRACKS: 'UPDATE_TRACKS',
-  SET_TERM: 'SET_TERM'
+  SET_TERM:    'SET_TERM',
+  SET_RESULTS: 'SET_RESULTS',
+  ADD_RESULT:  'ADD_RESULT',
+  ADD_ERROR:   'ADD_ERROR'
 }
 
 /*
  * action creators
  */
 
-export function getTracks(term) {
-  return { type: C.GET_TRACKS, term }
+export const setTerm = (term) => {
+  return { type: C.SET_TERM, payload: term }
 }
+
+export const setResults = (results) => {
+  return { type: C.SET_RESULTS, payload: results }
+}
+
 
 export const someCall = () => (dispatch, getState) => {
 
   dispatch({
-    type: C.GET_TRACKS
+    type: C.SET_TERM,
+    payload: 'someCall'
   })
 
   // call async stuff for example
   fetch("/test")
   .then(response => response.json())
-  .then(tracks => {
+  .then(results => {
     dispatch({
-      type: C.UPDATE_TRACKS,
-      payload: tracks
+      type: C.SET_RESULTS,
+      payload: results
     })
   })
   .catch(error => {
@@ -37,7 +44,5 @@ export const someCall = () => (dispatch, getState) => {
       payload: error.message
     })
   });
-
-
 
 }

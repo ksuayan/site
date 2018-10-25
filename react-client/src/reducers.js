@@ -5,13 +5,11 @@ import { C } from './actions';
  * Should be returning the new state 
  * for every given incoming action.
  */
-export const tracks = (state = [], action) => {
+export const results = (state = [], action) => {
   switch (action.type) {
-    case C.GET_TRACKS:
+    case C.SET_RESULTS:
       return action.payload;
-    case C.UPDATE_TRACKS:
-      return action.payload;
-    case C.ADD_TRACK:
+    case C.ADD_RESULT:
       return [ ...state, action.payload ];
     default:
       return state;
@@ -27,7 +25,7 @@ export const term = (state="", action) => {
 }
 
 const mainApp = combineReducers({
-  tracks,
+  results,
   term
 })
 
