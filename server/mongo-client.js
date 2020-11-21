@@ -1,38 +1,43 @@
-"use strict";
+'use strict';
 
 var conf = require('./conf'),
-    mongodb = require('mongodb'),
-    mongoClient = mongodb.MongoClient,
-    server = mongodb.Server,
-    mongoose = require('mongoose');
+  mongodb = require('mongodb'),
+  mongoClient = mongodb.MongoClient,
+  server = mongodb.Server,
+  mongoose = require('mongoose');
 
-var MongoConnection = function(){
-    var that = this;
+var MongoConnection = function () {
+  var that = this,
+    mongoOptions = {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    };
 
-    this.mongoose = mongoose;
-    this.mongoClient = mongoClient;
-    this.server = server;
+  this.mongoose = mongoose;
+  this.mongoClient = mongoClient;
+  this.server = server;
 
-
-    this.mongoClient.connect(conf.mongoURL, {}, function(err, db){
-        if (err) {
-            console.log("MongoDB error", err);
-            return;
-        }
-
-        that.db = db;
-        console.log("Initialized MongoDB Connection.");
-
-        mongoose.connect(conf.mongoURL, {db:{safe:true}});
-        that.mongooseConnection = mongoose.connection;
-        that.mongooseConnection.on('error', console.error.bind(console, 'Connection error.'));
-        that.mongooseConnection.once('open', function(){
-            console.log("Mongoose Connected.");
-        });
-        that.mongooseConnection.once('close', function(){
-            console.log("Closing Mongoose.");
-        });
+  this.mongoClient.connect(conf.mongoURL, mongoOptions, function (err, db) {
+    if (err) {
+      console.log('MongoDB error', err);
+      return;
+    }
+    that.db = db;
+    console.log('Initialized MongoDB Connection.');
+    that.mongooseConnection = mongoose.connection;
+    that.mongooseConnection.on(
+      'error',
+      console.error.bind(console, 'Connection error.')
+    );
+    that.mongooseConnection.once('open', function () {
+      console.log('Mongoose Connected.');
     });
+    that.mongooseConnection.once('close', function () {
+      console.log('Closing Mongoose.');
+    });
+
+    mongoose.connect(conf.mongoURL, mongoOptions);
+  });
 };
 
 var mongodb = new MongoConnection();
