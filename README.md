@@ -30,4 +30,9 @@ https://github.com/ello/heroku-buildpack-imagemagick-cedar-14
 ## Favicon Conversions from
 https://www.favicon-generator.org/
 
+##
+Heroku CLI
+
+brew tap heroku/brew && brew install heroku
+
 
