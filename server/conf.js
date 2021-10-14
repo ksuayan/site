@@ -93,9 +93,8 @@ var config = {
     client_secret: process.env.INSTAGRAM_CLIENT_SECRET,
     callbackURL: host + urls.instagramCallback,
   },
+  mongoURL: process.env.MONGO_ATLAS_URL,
 };
-
-config.mongoURL = process.env.MONGO_ATLAS_URL;
 
 if (process.env.NODE_ENV === 'production') {
   config.caching = true;

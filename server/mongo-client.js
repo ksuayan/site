@@ -2,9 +2,10 @@
 
 var conf = require('./conf'),
   mongodb = require('mongodb'),
-  mongoClient = mongodb.MongoClient,
-  server = mongodb.Server,
   mongoose = require('mongoose');
+
+var mongoClient = mongodb.MongoClient,
+  server = mongodb.Server;
 
 var MongoConnection = function () {
   var that = this,
@@ -17,12 +18,14 @@ var MongoConnection = function () {
   this.mongoClient = mongoClient;
   this.server = server;
 
-  this.mongoClient.connect(conf.mongoURL, mongoOptions, function (err, db) {
+  console.log('mongoURL', conf.mongoURL);
+
+  this.mongoClient.connect(conf.mongoURL, mongoOptions, function (err, client) {
     if (err) {
       console.log('MongoDB error', err);
       return;
     }
-    that.db = db;
+    that.db = client.db('site');
     console.log('Initialized MongoDB Connection.');
     that.mongooseConnection = mongoose.connection;
     that.mongooseConnection.on(
@@ -35,7 +38,6 @@ var MongoConnection = function () {
     that.mongooseConnection.once('close', function () {
       console.log('Closing Mongoose.');
     });
-
     mongoose.connect(conf.mongoURL, mongoOptions);
   });
 };
